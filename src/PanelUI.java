@@ -7,9 +7,9 @@ import javax.swing.JPanel;
  * @author Yuting
  *
  */
-public class Panel extends JPanel{
+public class PanelUI extends JPanel{
 	
-	Panel(Rectangle bound) {
+	PanelUI(Rectangle bound) {
 		
 		setLayout(null);
 		setBounds(bound);

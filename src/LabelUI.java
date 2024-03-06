@@ -8,14 +8,14 @@ import javax.swing.JLabel;
  * @author Yuting
  *
  */
-public class Label extends JLabel{
+public class LabelUI extends JLabel{
 
 	/**
 	 * 
 	 * @param text
 	 * @param bound
 	 */
-	Label(String text, Rectangle bound) {
+	LabelUI(String text, Rectangle bound) {
 		
 		setVisible(true);			//make Label visible
 		setBounds(bound);			//set size and location
@@ -33,7 +33,7 @@ public class Label extends JLabel{
 	 * @param icon
 	 * @param bound
 	 */
-	Label(String text, Icon icon, Rectangle bound){
+	LabelUI(String text, Icon icon, Rectangle bound){
 		
 		setVisible(true);			//make Label visible
 		setBounds(bound);			//set size and location

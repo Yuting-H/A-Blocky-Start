@@ -6,9 +6,13 @@ import javax.swing.JTextField;
  * @author Yuting
  *
  */
-public class TextField extends JTextField{
+public class TextFieldUI extends JTextField{
 	
-	TextField(Rectangle bound){
+	/**
+	 * 
+	 * @param bound
+	 */
+	TextFieldUI(Rectangle bound){
 		setVisible(true);
 		setBounds(bound);
 		setOpaque(isOpaque());

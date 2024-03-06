@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 
-		JFrame gamFrame = new GameFrame();
+		JFrame gamFrame = new GameFrameUI();
 		
 		
 	}

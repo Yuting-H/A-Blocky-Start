@@ -4,7 +4,7 @@ import javax.swing.JPanel;
  * @author Yuting
  *
  */
-public class Functions {
+public class FunctionsUI {
 
 	
 	/**
@@ -13,7 +13,7 @@ public class Functions {
 	 * @param from the panel to switch from
 	 * @param to the panel to switch to
 	 */
-	public static void switchPanels(JPanel from, Panel to) {
+	public static void switchPanels(JPanel from, PanelUI to) {
 		
 		//checks if parameters are valid
 		if (from == null || to == null) {
@@ -50,7 +50,7 @@ public class Functions {
 			}
 			
 			//switch to main menu after login is finished
-			switchPanels(GameFrame.login, GameFrame.mainMenu);
+			switchPanels(GameFrameUI.login, GameFrameUI.mainMenu);
 			System.out.println("Logged in as: " + username);
 			System.out.println("With password: " + password);
 		}

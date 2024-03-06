@@ -8,14 +8,14 @@ import javax.swing.event.MouseInputListener;
 
 /**
  * @author Yuting
- *
+ * We dont have to implement this
  */
-public class DraggablePanel extends JPanel {
+public class DraggablePanelUI extends JPanel {
 	
 	//top left corner x & y pos
 	private int mouseX = 0, mouseY = 0 , panelX = 0, panelY = 0;
 	
-	DraggablePanel () {
+	DraggablePanelUI () {
 		setBackground(Color.red);
 		setBounds(0,0,50,50);
 		

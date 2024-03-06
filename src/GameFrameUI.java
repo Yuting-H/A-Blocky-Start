@@ -7,21 +7,21 @@ import javax.swing.JFrame;
  * This is the game frame, everything is suppose to be here
  * This class extends JFrame, there should be only one class that does this
  */
-public class GameFrame extends JFrame{
+public class GameFrameUI extends JFrame{
 	
 	//declares width and height of the frame
 	final static Rectangle gameRect = new Rectangle(0, 0, 800, 600);
 	
 	//declares all the panels that can appear such as the main menu, login screen etc
-	public static MainMenu mainMenu 		= new MainMenu(gameRect);
-	public static Progression progression 	= new Progression(gameRect);
-	public static Login login 				= new Login(gameRect);
+	public static MainMenuUI mainMenu 		= new MainMenuUI(gameRect);
+	public static ProgressionUI progression 	= new ProgressionUI(gameRect);
+	public static LoginUI login 				= new LoginUI(gameRect);
 	
 	/**
 	 * Creates the frame
 	 * This is called only once by Main
 	 */
-	GameFrame() {
+	GameFrameUI() {
 		
 		//sets up the game frame
 		setLayout(null);
@@ -32,7 +32,7 @@ public class GameFrame extends JFrame{
 		setLocationRelativeTo(null); 	//This makes the JFram appears centered on screen
 		
 		//adds panels
-		this.add(login);
+		//this.add(login);
 		this.add(mainMenu);
 		this.add(progression);
 

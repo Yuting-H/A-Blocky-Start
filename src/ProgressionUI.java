@@ -7,10 +7,10 @@ import javax.swing.JPanel;
  * @author Yuting
  *
  */
-public class Progression extends Panel implements OnEnter{
+public class ProgressionUI extends PanelUI implements OnEnter{
 	
 	
-	Progression(Rectangle bound){
+	ProgressionUI(Rectangle bound){
 		
 		super(bound);
 		this.setBackground(Color.BLUE);	
