@@ -1,0 +1,5 @@
+# These are suppose to be untracked by git
+
+*.class
+
+
