@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -30,28 +31,36 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 	
 	ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
 	
-	ContainerUI container = new ContainerUI(containerLocation, containerSize, Color.black);
+	ContainerUI container = new ContainerUI(containerLocation, containerSize, Color.white);
 	
 	/**
 	 * constructor for displaying=
 	 */
 	ProgressionUI(Rectangle bound){
 	
-		
+		//set up progression panel
 		super(bound);
-		this.setBackground(Color.BLUE);	
+		this.setBackground(Color.BLUE);
+		
+		//added go back button to prrogression
 		add(backButton);
 		
+		//set up scrollable container
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-		
+			
+		//Utility: test scroll funciton
 		container.add(Box.createVerticalStrut(5000));
 		
+		//init scroll bar
 		JScrollPane scrollPane = new JScrollPane(container);
 		
+		//change scroll bar settings
 		scrollPane.setSize(containerSize);
 		scrollPane.setLocation(containerLocation);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVisible(true);
+		
+		//adding scrollable container to progression panel
 		add(scrollPane);
 		
 	}
