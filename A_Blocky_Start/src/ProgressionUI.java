@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JScrollPane;
+
 /**
  * @author Yuting
  * This class display the progression
@@ -34,8 +36,10 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 		super(bound);
 		this.setBackground(Color.BLUE);	
 		this.add(container);
-		
 		add(backButton);
+		
+		JScrollPane scrollPane = new JScrollPane(this);
+		scrollPane.setVisible(true);
 		
 	}
 	
