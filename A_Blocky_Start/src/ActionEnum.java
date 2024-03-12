@@ -1,0 +1,46 @@
+
+/**
+ * Enumerator of all possible types of action.
+ * @author Chun Ho Chan (Edward)
+ */
+
+public enum ActionEnum {
+	/**
+	 * Enumerator of actions
+	 */
+	Unknown, Start, Stop, Forward, Back, Left, Right, Goto, Loop;
+	
+	/**
+	 * Convert encoded string to an enumerator.
+	 * @param data Encoded data string
+	 * @return Enumerator of actions
+	 */
+	public static ActionEnum fromString(String data) {
+		// Remove whitespace
+		data = data.strip().toLowerCase();
+		
+		// Check data of action
+		if (data.equals("unknown")) {
+			return Unknown;
+		} else if (data.equals("start")) {
+			return Start;
+		} else if (data.equals("stop")) {
+			return Stop;
+		} else if (data.equals("forward")) {
+			return Forward;
+		} else if (data.equals("back")) {
+			return Back;
+		} else if (data.equals("left")) {
+			return Left;
+		} else if (data.equals("right")) {
+			return Right;
+		} else if (data.indexOf("goto") != -1) {
+			return Goto;
+		} else if (data.indexOf("loop") != -1) {
+			return Loop;
+		} else {
+			// Invalid encoded string
+			return Unknown;
+		}
+	}
+}
