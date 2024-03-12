@@ -1,6 +1,7 @@
 
 /**
  * This model class stores a user's progress in a stage. It loads/ saves data by communicating with the UserData object. The ActionChain is stored as a separate object.
+ * @version March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
 public class ProgressionData {
