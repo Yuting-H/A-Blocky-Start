@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import mvc.ActionEnum;
+
 /**
  * Unit test for ActionEnum.
  * @version March 12, 2024
@@ -12,8 +14,9 @@ import org.junit.jupiter.api.Test;
 class ActionEnumTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void LoopToEnum() {
+		String action = "Loop";
+		assertEquals(ActionEnum.fromString(action), ActionEnum.Loop);
 	}
 
 }

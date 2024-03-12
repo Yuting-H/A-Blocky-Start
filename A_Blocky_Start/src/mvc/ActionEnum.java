@@ -1,3 +1,4 @@
+package mvc;
 
 /**
  * Enumerator of all possible types of action.

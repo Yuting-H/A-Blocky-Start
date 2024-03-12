@@ -1,3 +1,4 @@
+package mvc;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;

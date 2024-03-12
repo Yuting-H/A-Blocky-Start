@@ -1,3 +1,4 @@
+package mvc;
 
 /**
  * This view class displays the action chain and maze on screen.

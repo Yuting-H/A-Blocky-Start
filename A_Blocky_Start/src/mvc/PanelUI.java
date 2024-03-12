@@ -1,3 +1,4 @@
+package mvc;
 import java.awt.Color;
 import java.awt.Rectangle;
 
