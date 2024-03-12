@@ -12,13 +12,18 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 	//define size of go-back button 
 	Dimension backButtonSize = new Dimension(30,30);
 	
-	//TODO: define size of each progression box
-	Dimension boxSize = new Dimension();
+	//define size of each progression box
+	Dimension containerSize = new Dimension(700, 500);
 	
 	//define location of back button
 	Point backButtonLocation = new Point(10,10);
 	
+	//define the location of each progression box
+	Point containerLocation = new Point(50, 50);
+	
 	ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	
+	ContainerUI container = new ContainerUI(containerLocation, containerSize, Color.black);
 	
 	/**
 	 * constructor for displaying=
@@ -28,6 +33,7 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 		
 		super(bound);
 		this.setBackground(Color.BLUE);	
+		this.add(container);
 		
 		add(backButton);
 		

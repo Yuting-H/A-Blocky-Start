@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.*;
@@ -14,6 +16,7 @@ public class ContainerUI extends JPanel{
 	 * 
 	 * @param bound
 	 * @param color
+	 * @deprecated
 	 */
 	ContainerUI(Rectangle bound, Color color) {
 		setBackground(color);
@@ -21,5 +24,19 @@ public class ContainerUI extends JPanel{
 		setBounds(bound);
 		setLayout(null);
 
+	}
+	
+	/**
+	 * 
+	 * @param location
+	 * @param size
+	 */
+	ContainerUI(Point location, Dimension size, Color color) {
+		setBackground(color);
+		setVisible(true);
+		setLocation(location);
+		setSize(size);
+		setLayout(null);
+		
 	}
 }
