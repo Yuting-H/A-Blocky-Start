@@ -2,7 +2,7 @@ package mvc;
 
 /**
  * Enumerator of all possible types of action.
- * @version March 11, 2024
+ * @version March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
 
@@ -38,9 +38,9 @@ public enum ActionEnum {
 			return Goto;
 		} else if (data.indexOf("loop") != -1) {
 			return Loop;
-		} else {
-			// Invalid encoded string
-			return Unknown;
 		}
+		
+		// Invalid encoded string
+		return Unknown;
 	}
 }
