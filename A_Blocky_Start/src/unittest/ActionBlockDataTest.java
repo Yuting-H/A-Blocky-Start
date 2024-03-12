@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * @version March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
-class ActionBlockData {
+class ActionBlockDataTest {
 
 	@Test
 	void test() {

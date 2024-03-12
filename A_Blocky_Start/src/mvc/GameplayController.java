@@ -1,3 +1,4 @@
+package mvc;
 
 /**
  * This controller class synchronizes the ActionChain, MazeData, and GameplayView. 
