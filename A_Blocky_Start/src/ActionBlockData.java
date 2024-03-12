@@ -76,7 +76,7 @@ public class ActionBlockData {
 	 * @return Encoded data string
 	 */
 	public String exportActionBlockData() {
-		String result = type.name();
+		String result = type.toString();
 		
 		for (int i = 0; i < args.size(); i++) {
 			result = result + "_" + args.get(i).toString(); 
