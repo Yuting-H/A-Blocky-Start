@@ -10,7 +10,7 @@ public enum ActionEnum {
 	/**
 	 * Enumerator of actions
 	 */
-	Unknown, Start, Stop, Forward, Back, Left, Right, Goto, Loop;
+	Unknown, Start, End, Forward, Back, Left, Right, Goto, Loop;
 	
 	/**
 	 * Convert encoded string to an enumerator.
@@ -22,12 +22,10 @@ public enum ActionEnum {
 		data = data.strip().toLowerCase();
 		
 		// Check data of action
-		if (data.equals("unknown")) {
-			return Unknown;
-		} else if (data.equals("start")) {
+		if (data.equals("start")) {
 			return Start;
-		} else if (data.equals("stop")) {
-			return Stop;
+		} else if (data.equals("end")) {
+			return End;
 		} else if (data.equals("forward")) {
 			return Forward;
 		} else if (data.equals("back")) {
