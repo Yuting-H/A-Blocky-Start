@@ -5,7 +5,7 @@ import javax.swing.*;
 
 /**
  * @author Yuting
- *
+ * This class creates a new JPanel with some default params initialized
  */
 public class ContainerUI extends JPanel{
 	

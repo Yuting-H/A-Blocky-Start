@@ -15,6 +15,7 @@ import javax.swing.JButton;
  */
 public class ButtonUI extends JButton{
 	
+	
 	ButtonUI(Dimension size, String text) {
 		
 		setVisible(true);			//make button visible
@@ -57,11 +58,32 @@ public class ButtonUI extends JButton{
 		
 	}
 	
+	ButtonUI(Point location, Dimension size, String text, Icon icon) {
+		
+		setVisible(true);			//make button visible
+		setLocation(location);			//set size and location
+		setSize(size);
+		setIcon(IconsUI.buttonIcon);	//set image
+		setText(text);				//set text
+		setIcon(icon);
+		
+		//aligns text
+		setHorizontalTextPosition(JButton.CENTER);
+		setVerticalTextPosition(JButton.CENTER);
+		
+		//remove default background
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorder(BorderFactory.createEmptyBorder());
+		
+	}
+	
 	/**
 	 * This creates a new custom button
 	 * @param text
 	 * @param icon
 	 * @param bound
+	 * @deprecated
 	 */
 	ButtonUI(String text, Icon icon, Rectangle bound) {
 		

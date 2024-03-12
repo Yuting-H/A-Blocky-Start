@@ -13,7 +13,7 @@ public class GameFrameUI extends JFrame{
 	final static Rectangle gameRect = new Rectangle(0, 0, 800, 600);
 	
 	//declares all the panels that can appear such as the main menu, login screen etc
-	public static MainMenuUI mainMenu 		= new MainMenuUI(gameRect);
+	public static MainMenuUI mainMenu 			= new MainMenuUI(gameRect);
 	public static ProgressionUI progression 	= new ProgressionUI(gameRect);
 	public static LoginUI login 				= new LoginUI(gameRect);
 	
@@ -31,9 +31,11 @@ public class GameFrameUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null); 	//This makes the JFram appears centered on screen
 		
+		
+		//uncomment these if you want to test them
 		//adds panels
 		//this.add(login);
-		this.add(mainMenu);
+		//this.add(mainMenu);
 		this.add(progression);
 
 		
