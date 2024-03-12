@@ -29,7 +29,7 @@ public class ActionBlockData {
 	public ActionBlockData(ActionEnum type, ArrayList<Integer> args) {
 		this.type = type;
 		this.args = args;
-		this.counter = 0;
+		this.counter = -1; // none value
 		
 		if (type == ActionEnum.Loop) {
 			// loop (end - start) times
@@ -41,14 +41,17 @@ public class ActionBlockData {
 	 * Construct an action block, using encoded data string.
 	 * @param data Encoded data string
 	 */
-	public void decode(String data) {
-		// Split the data into substrings
+	public ActionBlockData importData(String data) {
+		// Split the data
 		String[] dataList = data.split("_");
 		
-		// Create a list of arguments
+		// Decode type
+		ActionEnum type = ActionEnum.fromString(dataList[0]);
+		
+		// Decode list of arguments
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		
-		// Convert arguments from string to integer
+		// Convert each argument to integer
 		for (int i = 1; i < dataList.length; i++) {
 			try {
 				args.add(Integer.parseInt(dataList[i]));
@@ -57,14 +60,8 @@ public class ActionBlockData {
 			}
 		}
 		
-		this.type = ActionEnum.fromString(dataList[0]);
-		this.args = args;
-		this.counter = 0;
-		
-		if (type == ActionEnum.Loop) {
-			// loop (end - start) times
-			this.counter = args.get(0) - args.get(1);
-		}
+		// Call constructor
+		return new ActionBlockData(type, args);
 	}
 	
 	/**
@@ -76,7 +73,7 @@ public class ActionBlockData {
 	 * "Loop_X_Y_Z", loop (X - Y) times, Z is the line number for jump.<br>
 	 * @return Encoded data string
 	 */
-	public String exportActionBlockData() {
+	public String exportData() {
 		String result = type.toString();
 		
 		for (int i = 0; i < args.size(); i++) {
@@ -103,31 +100,31 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Access end point of loop.
+	 * Access end point of loop. Return -1 if none.
 	 * @return End point
 	 */
 	public int getEndPoint() {
 		if (type == ActionEnum.Loop) {
 			return args.get(0);
 		} else {
-			return 0;
+			return -1;
 		}
 	}
 	
 	/**
-	 * Access start point of loop.
+	 * Access start point of loop. Return -1 if none.
 	 * @return Start point
 	 */
 	public int getStartPoint() {
 		if (type == ActionEnum.Loop) {
 			return args.get(1);
 		} else {
-			return 0;
+			return -1;
 		}
 	}
 	
 	/**
-	 * Access line number for jump.
+	 * Access line number for jump. Return -1 if none.
 	 * @return Line number for jump
 	 */
 	public int getLineForJump() {
@@ -136,16 +133,20 @@ public class ActionBlockData {
 		} else if (type == ActionEnum.Loop) {
 			return args.get(2);
 		} else {
-			return 0;
+			return -1;
 		}
 	}
 	
 	/**
-	 * Access internal counter.
+	 * Access internal counter. Return -1 if none.
 	 * @return Internal counter
 	 */
 	public int getCounter() {
-		return counter;
+		if (type == ActionEnum.Loop) {
+			return counter;
+		} else {
+			return -1;
+		}
 	}
 	
 	/**
