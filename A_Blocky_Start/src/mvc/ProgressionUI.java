@@ -1,10 +1,14 @@
 package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * @author Yuting
@@ -36,11 +40,19 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 		
 		super(bound);
 		this.setBackground(Color.BLUE);	
-		this.add(container);
 		add(backButton);
 		
-		JScrollPane scrollPane = new JScrollPane(this);
+		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+		
+		container.add(Box.createVerticalStrut(5000));
+		
+		JScrollPane scrollPane = new JScrollPane(container);
+		
+		scrollPane.setSize(containerSize);
+		scrollPane.setLocation(containerLocation);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVisible(true);
+		add(scrollPane);
 		
 	}
 	
