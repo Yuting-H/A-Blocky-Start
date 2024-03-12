@@ -8,21 +8,21 @@ import javax.swing.JFrame;
  * This is the game frame, everything is suppose to be here
  * This class extends JFrame, there should be only one class that does this
  */
-public class GameFrameUI extends JFrame{
+public class InitGame extends JFrame{
 	
 	//declares width and height of the frame
 	final static Rectangle gameRect = new Rectangle(0, 0, 800, 600);
 	
 	//declares all the panels that can appear such as the main menu, login screen etc
-	public static MainMenuUI mainMenu 			= new MainMenuUI(gameRect);
-	public static ProgressionUI progression 	= new ProgressionUI(gameRect);
-	public static LoginUI login 				= new LoginUI(gameRect);
+	public static MainMenuView mainMenu 			= new MainMenuView(gameRect);
+	public static StudentProgressionView progression 	= new StudentProgressionView(gameRect);
+	public static LoginView login 				= new LoginView(gameRect);
 	
 	/**
 	 * Creates the frame
 	 * This is called only once by Main
 	 */
-	GameFrameUI() {
+	InitGame() {
 		
 		//sets up the game frame
 		setLayout(null);

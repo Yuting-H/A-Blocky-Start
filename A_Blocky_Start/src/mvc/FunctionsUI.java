@@ -51,7 +51,7 @@ public class FunctionsUI {
 			}
 			
 			//switch to main menu after login is finished
-			switchPanels(GameFrameUI.login, GameFrameUI.mainMenu);
+			switchPanels(InitGame.login, InitGame.mainMenu);
 			System.out.println("Logged in as: " + username);
 			System.out.println("With password: " + password);
 		}

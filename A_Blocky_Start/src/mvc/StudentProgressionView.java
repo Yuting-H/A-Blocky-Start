@@ -15,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
  * @author Yuting
  * This class display the progression
  */
-public class ProgressionUI extends PanelUI implements OnEnter{
+public class StudentProgressionView extends PanelUI implements OnEnter{
 	
 	//define size of go-back button 
 	Dimension backButtonSize = new Dimension(30,30);
@@ -36,7 +36,7 @@ public class ProgressionUI extends PanelUI implements OnEnter{
 	/**
 	 * constructor for displaying=
 	 */
-	ProgressionUI(Rectangle bound){
+	StudentProgressionView(Rectangle bound){
 	
 		//set up progression panel
 		super(bound);

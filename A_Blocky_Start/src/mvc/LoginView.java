@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  * @author Yuting
  * This is the login page
  */
-public class LoginUI extends PanelUI implements OnEnter{
+public class LoginView extends PanelUI implements OnEnter{
 	
 	//declaring bounds for components for this panel
 	Rectangle 	usernameLabelBound 		= 	new Rectangle(200, 100, 100, 20);
@@ -33,7 +33,7 @@ public class LoginUI extends PanelUI implements OnEnter{
 	 * 
 	 * @param bound
 	 */
-	LoginUI(Rectangle bound){
+	LoginView(Rectangle bound){
 		
 		super(bound);
 		

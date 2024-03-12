@@ -14,7 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 
-		JFrame gamFrame = new GameFrameUI();
+		JFrame gamFrame = new InitGame();
 		
 		
 	}

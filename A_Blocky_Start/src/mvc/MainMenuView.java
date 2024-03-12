@@ -10,7 +10,7 @@ import javax.swing.*;
  * 
  * This is the main menu of the game
  */
-public class MainMenuUI extends PanelUI implements OnEnter{
+public class MainMenuView extends PanelUI implements OnEnter{
 	
 	//init locations and sizes of the components
 	
@@ -42,12 +42,12 @@ public class MainMenuUI extends PanelUI implements OnEnter{
 	 * Constructor for main menu
 	 * @param bound the bound of the main menu
 	 */
-	MainMenuUI(Rectangle bound) {
+	MainMenuView(Rectangle bound) {
 		
 		//sets up panel 
 		super(bound);
 		
-		newGamButton.addActionListener(e -> FunctionsUI.switchPanels(GameFrameUI.mainMenu, GameFrameUI.progression));
+		newGamButton.addActionListener(e -> FunctionsUI.switchPanels(InitGame.mainMenu, InitGame.progression));
 		
 		buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
 		buttonContainer.add(continueButton);
