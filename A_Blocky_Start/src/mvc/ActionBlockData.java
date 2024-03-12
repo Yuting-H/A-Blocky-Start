@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This model class represents an action block. It loads/ saves data by communicating with the ActionChain object.
- * @version March 11, 2024
+ * @version March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
 public class ActionBlockData {
@@ -38,26 +38,37 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Construct an action block, using encoded data string.
+	 * Decode the encoded data string and calls the constructor.
 	 * @param data Encoded data string
+	 * @return ActionBlockData
 	 */
-	public ActionBlockData importData(String data) {
+	public static ActionBlockData importData(String data) {
 		// Split the data
 		String[] dataList = data.split("_");
 		
 		// Decode type
 		ActionEnum type = ActionEnum.fromString(dataList[0]);
 		
+		// Check type
+		if (type == ActionEnum.Unknown) {
+			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
+		}
+		
 		// Decode list of arguments
 		ArrayList<Integer> args = new ArrayList<Integer>();
-		
-		// Convert each argument to integer
 		for (int i = 1; i < dataList.length; i++) {
 			try {
 				args.add(Integer.parseInt(dataList[i]));
 			} catch (NumberFormatException e) {
-				System.out.println(e.getMessage());
+				// do nothing
 			}
+		}
+		
+		// Check number of arguments
+		if ((type == ActionEnum.Goto) && (args.size() != 1)) {
+			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
+		} else if ((type == ActionEnum.Loop) && (args.size() != 3)) {
+			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
 		}
 		
 		// Call constructor
@@ -106,9 +117,9 @@ public class ActionBlockData {
 	public int getEndPoint() {
 		if (type == ActionEnum.Loop) {
 			return args.get(0);
-		} else {
-			return -1;
 		}
+		
+		return -1; // none value
 	}
 	
 	/**
@@ -118,23 +129,23 @@ public class ActionBlockData {
 	public int getStartPoint() {
 		if (type == ActionEnum.Loop) {
 			return args.get(1);
-		} else {
-			return -1;
 		}
+		
+		return -1; // none value
 	}
 	
 	/**
 	 * Access line number for jump. Return -1 if none.
 	 * @return Line number for jump
 	 */
-	public int getLineForJump() {
+	public int getJumpLine() {
 		if (type == ActionEnum.Goto) {
 			return args.get(0);
 		} else if (type == ActionEnum.Loop) {
 			return args.get(2);
-		} else {
-			return -1;
 		}
+		
+		return -1; // none value
 	}
 	
 	/**
@@ -144,8 +155,17 @@ public class ActionBlockData {
 	public int getCounter() {
 		if (type == ActionEnum.Loop) {
 			return counter;
-		} else {
-			return -1;
+		}
+		
+		return -1; // none value
+	}
+	
+	/**
+	 * Decrement internal counter by 1.
+	 */
+	public void decCounter() {
+		if (type == ActionEnum.Loop) {
+			--counter;
 		}
 	}
 	
@@ -157,13 +177,6 @@ public class ActionBlockData {
 			// loop (end - start) times
 			counter = args.get(0) - args.get(1);
 		}
-	}
-	
-	/**
-	 * Decrement internal counter by 1.
-	 */
-	public void decCounter() {
-		counter -= 1;
 	}
 
 }

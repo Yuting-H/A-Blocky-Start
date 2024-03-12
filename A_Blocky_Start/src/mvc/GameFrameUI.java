@@ -33,11 +33,11 @@ public class GameFrameUI extends JFrame{
 		setLocationRelativeTo(null); 	//This makes the JFram appears centered on screen
 		
 		
-		//uncomment these if you want to test them
-		//adds panels
-		//this.add(login);
-		//this.add(mainMenu);
-		this.add(progression);
+		// uncomment these if you want to test them
+		// adds panels
+		// this.add(login);
+		// this.add(mainMenu);
+		// this.add(progression);
 
 		
 	}

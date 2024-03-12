@@ -38,9 +38,9 @@ public enum ActionEnum {
 			return Goto;
 		} else if (data.indexOf("loop") != -1) {
 			return Loop;
-		} else {
-			// Invalid encoded string
-			return Unknown;
 		}
+		
+		// Invalid encoded string
+		return Unknown;
 	}
 }
