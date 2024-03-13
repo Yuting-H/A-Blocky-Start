@@ -14,7 +14,8 @@ public class Main {
 	 
 	 //creates controllers
 	 public static ExampleMainMenuController exampleMainMenuController = new ExampleMainMenuController();
-	 //TODO: create controllers 
+	 //TODO: create other controllers 
+	 public static LoginController loginController = new LoginController();
 
 	/**
 	 * Main method
@@ -23,7 +24,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame(); 
-		exampleMainMenuController.OnEnter(); //Load First screen
+		loginController.OnEnter(); //Load First screen
+		
 		
 	}
 	
@@ -40,8 +42,9 @@ public class Main {
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//insert all screens to gameFrame
-		ExampleMainMenuController.insertPanel();
+		//ExampleMainMenuController.insertPanel();
 		//TODO: implement all controller.insertPanel
+		loginController.insertPanel();
 		
 	}
 	

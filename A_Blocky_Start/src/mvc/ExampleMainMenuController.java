@@ -8,7 +8,6 @@ public class ExampleMainMenuController implements Controller{
 	//the view 
 	private static ExampleMainMenuView view = new ExampleMainMenuView();
 	
-	
 	/**
 	 * This method inserts 
 	 */
@@ -31,5 +30,4 @@ public class ExampleMainMenuController implements Controller{
 		view.setVisible(false);
 	}
 
-	
 }

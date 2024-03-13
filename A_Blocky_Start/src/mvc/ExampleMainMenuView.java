@@ -25,8 +25,7 @@ public class ExampleMainMenuView {
 	}
 	
 	/**
-	 * Add buttons, set size etc to JPanle
-	 * Not a constructor
+	 * Set the aesthetic of the panel
 	 */
 	private void initPanel() {
 		
