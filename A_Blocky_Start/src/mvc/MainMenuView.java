@@ -77,4 +77,11 @@ public class MainMenuView extends PanelUI implements Controller{
 		System.out.println("Entered main menu");
 	}
 
+	/**
+	 * 
+	 */
+	@Override
+	public void OnExit() {
+	}
+
 }

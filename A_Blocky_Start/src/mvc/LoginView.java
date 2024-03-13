@@ -57,4 +57,12 @@ public class LoginView extends PanelUI implements Controller{
 	public void OnEnter() {
 		System.out.println("Entered login screen");
 	}
+
+
+	/**
+	 * 
+	 */
+	@Override
+	public void OnExit() {
+	}
 }

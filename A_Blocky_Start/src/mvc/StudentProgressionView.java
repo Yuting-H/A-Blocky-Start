@@ -77,4 +77,11 @@ public class StudentProgressionView extends PanelUI implements Controller{
 		System.out.println("Entered Progression Screen");
 	}
 
+	/**
+	 * 
+	 */
+	@Override
+	public void OnExit() {
+	}
+
 }
