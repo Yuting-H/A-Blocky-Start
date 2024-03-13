@@ -20,6 +20,7 @@ public class InitGame extends JFrame{
 	public static LoginView login 						= new LoginView(gameSize);
 	public static HighScoreView highScoreView			= new HighScoreView(gameSize);
 	
+	
 	/**
 	 * Creates the frame
 	 * This is called only once by Main
@@ -38,9 +39,12 @@ public class InitGame extends JFrame{
 		// uncomment these if you want to test them
 		// adds panels
 		// this.add(login);
-		// this.add(mainMenu);
+		//this.add(mainMenu);
 		// this.add(progression);
 		// this.add(highScoreView);
+		
+
+		
 
 		
 	}
