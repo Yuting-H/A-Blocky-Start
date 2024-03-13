@@ -1,4 +1,5 @@
 package mvc;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;
@@ -11,12 +12,14 @@ import javax.swing.JFrame;
 public class InitGame extends JFrame{
 	
 	//declares width and height of the frame
-	final static Rectangle gameRect = new Rectangle(0, 0, 800, 600);
+	final static Dimension gameSize = new Dimension(800, 600);
 	
 	//declares all the panels that can appear such as the main menu, login screen etc
-	public static MainMenuView mainMenu 			= new MainMenuView(gameRect);
-	public static StudentProgressionView progression 	= new StudentProgressionView(gameRect);
-	public static LoginView login 				= new LoginView(gameRect);
+	public static MainMenuView mainMenu 				= new MainMenuView(gameSize);
+	public static StudentProgressionView progression 	= new StudentProgressionView(gameSize);
+	public static LoginView login 						= new LoginView(gameSize);
+	public static HighScoreView highScoreView			= new HighScoreView(gameSize);
+	
 	
 	/**
 	 * Creates the frame
@@ -26,9 +29,9 @@ public class InitGame extends JFrame{
 		
 		//sets up the game frame
 		setLayout(null);
-		setVisible(true);
+		setVisible(true);  
 		setResizable(false);
-		setBounds(gameRect);
+		setSize(gameSize);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null); 	//This makes the JFram appears centered on screen
 		
@@ -36,8 +39,12 @@ public class InitGame extends JFrame{
 		// uncomment these if you want to test them
 		// adds panels
 		// this.add(login);
-		// this.add(mainMenu);
+		//this.add(mainMenu);
 		// this.add(progression);
+		// this.add(highScoreView);
+		
+
+		
 
 		
 	}

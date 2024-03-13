@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  * @author Yuting
  * This is the login page
  */
-public class LoginView extends PanelUI implements OnEnter{
+public class LoginView extends PanelUI implements Controller{
 	
 	//declaring bounds for components for this panel
 	Rectangle 	usernameLabelBound 		= 	new Rectangle(200, 100, 100, 20);
@@ -24,7 +24,7 @@ public class LoginView extends PanelUI implements OnEnter{
 	//declaring components for this panel
 	LabelUI 		usernameFieldLabel 		=	new LabelUI("Username: ", usernameLabelBound);
 	TextFieldUI 	usernameTextField 		= 	new TextFieldUI(usernameTextFieldBound);
-	LabelUI		passwordFieldLabel		= 	new LabelUI("Password: ", passwordLabelBound);
+	LabelUI			passwordFieldLabel		= 	new LabelUI("Password: ", passwordLabelBound);
 	TextFieldUI 	passwordTextField		= 	new TextFieldUI(passwordTextFieldBound);
 	ButtonUI		loginButton 			=  	new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	
@@ -33,7 +33,7 @@ public class LoginView extends PanelUI implements OnEnter{
 	 * 
 	 * @param bound
 	 */
-	LoginView(Rectangle bound){
+	LoginView(Dimension bound){
 		
 		super(bound);
 		
@@ -56,5 +56,13 @@ public class LoginView extends PanelUI implements OnEnter{
 	@Override
 	public void OnEnter() {
 		System.out.println("Entered login screen");
+	}
+
+
+	/**
+	 * 
+	 */
+	@Override
+	public void OnExit() {
 	}
 }
