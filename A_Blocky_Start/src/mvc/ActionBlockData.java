@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 /**
  * This model class represents an action block. It loads/ saves data by communicating with the ActionChain object.
- * @version March 12, 2024
+ * @version March 13, 2024
+ * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
 public class ActionBlockData {
@@ -38,7 +39,7 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Decode the encoded data string and calls the constructor.
+	 * Decode the encoded data string and call the constructor.
 	 * @param data Encoded data string
 	 * @return ActionBlockData
 	 */
@@ -76,7 +77,7 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Export this object as an encoded data string.<br>
+	 * Export this action block as an encoded data string.<br>
 	 * The string always begins with its type, followed by its arguments separated with "_".<br><br>
 	 * Examples:<br>
 	 * "Left"<br>
@@ -85,10 +86,11 @@ public class ActionBlockData {
 	 * @return Encoded data string
 	 */
 	public String exportData() {
-		String result = type.toString();
+		String result = type.toString(); // block type
 		
+		// Append all block arguments
 		for (int i = 0; i < args.size(); i++) {
-			result = result + "_" + args.get(i).toString(); 
+			result = result + '_' + args.get(i).toString(); 
 		}
 		
 		return result;
