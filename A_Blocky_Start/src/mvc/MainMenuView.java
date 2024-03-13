@@ -42,10 +42,10 @@ public class MainMenuView extends PanelUI implements OnEnter{
 	 * Constructor for main menu
 	 * @param bound the bound of the main menu
 	 */
-	MainMenuView(Rectangle bound) {
+	MainMenuView(Dimension size) {
 		
 		//sets up panel 
-		super(bound);
+		super(size);
 		
 		newGamButton.addActionListener(e -> FunctionsUI.switchPanels(InitGame.mainMenu, InitGame.progression));
 		

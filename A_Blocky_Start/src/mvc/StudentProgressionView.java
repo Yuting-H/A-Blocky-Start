@@ -36,10 +36,10 @@ public class StudentProgressionView extends PanelUI implements OnEnter{
 	/**
 	 * constructor for displaying=
 	 */
-	StudentProgressionView(Rectangle bound){
+	StudentProgressionView(Dimension size){
 	
 		//set up progression panel
-		super(bound);
+		super(size);
 		this.setBackground(Color.BLUE);
 		
 		//added go back button to prrogression
@@ -69,7 +69,7 @@ public class StudentProgressionView extends PanelUI implements OnEnter{
 	 * This method adds a progression record to the screen
 	 */
 	public void appendProgression() {
-		
+		//TODO: implement
 	}
 	
 	

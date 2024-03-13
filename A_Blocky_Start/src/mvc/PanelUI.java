@@ -1,5 +1,6 @@
 package mvc;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
 import javax.swing.JPanel;
@@ -17,6 +18,17 @@ public class PanelUI extends JPanel{
 		setVisible(true);
 		setBackground(Color.gray);
 		
+	}
+	
+	/**
+	 * 
+	 */
+	 PanelUI(Dimension size) {
+		 
+			setLayout(null);
+			setSize(size);
+			setVisible(true);
+			setBackground(Color.gray);
 	}
 
 	/**

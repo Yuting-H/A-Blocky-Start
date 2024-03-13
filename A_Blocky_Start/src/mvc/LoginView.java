@@ -24,7 +24,7 @@ public class LoginView extends PanelUI implements OnEnter{
 	//declaring components for this panel
 	LabelUI 		usernameFieldLabel 		=	new LabelUI("Username: ", usernameLabelBound);
 	TextFieldUI 	usernameTextField 		= 	new TextFieldUI(usernameTextFieldBound);
-	LabelUI		passwordFieldLabel		= 	new LabelUI("Password: ", passwordLabelBound);
+	LabelUI			passwordFieldLabel		= 	new LabelUI("Password: ", passwordLabelBound);
 	TextFieldUI 	passwordTextField		= 	new TextFieldUI(passwordTextFieldBound);
 	ButtonUI		loginButton 			=  	new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	
@@ -33,7 +33,7 @@ public class LoginView extends PanelUI implements OnEnter{
 	 * 
 	 * @param bound
 	 */
-	LoginView(Rectangle bound){
+	LoginView(Dimension bound){
 		
 		super(bound);
 		
