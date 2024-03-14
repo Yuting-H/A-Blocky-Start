@@ -39,7 +39,7 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor.
+	 * Decode the encoded data string and call the constructor. See exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionBlockData
 	 */
@@ -81,8 +81,8 @@ public class ActionBlockData {
 	 * The string always begins with its type, followed by its arguments separated with "_".<br><br>
 	 * Examples:<br>
 	 * "Left"<br>
-	 * "Goto_X", X is the line number for jump.<br>
-	 * "Loop_X_Y_Z", loop (X - Y) times, Z is the line number for jump.<br>
+	 * "Goto_X" : X is the line number for jump.<br>
+	 * "Loop_X_Y_Z" : Loop (X - Y) times, Z is the line number for jump.<br>
 	 * @return Encoded data string
 	 */
 	public String exportData() {

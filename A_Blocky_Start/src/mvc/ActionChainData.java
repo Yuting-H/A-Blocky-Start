@@ -65,7 +65,7 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor.
+	 * Decode the encoded data string and call the constructor. See exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionChainData
 	 */
@@ -88,10 +88,10 @@ public class ActionChainData {
 	/**
 	 * Export this action chain as an encoded data string.<br>
 	 * The string always begins with "Start" and ends with "End", with each action block separated with ",".<br><br>
-	 * Examples:<br>
-	 * "Start,End"<br>
-	 * "Start,Forward,End"<br>
-	 * "Start,Loop_2_0_5,Forward,Goto_2,End"<br>
+	 * Examples: (without whitespace)<br>
+	 * "Start, End"<br>
+	 * "Start, Forward, End"<br>
+	 * "Start, Loop_2_0_5, Forward, Goto_2, End"<br>
 	 * @return Encoded data string
 	 */
 	public String exportData() {
