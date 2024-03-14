@@ -3,7 +3,7 @@ import javax.swing.JPanel;
 
 /**
  * @author Yuting
- *
+ * @deprecated
  */
 public class FunctionsUI {
 
