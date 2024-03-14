@@ -68,7 +68,7 @@ public class MainMenuView {
 		//set up root panel
 		panel.setSize(viewSize);
 		panel.setLayout(null);		
-		panel.setVisible(true);
+		panel.setVisible(false);
 		panel.setBackground(Color.gray);
 		
 		//populate button container

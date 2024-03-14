@@ -18,8 +18,7 @@ public class ButtonUI extends JButton{
 	
 	
 	ButtonUI(Dimension size, String text) {
-		
-		setVisible(true);			//make button visible
+	
 		setSize(size);
 		setIcon(IconsUI.buttonIcon);	//set image
 		setText(text);				//set text

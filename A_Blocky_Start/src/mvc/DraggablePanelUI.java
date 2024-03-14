@@ -10,6 +10,7 @@ import javax.swing.event.MouseInputListener;
 /**
  * @author Yuting
  * We dont have to implement this
+ * 
  */
 public class DraggablePanelUI extends JPanel {
 	
@@ -19,8 +20,6 @@ public class DraggablePanelUI extends JPanel {
 	DraggablePanelUI () {
 		setBackground(Color.red);
 		setBounds(0,0,50,50);
-		
-		
 		
 		addMouseListener(new MouseListener() {
 			

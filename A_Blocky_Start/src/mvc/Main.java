@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame(); 
-		loginController.OnEnter(); //Load First screen
+		//loginController.OnEnter(); //Load First screen
 		
 		mainMenuController.OnEnter();
 	}
@@ -46,7 +46,8 @@ public class Main {
 		//insert all screens to gameFrame
 		//ExampleMainMenuController.insertPanel();
 		//TODO: implement all controller.insertPanel
-		//loginController.insertPanel();
+		loginController.insertPanel();
+		loginController.OnExit();
 		mainMenuController.insertPanel();
 		
 	}

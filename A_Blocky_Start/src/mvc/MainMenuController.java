@@ -27,6 +27,7 @@ public class MainMenuController implements Controller{
 	 */
 	@Override
 	public void OnExit() {
+		view.setVisibility(false);
 	}
 	
 }
