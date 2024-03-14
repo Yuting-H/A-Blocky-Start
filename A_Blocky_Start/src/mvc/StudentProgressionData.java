@@ -7,12 +7,10 @@ public class StudentProgressionData {
 	private int highestScore;
 	private int timeSpent;
 	private int attempts;
-	private actionChain actionChain;
-
-	StudentProgressionData(int ID, boolean completion) {
-	}
+	private ActionChainData actionChain;
 
 	StudentProgressionData(String data) {
+		
 	}
 
 	public String exportProgressionData() {
@@ -43,7 +41,7 @@ public class StudentProgressionData {
 		return attempts;
 	}
 
-	public actionChain getActionChain() {
+	public ActionChainData getActionChain() {
 		return actionChain;
 	}
 
@@ -71,12 +69,7 @@ public class StudentProgressionData {
 		attempts = a;
 	}
 
-	public void setActionChain(actionChain a) {
+	public void setActionChain(ActionChainData a) {
 		actionChain = a;
-	}
-	
-	private String readFile()
-	{
-		return null;
 	}
 }
