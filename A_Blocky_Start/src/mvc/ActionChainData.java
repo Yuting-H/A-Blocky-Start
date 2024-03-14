@@ -268,13 +268,13 @@ public class ActionChainData {
 		// TODO
 	}
 	
-	//TODO
+	//TODO: check if the action chain has been reset
 	public boolean isExecuteReady() {
 		return ((indexCurrent == 0) && (indexNext == 0));
 	}
 	
-	//TODO
-	public boolean isExecuteFinished() {
+	//TODO: check if the action chain is finished/ crashed
+	public boolean isExecuteTerminated() {
 		return ((indexCurrent == indexEnd) && (indexNext == indexEnd));
 	}
 
