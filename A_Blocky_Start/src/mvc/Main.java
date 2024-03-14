@@ -9,13 +9,15 @@ import javax.swing.JPanel;
  */
 public class Main {
 	
-	//creates global JFrame
+	/** The JFrame the game runs in*/
 	 public static JFrame gameFrame = new JFrame();
 	 
 	 //creates controllers
 	 public static ExampleMainMenuController exampleMainMenuController = new ExampleMainMenuController();
 	 //TODO: create other controllers 
 	 public static LoginController loginController = new LoginController();
+	 
+	 public static MainMenuController mainMenuController = new MainMenuController();
 
 	/**
 	 * Main method
@@ -24,9 +26,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame(); 
-		loginController.OnEnter(); //Load First screen
+		//loginController.OnEnter(); //Load First screen
 		
-		
+		mainMenuController.OnEnter();
 	}
 	
 	/**
@@ -45,6 +47,8 @@ public class Main {
 		//ExampleMainMenuController.insertPanel();
 		//TODO: implement all controller.insertPanel
 		loginController.insertPanel();
+		loginController.OnExit();
+		mainMenuController.insertPanel();
 		
 	}
 	

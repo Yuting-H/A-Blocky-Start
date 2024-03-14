@@ -1,7 +1,8 @@
 package mvc;
 
 /**
- * 
+ * LoginController
+ * Contains LoginModel and LoginView
  */
 public class LoginController implements Controller{
 	
@@ -9,9 +10,9 @@ public class LoginController implements Controller{
 	private static LoginView view = new LoginView();
 	
 	/**
-	 * 
+	 * Insert the view into the game frame
 	 */
-	public static void insertPanel() {
+	public void insertPanel() {
 		view.insertPanel();
 	}
 
@@ -25,7 +26,6 @@ public class LoginController implements Controller{
 	/**
 	 * 
 	 */
-	
 	public void OnExit() {
 		view.setVisible(false);
 	}
