@@ -8,6 +8,7 @@ import javax.swing.JFrame;
  * @author Yuting
  * This is the game frame, everything is suppose to be here
  * This class extends JFrame, there should be only one class that does this
+ * @deprecated
  */
 public class InitGame extends JFrame{
 	

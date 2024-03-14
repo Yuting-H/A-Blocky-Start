@@ -13,6 +13,9 @@ public class LoginView {
 	//declaring bounds for components for this panel
 	Dimension 	viewSize = new Dimension(800, 600);
 	
+	//root panel
+	private static JPanel panel;
+	
 	//declaring location of UI elements 
 	private Point usernameLabelLocation		= new Point(200, 100);
 	private Point usernameTextFieldLocation	= new Point(400, 100);
@@ -32,16 +35,17 @@ public class LoginView {
 	TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
 	ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	
-	//base panel
-	private static JPanel panel;
+	
 	
 	/**
-	 * Creates 
+	 * Creates the view instance
 	 */
 	public LoginView() {
 		
+		//creates JPanel and set as root
 		panel = new JPanel();
 		
+		//creates UI components
 		this.initPanel();
 	}
 
@@ -50,7 +54,7 @@ public class LoginView {
 	 */
 	private void initPanel() {
 		
-		//set up base panel
+		//set up root panel
 		panel.setSize(viewSize);
 		panel.setLayout(null);		
 		panel.setVisible(true);
