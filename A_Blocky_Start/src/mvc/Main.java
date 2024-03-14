@@ -25,7 +25,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		configureGameFrame(); 
+		configureGameFrame();
 		//loginController.OnEnter(); //Load First screen
 		
 		mainMenuController.OnEnter();
