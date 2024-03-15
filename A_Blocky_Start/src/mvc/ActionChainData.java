@@ -3,7 +3,9 @@ package mvc;
 import java.util.ArrayList;
 
 /**
- * This model class stores a user's saved action chain in a stage. It loads/ saves data by communicating with the ProgressionData object. Each ActionBlock is stored as a separate object.
+ * This model class stores a user's saved action chain in a stage. 
+ * It loads/ saves data by communicating with the ProgressionData object. 
+ * Each ActionBlock is stored as a separate object.
  * @version March 13, 2024
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
@@ -55,9 +57,9 @@ public class ActionChainData {
 	 */
 	public ActionChainData() {
 		this.actionBlockList = new ArrayList<ActionBlockData>();
-		actionBlockList.add(new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>()));
-		actionBlockList.add(new ActionBlockData(ActionEnum.Start, new ArrayList<Integer>()));
-		actionBlockList.add(new ActionBlockData(ActionEnum.End, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.Start, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.End, new ArrayList<Integer>()));
 		this.indexStart = 1;
 		this.indexEnd = 2;
 		this.indexCurrent = 0;
@@ -65,7 +67,7 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor.
+	 * Decode the encoded data string and call the constructor. See exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionChainData
 	 */
@@ -88,10 +90,12 @@ public class ActionChainData {
 	/**
 	 * Export this action chain as an encoded data string.<br>
 	 * The string always begins with "Start" and ends with "End", with each action block separated with ",".<br><br>
-	 * Examples:<br>
-	 * "Start,End"<br>
-	 * "Start,Forward,End"<br>
-	 * "Start,Loop_2_0_5,Forward,Goto_2,End"<br>
+	 * Format: (without whitespace)<br>
+	 * "actionBlock1, actionBlock2, ..."<br><br>
+	 * Examples: (without whitespace)<br>
+	 * "Start, End"<br>
+	 * "Start, Forward, End"<br>
+	 * "Start, Loop_2_0_5, Forward, Goto_2, End"<br>
 	 * @return Encoded data string
 	 */
 	public String exportData() {
@@ -120,7 +124,7 @@ public class ActionChainData {
 	 */
 	public ActionBlockData getActionBlock(int index) {
 		if (isIndexOutOfBound(index)) {
-			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
+			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
 		}
 		
 		return actionBlockList.get(index);
@@ -166,11 +170,11 @@ public class ActionChainData {
 	 */
 	public boolean addAtIndex(ActionBlockData actionBlock, int index) {
 		// Check action block type
-		if (actionBlock.getType() == ActionEnum.Unknown) {
+		if (actionBlock.getType() == ActionTypeEnum.Unknown) {
 			return false; // cannot insert "Unknown" block
-		} else if (actionBlock.getType() == ActionEnum.Start) {
+		} else if (actionBlock.getType() == ActionTypeEnum.Start) {
 			return false; // cannot insert "Start" block
-		} else if (actionBlock.getType() == ActionEnum.End) {
+		} else if (actionBlock.getType() == ActionTypeEnum.End) {
 			return false; // cannot insert "End" block
 		}
 		
@@ -268,13 +272,13 @@ public class ActionChainData {
 		// TODO
 	}
 	
-	//TODO
+	//TODO: check if the action chain has been reset
 	public boolean isExecuteReady() {
 		return ((indexCurrent == 0) && (indexNext == 0));
 	}
 	
-	//TODO
-	public boolean isExecuteFinished() {
+	//TODO: check if the action chain is finished/ crashed
+	public boolean isExecuteTerminated() {
 		return ((indexCurrent == indexEnd) && (indexNext == indexEnd));
 	}
 
