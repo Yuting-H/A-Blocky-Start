@@ -33,7 +33,12 @@ public class LoginView implements ActionListener{
 	private Dimension textFieldSize		= new Dimension(200,20);
 	private Dimension loginButtonSize	= new Dimension(100, 20);
 	
-	
+	//declaring UI elements for this panel
+	LabelUI 		usernameFieldLabel 	= new LabelUI(usernameLabelLocation, labelSize, "Username:");
+	TextFieldUI 	usernameTextField 	= new TextFieldUI(usernameTextFieldLocation, textFieldSize);
+	LabelUI			passwordFieldLabel	= new LabelUI(passwordLabelLocation, labelSize, "Password:");
+	TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
+	ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	
 	/**
 	 * Creates the view instance
@@ -52,23 +57,6 @@ public class LoginView implements ActionListener{
 	 */
 	private void initPanel() {
 		
-		//declaring UI elements for this panel
-		LabelUI 		usernameFieldLabel 	= new LabelUI(usernameLabelLocation, labelSize, "Username:");
-		TextFieldUI 	usernameTextField 	= new TextFieldUI(usernameTextFieldLocation, textFieldSize);
-		LabelUI			passwordFieldLabel	= new LabelUI(passwordLabelLocation, labelSize, "Password:");
-		TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
-		ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
-		
-		loginButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Main.loginController.OnExit();
-				Main.mainMenuController.OnEnter();
-			}
-		}
-		);
-		
 		//set up root panel
 		panel.setSize(viewSize);
 		panel.setLayout(null);		
@@ -82,6 +70,10 @@ public class LoginView implements ActionListener{
 		panel.add(passwordTextField);
 		panel.add(loginButton);
 		
+	}
+	
+	public void loginButtonAddAction(ActionListener actionListener) {
+		loginButton.addActionListener(actionListener);
 	}
 	
 	/**

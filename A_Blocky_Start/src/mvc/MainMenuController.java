@@ -7,6 +7,8 @@ public class MainMenuController implements Controller{
 	
 	private static MainMenuView view = new MainMenuView();
 	
+	
+	
 	/**
 	 * 
 	 */

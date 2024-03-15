@@ -26,9 +26,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame();
-		//loginController.OnEnter(); //Load First screen
 		
-		mainMenuController.OnEnter();
+		loginController.OnEnter(); //Load First screen
 	}
 	
 	/**
@@ -42,13 +41,6 @@ public class Main {
 		gameFrame.setResizable(false);
 		gameFrame.setSize(800, 600);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//insert all screens to gameFrame
-		//ExampleMainMenuController.insertPanel();
-		//TODO: implement all controller.insertPanel
-		loginController.insertPanel();
-		loginController.OnExit();
-		mainMenuController.insertPanel();
 		
 	}
 	

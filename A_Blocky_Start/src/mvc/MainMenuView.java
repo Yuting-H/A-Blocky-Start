@@ -55,7 +55,7 @@ public class MainMenuView {
 		//create UI components
 		this.initPanel();
 
-
+		Main.gameFrame.add(panel);
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class MainMenuView {
 	 * inserts root panel to 
 	 */
 	public void insertPanel() {
-		Main.gameFrame.add(panel);
+		
 	}
 	
 	/**
