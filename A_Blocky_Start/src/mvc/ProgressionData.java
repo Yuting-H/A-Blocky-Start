@@ -1,9 +1,7 @@
 package mvc;
 
 /**
- * This model class stores a user's progress in a stage. 
- * It loads/ saves data by communicating with the UserData object. 
- * The ActionChain is stored as a separate object.
+ * This model class stores a user's progress in a stage. It loads/ saves data by communicating with the UserData object. The ActionChain is stored as a separate object.
  * @version March 11, 2024
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
@@ -68,7 +66,8 @@ public class ProgressionData {
 	
 	/**
 	 * Export this stage's progression data as an encoded data string.<br>
-	 * The string always begins with "Start" and ends with "End", with each action block separated with ",".<br><br>
+	 * The string always begins with "Start" and ends with "End", with each action block separated with ",".<br>
+	 * <br>
 	 * Format: (without whitespace)<br>
 	 * "stageID, completed, shortestSteps, highestScore, timeSpent, attempts, actionChain"<br>
 	 * @return Encoded data string
@@ -144,7 +143,7 @@ public class ProgressionData {
 	/**
 	 * Update the shortest number of steps. Return false if steps are greater than/ equal to shortest steps.
 	 * @param steps Number of steps
-	 * @return Boolean state
+	 * @return Boolean value
 	 */
 	public boolean updateShortestSteps(int steps) {
 		if (steps >= shortestSteps) {
@@ -159,7 +158,7 @@ public class ProgressionData {
 	/**
 	 * Update the highest score achieved. Return false if score smaller than/ equal to highest score.
 	 * @param score Score
-	 * @return Boolean state
+	 * @return Boolean value
 	 */
 	public boolean updateHighestScore(int score) {
 		if (score <= highestScore) {

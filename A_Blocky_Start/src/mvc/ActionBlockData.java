@@ -3,8 +3,7 @@ package mvc;
 import java.util.ArrayList;
 
 /**
- * This model class represents an action block. 
- * It loads/ saves data by communicating with the ActionChain object.
+ * This model class represents an action block. It loads/ saves data by communicating with the ActionChain object.
  * @version March 13, 2024
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
@@ -79,7 +78,8 @@ public class ActionBlockData {
 	
 	/**
 	 * Export this action block as an encoded data string.<br>
-	 * The string always begins with its type, followed by its arguments separated with "_".<br><br>
+	 * The string always begins with its type, followed by its arguments separated with "_".<br>
+	 * <br>
 	 * Examples:<br>
 	 * "Left"<br>
 	 * "Goto_X" : X is the line number for jump.<br>
@@ -180,6 +180,21 @@ public class ActionBlockData {
 			// loop (end - start) times
 			counter = args.get(0) - args.get(1);
 		}
+	}
+	
+	/**
+	 * TODO: missing test cases
+	 * Check if this instruction is a jump, i.e. "Goto" or "Loop" block.
+	 * @return Boolean value
+	 */
+	public boolean isJump() {
+		if (type == ActionTypeEnum.Goto) {
+			return true;
+		} else if ((type == ActionTypeEnum.Loop) && (counter == 0)) {
+			return true; // "Loop" is finished
+		}
+		
+		return false;
 	}
 
 }
