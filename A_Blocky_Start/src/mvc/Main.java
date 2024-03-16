@@ -26,6 +26,8 @@ public class Main {
 	 public static GameplayController gameplayController = new GameplayController();
 	 
 	 public static SettingsController settingsController = new SettingsController();
+	 
+	 public static HighScoreController highScoreController = new HighScoreController();
 
 	/**
 	 * Main method

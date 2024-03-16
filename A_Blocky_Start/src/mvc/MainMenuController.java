@@ -67,6 +67,8 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.mainMenuController.OnExit();
+				Main.highScoreController.OnEnter();
 			}
 		});
 		
