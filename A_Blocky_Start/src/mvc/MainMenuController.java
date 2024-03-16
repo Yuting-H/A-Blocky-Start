@@ -77,10 +77,12 @@ public class MainMenuController implements Controller{
 			}
 		});
 		
+		//exit application when exit button is clicked
 		view.exitButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 			}
 		});
 	}

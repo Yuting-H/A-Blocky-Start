@@ -1,10 +1,14 @@
 package mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * 
  */
 public class TutorialController {
-
+	
+	/** The view*/
 	private TutorialView view = new TutorialView();
 	
 	/**
@@ -14,6 +18,8 @@ public class TutorialController {
 	public TutorialController() {
 		
 		view.insertPanelToFrame();
+		
+		populateActionListener();
 	}
 	
 	/**
@@ -21,6 +27,14 @@ public class TutorialController {
 	 */
 	private void populateActionListener() {
 		
+		view.backButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.tutorialController.onExit();
+				Main.mainMenuController.OnEnter();
+			}
+		});
 	}
 	
 	/**
