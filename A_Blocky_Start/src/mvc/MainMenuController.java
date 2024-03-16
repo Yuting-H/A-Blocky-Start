@@ -29,6 +29,12 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//for debug purpose, continue button leads to gameplay view
+				Main.mainMenuController.OnExit();
+				Main.gameplayController.OnEnter();
+				
+				
+				//TODO: implement this
 			}
 		});
 		
@@ -54,6 +60,13 @@ public class MainMenuController implements Controller{
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.OnExit();
 				Main.studentProgressionController.OnEnter();
+			}
+		});
+		
+		view.highscoreButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		

@@ -16,9 +16,6 @@ public class MainMenuView {
 	//size of this view
 	private Dimension viewSize = new Dimension(800, 600);
 	
-	//root panel
-	private JPanel rootPanel;
-	
 	// location of the aside panel
 	final Rectangle asidePanelBound = new Rectangle(600, 0, 200, 800);
 	
@@ -36,14 +33,18 @@ public class MainMenuView {
 	
 	/** Amount of vertical space between each button*/
 	final int buttonSpacing = 5;
+	
+	//root panel
+	private JPanel rootPanel;
 			
 	//Buttons declaration
-	final ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue");
-	final ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game");
-	final ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial");
-	final ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression");
-	final ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings");
-	final ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit");
+	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue");
+	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game");
+	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial");
+	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression");
+	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "High Score");
+	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings");
+	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit");
 	
 	/**
 	 * Constructor for main menu
@@ -80,6 +81,8 @@ public class MainMenuView {
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(progressionButton);
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
+		buttonContainer.add(highScoreButton);
+		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(settingsButton);
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(exitButton);
@@ -111,6 +114,10 @@ public class MainMenuView {
 	
 	public void progressionButtonAddActionListener(ActionListener actionListener) {
 		progressionButton.addActionListener(actionListener);
+	}
+	
+	public void highscoreButtonAddActionListener(ActionListener actionListener) {
+		highScoreButton.addActionListener(actionListener);
 	}
 	
 	public void settingsButtonAddActionListener(ActionListener actionListener) {

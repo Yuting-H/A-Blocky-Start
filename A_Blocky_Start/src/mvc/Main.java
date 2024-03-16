@@ -22,6 +22,8 @@ public class Main {
 	 public static TutorialController tutorialController = new TutorialController();
 	 
 	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
+	 
+	 public static GameplayController gameplayController = new GameplayController();
 
 	/**
 	 * Main method
