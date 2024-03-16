@@ -36,9 +36,11 @@ public class StudentProgressionView{
 	
 	private JPanel rootPanel;
 	
-	ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	ButtonUI backButton;
 	
-	ContainerUI container = new ContainerUI(containerLocation, containerSize, Color.white);
+	ContainerUI container;
+	
+	JScrollPane scrollPane;
 	
 	/**
 	 * constructor for displaying
@@ -61,24 +63,22 @@ public class StudentProgressionView{
 		rootPanel.setLayout(null);
 		
 		//added go back button to prrogression
-		backButton.setSize(backButtonSize);
-		backButton.setLocation(backButtonLocation);
+		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
-		//set up scrollable container
+		//set up container 
+		container = new ContainerUI(containerLocation, containerSize, Color.white);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-			
-		//Utility: test scroll funciton
 		container.add(Box.createVerticalStrut(1000));
 		
-		//init scroll bar
-		JScrollPane scrollPane = new JScrollPane(container);
+		//init scroll bar, container is converted
+		scrollPane = new JScrollPane(container);
 		
 		//change scroll bar settings
 		scrollPane.setSize(containerSize);
 		scrollPane.setLocation(containerLocation);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setVisible(true);
+		scrollPane.setVisible(false);
 		
 		//adding scrollable container to progression panel
 		rootPanel.add(scrollPane);
@@ -105,6 +105,8 @@ public class StudentProgressionView{
 	 */
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
+		backButton.setVisible(visibility);
+		scrollPane.setVisible(visibility);
 	}
 	
 	/**
