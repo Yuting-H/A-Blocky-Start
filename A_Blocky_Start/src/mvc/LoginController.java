@@ -15,7 +15,7 @@ public class LoginController implements Controller {
 	 * Construtor
 	 */
 	public LoginController() {
-		view.insertPanel();
+		view.insertPanelToFrame();
 
 		populateActionListener();
 	}
@@ -23,7 +23,7 @@ public class LoginController implements Controller {
 	/**
 	 * Add action listener to UI elements
 	 */
-	public void populateActionListener() {
+	private void populateActionListener() {
 		
 		//add action listener to the login button
 		view.loginButtonAddAction(new ActionListener() {

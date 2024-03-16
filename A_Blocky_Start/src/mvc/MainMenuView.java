@@ -2,6 +2,7 @@ package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -54,14 +55,12 @@ public class MainMenuView {
 		
 		//create UI components
 		this.initPanel();
-
-		Main.gameFrame.add(panel);
 	}
 	
 	/**
 	 * create UI components
 	 */
-	public void initPanel() {
+	private void initPanel() {
 		
 		//deleted: switch panel button action, add this back in in in the controller
 		
@@ -84,8 +83,7 @@ public class MainMenuView {
 		buttonContainer.add(settingsButton);
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(exitButton);
-		
-		
+			
 		panel.add(buttonContainer);
 		panel.add(asidePanel);
 	}
@@ -98,25 +96,35 @@ public class MainMenuView {
 		panel.setVisible(visibility);
 	}
 	
-	/**
-	 * inserts root panel to 
-	 */
-	public void insertPanel() {
-		
+	public void continueButtonAddActionListener(ActionListener actionListener) {
+		continueButton.addActionListener(actionListener);
+	}
+	
+	public void newGameButtonAddActionListener(ActionListener actionListener) {
+		newGamButton.addActionListener(actionListener);
+	}
+	
+	public void tutorialButtonAddActionListener(ActionListener actionListener) {
+		tutorialButton.addActionListener(actionListener);
+	}
+	
+	public void progressionButtonAddActionListener(ActionListener actionListener) {
+		progressionButton.addActionListener(actionListener);
+	}
+	
+	public void settingsButtonAddActionListener(ActionListener actionListener) {
+		settingsButton.addActionListener(actionListener);
+	}
+	
+	public void exitButtonAddActionListener(ActionListener actionListener) {
+		exitButton.addActionListener(actionListener);
 	}
 	
 	/**
 	 * 
 	 */
-	public void OnEnter() {
-		System.out.println("Entered main menu");
-	}
-
-	/**
-	 * 
-	 */
-
-	public void OnExit() {
+	public void insertPanelToFrame() {
+		Main.gameFrame.add(panel);
 	}
 
 }

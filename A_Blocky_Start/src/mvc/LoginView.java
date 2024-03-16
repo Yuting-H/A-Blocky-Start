@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * @author Yuting
  * This is the login page
  */
-public class LoginView implements ActionListener{
+public class LoginView {
 	
 	//declaring bounds for components for this panel
 	Dimension 	viewSize = new Dimension(800, 600);
@@ -72,6 +72,10 @@ public class LoginView implements ActionListener{
 		
 	}
 	
+	/**
+	 * Add action to login button
+	 * @param actionListener
+	 */
 	public void loginButtonAddAction(ActionListener actionListener) {
 		loginButton.addActionListener(actionListener);
 	}
@@ -79,7 +83,7 @@ public class LoginView implements ActionListener{
 	/**
 	 * Inserts the JPanel to the game frame
 	 */
-	public void insertPanel () {
+	public void insertPanelToFrame() {
 		Main.gameFrame.add(panel);
 	}
 	
@@ -91,24 +95,6 @@ public class LoginView implements ActionListener{
 		panel.setVisible(visibility);
 	}
 
-	/**
-	 * When the view entered
-	 */
-	public void OnEnter() {
-		System.out.println("Entered login screen");
-	}
 
-	/**
-	 * When the view exits
-	 */
-	public void OnExit() {
-	}
 
-	/**
-	 * @param e
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println(e);
-	}
 }
