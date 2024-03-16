@@ -36,11 +36,11 @@ public class StudentProgressionView{
 	
 	private JPanel rootPanel;
 	
-	ButtonUI backButton;
+	private ButtonUI backButton;
 	
-	ContainerUI container;
+	private ContainerUI container;
 	
-	JScrollPane scrollPane;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * constructor for displaying

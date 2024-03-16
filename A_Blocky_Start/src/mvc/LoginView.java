@@ -73,6 +73,20 @@ public class LoginView {
 	}
 	
 	/**
+	 * @return the string in the username field
+	 */
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+	
+	/**
+	 * 
+	 * @return the string in the password field
+	 */
+	public String getPassword() {
+		return passwordTextField.getText();
+	}
+	/**
 	 * Add action to login button
 	 * @param actionListener
 	 */

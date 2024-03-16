@@ -32,8 +32,20 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
+				//check if username is empty
+				if (view.getUsername().isEmpty() || view.getUsername().isEmpty()) {
+					//notify user
+				}else {
+					
+					//if password == teacher password then enable teacher mode
+					
+				}
+				
+				//put lines below in the above else bracked
 				Main.loginController.OnExit();	
 				Main.mainMenuController.OnEnter();
+				//print login info
+				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 			}
 		});
 	}

@@ -24,6 +24,8 @@ public class Main {
 	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
 	 
 	 public static GameplayController gameplayController = new GameplayController();
+	 
+	 public static SettingsController settingsController = new SettingsController();
 
 	/**
 	 * Main method
