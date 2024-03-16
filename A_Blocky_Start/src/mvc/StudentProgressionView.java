@@ -83,6 +83,7 @@ public class StudentProgressionView{
 		//adding scrollable container to progression panel
 		rootPanel.add(scrollPane);
 		
+		setVisibility(false);  //stops unwanted panel apperence
 	}
 	
 	/**
