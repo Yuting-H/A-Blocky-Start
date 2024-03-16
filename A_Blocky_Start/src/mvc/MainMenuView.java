@@ -17,7 +17,7 @@ public class MainMenuView {
 	private Dimension viewSize = new Dimension(800, 600);
 	
 	//root panel
-	private JPanel panel;
+	private JPanel rootPanel;
 	
 	// location of the aside panel
 	final Rectangle asidePanelBound = new Rectangle(600, 0, 200, 800);
@@ -51,7 +51,7 @@ public class MainMenuView {
 	public MainMenuView() {
 		
 		//init root panel
-		panel = new JPanel();
+		rootPanel = new JPanel();
 		
 		//create UI components
 		this.initPanel();
@@ -65,10 +65,10 @@ public class MainMenuView {
 		//deleted: switch panel button action, add this back in in in the controller
 		
 		//set up root panel
-		panel.setSize(viewSize);
-		panel.setLayout(null);		
-		panel.setVisible(false);
-		panel.setBackground(Color.gray);
+		rootPanel.setSize(viewSize);
+		rootPanel.setLayout(null);	
+		rootPanel.setVisible(false);
+		rootPanel.setBackground(Color.gray);
 		
 		//populate button container
 		buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
@@ -84,8 +84,8 @@ public class MainMenuView {
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(exitButton);
 			
-		panel.add(buttonContainer);
-		panel.add(asidePanel);
+		rootPanel.add(buttonContainer);
+		rootPanel.add(asidePanel);
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class MainMenuView {
 	 * @param visibility
 	 */
 	public void setVisibility(boolean visibility) {
-		panel.setVisible(visibility);
+		rootPanel.setVisible(visibility);
 	}
 	
 	public void continueButtonAddActionListener(ActionListener actionListener) {
@@ -124,7 +124,7 @@ public class MainMenuView {
 	 * 
 	 */
 	public void insertPanelToFrame() {
-		Main.gameFrame.add(panel);
+		Main.gameFrame.add(rootPanel);
 	}
 
 }

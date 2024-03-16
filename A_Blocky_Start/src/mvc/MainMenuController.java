@@ -12,11 +12,12 @@ public class MainMenuController implements Controller{
 	private static MainMenuView view = new MainMenuView();
 	
 	/**
-	 * 
+	 * Called in Main
 	 */
 	public MainMenuController() {
 		view.insertPanelToFrame();
 		
+		populateActionListener();
 	}
 	
 	/**
@@ -42,6 +43,8 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.mainMenuController.OnExit();
+				Main.tutorialController.onEnter();
 			}
 		});
 		
@@ -49,6 +52,8 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.mainMenuController.OnExit();
+				Main.studentProgressionController.OnEnter();
 			}
 		});
 		

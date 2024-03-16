@@ -18,6 +18,10 @@ public class Main {
 	 public static LoginController loginController = new LoginController();
 	 
 	 public static MainMenuController mainMenuController = new MainMenuController();
+	 
+	 public static TutorialController tutorialController = new TutorialController();
+	 
+	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
 
 	/**
 	 * Main method

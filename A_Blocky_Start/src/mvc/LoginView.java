@@ -19,7 +19,7 @@ public class LoginView {
 	Dimension 	viewSize = new Dimension(800, 600);
 	
 	//root panel
-	private static JPanel panel;
+	private static JPanel rootpanel;
 	
 	//declaring location of UI elements 
 	private Point usernameLabelLocation		= new Point(200, 100);
@@ -46,7 +46,7 @@ public class LoginView {
 	public LoginView() {
 		
 		//creates JPanel and set as root
-		panel = new JPanel();
+		rootpanel = new JPanel();
 		
 		//creates UI components
 		this.initPanel();
@@ -58,17 +58,17 @@ public class LoginView {
 	private void initPanel() {
 		
 		//set up root panel
-		panel.setSize(viewSize);
-		panel.setLayout(null);		
-		panel.setVisible(false);
-		panel.setBackground(Color.gray);
+		rootpanel.setSize(viewSize);
+		rootpanel.setLayout(null);		
+		rootpanel.setVisible(false);
+		rootpanel.setBackground(Color.gray);
 		
 		//adding UI elements
-		panel.add(usernameFieldLabel);
-		panel.add(usernameTextField);
-		panel.add(passwordFieldLabel);
-		panel.add(passwordTextField);
-		panel.add(loginButton);
+		rootpanel.add(usernameFieldLabel);
+		rootpanel.add(usernameTextField);
+		rootpanel.add(passwordFieldLabel);
+		rootpanel.add(passwordTextField);
+		rootpanel.add(loginButton);
 		
 	}
 	
@@ -84,7 +84,7 @@ public class LoginView {
 	 * Inserts the JPanel to the game frame
 	 */
 	public void insertPanelToFrame() {
-		Main.gameFrame.add(panel);
+		Main.gameFrame.add(rootpanel);
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class LoginView {
 	 * @param visibility
 	 */
 	public void setVisible(boolean visibility) {
-		panel.setVisible(visibility);
+		rootpanel.setVisible(visibility);
 	}
 
 
