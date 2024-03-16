@@ -94,6 +94,7 @@ public class MainMenuView {
 	 */
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
+		buttonContainer.setVisible(visibility);
 	}
 	
 	public void continueButtonAddActionListener(ActionListener actionListener) {
