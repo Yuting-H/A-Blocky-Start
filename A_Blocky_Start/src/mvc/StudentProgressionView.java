@@ -19,6 +19,8 @@ import javax.swing.ScrollPaneConstants;
  */
 public class StudentProgressionView{
 	
+	
+	
 	//size of root panel
 	private Dimension viewSize = new Dimension(800, 600);
 	

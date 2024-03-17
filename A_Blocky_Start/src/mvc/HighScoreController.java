@@ -21,10 +21,11 @@ public class HighScoreController implements Controller{
 	}
 	
 	/**
-	 * 
+	 * Adds functionality to UI elements
 	 */
 	private void populateActionListener() {
 		
+		//back button
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override

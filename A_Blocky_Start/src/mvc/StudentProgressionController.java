@@ -11,6 +11,8 @@ public class StudentProgressionController {
 	/** The view*/
 	private StudentProgressionView view = new StudentProgressionView();
 	
+	 
+	
 	/**
 	 * 
 	 */

@@ -31,6 +31,7 @@ public class ContainerUI extends JPanel{
 	 * 
 	 * @param location
 	 * @param size
+	 * @param color 
 	 */
 	ContainerUI(Point location, Dimension size, Color color) {
 		setBackground(color);

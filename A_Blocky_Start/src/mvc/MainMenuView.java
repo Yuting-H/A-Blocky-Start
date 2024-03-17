@@ -129,7 +129,7 @@ public class MainMenuView {
 	}
 	
 	/**
-	 * 
+	 * Insert the root panel to gameFrame
 	 */
 	public void insertPanelToFrame() {
 		Main.gameFrame.add(rootPanel);

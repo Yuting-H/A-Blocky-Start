@@ -16,6 +16,17 @@ public class LabelUI extends JLabel{
 	/**
 	 * 
 	 */
+	public LabelUI(Dimension size, String text) {
+		setVisible(true);
+		setSize(size);
+		setText(text);
+		setHorizontalAlignment(JLabel.CENTER);
+		setVerticalAlignment(JLabel.CENTER);
+	}
+	
+	/**
+	 * 
+	 */
 	public LabelUI(Point location, Dimension size, String text) {
 		
 		setVisible(true);
