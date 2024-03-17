@@ -1,13 +1,19 @@
 package mvc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version March 14, 2024
- * @since ???
+ * @version 1.0
+ * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
  */
@@ -26,7 +32,7 @@ public class UserData {
 	 */
 	private String username;
 	/**
-	 * Account password of user (filename = username + filenameSuffix)
+	 * Account password of user 
 	 */
 	private String password;
 	/**
@@ -64,38 +70,60 @@ public class UserData {
 	
 	/**
 	 * Decode the encoded data stored in a user data file. 
-	 * See exportData() for details. 
+	 * @see exportData() for details. 
 	 * Return null if the file does not exist.
 	 * @param username Account name of user<br>
 	 */
 	public static UserData importData(String username) {
-		// TODO: Try opening the file
-		// ...create a file variable
-		// Note: the filename = username + filenameSuffix.
+
+		String filename = username + filenameSuffix;
 		
-		// TODO: If file does not exist, return null
-		// if (...) {return null;}
-		
-		// TODO: Decode the first line of the user data file
-		// ...store them in temporary variables
-		
-		// Call constructor
-		UserData userData = new UserData(null, null, null); // TODO: replace null with temporary variables
-		
-		// Add the rest of the attributes
-		userData.totalScore = -1; // TODO: replace -1 with temporary variables
-		userData.totalTimeSpent = -1; // TODO: replace -1 with temporary variables
-		userData.totalAttempts = -1; // TODO: replace -1 with temporary variables
-		
-		// Add each stage separately
-		// while (!endOfFile(File)) {
-		//   // read each line and feed it to the ProgressionData.importData() method
-		//   userData.addProgressionData(ProgressionData.importData(File.readline()))
-		// }
-		
-		return userData;
+		try {
+			
+			FileReader fileIn = new FileReader(filename);
+			Scanner scnr = new Scanner(fileIn);
+			scnr.useDelimiter(","); // since this is a csv file
+			
+			// Decode the first line and store them in temporary variables
+			String usertype = scnr.next();
+			scnr.next(); // skips username, which we know
+			String password = scnr.next();
+			int totalScore = scnr.nextInt();
+			int totalTimeSpent = scnr.nextInt();
+			int totalAttempts = scnr.nextInt();
+			
+			// Call constructor
+			UserData userData = new UserData(UserTypeEnum.valueOf(usertype), username, password);
+			
+			// Add the rest of the attributes
+			userData.totalScore = totalScore;
+			userData.totalTimeSpent = totalTimeSpent;
+			userData.totalAttempts = totalAttempts;
+			
+			// Add each stage separately
+			while (scnr.hasNextLine()) {
+			    // Read each line and feed it to the ProgressionData.importData() method
+				ProgressionData importData = ProgressionData.importData(scnr.nextLine());
+				// Then add the newly created ProgressionData object to the list
+			    userData.addProgressionData(importData);
+			}
+			scnr.close();
+
+ 			return userData;
+			
+		} catch (FileNotFoundException e) {
+			return null;
+		}
 	}
 	
+	/**
+	 * Adds a single progression data to the list
+	 * @param importData the ProgressionData to add
+	 */
+	private void addProgressionData(ProgressionData importData) {
+		progressionList.add(importData);
+	}
+
 	/**
 	 * Export this user's data to the user data file.
 	 * The first line contains user information and total statistics. 
@@ -107,13 +135,34 @@ public class UserData {
 	 * "..."<br>
 	 */
 	public void exportUserData() {
-		// Wipe the existing user data file, or create a new user data file if file not found
-		// Note: filename = username + filenameSuffix
-		// ...
 		
-		// Re-calculate all 4 overall statistics
-		// i.e. totalTimeSpent = progressionData1.getTimeSpent() + progressionData2.getTimeSpent() + ...
-		// ...
+		try {
+			String filename = getFilename();
+			File file = new File(filename);
+			file.createNewFile(); // creates file if it does not exist
+			
+			FileWriter writer = new FileWriter(filename);
+			writer.write(""); // Wipe the user data file
+			
+			// Recalculate all statistics
+			updateTotalStats();
+			// Write the first line to the file
+			String firstLine = userType + "," + username + "," + password + "," 
+					+ totalScore + "," + totalTimeSpent + "," + totalAttempts + "\n";
+			writer.write(firstLine);
+			
+			// Write the progression data, each stage in its own line
+			for (int i = 0; i < progressionList.size(); i++) {
+				ProgressionData pd = getProgressionAtIndex(i);
+				// Use the ProgressionData.exportData() method to generate string
+				String str = pd.exportData();
+				writer.write(str);
+			}
+			writer.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 
 	/**
@@ -125,7 +174,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the user type
 	 * @return the userType
 	 */
 	public UserTypeEnum getUserType() {
@@ -133,7 +182,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the username
 	 * @return the username
 	 */
 	public String getUsername() {
@@ -141,7 +190,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Get the password
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -149,7 +198,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Get the total score for this user
 	 * @return the totalScore
 	 */
 	public int getTotalScore() {
@@ -157,7 +206,7 @@ public class UserData {
 	}
 	
 	/**
-	 * ...
+	 * Get the total time spent for this user
 	 * @return the totalTimeSpent
 	 */
 	public int getTotalTimeSpent() {
@@ -165,7 +214,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Get the total number of attempts for this user
 	 * @return the totalAttempts
 	 */
 	public int getTotalAttempts() {
@@ -173,7 +222,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Get the list containing the per-stage data
 	 * @return the progressionDataList
 	 */
 	public ArrayList<ProgressionData> getProgressionList() {
@@ -181,14 +230,14 @@ public class UserData {
 	}
 	
 	/**
-	 * ...
-	 * @return the progressionDataList
+	 * Get the data for a stage from the list
+	 * @param index the index of the stage
+	 * @return the ProgressionData at the index
 	 */
 	public ProgressionData getProgressionAtIndex(int index) {
-		// TODO: Check if index is out of bound
-		// ...
-		// return null;
-		
+		// Check if index is out of bound
+		if (index < 0 || index >= progressionList.size())
+			return null;
 		// Stage found
 		return progressionList.get(index);
 	}
@@ -204,7 +253,7 @@ public class UserData {
 		
 		// Sum all detailed statistics
 		ProgressionData temp = null;
-		for (int i = 0; i < progressionList.size(); ++i) {
+		for (int i = 0; i < progressionList.size(); i++) {
 			temp = progressionList.get(i);
 			totalScore += temp.getHighestScore();
 			totalTimeSpent += temp.getTimeSpent();
@@ -214,7 +263,7 @@ public class UserData {
 	
 	/**
 	 * Check whether the user is a student.
-	 * @return Boolean value
+	 * @return true if user is a student, false otherwise
 	 */
 	public boolean isStudent() {
 		return userType == UserTypeEnum.STUDENT;
@@ -222,7 +271,7 @@ public class UserData {
 	
 	/**
 	 * Check whether the user is a teacher.
-	 * @return Boolean value
+	 * @return true if user is a teacher, false otherwise
 	 */
 	public boolean isTeacher() {
 		return userType == UserTypeEnum.TEACHER;
@@ -230,7 +279,7 @@ public class UserData {
 	
 	/**
 	 * Check whether the user is a developer.
-	 * @return Boolean value
+	 * @return true if user is a developer, false otherwise
 	 */
 	public boolean isDeveloper() {
 		return userType == UserTypeEnum.DEVELOPER;
