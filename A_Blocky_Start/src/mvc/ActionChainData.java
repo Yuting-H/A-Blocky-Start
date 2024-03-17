@@ -99,10 +99,10 @@ public class ActionChainData {
 	 * @return Encoded data string
 	 */
 	public String exportData() {
-		String result = "";
+		String result = actionBlockList.get(1).exportData(); // "Start" block
 		
 		// Append all blocks from the "Start" block to the "End" block
-		for (int i = indexStart; i <= indexEnd; ++i) {
+		for (int i = indexStart + 1; i <= indexEnd; ++i) {
 			result = result + ',' + actionBlockList.get(i).exportData();
 		}
 		
