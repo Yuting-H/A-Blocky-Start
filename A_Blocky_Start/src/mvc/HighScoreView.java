@@ -113,20 +113,33 @@ public class HighScoreView{
 	
 	/**
 	 * Adds a highscore to 
-	 * @param index 0 to 9, 0 being at the top
+	 * @param index 1 to 5, 0 being at the top
 	 * @param name the player's name
 	 * @param score the highscore entry
 	 */
 	public void addHighscore(int index, String name, int score) {
-		
-		
 		
 		//decide which entry to add to
 		switch (index) {
 		case 1:
 			name1.setText(name);
 			score1.setText("" + score);
-			
+			break;
+		case 2:
+			name2.setText(name);
+			score2.setText("" + score);
+			break;
+		case 3:
+			name3.setText(name);
+			score3.setText("" + score);
+			break;
+		case 4:
+			name4.setText(name);
+			score4.setText("" + score);
+			break;
+		case 5:
+			name5.setText(name);
+			score5.setText("" + score);
 			break;
 
 		default:
