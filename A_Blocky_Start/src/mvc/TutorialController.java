@@ -1,0 +1,54 @@
+package mvc;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * 
+ */
+public class TutorialController {
+	
+	/** The view*/
+	private TutorialView view = new TutorialView();
+	
+	/**
+	 * Called in Main.java
+	 * 
+	 */
+	public TutorialController() {
+		
+		view.insertPanelToFrame();
+		
+		populateActionListener();
+	}
+	
+	/**
+	 * 
+	 */
+	private void populateActionListener() {
+		
+		view.backButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.tutorialController.onExit();
+				Main.mainMenuController.OnEnter();
+			}
+		});
+	}
+	
+	/**
+	 * 
+	 */
+	public void onEnter() {
+		view.setVisibility(true);
+	}
+	
+	/**
+	 * 
+	 */
+	public void onExit() {
+		view.setVisibility(false);
+	}
+	
+}
