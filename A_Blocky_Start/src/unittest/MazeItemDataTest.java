@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for MazeItemData.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 12, 2024
  * @author Chun Ho Chan (Edward)
  */

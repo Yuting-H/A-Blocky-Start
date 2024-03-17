@@ -2,7 +2,7 @@ package mvc;
 
 /**
  * This model class stores a user's progress in a stage. It loads/ saves data by communicating with the UserData object. The ActionChain is stored as a separate object.
- * @version March 11, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -61,9 +61,10 @@ public class ProgressionData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor. Return an empty instance with stage ID = -1 if progression data is corrupted. See exportData() for details.
+	 * Decode the encoded data string and call the constructor.
+	 * @see exportData() for details.
 	 * @param data Encoded data string
-	 * @return ProgressionData
+	 * @return ProgressionData, or an empty instance with stage ID = -1 if data is corrupted
 	 */
 	public static ProgressionData importData(String data) {
 		// Find the position of separator character
@@ -109,7 +110,7 @@ public class ProgressionData {
 			
 		} catch (Exception e) {
 			// Return empty progression data
-			Main.errorLogController.appendErrorLog(e);
+			Main.errorLogController.addWarning(e);
 			return new ProgressionData(-1);
 		}
 	}
@@ -211,9 +212,9 @@ public class ProgressionData {
 	}
 
 	/**
-	 * Update the shortest number of steps. Return false if steps are greater than/ equal to shortest steps.
+	 * Update the shortest number of steps.
 	 * @param steps Number of steps
-	 * @return Boolean value
+	 * @return True if successful, false if steps are greater than/ equal to shortest steps
 	 */
 	public boolean updateShortestSteps(int steps) {
 		if (steps >= shortestSteps) {
@@ -226,9 +227,9 @@ public class ProgressionData {
 	}
 
 	/**
-	 * Update the highest score achieved. Return false if score smaller than/ equal to highest score.
+	 * Update the highest score achieved.
 	 * @param score Score
-	 * @return Boolean value
+	 * @return True if successful, false if score smaller than/ equal to highest score
 	 */
 	public boolean updateHighestScore(int score) {
 		if (score <= highestScore) {
