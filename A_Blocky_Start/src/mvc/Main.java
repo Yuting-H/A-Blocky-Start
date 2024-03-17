@@ -18,6 +18,16 @@ public class Main {
 	 public static LoginController loginController = new LoginController();
 	 
 	 public static MainMenuController mainMenuController = new MainMenuController();
+	 
+	 public static TutorialController tutorialController = new TutorialController();
+	 
+	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
+	 
+	 public static GameplayController gameplayController = new GameplayController();
+	 
+	 public static SettingsController settingsController = new SettingsController();
+	 
+	 public static HighScoreController highScoreController = new HighScoreController();
 
 	/**
 	 * Main method
@@ -26,9 +36,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame();
-		//loginController.OnEnter(); //Load First screen
 		
-		mainMenuController.OnEnter();
+		loginController.OnEnter(); //Load First screen
 	}
 	
 	/**
@@ -42,13 +51,6 @@ public class Main {
 		gameFrame.setResizable(false);
 		gameFrame.setSize(800, 600);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//insert all screens to gameFrame
-		//ExampleMainMenuController.insertPanel();
-		//TODO: implement all controller.insertPanel
-		loginController.insertPanel();
-		loginController.OnExit();
-		mainMenuController.insertPanel();
 		
 	}
 	
