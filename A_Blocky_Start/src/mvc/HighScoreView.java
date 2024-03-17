@@ -92,19 +92,21 @@ public class HighScoreView{
 		//entries
 		entriesContainer.setLayout(layout);
 		
+		//init entries
 		entry1 = newEntryUI(name1, score1);
 		entry2 = newEntryUI(name2, score2);
 		entry3 = newEntryUI(name3, score3);
 		entry4 = newEntryUI(name4, score4);
 		entry5 = newEntryUI(name5, score5);
 		
-		
+		//add entries to container
 		entriesContainer.add(entry1);
 		entriesContainer.add(entry2);
 		entriesContainer.add(entry3);
 		entriesContainer.add(entry4);
 		entriesContainer.add(entry5);
 		
+		//add container to root
 		rootPanel.add(entriesContainer);
 		
 	}
@@ -117,9 +119,13 @@ public class HighScoreView{
 	 */
 	public void addHighscore(int index, String name, int score) {
 		
+		
+		
 		//decide which entry to add to
 		switch (index) {
 		case 1:
+			name1.setText(name);
+			score1.setText("" + score);
 			
 			break;
 
