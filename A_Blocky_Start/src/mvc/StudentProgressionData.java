@@ -1,13 +1,9 @@
 package mvc;
+import java.util.ArrayList;
 
 public class StudentProgressionData {
-	private int stageID;
-	private boolean completed;
-	private int shortestSteps;
-	private int highestScore;
-	private int timeSpent;
-	private int attempts;
-	private ActionChainData actionChain;
+	private ArrayList<ProgressionData> arrayList;
+	
 
 	StudentProgressionData(String data) {
 		

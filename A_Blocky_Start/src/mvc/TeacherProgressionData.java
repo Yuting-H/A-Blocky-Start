@@ -2,7 +2,7 @@ package mvc;
 import java.util.ArrayList;
 
 public class TeacherProgressionData {
-	private ArrayList<StudentProgressionData> arr;
+	private ArrayList<StudentProgressionData> arrayList;
 	
 	TeacherProgressionData()
 	{
@@ -11,12 +11,12 @@ public class TeacherProgressionData {
 	
 	public ArrayList<StudentProgressionData> getProgressionData()
 	{
-		return arr;
+		return arrayList;
 	}
 	
-	public void setProgressionData(ArrayList<StudentProgressionData> a)
+	public void setProgressionData(ArrayList<StudentProgressionData> arrayList)
 	{
-		arr = a;
+		this.arrayList = arrayList;
 	}
 
 }
