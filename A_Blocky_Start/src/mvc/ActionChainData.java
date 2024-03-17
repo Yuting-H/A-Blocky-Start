@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This model class stores a user's saved action chain in a stage. It loads/ saves data by communicating with the ProgressionData object. Each ActionBlock is stored as a separate object.
- * @version March 13, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -38,7 +38,7 @@ public class ActionChainData {
 	/**
 	 * Help to check if the index is out-of-bound, i.e. indexStart <= index <= indexEnd.
 	 * @param index Index
-	 * @return Boolean value
+	 * @return True if index is out-of-bound, false otherwise
 	 */
 	private boolean isIndexOutOfBound(int index) {
 		if ((index < indexStart) || (index > indexEnd)) {
@@ -65,7 +65,8 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor. See exportData() for details.
+	 * Decode the encoded data string and call the constructor.
+	 * @see exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionChainData
 	 */
@@ -118,9 +119,9 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Access the action block at index. Return an "Unknown" block if out-of-bound.
+	 * Access the action block at index. 
 	 * @param index Index
-	 * @return Action block
+	 * @return Action block at index, or an "Unknown" block if index is out-of-bound
 	 */
 	public ActionBlockData getActionBlock(int index) {
 		if (isIndexOutOfBound(index)) {
@@ -163,10 +164,10 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Insert an action block at the index. Any indices originally at or after that index shifts by +1. Return true if successful.
+	 * Insert an action block at the index. Any indices originally at or after that index shifts by +1. 
 	 * @param actionBlock Action block
 	 * @param index Index
-	 * @return Boolean value
+	 * @return True if successful, false otherwise
 	 */
 	public boolean addAtIndex(ActionBlockData actionBlock, int index) {
 		// Check action block type
@@ -193,28 +194,28 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Insert an action block after the "Start" block. Return true if successful.
+	 * Insert an action block after the "Start" block. 
 	 * @param actionBlock Action block
-	 * @return Boolean value
+	 * @return True if successful, false otherwise
 	 */
 	public boolean addAfterStart(ActionBlockData actionBlock) {
 		return addAtIndex(actionBlock, indexStart + 1);
 	}
 	
 	/**
-	 * Insert an action block before the "End" block. Return true if successful.
+	 * Insert an action block before the "End" block.
 	 * @param actionBlock Action block
-	 * @return Boolean value
+	 * @return True if successful, false otherwise
 	 */
 	public boolean addBeforeEnd(ActionBlockData actionBlock) {
 		return addAtIndex(actionBlock, indexEnd);
 	}
 	
 	/**
-	 * Swap two action blocks using indices. Cannot swap with "Start" or "End" blocks. Return true if successful.
+	 * Swap two action blocks using indices. Cannot swap with "Start" or "End" blocks.
 	 * @param index1 First index
 	 * @param index2 Second index
-	 * @return Boolean value
+	 * @return True if successful, false otherwise
 	 */
 	public boolean swap(int index1, int index2) {
 		// Check indices range
@@ -237,9 +238,9 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Remove an action block at the index. Any indices originally after that index shifts by -1. Return true if successful.
+	 * Remove an action block at the index. Any indices originally after that index shifts by -1.
 	 * @param index Index
-	 * @return Boolean value
+	 * @return True if successful, false otherwise
 	 */
 	public boolean remove(int index) {
 		// Check indices range
@@ -273,8 +274,8 @@ public class ActionChainData {
 	}
 	
 	/**
-	 * Execute 1 step and update program counters and internal counters. Return false if there is no next step, i.e. has finished or crashed.
-	 * @return Boolean value
+	 * Execute 1 step and update program counters and internal counters.
+	 * @return True if successful, false if there is no next step, i.e. has finished or crashed
 	 */
 	public boolean executeStep() {
 		// Check if action chain has finished
@@ -318,7 +319,7 @@ public class ActionChainData {
 	
 	/**
 	 * Check if the action chain has finished properly.
-	 * @return Boolean value
+	 * @return True if has finished, false otherwise
 	 */
 	public boolean isExecuteFinished() {
 		return ((indexCurrent == indexEnd) && (indexNext == indexEnd));
@@ -326,7 +327,7 @@ public class ActionChainData {
 	
 	/**
 	 * Check if the action chain has crashed unexpectedly.
-	 * @return Boolean value
+	 * @return True if has crashed, false otherwise
 	 */
 		public boolean isExecuteCrashed() {
 			return (isIndexOutOfBound(indexCurrent) || isIndexOutOfBound(indexNext));

@@ -8,6 +8,14 @@ package mvc;
  */
 public class MazeItemData {
 
+	private MazeTypeEnum type;
+	
+	private int xCoor;
+	
+	private int yCoor;
+	
+	
+	
 	public MazeItemData() {
 		// TODO
 	}

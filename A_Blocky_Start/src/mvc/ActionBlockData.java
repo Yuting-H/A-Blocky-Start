@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This model class represents an action block. It loads/ saves data by communicating with the ActionChain object.
- * @version March 13, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -39,7 +39,8 @@ public class ActionBlockData {
 	}
 	
 	/**
-	 * Decode the encoded data string and call the constructor. See exportData() for details.
+	 * Decode the encoded data string and call the constructor.
+	 * @see exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionBlockData
 	 */
@@ -185,7 +186,7 @@ public class ActionBlockData {
 	/**
 	 * TODO: missing test cases
 	 * Check if this instruction is a jump, i.e. "Goto" or "Loop" block.
-	 * @return Boolean value
+	 * @return True if the action block needs to jump, false otherwise
 	 */
 	public boolean isJump() {
 		if (type == ActionTypeEnum.Goto) {

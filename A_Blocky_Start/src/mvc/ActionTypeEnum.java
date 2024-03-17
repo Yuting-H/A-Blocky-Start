@@ -6,7 +6,6 @@ package mvc;
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
-
 public enum ActionTypeEnum {
 	/**
 	 * Enumerator of actions

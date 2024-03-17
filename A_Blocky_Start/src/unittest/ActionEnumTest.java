@@ -8,7 +8,7 @@ import mvc.ActionTypeEnum;
 
 /**
  * Unit test for ActionEnum.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
