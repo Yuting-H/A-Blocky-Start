@@ -18,6 +18,8 @@ public class HighScoreController implements Controller{
 		view.insertPanelToFrame();
 		
 		populateActionListener();
+		
+	
 	}
 	
 	/**

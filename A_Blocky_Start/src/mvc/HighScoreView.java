@@ -48,18 +48,18 @@ public class HighScoreView{
 	private PanelUI entry5 = new PanelUI(entriesSize);
 	
 	//player names
-	private LabelUI name1 = new LabelUI(entriesLabelSize, "John Doe");
-	private LabelUI name2 = new LabelUI(entriesLabelSize, "A");
-	private LabelUI name3 = new LabelUI(entriesLabelSize, "B");
-	private LabelUI name4 = new LabelUI(entriesLabelSize, "C");
-	private LabelUI name5 = new LabelUI(entriesLabelSize, "D");
+	private LabelUI name1 = new LabelUI(entriesLabelSize, "No Entry");
+	private LabelUI name2 = new LabelUI(entriesLabelSize, "No Entry");
+	private LabelUI name3 = new LabelUI(entriesLabelSize, "No Entry");
+	private LabelUI name4 = new LabelUI(entriesLabelSize, "No Entry");
+	private LabelUI name5 = new LabelUI(entriesLabelSize, "No Entry");
 	
 	//player's scores
-	private LabelUI score1 = new LabelUI(entriesLabelSize, "123");
-	private LabelUI score2 = new LabelUI(entriesLabelSize, "23");
-	private LabelUI score3 = new LabelUI(entriesLabelSize, "1");
-	private LabelUI score4 = new LabelUI(entriesLabelSize, "1");
-	private LabelUI score5 = new LabelUI(entriesLabelSize, "1");
+	private LabelUI score1 = new LabelUI(entriesLabelSize, "0");
+	private LabelUI score2 = new LabelUI(entriesLabelSize, "0");
+	private LabelUI score3 = new LabelUI(entriesLabelSize, "0");
+	private LabelUI score4 = new LabelUI(entriesLabelSize, "0");
+	private LabelUI score5 = new LabelUI(entriesLabelSize, "0");
 
 	/**
 	 * Constructor
