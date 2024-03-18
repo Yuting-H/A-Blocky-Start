@@ -18,7 +18,6 @@ import java.util.Scanner;
  * @author Chun Ho Chan (Edward)
  */
 public class UserData {
-	
 	/**
 	 * Filename suffix of user data files
 	 */
