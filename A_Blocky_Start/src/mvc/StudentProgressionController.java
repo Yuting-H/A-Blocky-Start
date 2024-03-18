@@ -11,7 +11,9 @@ public class StudentProgressionController {
 	/** The view*/
 	private StudentProgressionView view = new StudentProgressionView();
 	
-	 
+	private StudentProgressionData[] studentProgressionDatas = new StudentProgressionData[10];
+	
+	
 	
 	/**
 	 * 

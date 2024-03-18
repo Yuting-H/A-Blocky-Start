@@ -71,11 +71,9 @@ public class StudentProgressionView{
 		//set up container 
 		container = new ContainerUI(containerLocation, containerSize, Color.white);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-		container.setBorder(new EmptyBorder(new Insets(50, 20, 0, 20)));
+		container.setBorder(new EmptyBorder(new Insets(10, 10, 0, 10)));
 		container.add(entry1);
 		container.add(Box.createVerticalStrut(1000));
-		
-		
 		
 		
 		//init scroll bar, container is converted
@@ -96,8 +94,11 @@ public class StudentProgressionView{
 	/**
 	 * This method adds a progression record to the screen
 	 */
-	public void appendProgression(ProgressionData progressionData) {
-		//TODO: implement
+	public PanelUI newEntry(ProgressionData progressionData) {
+		PanelUI entry = new PanelUI(entryContainerSize);
+		
+		
+		return entry;
 	}
 	
 	/**
