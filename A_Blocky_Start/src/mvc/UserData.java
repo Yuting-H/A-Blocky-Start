@@ -75,7 +75,7 @@ public class UserData {
 	 */
 	public static UserData importData(String username) {
 
-		String filename = toFilename(username) + filenameSuffix;
+		String filename = toFilename(username);
 		
 		try {
 			
