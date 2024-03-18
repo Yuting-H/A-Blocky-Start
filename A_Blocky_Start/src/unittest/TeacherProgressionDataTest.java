@@ -4,15 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for ActionChainData.
- * @version 1.0
- * @since March 12, 2024
- * @author Chun Ho Chan (Edward)
- */
-class ActionChainDataTest {
+import mvc.TeacherProgressionData;
+
+import java.util.ArrayList;
+
+class TeacherProgressionDataTest {
 
 	@Test
+	void ConstructEmpty()
+	{
+		
+	}
+	
 	void test() {
 		fail("Not yet implemented");
 	}

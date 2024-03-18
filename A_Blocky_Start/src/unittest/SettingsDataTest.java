@@ -1,16 +1,10 @@
 package unittest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import mvc.SettingsData;
 
-/**
- * Unit test for ActionChainData.
- * @version 1.0
- * @since March 12, 2024
- * @author Chun Ho Chan (Edward)
- */
-class ActionChainDataTest {
+class SettingsDataTest {
 
 	@Test
 	void test() {

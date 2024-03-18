@@ -1,9 +1,11 @@
 package unittest;
 
 /**
+ * Unit test for ProgressionData.
+ * @version 1.0
+ * @since Mar 14, 2024
  * @author Eunhak Kim
  */
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
