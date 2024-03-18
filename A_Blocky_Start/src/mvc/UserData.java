@@ -12,7 +12,7 @@ import java.util.Scanner;
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version 1.0
+ * @version 1.2
  * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
@@ -135,8 +135,13 @@ public class UserData {
 	 * "..."<br>
 	 */
 	public void exportUserData() {
-		
+	
 		try {
+			// exception for teacher and dev
+			if (userType != UserTypeEnum.STUDENT) {
+				throw new Exception("User data cannot be exported for teachers and developers");
+			}
+			
 			String filename = getFilename();
 			File file = new File(filename);
 			file.createNewFile(); // creates file if it does not exist
@@ -162,6 +167,9 @@ public class UserData {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			Main.errorLogController.addError(e);
+			System.out.println(e.getMessage());
 		} 
 	}
 
