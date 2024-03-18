@@ -12,7 +12,7 @@ import mvc.ActionTypeEnum;
  * @since March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
-class ActionEnumTest {
+class ActionTypeEnumTest {
 	
 	@Test
 	void StartToEnum() {

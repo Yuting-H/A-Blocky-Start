@@ -8,5 +8,5 @@ package mvc;
  * @author Chun Ho Chan
  */
 public enum UserTypeEnum {
-	STUDENT, TEACHER, DEVELOPER;
+	Student, Teacher, Developer;
 }
