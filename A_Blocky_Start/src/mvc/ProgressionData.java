@@ -4,7 +4,7 @@ package mvc;
  * This model class stores a user's progress in a stage. It loads/ saves data by communicating with the UserData object. The ActionChain is stored as a separate object.
  * @version 1.0
  * @since March 11, 2024
- * @author Chun Ho Chan (Edward)
+ * @author Chun Ho Chan (Edward), Doyle Blacklock
  */
 public class ProgressionData {
 	
