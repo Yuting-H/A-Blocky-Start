@@ -24,6 +24,7 @@ public class SettingsData {
 	// Create private integer integer instance variable that represents the volume of the game.
 	private int volumeLevel;
 	
+	
 	public SettingsData() {
 		screenHeight = 0;
 		screenWidth = 0;
@@ -33,32 +34,32 @@ public class SettingsData {
 	
 	public static SettingsData importData(String filename) {
 		// read file
-		 SettingsData settings = new SettingsData();
-	        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-	            settings.screenHeight = Integer.parseInt(reader.readLine());
-	            settings.screenWidth = Integer.parseInt(reader.readLine());
-	            settings.colourblindMode = Boolean.parseBoolean(reader.readLine());
-	            settings.volumeLevel = Integer.parseInt(reader.readLine());
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        return settings;
-		
-	}
+		 SettingsData settings = new SettingsData(); // Create a new instance of SettingsData
+		    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+		        String line = reader.readLine(); // Read the entire line of settings
+		        if (line != null) {
+		            String[] parts = line.split(","); // Split the line by commas
+		            if (parts.length == 4) { // Ensure there are exactly 4 components
+		                settings.screenHeight = Integer.parseInt(parts[0].trim()); // Parse screen height
+		                settings.screenWidth = Integer.parseInt(parts[1].trim()); // Parse screen width
+		                settings.colourblindMode = Boolean.parseBoolean(parts[2].trim()); // Parse colourblind mode
+		                settings.volumeLevel = Integer.parseInt(parts[3].trim()); // Parse volume level
+		            }
+		        }
+		    } catch (IOException e) {
+		        e.printStackTrace(); // Print the stack trace in case of an IOException
+		    }
+		    return settings; // Return the populated SettingsData instance
+		}
 	
 	public void exportSettings(String filename) {
-		// write to file
-		 try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-	            writer.write(Integer.toString(screenHeight));
-	            writer.newLine();
-	            writer.write(Integer.toString(screenWidth));
-	            writer.newLine();
-	            writer.write(Boolean.toString(colourblindMode));
-	            writer.newLine();
-	            writer.write(Integer.toString(volumeLevel));
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+	        // Concatenate settings into a single line, separated by commas
+	        String settingsLine = screenHeight + "," + screenWidth + "," + colourblindMode + "," + volumeLevel;
+	        writer.write(settingsLine); // Write the concatenated settings string
+	    } catch (IOException e) {
+	        e.printStackTrace(); // Print the stack trace in case of an IOException
+	    }
 	}
 	
 	public int getScreenHeight() {

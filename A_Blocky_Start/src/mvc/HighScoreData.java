@@ -18,7 +18,7 @@ public class HighScoreData {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(", ");
+                String[] parts = line.split(",");
                 if (parts.length == 2) {
                     setNameScore(parts[0], Integer.parseInt(parts[1]));
                 }
@@ -41,24 +41,21 @@ public class HighScoreData {
 	}
 	
 	public String getUsername(int index) {
-		return usernameList[index];
+		if (0 <= index  && index <= 4) {
+			return usernameList[index];
+		}
+		
+		return "";
 	}
 	
 	public int getHighScore(int index) {
-		return highScoreList[index];
+		if (0 <= index  && index <= 4) {
+			return highScoreList[index];
+		}
+		return 0;
 	}
 	
 	public boolean setNameScore(String username, int highScore) {
-        for (int i = 0; i < count; i++) {
-            if (usernameList[i].equals(username)) {
-                if (highScoreList[i] < highScore) {
-                    highScoreList[i] = highScore;
-                    sortScores();
-                    return true;
-                }
-                return false;
-            }
-        }
 
         // If list is not full, add directly
         if (count < 5) {
@@ -67,7 +64,8 @@ public class HighScoreData {
             count++;
             sortScores();
             return true;
-        } else {
+        } 
+        else {
             // If the new score is higher than the lowest score in the list
             if (highScore > highScoreList[4]) {
                 usernameList[4] = username;
@@ -80,19 +78,14 @@ public class HighScoreData {
     }
 
     private void sortScores() {
-        // Bubble sort by high score in descending order
-        for (int i = 0; i < count; i++) {
-            for (int j = 1; j < (count - i); j++) {
-                if (highScoreList[j - 1] < highScoreList[j]) {
-                    // Swap scores
-                    int tempScore = highScoreList[j - 1];
-                    highScoreList[j - 1] = highScoreList[j];
-                    highScoreList[j] = tempScore;
-                    // Swap usernames
-                    String tempUsername = usernameList[j - 1];
-                    usernameList[j - 1] = usernameList[j];
-                    usernameList[j] = tempUsername;
-                }
+        for (int i = 4; i >= 0; i--) {
+            if (highScoreList[i] > highScoreList[i-1]) {
+            	int tempHS = highScoreList[i];
+            	highScoreList[i] = highScoreList[i-1];
+            	highScoreList[i-1] = tempHS;
+            }
+            else {
+            	break;
             }
         }
     }
