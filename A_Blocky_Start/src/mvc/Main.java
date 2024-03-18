@@ -41,7 +41,7 @@ public class Main {
 		
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
-		settingsController.OnEnter(); 
+		studentProgressionController.OnEnter(); 
 		
 		
 	}

@@ -1,6 +1,7 @@
 package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -8,41 +9,37 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
- * @author Yuting
- * This class display the progression
+ * This class display the progression of a player
+ * @author Yuting <br>
+ * 
  */
 public class StudentProgressionView{
 	
-	
-	
-	//size of root panel
+	//Define sizes
 	private Dimension viewSize = new Dimension(800, 600);
-	
-	//define size of go-back button 
 	private Dimension backButtonSize = new Dimension(30,30);
+	private Dimension containerSize = new Dimension(785, 490);
+	private Dimension entryContainerSize = new Dimension(500, 200);
 	
-	//define size of each progression box
-	private Dimension containerSize = new Dimension(780, 490);
-	
-	//define location of back button
+	//define locations
 	private Point backButtonLocation = new Point(10,10);
+	private Point containerLocation = new Point(0, 50);  //contains Pro
 	
-	//define the location of each progression box
-	private Point containerLocation = new Point(0, 50);
-	
+	//define UI
 	private JPanel rootPanel;
-	
 	private ButtonUI backButton;
-	
 	private ContainerUI container;
-	
 	private JScrollPane scrollPane;
+	
+	private PanelUI entry1 = new PanelUI(entryContainerSize, Color.magenta);
 	
 	/**
 	 * constructor for displaying
@@ -68,10 +65,17 @@ public class StudentProgressionView{
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
+		entry1.setPreferredSize(new Dimension(600, 50));
+		
 		//set up container 
 		container = new ContainerUI(containerLocation, containerSize, Color.white);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+		container.setBorder(new EmptyBorder(new Insets(50, 20, 0, 20)));
+		container.add(entry1);
 		container.add(Box.createVerticalStrut(1000));
+		
+		
+		
 		
 		//init scroll bar, container is converted
 		scrollPane = new JScrollPane(container);
