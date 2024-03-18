@@ -2,7 +2,7 @@ package mvc;
 
 /**
  * Enumerator of all possible types of action.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */

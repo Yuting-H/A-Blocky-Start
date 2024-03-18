@@ -60,7 +60,7 @@ public class UserData {
 	 */
 	public UserData(UserTypeEnum userType, String username, String password) {
 		this.userType = userType;
-		this.username = username.toLowerCase();
+		this.username = username;
 		this.password = password;
 		this.totalScore = 0;
 		this.totalTimeSpent = 0;
@@ -76,7 +76,7 @@ public class UserData {
 	 */
 	public static UserData importData(String username) {
 
-		String filename = username.toLowerCase() + filenameSuffix;
+		String filename = username + filenameSuffix;
 		
 		try {
 			
@@ -308,7 +308,7 @@ public class UserData {
 	 * @return True if user is a student, false otherwise
 	 */
 	public boolean isStudent() {
-		return userType == UserTypeEnum.STUDENT;
+		return userType == UserTypeEnum.Student;
 	}
 	
 	/**
@@ -316,7 +316,7 @@ public class UserData {
 	 * @return True if user is a teacher, false otherwise
 	 */
 	public boolean isTeacher() {
-		return userType == UserTypeEnum.TEACHER;
+		return userType == UserTypeEnum.Teacher;
 	}
 	
 	/**
@@ -324,7 +324,7 @@ public class UserData {
 	 * @return True if user is a developer, false otherwise
 	 */
 	public boolean isDeveloper() {
-		return userType == UserTypeEnum.DEVELOPER;
+		return userType == UserTypeEnum.Developer;
 	}
 	
 }
