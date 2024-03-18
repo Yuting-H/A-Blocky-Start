@@ -36,19 +36,6 @@ public class ActionChainData {
 	private int indexNext;
 	
 	/**
-	 * Help to check if the index is out-of-bound, i.e. indexStart <= index <= indexEnd.
-	 * @param index Index
-	 * @return True if index is out-of-bound, false otherwise
-	 */
-	private boolean isIndexOutOfBound(int index) {
-		if ((index < indexStart) || (index > indexEnd)) {
-			return true; // index out of bound
-		}
-		
-		return false; // index within bound
-	}
-	
-	/**
 	 * Construct a clean action chain, includes padding and "Start" and "End" blocks.<br>
 	 * <br>
 	 * Note: Index 0 is "Unknown" block as padding, since "Start" block is at index 1.
@@ -329,8 +316,21 @@ public class ActionChainData {
 	 * Check if the action chain has crashed unexpectedly.
 	 * @return True if has crashed, false otherwise
 	 */
-		public boolean isExecuteCrashed() {
-			return (isIndexOutOfBound(indexCurrent) || isIndexOutOfBound(indexNext));
+	public boolean isExecuteCrashed() {
+		return (isIndexOutOfBound(indexCurrent) || isIndexOutOfBound(indexNext));
+	}
+	
+	/**
+	 * Help to check if the index is out-of-bound, i.e. indexStart <= index <= indexEnd.
+	 * @param index Index
+	 * @return True if index is out-of-bound, false otherwise
+	 */
+	private boolean isIndexOutOfBound(int index) {
+		if ((index < indexStart) || (index > indexEnd)) {
+			return true; // index out of bound
 		}
+		
+		return false; // index within bound
+	}
 
 }
