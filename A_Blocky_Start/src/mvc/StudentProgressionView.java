@@ -65,7 +65,8 @@ public class StudentProgressionView{
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
-		entry1.setPreferredSize(new Dimension(600, 50));
+		//somehow u need this to work
+		//set preferred sizes to all entries
 		
 		//set up container 
 		container = new ContainerUI(containerLocation, containerSize, Color.white);
@@ -95,7 +96,7 @@ public class StudentProgressionView{
 	/**
 	 * This method adds a progression record to the screen
 	 */
-	public void appendProgression() {
+	public void appendProgression(ProgressionData progressionData) {
 		//TODO: implement
 	}
 	

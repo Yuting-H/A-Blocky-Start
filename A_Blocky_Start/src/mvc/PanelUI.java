@@ -31,6 +31,7 @@ public class PanelUI extends JPanel{
 		 
 			setLayout(null);
 			setSize(size);
+			setPreferredSize(size);
 			setVisible(true);
 			setBackground(Color.gray);
 
@@ -45,8 +46,10 @@ public class PanelUI extends JPanel{
 		 
 			setLayout(null);
 			setSize(size);
+			setPreferredSize(size);
 			setVisible(true);
 			setBackground(color);
+			
 
 	}
 
