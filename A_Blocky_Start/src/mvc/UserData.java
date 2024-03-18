@@ -75,7 +75,7 @@ public class UserData {
 	 */
 	public static UserData importData(String username) {
 
-		String filename = username + filenameSuffix;
+		String filename = toFilename(username) + filenameSuffix;
 		
 		try {
 			
@@ -129,7 +129,7 @@ public class UserData {
 	public void exportUserData() {
 		
 		try {
-			String filename = getFilename();
+			String filename = toFilename(username);
 			
 			File fileOut = new File(filename);
 			fileOut.createNewFile(); // create a new file if not found
@@ -174,11 +174,11 @@ public class UserData {
 	}
 
 	/**
-	 * Access the filename of this user's data file
+	 * Convert username to the filename of this user's data file
 	 * @return Filename of user data file
 	 */
-	public String getFilename() {
-		return username + filenameSuffix;
+	public static String toFilename(String username) {
+		return username.toLowerCase() + filenameSuffix;
 	}
 
 	/**
