@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class StudentProgressionController {
+public class StudentProgressionController implements Controller{
 	
 	/** The view*/
 	private StudentProgressionView view = new StudentProgressionView();
+	
+	private Controller previousController;
 	
 	private StudentProgressionData[] studentProgressionDatas = new StudentProgressionData[10];
 	
@@ -34,7 +36,7 @@ public class StudentProgressionController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.studentProgressionController.OnExit();
-				Main.mainMenuController.OnEnter();
+				previousController.OnEnter();
 			}
 		});
 		
@@ -43,15 +45,26 @@ public class StudentProgressionController {
 	/**
 	 * 
 	 */
+	public void OnExit() {
+		view.setVisibility(false);
+	}
+
+	/**
+	 * 
+	 */
+	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
+		this.previousController = Main.mainMenuController;
 	}
 	
 	/**
 	 * 
 	 */
-	public void OnExit() {
-		view.setVisibility(false);
+	public void OnEnterSpecial(Controller previousController) {
+		OnEnter();
+		this.previousController = previousController; // Override default back button behavior
+		
 	}
 
 }

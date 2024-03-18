@@ -65,7 +65,7 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.OnExit();
-				Main.studentProgressionController.OnEnter();
+				Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
 			}
 		});
 		

@@ -1,11 +1,13 @@
 package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -27,7 +29,8 @@ public class StudentProgressionView{
 	private Dimension viewSize = new Dimension(800, 600);
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 490);
-	private Dimension entryContainerSize = new Dimension(500, 200);
+	private Dimension entryContainerSize = new Dimension(500, 100);
+	private Dimension labelSize = new Dimension(100, 20);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
@@ -39,7 +42,8 @@ public class StudentProgressionView{
 	private ContainerUI container;
 	private JScrollPane scrollPane;
 	
-	private PanelUI entry1 = new PanelUI(entryContainerSize, Color.magenta);
+	//
+	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 	
 	/**
 	 * constructor for displaying
@@ -65,16 +69,24 @@ public class StudentProgressionView{
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
-		//somehow u need this to work
-		//set preferred sizes to all entries
-		
 		//set up container 
 		container = new ContainerUI(containerLocation, containerSize, Color.white);
-		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-		container.setBorder(new EmptyBorder(new Insets(10, 10, 0, 10)));
-		container.add(entry1);
-		container.add(Box.createVerticalStrut(1000));
+		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));  //set layout
+		container.setBorder(new EmptyBorder(new Insets(10, 50, 0, 50)));  //inset space
 		
+		//adds 10 progression to container
+		for (int i = 0; i < 9; i++) {
+			PanelUI curr = newEntry();
+			
+			entries.add(curr);
+			container.add(entries.get(i));
+			setEntry(i);
+			container.add(Box.createVerticalStrut(20));  //spacing between each progression
+			
+		}
+
+		//botton margin
+		container.add(Box.createVerticalStrut(100));
 		
 		//init scroll bar, container is converted
 		scrollPane = new JScrollPane(container);
@@ -92,17 +104,46 @@ public class StudentProgressionView{
 	}
 	
 	/**
-	 * This method adds a progression record to the screen
+	 * 
+	 * @param index the index of the progression
+	 * TODO: this function needs to display progression data
 	 */
-	public PanelUI newEntry(ProgressionData progressionData) {
-		PanelUI entry = new PanelUI(entryContainerSize);
+	public void setEntry(int index) {
 		
+		PanelUI entry = entries.get(index);
+		
+		entry.setLayout(new FlowLayout());
+		
+		LabelUI stageID = new LabelUI(labelSize, "StageID");
+		LabelUI completed = new LabelUI(labelSize, "completed");
+		LabelUI shortestSteps = new LabelUI(labelSize, "Shortest steps");
+		LabelUI highestScore = new LabelUI(labelSize, "Highest Score");
+		LabelUI timeSpent = new LabelUI(labelSize, "Time Spent");
+		LabelUI attempts = new LabelUI(labelSize, "Attempts");
+		ButtonUI playButton = new ButtonUI(labelSize, "Play");
+		
+		entry.add(stageID);
+		entry.add(completed);
+		entry.add(shortestSteps);
+		entry.add(highestScore);
+		entry.add(timeSpent);
+		entry.add(attempts);
+		entry.add(playButton);
+	}
+	
+	/**
+	 * This method adds a progression record container to the screen
+	 */
+	public PanelUI newEntry() {
+		
+		//create a new PanelUI
+		PanelUI entry = new PanelUI(entryContainerSize);
 		
 		return entry;
 	}
 	
 	/**
-	 * 
+	 * Adds root panel to game frame
 	 */
 	public void insertPanelToFrame() {
 		Main.gameFrame.add(rootPanel);
