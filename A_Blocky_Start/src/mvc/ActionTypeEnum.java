@@ -2,12 +2,11 @@ package mvc;
 
 /**
  * Enumerator of all possible types of action.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
-
-public enum ActionEnum {
+public enum ActionTypeEnum {
 	/**
 	 * Enumerator of actions
 	 */
@@ -18,7 +17,7 @@ public enum ActionEnum {
 	 * @param data Encoded data string
 	 * @return Enumerator of actions
 	 */
-	public static ActionEnum fromString(String data) {
+	public static ActionTypeEnum fromString(String data) {
 		// Remove whitespace
 		data = data.strip().toLowerCase();
 		

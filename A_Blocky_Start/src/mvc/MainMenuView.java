@@ -2,6 +2,7 @@ package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -14,9 +15,6 @@ public class MainMenuView {
 	
 	//size of this view
 	private Dimension viewSize = new Dimension(800, 600);
-	
-	//root panel
-	private JPanel panel;
 	
 	// location of the aside panel
 	final Rectangle asidePanelBound = new Rectangle(600, 0, 200, 800);
@@ -35,14 +33,18 @@ public class MainMenuView {
 	
 	/** Amount of vertical space between each button*/
 	final int buttonSpacing = 5;
+	
+	//root panel
+	private JPanel rootPanel;
 			
 	//Buttons declaration
-	final ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue");
-	final ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game");
-	final ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial");
-	final ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression");
-	final ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings");
-	final ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit");
+	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue");
+	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game");
+	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial");
+	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression");
+	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "High Score");
+	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings");
+	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit");
 	
 	/**
 	 * Constructor for main menu
@@ -50,26 +52,24 @@ public class MainMenuView {
 	public MainMenuView() {
 		
 		//init root panel
-		panel = new JPanel();
+		rootPanel = new JPanel();
 		
 		//create UI components
 		this.initPanel();
-
-
 	}
 	
 	/**
 	 * create UI components
 	 */
-	public void initPanel() {
+	private void initPanel() {
 		
 		//deleted: switch panel button action, add this back in in in the controller
 		
 		//set up root panel
-		panel.setSize(viewSize);
-		panel.setLayout(null);		
-		panel.setVisible(false);
-		panel.setBackground(Color.gray);
+		rootPanel.setSize(viewSize);
+		rootPanel.setLayout(null);	
+		rootPanel.setVisible(false);
+		rootPanel.setBackground(Color.gray);
 		
 		//populate button container
 		buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
@@ -81,13 +81,14 @@ public class MainMenuView {
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(progressionButton);
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
+		buttonContainer.add(highScoreButton);
+		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(settingsButton);
 		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
 		buttonContainer.add(exitButton);
-		
-		
-		panel.add(buttonContainer);
-		panel.add(asidePanel);
+			
+		rootPanel.add(buttonContainer);
+		rootPanel.add(asidePanel);
 	}
 	
 	/**
@@ -95,28 +96,43 @@ public class MainMenuView {
 	 * @param visibility
 	 */
 	public void setVisibility(boolean visibility) {
-		panel.setVisible(visibility);
+		rootPanel.setVisible(visibility);
+		buttonContainer.setVisible(visibility);
 	}
 	
-	/**
-	 * inserts root panel to 
-	 */
-	public void insertPanel() {
-		Main.gameFrame.add(panel);
+	public void continueButtonAddActionListener(ActionListener actionListener) {
+		continueButton.addActionListener(actionListener);
+	}
+	
+	public void newGameButtonAddActionListener(ActionListener actionListener) {
+		newGamButton.addActionListener(actionListener);
+	}
+	
+	public void tutorialButtonAddActionListener(ActionListener actionListener) {
+		tutorialButton.addActionListener(actionListener);
+	}
+	
+	public void progressionButtonAddActionListener(ActionListener actionListener) {
+		progressionButton.addActionListener(actionListener);
+	}
+	
+	public void highscoreButtonAddActionListener(ActionListener actionListener) {
+		highScoreButton.addActionListener(actionListener);
+	}
+	
+	public void settingsButtonAddActionListener(ActionListener actionListener) {
+		settingsButton.addActionListener(actionListener);
+	}
+	
+	public void exitButtonAddActionListener(ActionListener actionListener) {
+		exitButton.addActionListener(actionListener);
 	}
 	
 	/**
 	 * 
 	 */
-	public void OnEnter() {
-		System.out.println("Entered main menu");
-	}
-
-	/**
-	 * 
-	 */
-
-	public void OnExit() {
+	public void insertPanelToFrame() {
+		Main.gameFrame.add(rootPanel);
 	}
 
 }

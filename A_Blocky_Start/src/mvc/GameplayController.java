@@ -8,12 +8,24 @@ package mvc;
  * @author Yuting Hou
  */
 public class GameplayController implements Controller{
+	
+	/** the view*/
+	private static GameplayView view = new GameplayView();
 
 	/**
-	 * @deprecated
+	 * 
 	 */
 	public GameplayController() {
-		// TODO
+		view.insertPanelToFrame();
+		
+		populateActionListener();
+	}
+	
+	/**
+	 * 
+	 */
+	private void populateActionListener() {
+		//TODO implement
 	}
 
 	/**
@@ -21,6 +33,7 @@ public class GameplayController implements Controller{
 	 */
 	@Override
 	public void OnEnter() {
+		view.setVisibility(true);
 	}
 
 	/**
@@ -28,6 +41,7 @@ public class GameplayController implements Controller{
 	 */
 	@Override
 	public void OnExit() {
+		view.setVisibility(false);
 	}
 
 }

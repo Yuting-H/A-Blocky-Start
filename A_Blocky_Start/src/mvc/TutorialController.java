@@ -6,48 +6,49 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class StudentProgressionController {
+public class TutorialController {
 	
 	/** The view*/
-	private StudentProgressionView view = new StudentProgressionView();
+	private TutorialView view = new TutorialView();
 	
 	/**
+	 * Called in Main.java
 	 * 
 	 */
-	public StudentProgressionController() {
+	public TutorialController() {
+		
 		view.insertPanelToFrame();
 		
-		PopulateActionListener();
+		populateActionListener();
 	}
 	
 	/**
 	 * 
 	 */
-	private void PopulateActionListener() {
+	private void populateActionListener() {
 		
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.studentProgressionController.OnExit();
+				Main.tutorialController.onExit();
 				Main.mainMenuController.OnEnter();
 			}
 		});
-		
 	}
 	
 	/**
 	 * 
 	 */
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
 	}
 	
 	/**
 	 * 
 	 */
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
 	}
-
+	
 }

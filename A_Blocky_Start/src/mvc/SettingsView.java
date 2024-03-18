@@ -1,8 +1,8 @@
 package mvc;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
@@ -10,29 +10,30 @@ import javax.swing.JPanel;
 /**
  * 
  */
-public class HighScoreView{
-
-	//size of this view
+public class SettingsView {
+	
 	private Dimension viewSize = new Dimension(800, 600);
 	
-	private Dimension backButtonSize = new Dimension(30, 30); 
+	//define size of go-back button 
+	private Dimension backButtonSize = new Dimension(30,30);
 	
-	private Point backButtonLocation = new Point(10, 10);
+	//define location of back button
+	private Point backButtonLocation = new Point(10,10);
 	
 	private JPanel rootPanel;
 	
 	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
-
+	
 	/**
 	 * 
 	 */
-	public HighScoreView() {
+	public SettingsView() {
 		
 		rootPanel = new JPanel();
 		
 		initPanel();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -41,11 +42,10 @@ public class HighScoreView{
 		//set up root panel
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);
-		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);
+		rootPanel.setBackground(Color.gray);
 		
 		rootPanel.add(backButton);
-		
 	}
 	
 	/**

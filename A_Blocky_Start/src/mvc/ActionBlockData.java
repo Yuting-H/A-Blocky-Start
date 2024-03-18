@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This model class represents an action block. It loads/ saves data by communicating with the ActionChain object.
- * @version March 13, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -12,7 +12,7 @@ public class ActionBlockData {
 	/**
 	 * Type of action
 	 */
-	private ActionEnum type;
+	private ActionTypeEnum type;
 	/**
 	 * List of arguments
 	 */
@@ -27,12 +27,12 @@ public class ActionBlockData {
 	 * @param type Type of action
 	 * @param args List of arguments
 	 */
-	public ActionBlockData(ActionEnum type, ArrayList<Integer> args) {
+	public ActionBlockData(ActionTypeEnum type, ArrayList<Integer> args) {
 		this.type = type;
 		this.args = args;
 		this.counter = -1; // none value
 		
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			// loop (end - start) times
 			this.counter = args.get(0) - args.get(1);
 		}
@@ -40,6 +40,7 @@ public class ActionBlockData {
 	
 	/**
 	 * Decode the encoded data string and call the constructor.
+	 * @see exportData() for details.
 	 * @param data Encoded data string
 	 * @return ActionBlockData
 	 */
@@ -48,11 +49,11 @@ public class ActionBlockData {
 		String[] dataList = data.split("_");
 		
 		// Decode type
-		ActionEnum type = ActionEnum.fromString(dataList[0]);
+		ActionTypeEnum type = ActionTypeEnum.fromString(dataList[0]);
 		
 		// Check type
-		if (type == ActionEnum.Unknown) {
-			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
+		if (type == ActionTypeEnum.Unknown) {
+			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
 		}
 		
 		// Decode list of arguments
@@ -66,10 +67,10 @@ public class ActionBlockData {
 		}
 		
 		// Check number of arguments
-		if ((type == ActionEnum.Goto) && (args.size() != 1)) {
-			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
-		} else if ((type == ActionEnum.Loop) && (args.size() != 3)) {
-			return new ActionBlockData(ActionEnum.Unknown, new ArrayList<Integer>());
+		if ((type == ActionTypeEnum.Goto) && (args.size() != 1)) {
+			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
+		} else if ((type == ActionTypeEnum.Loop) && (args.size() != 3)) {
+			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
 		}
 		
 		// Call constructor
@@ -78,11 +79,12 @@ public class ActionBlockData {
 	
 	/**
 	 * Export this action block as an encoded data string.<br>
-	 * The string always begins with its type, followed by its arguments separated with "_".<br><br>
+	 * The string always begins with its type, followed by its arguments separated with "_".<br>
+	 * <br>
 	 * Examples:<br>
 	 * "Left"<br>
-	 * "Goto_X", X is the line number for jump.<br>
-	 * "Loop_X_Y_Z", loop (X - Y) times, Z is the line number for jump.<br>
+	 * "Goto_X" : X is the line number for jump.<br>
+	 * "Loop_X_Y_Z" : Loop (X - Y) times, Z is the line number for jump.<br>
 	 * @return Encoded data string
 	 */
 	public String exportData() {
@@ -100,7 +102,7 @@ public class ActionBlockData {
 	 * Access type of action.
 	 * @return Type of action.
 	 */
-	public ActionEnum getType() {
+	public ActionTypeEnum getType() {
 		return type;
 	}
 	
@@ -117,7 +119,7 @@ public class ActionBlockData {
 	 * @return End point
 	 */
 	public int getEndPoint() {
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			return args.get(0);
 		}
 		
@@ -129,7 +131,7 @@ public class ActionBlockData {
 	 * @return Start point
 	 */
 	public int getStartPoint() {
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			return args.get(1);
 		}
 		
@@ -141,9 +143,9 @@ public class ActionBlockData {
 	 * @return Line number for jump
 	 */
 	public int getJumpLine() {
-		if (type == ActionEnum.Goto) {
+		if (type == ActionTypeEnum.Goto) {
 			return args.get(0);
-		} else if (type == ActionEnum.Loop) {
+		} else if (type == ActionTypeEnum.Loop) {
 			return args.get(2);
 		}
 		
@@ -155,7 +157,7 @@ public class ActionBlockData {
 	 * @return Internal counter
 	 */
 	public int getCounter() {
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			return counter;
 		}
 		
@@ -166,7 +168,7 @@ public class ActionBlockData {
 	 * Decrement internal counter by 1.
 	 */
 	public void decCounter() {
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			--counter;
 		}
 	}
@@ -175,10 +177,25 @@ public class ActionBlockData {
 	 * Reset internal counter.
 	 */
 	public void resetCounter() {
-		if (type == ActionEnum.Loop) {
+		if (type == ActionTypeEnum.Loop) {
 			// loop (end - start) times
 			counter = args.get(0) - args.get(1);
 		}
+	}
+	
+	/**
+	 * TODO: missing test cases
+	 * Check if this instruction is a jump, i.e. "Goto" or "Loop" block.
+	 * @return True if the action block needs to jump, false otherwise
+	 */
+	public boolean isJump() {
+		if (type == ActionTypeEnum.Goto) {
+			return true;
+		} else if ((type == ActionTypeEnum.Loop) && (counter == 0)) {
+			return true; // "Loop" is finished
+		}
+		
+		return false;
 	}
 
 }
