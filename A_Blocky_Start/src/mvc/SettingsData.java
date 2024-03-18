@@ -8,12 +8,12 @@ public class SettingsData {
 	private double volumeLevel;
 	private boolean colourblindMode;
 	
-	public loadSettingsData(String filename) {
-		
+	public SettingsData(String filename) {
+		// read file
 	}
 	
 	public exportSettings(String filename) {
-		
+		// write to file
 	}
 	
 	public int getScreenHeight() {
