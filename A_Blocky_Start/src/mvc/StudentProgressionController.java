@@ -15,8 +15,6 @@ public class StudentProgressionController implements Controller{
 	
 	private StudentProgressionData[] studentProgressionDatas = new StudentProgressionData[10];
 	
-	
-	
 	/**
 	 * 
 	 */
