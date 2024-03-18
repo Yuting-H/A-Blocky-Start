@@ -13,10 +13,6 @@ public class ProgressionData {
 	 */
 	private static final char separator = '/';
 	/**
-	 * Number of arguments, the action chain count as one argument
-	 */
-	private static final int numArgs = 7;
-	/**
 	 * ID of this stage
 	 */
 	private int stageID;
@@ -84,8 +80,6 @@ public class ProgressionData {
 		
 		// Decode the data
 		try {
-			if (dataList.length < numArgs) {throw new Exception("Too few arguments for importing ProgressionData.");}
-			if (dataList.length > numArgs) {throw new Exception("Too many arguments for importing ProgressionData.");}
 			int stageID = Integer.parseInt(dataList[0]);
 			boolean completed = Boolean.parseBoolean(dataList[1]);
 			int shortestSteps = Integer.parseInt(dataList[2]);
