@@ -115,14 +115,6 @@ public class UserData {
 			return null;
 		}
 	}
-	
-	/**
-	 * Adds a single progression data to the list
-	 * @param importData the ProgressionData to add
-	 */
-	private void addProgressionData(ProgressionData importData) {
-		progressionList.add(importData);
-	}
 
 	/**
 	 * Export this user's data to the user data file.
@@ -178,7 +170,7 @@ public class UserData {
 		} catch (IOException e) {
 			e.printStackTrace(); // TODO: remove this later
 			Main.errorLogController.addError(e);
-		} 
+		}
 	}
 
 	/**
@@ -300,6 +292,14 @@ public class UserData {
 			addTotalTimeSpent(temp.getTimeSpent());
 			addTotalAttempts(temp.getAttempts());
 		}
+	}
+	
+	/**
+	 * Adds a single progression data to the list.
+	 * @param importData the ProgressionData to add
+	 */
+	private void addProgressionData(ProgressionData progression) {
+		progressionList.add(progression);
 	}
 	
 	/**
