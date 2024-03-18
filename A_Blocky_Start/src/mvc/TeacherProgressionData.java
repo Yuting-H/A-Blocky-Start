@@ -4,29 +4,55 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class TeacherProgressionData {
-	private ArrayList<StudentProgressionData> arrayList;
+	private ArrayList<String> allFilenameList;
+	private ArrayList<String> filenameList;
+	private ArrayList<UserData> userDataList;
+	private int page;
 
 	TeacherProgressionData() {
-		ArrayList<String> results = new ArrayList<String>();
+		page = 0;
+		filenameList = new ArrayList<String>();
+		allFilenameList = new ArrayList<String>();
+		userDataList = new ArrayList<UserData>();
+		
+		File folder = new File("./userdata");
+		File[] fileList = folder.listFiles();
 
-		File folder = new File("Path");
-		File[] listOfFiles = folder.listFiles();
-
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile()) {
-				results.add(listOfFiles[i].getName());
+		for (int i = 0; i < fileList.length; i++) {
+			if (fileList[i].isFile()) {
+				allFilenameList.add(fileList[i].getName());
 			}
 		}
-		
-		
 	}
 
-	public ArrayList<StudentProgressionData> getProgressionData() {
-		return arrayList;
+	public UserData GetUserData(int index) {
+		return userDataList.get(index);
 	}
 
-	public void setProgressionData(ArrayList<StudentProgressionData> arrayList) {
-		this.arrayList = arrayList;
+	public int getPage() {
+		return page;
 	}
 
+	public void setFilenameList() {
+		filenameList.clear();
+
+		int index = (page - 1) * 10;
+
+		for (int i = 0; i < 10; i++) {
+			if (index + i < allFilenameList.size()) {
+				filenameList.add(allFilenameList.get(index + i));
+			} else {
+				break;
+			}
+		}
+	}
+
+	public Boolean setPage(int page) {
+		if (page < 1) {
+			return false;
+		}
+
+		this.page = page;
+		return true;
+	}
 }
