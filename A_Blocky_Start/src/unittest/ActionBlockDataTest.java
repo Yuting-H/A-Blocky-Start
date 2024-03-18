@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 import mvc.ActionBlockData;
 
-import mvc.ActionEnum;
+import mvc.ActionTypeEnum;
 
 /**
  * Unit test for ActionBlockData.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -20,21 +20,21 @@ class ActionBlockDataTest {
 
 	@Test
 	void ConstructEmpty() {
-		ActionEnum type = ActionEnum.Unknown;
+		ActionTypeEnum type = ActionTypeEnum.Unknown;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		assertAll(() -> new ActionBlockData(type, args));
 	}
 	
 	@Test
 	void ConstructStart() {
-		ActionEnum type = ActionEnum.Start;
+		ActionTypeEnum type = ActionTypeEnum.Start;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		assertAll(() -> new ActionBlockData(type, args));
 	}
 	
 	@Test
 	void ConstructGoto() {
-		ActionEnum type = ActionEnum.Goto;
+		ActionTypeEnum type = ActionTypeEnum.Goto;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		args.add(10); // Line to jump)
 		assertAll(() -> new ActionBlockData(type, args));
@@ -42,7 +42,7 @@ class ActionBlockDataTest {
 	
 	@Test
 	void ConstructLoop() {
-		ActionEnum type = ActionEnum.Loop;
+		ActionTypeEnum type = ActionTypeEnum.Loop;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		args.add(5);  // End point
 		args.add(3);  // Start point
@@ -133,7 +133,7 @@ class ActionBlockDataTest {
 	void GetTypeLoop() {
 		String data = "Loop_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getType(), ActionEnum.Loop);
+		assertEquals(block.getType(), ActionTypeEnum.Loop);
 	}
 	
 	@Test

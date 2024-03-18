@@ -13,13 +13,13 @@ import javax.swing.JPanel;
  * @author Yuting
  * This is the login page
  */
-public class LoginView implements ActionListener{
+public class LoginView {
 	
 	//declaring bounds for components for this panel
 	Dimension 	viewSize = new Dimension(800, 600);
 	
 	//root panel
-	private static JPanel panel;
+	private static JPanel rootpanel;
 	
 	//declaring location of UI elements 
 	private Point usernameLabelLocation		= new Point(200, 100);
@@ -33,7 +33,12 @@ public class LoginView implements ActionListener{
 	private Dimension textFieldSize		= new Dimension(200,20);
 	private Dimension loginButtonSize	= new Dimension(100, 20);
 	
-	
+	//declaring UI elements for this panel
+	LabelUI 		usernameFieldLabel 	= new LabelUI(usernameLabelLocation, labelSize, "Username:");
+	TextFieldUI 	usernameTextField 	= new TextFieldUI(usernameTextFieldLocation, textFieldSize);
+	LabelUI			passwordFieldLabel	= new LabelUI(passwordLabelLocation, labelSize, "Password:");
+	TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
+	ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	
 	/**
 	 * Creates the view instance
@@ -41,7 +46,7 @@ public class LoginView implements ActionListener{
 	public LoginView() {
 		
 		//creates JPanel and set as root
-		panel = new JPanel();
+		rootpanel = new JPanel();
 		
 		//creates UI components
 		this.initPanel();
@@ -52,43 +57,48 @@ public class LoginView implements ActionListener{
 	 */
 	private void initPanel() {
 		
-		//declaring UI elements for this panel
-		LabelUI 		usernameFieldLabel 	= new LabelUI(usernameLabelLocation, labelSize, "Username:");
-		TextFieldUI 	usernameTextField 	= new TextFieldUI(usernameTextFieldLocation, textFieldSize);
-		LabelUI			passwordFieldLabel	= new LabelUI(passwordLabelLocation, labelSize, "Password:");
-		TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
-		ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
-		
-		loginButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Main.loginController.OnExit();
-				Main.mainMenuController.OnEnter();
-			}
-		}
-		);
-		
 		//set up root panel
-		panel.setSize(viewSize);
-		panel.setLayout(null);		
-		panel.setVisible(false);
-		panel.setBackground(Color.gray);
+		rootpanel.setSize(viewSize);
+		rootpanel.setLayout(null);		
+		rootpanel.setVisible(false);
+		rootpanel.setBackground(Color.gray);
 		
 		//adding UI elements
-		panel.add(usernameFieldLabel);
-		panel.add(usernameTextField);
-		panel.add(passwordFieldLabel);
-		panel.add(passwordTextField);
-		panel.add(loginButton);
+		rootpanel.add(usernameFieldLabel);
+		rootpanel.add(usernameTextField);
+		rootpanel.add(passwordFieldLabel);
+		rootpanel.add(passwordTextField);
+		rootpanel.add(loginButton);
 		
+	}
+	
+	/**
+	 * @return the string in the username field
+	 */
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+	
+	/**
+	 * 
+	 * @return the string in the password field
+	 */
+	public String getPassword() {
+		return passwordTextField.getText();
+	}
+	/**
+	 * Add action to login button
+	 * @param actionListener
+	 */
+	public void loginButtonAddAction(ActionListener actionListener) {
+		loginButton.addActionListener(actionListener);
 	}
 	
 	/**
 	 * Inserts the JPanel to the game frame
 	 */
-	public void insertPanel () {
-		Main.gameFrame.add(panel);
+	public void insertPanelToFrame() {
+		Main.gameFrame.add(rootpanel);
 	}
 	
 	/**
@@ -96,27 +106,9 @@ public class LoginView implements ActionListener{
 	 * @param visibility
 	 */
 	public void setVisible(boolean visibility) {
-		panel.setVisible(visibility);
+		rootpanel.setVisible(visibility);
 	}
 
-	/**
-	 * When the view entered
-	 */
-	public void OnEnter() {
-		System.out.println("Entered login screen");
-	}
 
-	/**
-	 * When the view exits
-	 */
-	public void OnExit() {
-	}
 
-	/**
-	 * @param e
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println(e);
-	}
 }

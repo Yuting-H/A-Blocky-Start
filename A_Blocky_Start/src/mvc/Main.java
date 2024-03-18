@@ -4,20 +4,34 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
+ * This class launches the game. 
+ * @version 1.0
+ * @since ???
  * @author Yuting
- *
  */
 public class Main {
 	
 	/** The JFrame the game runs in*/
 	 public static JFrame gameFrame = new JFrame();
 	 
-	 //creates controllers
+	//TODO: Create other controllers 
 	 public static ExampleMainMenuController exampleMainMenuController = new ExampleMainMenuController();
-	 //TODO: create other controllers 
+	 
 	 public static LoginController loginController = new LoginController();
 	 
 	 public static MainMenuController mainMenuController = new MainMenuController();
+	 
+	 public static TutorialController tutorialController = new TutorialController();
+	 
+	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
+	 
+	 public static GameplayController gameplayController = new GameplayController();
+	 
+	 public static SettingsController settingsController = new SettingsController();
+	 
+	 public static HighScoreController highScoreController = new HighScoreController();
+	 
+	 public static ErrorLogController errorLogController = new ErrorLogController();
 
 	/**
 	 * Main method
@@ -25,10 +39,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		configureGameFrame(); 
-		//loginController.OnEnter(); //Load First screen
+		configureGameFrame();
 		
-		mainMenuController.OnEnter();
+		loginController.OnEnter(); //Load First screen
 	}
 	
 	/**
@@ -42,13 +55,6 @@ public class Main {
 		gameFrame.setResizable(false);
 		gameFrame.setSize(800, 600);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//insert all screens to gameFrame
-		//ExampleMainMenuController.insertPanel();
-		//TODO: implement all controller.insertPanel
-		loginController.insertPanel();
-		loginController.OnExit();
-		mainMenuController.insertPanel();
 		
 	}
 	

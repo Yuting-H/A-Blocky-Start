@@ -49,8 +49,53 @@ public class HighScoreData {
 	}
 	
 	public boolean setNameScore(String username, int highScore) {
-		
-	}
+        for (int i = 0; i < count; i++) {
+            if (usernameList[i].equals(username)) {
+                if (highScoreList[i] < highScore) {
+                    highScoreList[i] = highScore;
+                    sortScores();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        // If list is not full, add directly
+        if (count < 5) {
+            usernameList[count] = username;
+            highScoreList[count] = highScore;
+            count++;
+            sortScores();
+            return true;
+        } else {
+            // If the new score is higher than the lowest score in the list
+            if (highScore > highScoreList[4]) {
+                usernameList[4] = username;
+                highScoreList[4] = highScore;
+                sortScores();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void sortScores() {
+        // Bubble sort by high score in descending order
+        for (int i = 0; i < count; i++) {
+            for (int j = 1; j < (count - i); j++) {
+                if (highScoreList[j - 1] < highScoreList[j]) {
+                    // Swap scores
+                    int tempScore = highScoreList[j - 1];
+                    highScoreList[j - 1] = highScoreList[j];
+                    highScoreList[j] = tempScore;
+                    // Swap usernames
+                    String tempUsername = usernameList[j - 1];
+                    usernameList[j - 1] = usernameList[j];
+                    usernameList[j] = tempUsername;
+                }
+            }
+        }
+    }
 	
 }
 

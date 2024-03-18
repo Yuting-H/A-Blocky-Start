@@ -1,8 +1,8 @@
 package mvc;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
@@ -10,23 +10,30 @@ import javax.swing.JPanel;
 /**
  * 
  */
-public class HighScoreView{
-
-	//size of this view
+public class TutorialView {
+	
 	private Dimension viewSize = new Dimension(800, 600);
 	
-	private Dimension backButtonSize = new Dimension(30, 30); 
+	/** Contains all the tutorial prompts*/
+	private Dimension tutorialContainerSize = new Dimension(800, 500);
+	
+	private Dimension backButtonSize = new Dimension(30, 30);
+	
+	
+	private Point containerLocation = new Point(0,50);
 	
 	private Point backButtonLocation = new Point(10, 10);
 	
+	
+	private JPanel contentContainer = new ContainerUI(containerLocation, tutorialContainerSize, Color.white);
+	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	
 	private JPanel rootPanel;
 	
-	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
-
 	/**
 	 * 
 	 */
-	public HighScoreView() {
+	public TutorialView() {
 		
 		rootPanel = new JPanel();
 		
@@ -34,18 +41,19 @@ public class HighScoreView{
 	}
 	
 	/**
-	 * 
+	 * init UI elements
 	 */
 	private void initPanel() {
 		
-		//set up root panel
+		//init rootPanel
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);
-		rootPanel.setLayout(null);
-		rootPanel.setVisible(false);
+		rootPanel.setVisible(false);  //hide unwanted occurance
+		rootPanel.setBackground(Color.gray);
+		
 		
 		rootPanel.add(backButton);
-		
+		rootPanel.add(contentContainer); 
 	}
 	
 	/**
@@ -63,8 +71,12 @@ public class HighScoreView{
 		Main.gameFrame.add(rootPanel);
 	}
 	
+	/**
+	 * 
+	 * @param actionListener
+	 */
 	public void backButtonAddActionListener(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
-
+	
 }

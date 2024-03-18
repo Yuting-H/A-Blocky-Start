@@ -5,10 +5,17 @@ public class SettingsData {
 	
 	private int screenHeight;
 	private int screenWidth;
-	private double volumeLevel;
 	private boolean colourblindMode;
+	private int volumeLevel;
 	
-	public SettingsData(String filename) {
+	public SettingsData() {
+		screenHeight = 0;
+		screenWidth = 0;
+		colourblindMode = false;
+		volumeLevel = 0;
+	}
+	
+	public static SettingsData importData(String filename) {
 		// read file
 	}
 	
@@ -40,7 +47,7 @@ public class SettingsData {
 		this.screenWidth = screenWidth;
 	}
 	
-	public void setVolumeLevel(double volumeLevel) {
+	public void setVolumeLevel(int volumeLevel) {
 		this.volumeLevel = volumeLevel;
 	}
 	

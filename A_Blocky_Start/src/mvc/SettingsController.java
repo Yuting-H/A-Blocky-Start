@@ -1,53 +1,52 @@
 package mvc;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * 
  */
-public class StudentProgressionController {
+public class SettingsController implements Controller{
 	
-	/** The view*/
-	private StudentProgressionView view = new StudentProgressionView();
+	private static SettingsView view = new SettingsView();
 	
 	/**
 	 * 
 	 */
-	public StudentProgressionController() {
+	public SettingsController() {
+		
 		view.insertPanelToFrame();
 		
-		PopulateActionListener();
+		populateActionListener();
 	}
 	
-	/**
-	 * 
-	 */
-	private void PopulateActionListener() {
-		
+	private void populateActionListener() {
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.studentProgressionController.OnExit();
+				Main.settingsController.OnExit();
 				Main.mainMenuController.OnEnter();
 			}
 		});
-		
 	}
 	
 	/**
 	 * 
 	 */
+	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
 	}
-	
+
 	/**
 	 * 
 	 */
+	@Override
 	public void OnExit() {
 		view.setVisibility(false);
 	}
+	
 
 }
