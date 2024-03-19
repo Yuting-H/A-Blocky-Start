@@ -97,7 +97,7 @@ public class HighScoreView{
 			
 		}
 		
-		//add entries to container
+		addHighscore(0, "alice", 5);
 		
 		//add container to root
 		rootPanel.add(entriesContainer);
@@ -112,7 +112,9 @@ public class HighScoreView{
 	 */
 	public void addHighscore(int index, String name, int score) {
 		
-		
+		entries.get(index);
+		nameEntries.get(index).setText(name);
+		highScoreEntries.get(index).setText("" + score);
 		
 	}
 	
