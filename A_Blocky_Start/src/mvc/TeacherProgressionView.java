@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -33,6 +34,8 @@ public class TeacherProgressionView {
 	private ButtonUI backButton;
 	private ContainerUI container;
 	private JScrollPane scrollPane;
+	
+	private SpinnerNumberModel model;
 	private JSpinner pageSelector;
 	
 	/**
@@ -56,21 +59,16 @@ public class TeacherProgressionView {
 		
 		//added go back button to prrogression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
-		pageSelector = new JSpinner();
+		
+		model = new SpinnerNumberModel(1, 0, 10, 1);
+		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
 		
 		rootPanel.add(backButton);
 		rootPanel.add(pageSelector);
 		
-		
-		pageSelector.addChangeListener(new ChangeListener() {
-			
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				System.out.println(pageSelector.getValue());
-			}
-		});
+
 	}
 	
 	/**

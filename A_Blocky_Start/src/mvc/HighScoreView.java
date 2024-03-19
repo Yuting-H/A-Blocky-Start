@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -40,27 +41,12 @@ public class HighScoreView{
 	//container for entries
 	private ContainerUI entriesContainer = new ContainerUI(entriesContainerLocation, entriesContainerSize, Color.LIGHT_GRAY);
 	
-	//entries panels
-	private PanelUI entry1 = new PanelUI(entriesSize);
-	private PanelUI entry2 = new PanelUI(entriesSize);
-	private PanelUI entry3 = new PanelUI(entriesSize);
-	private PanelUI entry4 = new PanelUI(entriesSize);
-	private PanelUI entry5 = new PanelUI(entriesSize);
+	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 	
-	//player names
-	private LabelUI name1 = new LabelUI(entriesLabelSize, "No Entry");
-	private LabelUI name2 = new LabelUI(entriesLabelSize, "No Entry");
-	private LabelUI name3 = new LabelUI(entriesLabelSize, "No Entry");
-	private LabelUI name4 = new LabelUI(entriesLabelSize, "No Entry");
-	private LabelUI name5 = new LabelUI(entriesLabelSize, "No Entry");
+	private ArrayList<LabelUI> nameEntries = new ArrayList<LabelUI>();
 	
-	//player's scores
-	private LabelUI score1 = new LabelUI(entriesLabelSize, "0");
-	private LabelUI score2 = new LabelUI(entriesLabelSize, "0");
-	private LabelUI score3 = new LabelUI(entriesLabelSize, "0");
-	private LabelUI score4 = new LabelUI(entriesLabelSize, "0");
-	private LabelUI score5 = new LabelUI(entriesLabelSize, "0");
-
+	private ArrayList<LabelUI> highScoreEntries = new ArrayList<LabelUI>();
+	
 	/**
 	 * Constructor
 	 */
@@ -92,19 +78,26 @@ public class HighScoreView{
 		//entries
 		entriesContainer.setLayout(layout);
 		
-		//init entries
-		entry1 = newEntryUI(name1, score1);
-		entry2 = newEntryUI(name2, score2);
-		entry3 = newEntryUI(name3, score3);
-		entry4 = newEntryUI(name4, score4);
-		entry5 = newEntryUI(name5, score5);
+		//adds 5 highscore entries
+		for (int i = 0; i < 5; i++) {
+			
+			//create name and score label
+			LabelUI currName = new LabelUI(entriesLabelSize, "DEFAULT_NAME");
+			LabelUI currScore = new LabelUI(entriesLabelSize, "0");
+			
+			//create entry
+			PanelUI curr  = newEntryUI(currName, currScore);
+			
+			//add entry, name and score label to list
+			entries.add(curr);
+			nameEntries.add(currName);
+			highScoreEntries.add(currScore);
+			
+			entriesContainer.add(entries.get(i));
+			
+		}
 		
 		//add entries to container
-		entriesContainer.add(entry1);
-		entriesContainer.add(entry2);
-		entriesContainer.add(entry3);
-		entriesContainer.add(entry4);
-		entriesContainer.add(entry5);
 		
 		//add container to root
 		rootPanel.add(entriesContainer);
@@ -119,33 +112,7 @@ public class HighScoreView{
 	 */
 	public void addHighscore(int index, String name, int score) {
 		
-		//decide which entry to add to
-		switch (index) {
-		case 1:
-			name1.setText(name);
-			score1.setText("" + score);
-			break;
-		case 2:
-			name2.setText(name);
-			score2.setText("" + score);
-			break;
-		case 3:
-			name3.setText(name);
-			score3.setText("" + score);
-			break;
-		case 4:
-			name4.setText(name);
-			score4.setText("" + score);
-			break;
-		case 5:
-			name5.setText(name);
-			score5.setText("" + score);
-			break;
-
-		default:
-			//throw error
-			break;
-		}
+		
 		
 	}
 	
@@ -157,7 +124,6 @@ public class HighScoreView{
 	 */
 	public PanelUI newEntryUI(JLabel name, JLabel score) {
 		PanelUI entry = new PanelUI(entriesSize, Color.white);
-		
 		entry.setLayout(new BoxLayout(entry, BoxLayout.X_AXIS));
 		entry.add(Box.createHorizontalStrut(20));
 		entry.add(name);
