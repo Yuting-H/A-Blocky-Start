@@ -12,7 +12,7 @@ import java.util.Scanner;
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version 1.2.1
+ * @version 1.2.2
  * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
@@ -75,7 +75,7 @@ public class UserData {
 	 */
 	public static UserData importData(String username) {
 
-		String filename = username + filenameSuffix;
+		String filename = toFilename(username);
 		
 		try {
 			
@@ -115,14 +115,6 @@ public class UserData {
 			return null;
 		}
 	}
-	
-	/**
-	 * Adds a single progression data to the list
-	 * @param importData the ProgressionData to add
-	 */
-	private void addProgressionData(ProgressionData importData) {
-		progressionList.add(importData);
-	}
 
 	/**
 	 * Export this user's data to the user data file.
@@ -141,8 +133,8 @@ public class UserData {
 			if (userType != UserTypeEnum.Student) {
 				throw new Exception("User data cannot be exported for teachers and developers");
 			}
-			
-			String filename = getFilename();
+
+			String filename = toFilename(username);
 			
 			File fileOut = new File(filename);
 			fileOut.createNewFile(); // create a new file if not found
@@ -184,16 +176,15 @@ public class UserData {
 			System.out.println("Bad input");
 		} catch (Exception e) {
 			Main.errorLogController.addError(e);
-			System.out.println(e.getMessage());
-		} 
+		}
 	}
 
 	/**
-	 * Access the filename of this user's data file
+	 * Convert username to the filename of this user's data file
 	 * @return Filename of user data file
 	 */
-	public String getFilename() {
-		return username + filenameSuffix;
+	public static String toFilename(String username) {
+		return username.toLowerCase() + filenameSuffix;
 	}
 
 	/**
@@ -307,6 +298,14 @@ public class UserData {
 			addTotalTimeSpent(temp.getTimeSpent());
 			addTotalAttempts(temp.getAttempts());
 		}
+	}
+	
+	/**
+	 * Adds a single progression data to the list.
+	 * @param importData the ProgressionData to add
+	 */
+	private void addProgressionData(ProgressionData progression) {
+		progressionList.add(progression);
 	}
 	
 	/**
