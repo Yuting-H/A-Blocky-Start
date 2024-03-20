@@ -4,13 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
 import java.util.ArrayList;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -76,7 +72,11 @@ public class GameplayView {
 		actionchainContainer.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
 		
 		//actionBuffetContainer
-		actionBuffetContainer.setLayout(new FlowLayout());
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.LEFT);
+		actionBuffetContainer.setLayout(layout);
+		actionBuffetContainer.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
+		actionBuffetContainer.add(new ButtonUI(actionBuffetItemSize, "1"));
 		
 		rootPanel.add(opaque);
 		rootPanel.add(pauseMenu);
@@ -96,7 +96,6 @@ public class GameplayView {
 		
 		//if you see grey box something gone wrong
 		actionchainContainer.add(new PanelUI(actionSize));
-		actionchainContainer.add(Box.createVerticalStrut(10));
 		
 	
 		
