@@ -64,6 +64,7 @@ public class TeacherProgressionView {
 		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
+		pageSelector.setVisible(false);  //hides unwanted appereance
 		
 		rootPanel.add(backButton);
 		rootPanel.add(pageSelector);

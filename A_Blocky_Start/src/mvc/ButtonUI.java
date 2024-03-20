@@ -20,17 +20,12 @@ public class ButtonUI extends JButton{
 	ButtonUI(Dimension size, String text) {
 	
 		setSize(size);
-		setIcon(IconsUI.buttonIcon);	//set image
 		setText(text);				//set text
+		setPreferredSize(size);
 		
 		//aligns text
 		setHorizontalTextPosition(JButton.CENTER);
 		setVerticalTextPosition(JButton.CENTER);
-		
-		//remove default background
-		setOpaque(false);
-		setContentAreaFilled(false);
-		setBorder(BorderFactory.createEmptyBorder());
 		
 	}
 	

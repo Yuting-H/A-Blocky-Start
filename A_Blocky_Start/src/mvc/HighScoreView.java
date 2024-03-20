@@ -97,8 +97,6 @@ public class HighScoreView{
 			
 		}
 		
-		addHighscore(0, "alice", 5);
-		
 		//add container to root
 		rootPanel.add(entriesContainer);
 		
