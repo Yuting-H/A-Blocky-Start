@@ -67,10 +67,19 @@ public class SettingsData {
 			if (parts.length < 4) {
 				throw new Exception("Too few arguments.");
 			} else {
+				parts[0] = parts[0].trim().replaceAll("[^\\d]", "");
+		        //parts[1] = parts[1].trim().replaceAll("[^\\d]", "");
+
+		        settings.screenHeight = Integer.parseInt(parts[0]);
+		        settings.screenWidth = Integer.parseInt(parts[1]);
+		        settings.colourblindMode = Boolean.parseBoolean(parts[2].trim());
+		        settings.volumeLevel = Integer.parseInt(parts[3].trim());
+				/*
 				settings.screenHeight = Integer.parseInt(parts[0]);
 				settings.screenWidth = Integer.parseInt(parts[1]);
 				settings.colourblindMode = Boolean.parseBoolean(parts[2]);
 				settings.volumeLevel = Integer.parseInt(parts[3]);
+				*/
 			}
 			
 			// Close the reader
@@ -131,7 +140,7 @@ public class SettingsData {
 	 * Access the volume level.
 	 * @return Volume level
 	 */
-	public double getVolumeLevel() {
+	public int getVolumeLevel() {
 		return volumeLevel;
 	}
 
