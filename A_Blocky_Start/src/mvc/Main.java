@@ -32,6 +32,8 @@ public class Main {
 	 public static HighScoreController highScoreController = new HighScoreController();
 	 
 	 public static ErrorLogController errorLogController = new ErrorLogController();
+	 
+	 public static TeacherProgressionController teacherProgressionController = new TeacherProgressionController();
 
 	/**
 	 * Main method
@@ -39,10 +41,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		configureGameFrame();
+		configureGameFrame();  //sets up the game's JFrame
 		
-		loginController.OnEnter(); //Load First screen
+		//Load initial screen, which should be the login screen
+		//you can change to other views for debug purposes
+		gameplayController.OnEnter(); 
+		
+		
 	}
+	
 	
 	/**
 	 * Customize global gameFrame

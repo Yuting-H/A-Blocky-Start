@@ -18,13 +18,16 @@ public class HighScoreController implements Controller{
 		view.insertPanelToFrame();
 		
 		populateActionListener();
+		
+	
 	}
 	
 	/**
-	 * 
+	 * Adds functionality to UI elements
 	 */
 	private void populateActionListener() {
 		
+		//back button
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override

@@ -14,7 +14,23 @@ import javax.swing.JLabel;
 public class LabelUI extends JLabel{
 	
 	/**
-	 * 
+	 * Creates a JLabel whose location is managed by layoutmanager
+	 * @param size the size of the label
+	 * @param text the text inside the label
+	 */
+	public LabelUI(Dimension size, String text) {
+		setVisible(true);
+		setSize(size);
+		setText(text);
+		setHorizontalAlignment(JLabel.CENTER);
+		setVerticalAlignment(JLabel.CENTER);
+	}
+	
+	/**
+	 * Creates a JLabel
+	 * @param location
+	 * @param size
+	 * @param text
 	 */
 	public LabelUI(Point location, Dimension size, String text) {
 		

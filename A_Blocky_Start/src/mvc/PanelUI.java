@@ -11,6 +11,10 @@ import javax.swing.JPanel;
  */
 public class PanelUI extends JPanel{
 	
+	/**
+	 * @deprecated
+	 * @param bound
+	 */
 	PanelUI(Rectangle bound) {
 		
 		setLayout(null);
@@ -21,24 +25,33 @@ public class PanelUI extends JPanel{
 	}
 	
 	/**
-	 * 
+	 * Constructor for panel whose location is managed by Layoutmanager
 	 */
 	 PanelUI(Dimension size) {
 		 
 			setLayout(null);
 			setSize(size);
+			setPreferredSize(size);
 			setVisible(true);
 			setBackground(Color.gray);
-	}
 
-	/**
-	 * This function should be left empty
-	 * Java will have runtime error if this is deleted
-	 */
-	public void OnEnter() {
 	}
+	 
+	 /**
+	  *  Constructor for panel whose location is managed by Layoutmanager
+	  * @param size
+	  * @param color
+	  */
+	 PanelUI(Dimension size, Color color) {
+		 
+			setLayout(null);
+			setSize(size);
+			setPreferredSize(size);
+			setVisible(true);
+			setBackground(color);
+			
 
-	
+	}
 
 
 }
