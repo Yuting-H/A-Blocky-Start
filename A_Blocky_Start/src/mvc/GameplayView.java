@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -29,6 +30,7 @@ public class GameplayView {
 	private Dimension opaqueSize = new Dimension(600, 600);
 	private Dimension actionSize = new Dimension(150, 40);
 	private Dimension actionBuffetItemSize = new Dimension(100, 100);
+	private Dimension backButtonSize = new Dimension(30, 30);
 	
 	//location of UI elements
 	private Point actionchainContainerLocation = new Point(0,0);
@@ -45,6 +47,12 @@ public class GameplayView {
 	private ContainerUI pauseMenu = new ContainerUI(pauseMenuLocation, pauseMenuSize, Color.GREEN);
 	
 	private ContainerUI opaque = new ContainerUI(OpaqueLocation, opaqueSize, new Color(100,100,100, 200));
+	
+	//buffet items buttons
+	private ButtonUI forwardButton = new ButtonUI(actionBuffetItemSize, "forward");
+	private ButtonUI backwardButton = new ButtonUI(actionBuffetItemSize, "backward");
+	private ButtonUI leftButton = new ButtonUI(actionBuffetItemSize, "left");
+	private ButtonUI rightButton = new ButtonUI(actionBuffetItemSize, "right");
 	
 	private ArrayList<ButtonUI> actionChainList = new ArrayList<ButtonUI>();
 	
@@ -76,8 +84,14 @@ public class GameplayView {
 		layout.setAlignment(FlowLayout.LEFT);
 		actionBuffetContainer.setLayout(layout);
 		actionBuffetContainer.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
-		actionBuffetContainer.add(new ButtonUI(actionBuffetItemSize, "1"));
 		
+		//adding buttons to buffet
+		actionBuffetContainer.add(forwardButton);
+		actionBuffetContainer.add(backwardButton);
+		actionBuffetContainer.add(leftButton);
+		actionBuffetContainer.add(rightButton);
+		
+		//adding pause menu
 		rootPanel.add(opaque);
 		rootPanel.add(pauseMenu);
 		
@@ -156,5 +170,20 @@ public class GameplayView {
 		Main.gameFrame.add(rootPanel);
 	}
 	
+	public void forwardButtonAddActionListener(ActionListener actionListener) {
+		forwardButton.addActionListener(actionListener);
+	}
+	
+	public void backwardButtonAddActionListener(ActionListener actionListener) {
+		backwardButton.addActionListener(actionListener);
+	}
+	
+	public void leftButtonAddActionListener(ActionListener actionListener) {
+		leftButton.addActionListener(actionListener);
+	}
+	
+	public void rightButtonAddActionListener(ActionListener actionListener) {
+		rightButton.addActionListener(actionListener);
+	}
 
 }
