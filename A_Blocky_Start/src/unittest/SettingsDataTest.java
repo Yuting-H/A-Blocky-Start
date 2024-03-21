@@ -26,12 +26,12 @@ class SettingsDataTest {
 	@Test
 	void testImportData() {
 		SettingsData settings = SettingsData.importData();
-		assertNotNull(settings, "Settings should not be null after importing them.");
+		assertNotNull(settings);
 		
-		 assertEquals(1280, settings.getScreenHeight(), "Incorrect screen height.");
-		 assertEquals(720, settings.getScreenWidth(), "Incorrect screen width.");
-		 assertTrue(settings.getColourblindMode(), "Colourblind mode should be enabled.");
-		 assertEquals(25, settings.getVolumeLevel(), "Incorrect volume level.");
+		 assertEquals(1280, settings.getScreenHeight());
+		 assertEquals(720, settings.getScreenWidth());
+		 assertTrue(settings.getColourblindMode());
+		 assertEquals(25, settings.getVolumeLevel());
 		
 	}
 	
@@ -49,11 +49,11 @@ class SettingsDataTest {
 
 	    // Re-import to verify changes
 	    SettingsData modifiedSettings = SettingsData.importData();
-	    assertNotNull(modifiedSettings, "Settings should not be null after re-import.");
-	    assertEquals(settings.getScreenHeight(), modifiedSettings.getScreenHeight(), "Screen height did not update correctly.");
-	    assertEquals(settings.getScreenWidth(), modifiedSettings.getScreenWidth(), "Screen width did not update correctly.");
-	    assertEquals(settings.getColourblindMode(), modifiedSettings.getColourblindMode(), "Colourblind mode did not update correctly.");
-	    assertEquals(settings.getVolumeLevel(), modifiedSettings.getVolumeLevel(), "Volume level did not update correctly.");
+	    assertNotNull(modifiedSettings);
+	    assertEquals(settings.getScreenHeight(), modifiedSettings.getScreenHeight());
+	    assertEquals(settings.getScreenWidth(), modifiedSettings.getScreenWidth());
+	    assertEquals(settings.getColourblindMode(), modifiedSettings.getColourblindMode());
+	    assertEquals(settings.getVolumeLevel(), modifiedSettings.getVolumeLevel());
 	    
 	    modifiedSettings.setScreenHeight(settings.getScreenHeight() - 100);
 	    modifiedSettings.setScreenWidth(settings.getScreenWidth() - 100);
@@ -64,35 +64,91 @@ class SettingsDataTest {
 	}
 	
 	@Test
-	void testSetGetScreenHeight() {
+	void testGetScreenHeight() {
         int expectedHeight = 1280;
+        int actualHeight = settings.getScreenHeight();
+        assertEquals(expectedHeight, actualHeight);
+    }
+	
+	@Test
+	void testSetScreenHeight() {
+        int expectedHeight = 1400;
         settings.setScreenHeight(expectedHeight);
         int actualHeight = settings.getScreenHeight();
-        assertEquals(expectedHeight, actualHeight, "The screen height should be set and retrieved correctly.");
+        assertEquals(expectedHeight, actualHeight);
     }
-
-    @Test
-    void testSetGetScreenWidth() {
+	
+	@Test
+	void testNegativeSetScreenHeight() {
+        int expectedHeight = 1280;
+        int tryNegativeHeight = -1400;
+        settings.setScreenHeight(tryNegativeHeight);
+        int actualHeight = settings.getScreenHeight();
+        assertEquals(expectedHeight, actualHeight);
+    }
+	
+	
+	@Test
+    void testGetScreenWidth() {
         int expectedWidth = 720;
+        int actualWidth = settings.getScreenWidth();
+        assertEquals(expectedWidth, actualWidth);
+    }
+	
+    @Test
+    void testSetScreenWidth() {
+        int expectedWidth = 800;
         settings.setScreenWidth(expectedWidth);
         int actualWidth = settings.getScreenWidth();
-        assertEquals(expectedWidth, actualWidth, "The screen width should be set and retrieved correctly.");
+        assertEquals(expectedWidth, actualWidth);
+    }
+    
+    @Test
+    void testNegativeSetScreenWidth() {
+        int expectedWidth = 720;
+        int tryNegativeWidth = -800;
+        settings.setScreenWidth(tryNegativeWidth);
+        int actualWidth = settings.getScreenWidth();
+        assertEquals(expectedWidth, actualWidth);
     }
 
     @Test
-    void testSetGetColourblindMode() {
+    void testGetColourblindMode() {
         boolean expectedMode = true;
+        boolean actualMode = settings.getColourblindMode();
+        assertEquals(expectedMode, actualMode);
+    }
+    
+    @Test
+    void testSetColourblindMode() {
+        boolean expectedMode = false;
         settings.setColourblindMode(expectedMode);
         boolean actualMode = settings.getColourblindMode();
-        assertEquals(expectedMode, actualMode, "The colourblind mode should be set and retrieved correctly.");
+        assertEquals(expectedMode, actualMode);
     }
 
     @Test
-    void testSetGetVolumeLevel() {
+    void testGetVolumeLevel() {
         int expectedVolume = 25;
+        int actualVolume = settings.getVolumeLevel();
+        assertEquals(expectedVolume, actualVolume);
+    }
+    
+    @Test
+    void testSetVolumeLevel() {
+        int expectedVolume = 75;
         settings.setVolumeLevel(expectedVolume);
         int actualVolume = settings.getVolumeLevel();
-        assertEquals(expectedVolume, actualVolume, "The volume level should be set and retrieved correctly.");
+        assertEquals(expectedVolume, actualVolume);
+    }
+    
+    @Test
+    void testNegativeSetVolumeLevel() {
+    	int expectedVolume = 25;
+        int tryNegativeVolume = -85;
+        settings.setVolumeLevel(tryNegativeVolume);
+        int actualVolume = settings.getVolumeLevel();
+        assertEquals(expectedVolume, actualVolume);
     }
 	
 }
