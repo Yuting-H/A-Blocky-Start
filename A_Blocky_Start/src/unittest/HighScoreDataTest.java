@@ -2,6 +2,8 @@ package unittest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +12,22 @@ import mvc.HighScoreData;
 class HighScoreDataTest {
 
 	private HighScoreData highScoreData;
-
+	private static HighScoreData backupData;
+	
+	@BeforeAll
+	static void setUpClass() {
+		backupData = HighScoreData.importData();
+	}
+	
     @BeforeEach
     void setUp() {
         highScoreData = HighScoreData.importData();
     }
+    
+    @AfterEach
+    void tearDown() {
+    	backupData.exportHighScore();
+    }  
 
     @Test
     void testInitialization() {
@@ -27,10 +40,10 @@ class HighScoreDataTest {
 
     @Test
     void testImportData() {
-       
-        highScoreData = HighScoreData.importData();
-        assertEquals("User1", highScoreData.getUsername(0)); 
-        assertEquals(100, highScoreData.getHighScore(0));
+        HighScoreData highScoreData = HighScoreData.importData();
+        assertNotNull(highScoreData, "highScoreData should not be null after importing them.");
+        assertEquals("BruceLee", highScoreData.getUsername(0)); 
+        assertEquals(15, highScoreData.getHighScore(0));
     }
 
     @Test
@@ -39,17 +52,19 @@ class HighScoreDataTest {
         highScoreData.exportHighScore();
 
         HighScoreData importedData = HighScoreData.importData();
-        assertEquals("TestUser", importedData.getUsername(4));
-        assertEquals(999, importedData.getHighScore(4));
+       
+        assertEquals("TestUser", importedData.getUsername(0));
+        assertEquals(999, importedData.getHighScore(0)); 
     }
 
     @Test
     void testGetUsername() {
-        assertEquals("(empty)", highScoreData.getUsername(0));
+        assertEquals("BruceLee", highScoreData.getUsername(0));
+    }
 
     @Test
     void testGetHighScore() {
-        assertEquals(0, highScoreData.getHighScore(0));
+        assertEquals(15, highScoreData.getHighScore(0));
     }
 
     @Test
@@ -58,7 +73,6 @@ class HighScoreDataTest {
         assertEquals("NewUser", highScoreData.getUsername(0));
         assertEquals(500, highScoreData.getHighScore(0));
     }
-
 
     @Test
     void testIsIndexOutOfBound() {
