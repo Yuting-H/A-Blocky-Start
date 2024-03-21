@@ -80,6 +80,7 @@ public class ProgressionData {
 		
 		// Decode the data
 		try {
+			if (dataList.length < 6) {throw new Exception("Too few arguments.");}
 			int stageID = Integer.parseInt(dataList[0]);
 			boolean completed = Boolean.parseBoolean(dataList[1]);
 			int shortestSteps = Integer.parseInt(dataList[2]);
