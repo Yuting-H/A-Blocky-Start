@@ -16,74 +16,74 @@ class ActionTypeEnumTest {
 	
 	@Test
 	void StartToEnum() {
-		String action = "Start";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Start);
+		String action = "START";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.START);
 	}
 	
 	@Test
 	void EndToEnum() {
-		String action = "End";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.End);
+		String action = "END";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.END);
 	}
 	
 	@Test
 	void ForwardToEnum() {
-		String action = "Forward";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Forward);
+		String action = "FORWARD";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.FORWARD);
 	}
 	
 	@Test
 	void BackToEnum() {
-		String action = "Back";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Back);
+		String action = "BACK";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.BACK);
 	}
 	
 	@Test
 	void LeftToEnum() {
-		String action = "Left";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Left);
+		String action = "LEFT";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.LEFT);
 	}
 	
 	@Test
 	void RightToEnum() {
-		String action = "Right";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Right);
+		String action = "RIGHT";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.RIGHT);
 	}
 	
 	@Test
 	void GotoToEnum() {
-		String action = "Goto";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Goto);
+		String action = "GOTO";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.GOTO);
 	}
 	
 	@Test
 	void LoopToEnum() {
-		String action = "Loop";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Loop);
+		String action = "LOOP";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.LOOP);
 	}
 	
 	@Test
 	void UnknownToEnum() {
-		String action = "Unknown";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Unknown);
+		String action = "UNKNOWN";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.UNKNOWN);
 	}
 	
 	@Test
 	void ErrorToEnum() {
-		String action = "Error";
-		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.Unknown);
+		String action = "ERROR";
+		assertEquals(ActionTypeEnum.fromString(action), ActionTypeEnum.UNKNOWN);
 	}
 	
 	@Test
 	void StartToString() {
-		ActionTypeEnum action = ActionTypeEnum.Start;
-		assertEquals(action.toString(), "Start");
+		ActionTypeEnum action = ActionTypeEnum.START;
+		assertEquals(action.toString(), "START");
 	}
 	
 	@Test
 	void UnknownToString() {
-		ActionTypeEnum action = ActionTypeEnum.Unknown;
-		assertEquals(action.toString(), "Unknown");
+		ActionTypeEnum action = ActionTypeEnum.UNKNOWN;
+		assertEquals(action.toString(), "UNKNOWN");
 	}
 
 }
