@@ -88,8 +88,7 @@ public class UserData {
 			scnr.useDelimiter(","); // since this is a CSV file
 			
 			// Decode the first line and store them in temporary variables
-			String usertype = scnr.next().toUpperCase();
-			System.out.println(usertype);
+			String usertype = scnr.next();
 			scnr.next(); // skip username, which we know
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
@@ -104,10 +103,14 @@ public class UserData {
 			userData.addTotalTimeSpent(totalTimeSpent);
 			userData.addTotalAttempts(totalAttempts);
 			
+			// Clear the extra commas in the first line
+			scnr.nextLine();
+			
 			// Add each stage separately
 			while (scnr.hasNextLine()) {
 			    // Read each line and feed it to the ProgressionData.importData() method
 				ProgressionData importData = ProgressionData.importData(scnr.nextLine());
+				
 				// Then add the newly created ProgressionData object to the list
 			    userData.addProgressionData(importData);
 			}
