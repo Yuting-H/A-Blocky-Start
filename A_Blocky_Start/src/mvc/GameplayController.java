@@ -27,6 +27,13 @@ public class GameplayController implements Controller{
 	private void populateActionListener() {
 		//TODO implement
 	}
+	
+	/**
+	 * @return the view
+	 */
+	public static GameplayView getView() {
+		return view;
+	}
 
 	/**
 	 * 

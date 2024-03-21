@@ -43,10 +43,16 @@ public class Main {
 		
 		configureGameFrame();  //sets up the game's JFrame
 		
+		UserData userData = UserData.importData("userdata/aliceliddell");
+		
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
-		gameplayController.OnEnter(); 
+		System.out.println(userData.toString());
 		
+		studentProgressionController.OnEnter(); 
+		
+		studentProgressionController.setUserData(userData);
+
 		
 	}
 	

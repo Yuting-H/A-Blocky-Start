@@ -2,6 +2,7 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * 
@@ -9,16 +10,21 @@ import java.awt.event.ActionListener;
 public class StudentProgressionController implements Controller{
 	
 	/** The view*/
-	private StudentProgressionView view = new StudentProgressionView();
+	private StudentProgressionView view;
 	
 	private Controller previousController;
 	
-	private StudentProgressionData[] studentProgressionDatas = new StudentProgressionData[10];
+	private StudentProgressionData data;
 	
 	/**
 	 * 
 	 */
 	public StudentProgressionController() {
+		
+		view = new StudentProgressionView();
+		
+		this.data = null;
+		
 		view.insertPanelToFrame();
 		
 		PopulateActionListener();
@@ -38,6 +44,30 @@ public class StudentProgressionController implements Controller{
 			}
 		});
 		
+	}
+	
+	/**
+	 * 
+	 * @param userData
+	 */
+	public void setUserData(UserData userData) {
+		this.data = new StudentProgressionData(userData);
+		ProgressionData progressionData;
+		for (int i = 0; i < 10; i++) {
+			
+			progressionData = data.getProgression(i);
+			
+			
+			view.setEntry(
+					i,
+					progressionData.getStageID(),
+					progressionData.getCompleted(),
+					progressionData.getShortestSteps(),
+					progressionData.getHighestScore(), 
+					progressionData.getTimeSpent(), 
+					progressionData.getAttempts()
+				);
+		}
 	}
 	
 	/**
