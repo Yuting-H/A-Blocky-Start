@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -42,6 +43,7 @@ public class GameplayView {
 	private Point pauseMenuLocation = new Point(0,0);
 	private Point OpaqueLocation = new Point(200, 0);
 	
+	//root panel
 	private JPanel rootPanel;
 	
 	private ContainerUI actionchainContainer = new ContainerUI(actionchainContainerLocation, actionchainContainerSize, Color.red);
@@ -58,6 +60,7 @@ public class GameplayView {
 	private ButtonUI leftButton = new ButtonUI(actionBuffetItemSize, "left");
 	private ButtonUI rightButton = new ButtonUI(actionBuffetItemSize, "right");
 	
+	//list storing strings, represents actions in action chain
 	private ArrayList<String> actionChainList = new ArrayList<String>();
 	
 	/**
@@ -112,34 +115,28 @@ public class GameplayView {
 	 */
 	private void testAction() {
 		
-		newActionUI("something");
-		newActionUI("something else");
+		addAction("action 1");
+		addAction("something else");
+		addAction("other stuff");
+		
+	}
+	
+	public void addAction(String text) {
+		newActionUI(text);
+		
+		actionChainList.add(text);
 		
 		refreshActionChain();
 	}
 	
 	/**
-	 * Method stub for adding a action UI element 
-	 */
-	public void appendAction() {
-		
-	}
-	
-	public void removeAction(String string) {
-		for (int i = 0; i < actionChainList.size(); i++) {
-			
-		}
-	}
-	
-	/**
 	 * Creates a new action UI element (created as a button)
+	 * add its associated string to list
 	 */
 	public ButtonUI newActionUI(String text) {
 		
 		//create a new Button representing an action
 		ButtonUI action = new ButtonUI(actionSize, text);
-	
-		actionChainList.add(text);
 		
 		//Deletes itself when the action is clicked
 		action.addActionListener(new ActionListener() {
@@ -153,6 +150,7 @@ public class GameplayView {
 				refreshActionChain();			
 			}
 		});
+		
 		return action;
 		
 	}
@@ -170,15 +168,14 @@ public class GameplayView {
 		//update graphics
 		actionchainContainer.repaint();
 		
-		actionchainContainer.setLayout(new FlowLayout());
-		
 		//adding back UI elements from list
 		for (int i = 0; i < size; i++) {
-			actionchainContainer.add(newActionUI(""));
-			
+			actionchainContainer.add(newActionUI(actionChainList.get(i)));
+			actionchainContainer.repaint();
 		}
 		
 		actionchainContainer.repaint();
+		actionchainContainer.revalidate();
 
 	}
 	

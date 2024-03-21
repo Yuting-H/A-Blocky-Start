@@ -89,6 +89,7 @@ public class UserData {
 			
 			// Decode the first line and store them in temporary variables
 			String usertype = scnr.next().toUpperCase();
+			System.out.println(usertype);
 			scnr.next(); // skip username, which we know
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();

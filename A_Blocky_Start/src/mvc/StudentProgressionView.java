@@ -76,10 +76,11 @@ public class StudentProgressionView{
 		
 		//adds 10 progression to container
 		for (int i = 0; i < 9; i++) {
-			PanelUI curr = newEntry();
 			
-			entries.add(curr);
-			container.add(entries.get(i));
+			PanelUI curr = newEntry();  //create empty container
+			
+			entries.add(curr);  //add empty container to list
+			container.add(entries.get(i));  //add the containers from list to screen
 			container.add(Box.createVerticalStrut(20));  //spacing between each progression
 			
 		}
@@ -131,7 +132,7 @@ public class StudentProgressionView{
 	}
 	
 	/**
-	 * This method adds a progression record container to the screen
+	 * This method adds a empty progression record container to the screen
 	 */
 	public PanelUI newEntry() {
 		
