@@ -76,11 +76,11 @@ public class StudentProgressionView{
 		
 		//adds 10 progression to container
 		for (int i = 0; i < 9; i++) {
-			PanelUI curr = newEntry();
 			
-			entries.add(curr);
-			container.add(entries.get(i));
-			setEntry(i);
+			PanelUI curr = newEntry();  //create empty container
+			
+			entries.add(curr);  //add empty container to list
+			container.add(entries.get(i));  //add the containers from list to screen
 			container.add(Box.createVerticalStrut(20));  //spacing between each progression
 			
 		}
@@ -108,31 +108,31 @@ public class StudentProgressionView{
 	 * @param index the index of the progression
 	 * TODO: this function needs to display progression data
 	 */
-	public void setEntry(int index) {
+	public void setEntry(int index, int stageID, boolean completed, int shortestSteps, int highScore, int timeSpent, int attempts) {
 		
 		PanelUI entry = entries.get(index);
 		
 		entry.setLayout(new FlowLayout());
 		
-		LabelUI stageID = new LabelUI(labelSize, "StageID");
-		LabelUI completed = new LabelUI(labelSize, "completed");
-		LabelUI shortestSteps = new LabelUI(labelSize, "Shortest steps");
-		LabelUI highestScore = new LabelUI(labelSize, "Highest Score");
-		LabelUI timeSpent = new LabelUI(labelSize, "Time Spent");
-		LabelUI attempts = new LabelUI(labelSize, "Attempts");
+		LabelUI stageIDUI = new LabelUI(labelSize, "" + stageID);
+		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
+		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
+		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
+		LabelUI timeSpentUI = new LabelUI(labelSize, "" + timeSpent);
+		LabelUI attemptsUI = new LabelUI(labelSize, "" + attempts);
 		ButtonUI playButton = new ButtonUI(labelSize, "Play");
 		
-		entry.add(stageID);
-		entry.add(completed);
-		entry.add(shortestSteps);
-		entry.add(highestScore);
-		entry.add(timeSpent);
-		entry.add(attempts);
+		entry.add(stageIDUI);
+		entry.add(completedUI);
+		entry.add(shortestStepsUI);
+		entry.add(highestScoreUI);
+		entry.add(timeSpentUI);
+		entry.add(attemptsUI);
 		entry.add(playButton);
 	}
 	
 	/**
-	 * This method adds a progression record container to the screen
+	 * This method adds a empty progression record container to the screen
 	 */
 	public PanelUI newEntry() {
 		
