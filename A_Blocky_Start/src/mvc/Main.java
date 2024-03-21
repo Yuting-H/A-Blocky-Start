@@ -42,12 +42,26 @@ public class Main {
 	public static void main(String[] args) {
 		
 		configureGameFrame();  //sets up the game's JFrame
+<<<<<<< HEAD
 				
+=======
+		
+		UserData userData = UserData.importData("aliceliddell");
+		
+>>>>>>> 42ea74a71978cb5f3c4911e034d8cbd83e67e08c
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
 		//System.out.println(userData.toString());
 		
+<<<<<<< HEAD
 		studentProgressionController.OnEnter();		
+=======
+		gameplayController.OnEnter();
+
+		studentProgressionController.setUserData(userData);
+		studentProgressionController.OnEnter();
+		
+>>>>>>> 42ea74a71978cb5f3c4911e034d8cbd83e67e08c
 
 		
 	}
