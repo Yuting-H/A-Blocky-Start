@@ -88,7 +88,7 @@ public class UserData {
 			scnr.useDelimiter(","); // since this is a CSV file
 			
 			// Decode the first line and store them in temporary variables
-			String usertype = scnr.next();
+			String usertype = scnr.next().toUpperCase();
 			scnr.next(); // skip username, which we know
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
@@ -307,27 +307,27 @@ public class UserData {
 	}
 	
 	/**
-	 * Check whether the user is a student.
-	 * @return True if user is a student, false otherwise
+	 * Check whether the user is a STUDENT.
+	 * @return True if user is a STUDENT, false otherwise
 	 */
-	public boolean isStudent() {
-		return userType == UserTypeEnum.Student;
+	public boolean isSTUDENT() {
+		return userType == UserTypeEnum.STUDENT;
 	}
 	
 	/**
-	 * Check whether the user is a teacher.
-	 * @return True if user is a teacher, false otherwise
+	 * Check whether the user is a TEACHER.
+	 * @return True if user is a TEACHER, false otherwise
 	 */
-	public boolean isTeacher() {
-		return userType == UserTypeEnum.Teacher;
+	public boolean isTEACHER() {
+		return userType == UserTypeEnum.TEACHER;
 	}
 	
 	/**
-	 * Check whether the user is a developer.
-	 * @return True if user is a developer, false otherwise
+	 * Check whether the user is a DEVELOPER.
+	 * @return True if user is a DEVELOPER, false otherwise
 	 */
-	public boolean isDeveloper() {
-		return userType == UserTypeEnum.Developer;
+	public boolean isDEVELOPER() {
+		return userType == UserTypeEnum.DEVELOPER;
 	}
 	
 }
