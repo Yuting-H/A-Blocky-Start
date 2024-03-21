@@ -53,6 +53,29 @@ public class ButtonUI extends JButton{
 		
 	}
 	
+	/**
+	 * Creates a new button without a location
+	 * @param size
+	 * @param text
+	 * @param icon
+	 */
+	ButtonUI(Dimension size, String text, Icon icon){
+		setVisible(true);			//make button visible
+		setSize(size);
+		setIcon(icon);	//set image
+		setText(text);				//set text
+		setIcon(icon);
+		
+		//aligns text
+		setHorizontalTextPosition(JButton.CENTER);
+		setVerticalTextPosition(JButton.CENTER);
+		
+		//remove default background
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorder(BorderFactory.createEmptyBorder());
+	}
+	
 	ButtonUI(Point location, Dimension size, String text, Icon icon) {
 		
 		setVisible(true);			//make button visible

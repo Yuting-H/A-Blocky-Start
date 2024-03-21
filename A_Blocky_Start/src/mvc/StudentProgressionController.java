@@ -55,7 +55,9 @@ public class StudentProgressionController implements Controller{
 		for (int i = 0; i < 10; i++) {
 			
 			progressionData = data.getProgression(i);
-			
+			if (progressionData == null) {
+				break;
+			}
 			
 			view.setEntry(
 					i,
