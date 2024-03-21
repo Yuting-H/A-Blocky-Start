@@ -19,6 +19,10 @@ import java.util.Scanner;
  */
 public class UserData {
 	/**
+	 * Filename prefix of user data files
+	 */
+	public static final String filenamePrefix = "./userdata/";
+	/**
 	 * Filename suffix of user data files
 	 */
 	public static final String filenameSuffix = "_userdata.csv";
@@ -178,7 +182,7 @@ public class UserData {
 	 * @return Filename of user data file
 	 */
 	public static String toFilename(String username) {
-		return username.toLowerCase() + filenameSuffix;
+		return filenamePrefix + username.toLowerCase() + filenameSuffix;
 	}
 
 	/**
