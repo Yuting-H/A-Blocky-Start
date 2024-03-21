@@ -164,10 +164,7 @@ public class GameplayView {
 		
 		//removes all UI from container
 		actionchainContainer.removeAll();
-		
-		//update graphics
-		actionchainContainer.repaint();
-		
+	
 		//adding back UI elements from list
 		for (int i = 0; i < size; i++) {
 			actionchainContainer.add(newActionUI(actionChainList.get(i)));

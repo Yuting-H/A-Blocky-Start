@@ -1,5 +1,8 @@
 package mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * This controller class synchronizes the ActionChain, MazeData, and GameplayView. 
  * @version March 12, 2024
@@ -25,7 +28,38 @@ public class GameplayController implements Controller{
 	 * 
 	 */
 	private void populateActionListener() {
-		//TODO implement
+		
+		view.forwardButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.addAction("Forward");
+			}
+		});
+		
+		view.backwardButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.addAction("Backward");
+			}
+		});
+		
+		view.leftButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.addAction("Left");
+			}
+		});
+		
+		view.rightButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.addAction("Right");
+			}
+		});
 	}
 	
 	/**
