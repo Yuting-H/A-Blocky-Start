@@ -137,8 +137,8 @@ public class UserData {
 	public void exportUserData() {
 	
 		try {
-			// exception for teacher and dev
-			if (userType != UserTypeEnum.Student) {
+			// exception for teachers and developers
+			if (userType != UserTypeEnum.STUDENT) {
 				throw new Exception("User data cannot be exported for teachers and developers");
 			}
 
@@ -312,7 +312,7 @@ public class UserData {
 	 * Adds a single progression data to the list.
 	 * @param importData the ProgressionData to add
 	 */
-	private void addProgressionData(ProgressionData progression) {
+	public void addProgressionData(ProgressionData progression) {
 		progressionList.add(progression);
 	}
 	
