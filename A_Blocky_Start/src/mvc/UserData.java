@@ -96,7 +96,7 @@ public class UserData {
 			int totalAttempts = scnr.nextInt();
 			
 			// Call constructor
-			UserData userData = new UserData(UserTypeEnum.valueOf(usertype), username, password);
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
 			
 			// Add the rest of the attributes
 			userData.addTotalScore(totalScore);
