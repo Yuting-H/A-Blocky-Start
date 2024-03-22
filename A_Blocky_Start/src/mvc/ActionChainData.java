@@ -42,9 +42,9 @@ public class ActionChainData {
 	 */
 	public ActionChainData() {
 		this.actionBlockList = new ArrayList<ActionBlockData>();
-		actionBlockList.add(new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>()));
-		actionBlockList.add(new ActionBlockData(ActionTypeEnum.Start, new ArrayList<Integer>()));
-		actionBlockList.add(new ActionBlockData(ActionTypeEnum.End, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.UNKNOWN, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.START, new ArrayList<Integer>()));
+		actionBlockList.add(new ActionBlockData(ActionTypeEnum.END, new ArrayList<Integer>()));
 		this.indexStart = 1;
 		this.indexEnd = 2;
 		this.indexCurrent = indexStart;
@@ -112,7 +112,7 @@ public class ActionChainData {
 	 */
 	public ActionBlockData getActionBlock(int index) {
 		if (isIndexOutOfBound(index)) {
-			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
+			return new ActionBlockData(ActionTypeEnum.UNKNOWN, new ArrayList<Integer>());
 		}
 		
 		return actionBlockList.get(index);
@@ -158,11 +158,11 @@ public class ActionChainData {
 	 */
 	public boolean addAtIndex(ActionBlockData actionBlock, int index) {
 		// Check action block type
-		if (actionBlock.getType() == ActionTypeEnum.Unknown) {
+		if (actionBlock.getType() == ActionTypeEnum.UNKNOWN) {
 			return false; // cannot insert "Unknown" block
-		} else if (actionBlock.getType() == ActionTypeEnum.Start) {
+		} else if (actionBlock.getType() == ActionTypeEnum.START) {
 			return false; // cannot insert "Start" block
-		} else if (actionBlock.getType() == ActionTypeEnum.End) {
+		} else if (actionBlock.getType() == ActionTypeEnum.END) {
 			return false; // cannot insert "End" block
 		}
 		
