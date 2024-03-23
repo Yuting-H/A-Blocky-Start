@@ -10,5 +10,5 @@ public enum MazeItemTypeEnum {
 	/**
 	 * Enumerator of maze items
 	 */
-	Unknown, Start, Exit, Path, Wall, Trap, Key, Door;
+	UNKNOWN, ENTRANCE, EXIT, PATH, WALL, TRAP, KEY, DOOR;
 }

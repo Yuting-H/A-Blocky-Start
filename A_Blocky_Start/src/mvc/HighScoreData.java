@@ -51,12 +51,16 @@ public class HighScoreData {
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			String line;
 			
+			int counter = 0;
 			// Read each line
 			while ((line = reader.readLine()) != null) {
 				// Decode each line
-				String[] dataList = line.split(",");
-				if (dataList.length >= 2) {
-					highScoreData.addNameScore(dataList[0], Integer.parseInt(dataList[1]));
+				String[] parts = line.split(",");
+				if (parts.length >= 2) {
+					
+					//System.out.println(counter);
+					counter++;
+					highScoreData.addNameScore(parts[0], Integer.parseInt(parts[1]));
 				}
 			}
 			
@@ -100,7 +104,7 @@ public class HighScoreData {
 	 * @return Username
 	 */
 	public String getUsername(int index) {
-		if (isIndexOutOfBound(index)) {
+		if (!isIndexOutOfBound(index)) {
 			return usernameList[index];
 		}
 
@@ -113,7 +117,7 @@ public class HighScoreData {
 	 * @return High score
 	 */
 	public int getHighScore(int index) {
-		if (isIndexOutOfBound(index)) {
+		if (!isIndexOutOfBound(index)) {
 			return highScoreList[index];
 		}
 		
@@ -127,6 +131,7 @@ public class HighScoreData {
 	 * @return True if successful, false if the new entry does not have a high enough score
 	 */
 	public boolean addNameScore(String username, int highScore) {
+		//System.out.println(username + highScore);
 		// Check new entry score
 		if (highScore <= highScoreList[entriesMax - 1]) {
 			return false; // score is lower than the last high score entry
@@ -181,7 +186,7 @@ public class HighScoreData {
 	 * @return True if index is out-of-bound, false otherwise
 	 */
 	public boolean isIndexOutOfBound(int index) {
-		return ((0 <= index) && (index < entriesMax));
+		return ((0 > index) || (index >= entriesMax));
 	}
 
 }

@@ -71,6 +71,7 @@ public class SettingsData {
 				settings.screenWidth = Integer.parseInt(parts[1]);
 				settings.colourblindMode = Boolean.parseBoolean(parts[2]);
 				settings.volumeLevel = Integer.parseInt(parts[3]);
+				
 			}
 			
 			// Close the reader
@@ -131,7 +132,7 @@ public class SettingsData {
 	 * Access the volume level.
 	 * @return Volume level
 	 */
-	public double getVolumeLevel() {
+	public int getVolumeLevel() {
 		return volumeLevel;
 	}
 

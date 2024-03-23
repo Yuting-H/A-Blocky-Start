@@ -6,8 +6,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -29,6 +35,7 @@ public class GameplayView {
 	private Dimension opaqueSize = new Dimension(600, 600);
 	private Dimension actionSize = new Dimension(150, 40);
 	private Dimension actionBuffetItemSize = new Dimension(100, 100);
+	private Dimension backButtonSize = new Dimension(30, 30);
 	
 	//location of UI elements
 	private Point actionchainContainerLocation = new Point(0,0);
@@ -36,6 +43,7 @@ public class GameplayView {
 	private Point pauseMenuLocation = new Point(0,0);
 	private Point OpaqueLocation = new Point(200, 0);
 	
+	//root panel
 	private JPanel rootPanel;
 	
 	private ContainerUI actionchainContainer = new ContainerUI(actionchainContainerLocation, actionchainContainerSize, Color.red);
@@ -46,7 +54,14 @@ public class GameplayView {
 	
 	private ContainerUI opaque = new ContainerUI(OpaqueLocation, opaqueSize, new Color(100,100,100, 200));
 	
-	private ArrayList<ButtonUI> actionChainList = new ArrayList<ButtonUI>();
+	//buffet items buttons
+	private ButtonUI forwardButton = new ButtonUI(actionBuffetItemSize, "forward");
+	private ButtonUI backwardButton = new ButtonUI(actionBuffetItemSize, "backward");
+	private ButtonUI leftButton = new ButtonUI(actionBuffetItemSize, "left");
+	private ButtonUI rightButton = new ButtonUI(actionBuffetItemSize, "right");
+	
+	//list storing strings, represents actions in action chain
+	private ArrayList<String> actionChainList = new ArrayList<String>();
 	
 	/**
 	 * 
@@ -76,8 +91,14 @@ public class GameplayView {
 		layout.setAlignment(FlowLayout.LEFT);
 		actionBuffetContainer.setLayout(layout);
 		actionBuffetContainer.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
-		actionBuffetContainer.add(new ButtonUI(actionBuffetItemSize, "1"));
 		
+		//adding buttons to buffet
+		actionBuffetContainer.add(forwardButton);
+		actionBuffetContainer.add(backwardButton);
+		actionBuffetContainer.add(leftButton);
+		actionBuffetContainer.add(rightButton);
+		
+		//adding pause menu
 		rootPanel.add(opaque);
 		rootPanel.add(pauseMenu);
 		
@@ -90,38 +111,69 @@ public class GameplayView {
 	}
 	
 	/**
-	 * 
+	 * testing method
 	 */
 	private void testAction() {
 		
-		//if you see grey box something gone wrong
-		actionchainContainer.add(new PanelUI(actionSize));
+		addAction("action 1");
+		addAction("something else");
+		addAction("other stuff");
 		
+	}
 	
+	public void addAction(String text) {
+		newActionUI(text);
 		
-		actionChainList.add(new ButtonUI(actionSize, "1"));
-		actionChainList.add(new ButtonUI(actionSize, "2"));
-		actionChainList.add(new ButtonUI(actionSize, "3"));
-		actionChainList.add(new ButtonUI(actionSize, "4"));
+		actionChainList.add(text);
+		
 		refreshActionChain();
 	}
 	
 	/**
-	 * 
+	 * Creates a new action UI element (created as a button)
+	 * add its associated string to list
 	 */
-	public void refreshActionChain() {
+	public ButtonUI newActionUI(String text) {
 		
-		actionchainContainer.removeAll();
-		for (int i = 0; i < actionChainList.size(); i++) {
-			actionchainContainer.add(actionChainList.get(i));
-		}
+		//create a new Button representing an action
+		ButtonUI action = new ButtonUI(actionSize, text);
+		
+		//Deletes itself when the action is clicked
+		action.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//removes this button 
+				actionChainList.remove(text);
+				
+				refreshActionChain();			
+			}
+		});
+		
+		return action;
+		
 	}
 	
 	/**
-	 * 
+	 * update the action chain UI according to action chain list
 	 */
-	public void addAction() {
+	public void refreshActionChain() {
 		
+		int size = actionChainList.size();
+		
+		//removes all UI from container
+		actionchainContainer.removeAll();
+	
+		//adding back UI elements from list
+		for (int i = 0; i < size; i++) {
+			actionchainContainer.add(newActionUI(actionChainList.get(i)));
+			actionchainContainer.repaint();
+		}
+		
+		actionchainContainer.repaint();
+		actionchainContainer.revalidate();
+
 	}
 	
 	
@@ -156,5 +208,22 @@ public class GameplayView {
 		Main.gameFrame.add(rootPanel);
 	}
 	
+	
+	
+	public void forwardButtonAddActionListener(ActionListener actionListener) {
+		forwardButton.addActionListener(actionListener);
+	}
+	
+	public void backwardButtonAddActionListener(ActionListener actionListener) {
+		backwardButton.addActionListener(actionListener);
+	}
+	
+	public void leftButtonAddActionListener(ActionListener actionListener) {
+		leftButton.addActionListener(actionListener);
+	}
+	
+	public void rightButtonAddActionListener(ActionListener actionListener) {
+		rightButton.addActionListener(actionListener);
+	}
 
 }

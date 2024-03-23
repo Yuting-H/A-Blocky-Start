@@ -10,10 +10,10 @@ import java.io.File;
  * @author Chun Ho Chan (Edward)
  */
 public class LoginData {
-	private static final String teacherUsername = "teacher";
-	// teacherPassword = "GradeOurPorject100%"
-	private static final String developerUsername = "developer";
-	// developerPassword = "TooManyMergeConflicts!"
+	private static final String TEACHERUsername = "TEACHER";
+	// TEACHERPassword = "GradeOurPorject100%"
+	private static final String DEVELOPERUsername = "DEVELOPER";
+	// DEVELOPERPassword = "TooManyMergeConflicts!"
 	private String usernameInput;
 	private String passwordInput;
 	private UserData activeUserData;
@@ -36,18 +36,18 @@ public class LoginData {
 	}
 	
 	/**
-	 * Access the mode of the game, i.e. student (default), teacher, developer. 
+	 * Access the mode of the game, i.e. STUDENT (default), TEACHER, DEVELOPER. 
 	 * Only checks username input, does not check password input. 
 	 * @return Active user type
 	 */
 	public UserTypeEnum getMode() {
-		if (usernameInput.equalsIgnoreCase(teacherUsername)) {
-			return UserTypeEnum.Teacher;
-		} else if (usernameInput.equalsIgnoreCase(developerUsername)) {
-			return UserTypeEnum.Developer;
+		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
+			return UserTypeEnum.TEACHER;
+		} else if (usernameInput.equalsIgnoreCase(DEVELOPERUsername)) {
+			return UserTypeEnum.DEVELOPER;
 		}
 			
-		return UserTypeEnum.Student; // default mode
+		return UserTypeEnum.STUDENT; // default mode
 	}
 	
 	/**
@@ -91,14 +91,14 @@ public class LoginData {
 		}
 		
 		// Check user type
-		if (getMode() == UserTypeEnum.Teacher) {
-			return false; // cannot register a new teacher account
-		} else if (getMode() == UserTypeEnum.Developer) {
-			return false; // cannot register a new developer account
+		if (getMode() == UserTypeEnum.TEACHER) {
+			return false; // cannot register a new TEACHER account
+		} else if (getMode() == UserTypeEnum.DEVELOPER) {
+			return false; // cannot register a new DEVELOPER account
 		}
 		
 		// Create a new user data
-		activeUserData = new UserData(UserTypeEnum.Student, usernameInput, passwordInput);
+		activeUserData = new UserData(UserTypeEnum.STUDENT, usernameInput, passwordInput);
 		
 		// Successful
 		return true;
