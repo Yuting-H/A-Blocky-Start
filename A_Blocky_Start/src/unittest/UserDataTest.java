@@ -1,162 +1,250 @@
 package unittest;
 
-/**
- * Unit test for ProgressionData.
- * @version 1.0
- * @since Mar 14, 2024
- * @author Eunhak Kim
- */
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.FileReader;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import mvc.ProgressionData;
+import mvc.UserData;
+import mvc.UserTypeEnum;
+
+/**
+ * Unit test for UserData.
+ * @version 0.3
+ * @since Mar 14, 2024
+ * @author Eunhak Kim
+ */
 class UserDataTest {
 
+	/**
+	 * Test method for {@link mvc.UserData#UserData(mvc.UserTypeEnum, java.lang.String, java.lang.String)}.
+	 */
 	@Test
-	void testUserDataStringEnumStringString() {
-		fail("Not yet implemented");
+	void testUserData() {
+		
+		fail("Not yet implemented"); // TODO
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
 	@Test
-	void testUserDataString() {
-		fail("Not yet implemented");
+	void testImportDataUserType() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getUserType(), UserTypeEnum.STUDENT);
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataUsername() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getUsername(), "student");
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataPassword() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getPassword(), "pass1234");	
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataTotalScore() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getTotalScore(), 6);
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataTotalTimeSpent() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getTotalTimeSpent(), 70);
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataTotalAttempts() {
+		UserData ud = UserData.importData("student");
+		assertEquals(ud.getTotalAttempts(), 10);
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
+	 */
+	@Test
+	void testImportDataProgression() {
+		UserData ud = UserData.importData("student");
+		int result = ud.getProgressionAtIndex(1).getTimeSpent();
+		assertEquals(result, 20);
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 */
 	@Test
 	void testExportUserData() {
-		System.out.println("exportUserData()");
-		fail("Not yet implemented");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalScore(6);
+		ud.addTotalTimeSpent(70);
+		ud.addTotalAttempts(10);
+		
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		
+		ud.exportUserData();
+
+		String filename = UserData.toFilename("student");
+//		FileReader fileIn = new FileReader(filename);
+//		Scanner scnr = new Scanner(fileIn);
+//		scnr.useDelimiter(","); // since this is a CSV file
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#toFilename(String)}.
+	 */
 	@Test
-	void testGetFilename() {
-		System.out.println("getFileName()");
-		fail("Not yet implemented");
+	void testToFilename() {
+		String filename = "./userdata/student_userdata.csv";
+		assertEquals(UserData.toFilename("student"), filename);
 	}
 
-	@Test
-	void testSetFilename() {
-		System.out.println("setFileName()");
-
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Test method for {@link mvc.UserData#getUserType()}.
+	 */
 	@Test
 	void testGetUserType() {
-		System.out.println("getUserType()");
-
-		fail("Not yet implemented");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
-	@Test
-	void testSetUserType() {
-		System.out.println("setUserType()");
-
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Test method for {@link mvc.UserData#getUsername()}.
+	 */
 	@Test
 	void testGetUsername() {
-		System.out.println("getUsername()");
-
-		fail("Not yet implemented");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
-	@Test
-	void testSetUsername() {
-		System.out.println("setUsername()");
-
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Test method for {@link mvc.UserData#getPassword()}.
+	 */
 	@Test
 	void testGetPassword() {
-		System.out.println("getPassword()");
-
-		fail("Not yet implemented");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
-	@Test
-	void testSetPassword() {
-		System.out.println("setPassword()");
-
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetTotalTimeSpent() {
-		System.out.println("getTotalTimeSpent()");
-
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetTotalTimeSpent() {
-		System.out.println("setTotalTimeSpent()");
-
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetTotalAttempts() {
-		System.out.println("getTotalAttempts()");
-
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetTotalAttempts() {
-		System.out.println("setTotalAttempts()");
-
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Test method for {@link mvc.UserData#getTotalScore()}.
+	 */
 	@Test
 	void testGetTotalScore() {
-		System.out.println("getTotalScore()");
-
-		fail("Not yet implemented");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#getTotalTimeSpent()}.
+	 */
 	@Test
-	void testSetTotalScore() {
-		System.out.println("setTotalScore()");
-
-		fail("Not yet implemented");
+	void testGetTotalTimeSpent() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#getTotalAttempts()}.
+	 */
 	@Test
-	void testGetProgressionDataList() {
-		System.out.println("getProgressionDataList()");
-
-		fail("Not yet implemented");
+	void testGetTotalAttempts() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#getProgressionList()}.
+	 */
 	@Test
-	void testSetProgressionDataList() {
-		System.out.println("setProgressionDataList()");
-
-		fail("Not yet implemented");
+	void testGetProgressionList() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#getProgressionAtIndex(int)}.
+	 */
+	@Test
+	void testGetProgressionAtIndex() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+	}
+
+	/**
+	 * Test method for {@link mvc.UserData#addTotalScore(int)}.
+	 */
+	@Test
+	void testAddTotalScore() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+	}
+
+	/**
+	 * Test method for {@link mvc.UserData#addTotalTimeSpent(int)}.
+	 */
+	@Test
+	void testAddTotalTimeSpent() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link mvc.UserData#addTotalAttempts(int)}.
+	 */
+	@Test
+	void testAddTotalAttempts() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link mvc.UserData#updateTotalStats()}.
+	 */
+	@Test
+	void testUpdateTotalStats() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link mvc.UserData#isStudent()}.
+	 */
 	@Test
 	void testIsStudent() {
-		System.out.println("isStudent()");
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#isTeacher()}.
+	 */
 	@Test
 	void testIsTeacher() {
-		System.out.println("isTeacher()");
-
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
+	/**
+	 * Test method for {@link mvc.UserData#isDeveloper()}.
+	 */
 	@Test
 	void testIsDeveloper() {
-		System.out.println("isDeveloper()");
-
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
 }
