@@ -8,12 +8,6 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -31,22 +25,29 @@ import javax.swing.border.EmptyBorder;
 public class GameplayView {
 	
 	//sizes of UI elements
-	private Dimension viewSize = new Dimension(800, 600);
-	private Dimension actionchainContainerSize = new Dimension(200, 600);
+	//Containers
+	private Dimension viewSize 					= new Dimension(800, 600);
+	private Dimension actionchainContainerSize 	= new Dimension(200, 600);
 	private Dimension actionBuffetContainerSize = new Dimension(600, 200);
-	private Dimension pauseMenuSize = new Dimension(200, 600);
-	private Dimension opaqueSize = new Dimension(600, 600);
-	private Dimension actionSize = new Dimension(150, 40);
-	private Dimension actionBuffetItemSize = new Dimension(100, 100);
-	private Dimension pauseButtonSize = new Dimension(30, 30);
-	private Dimension pauseMenuButtonSize = new Dimension(150, 40);
+	private Dimension mazeSize 					= new Dimension(600, 400);
+	
+	//pause menu
+	private Dimension pauseMenuSize				= new Dimension(200, 600);
+	private Dimension opaqueSize 				= new Dimension(600, 600);
+	private Dimension pauseButtonSize 			= new Dimension(30, 30);  //button that shows pause menu
+	private Dimension pauseMenuButtonSize 		= new Dimension(150, 40);  //buttons inside the pause menu
+	
+	//action chain
+	private Dimension actionSize				= new Dimension(150, 40);
+	private Dimension actionBuffetItemSize 		= new Dimension(100, 100);
 	
 	//location of UI elements
-	private Point actionchainContainerLocation = new Point(0,0);
+	private Point actionchainContainerLocation 	= new Point(0,0);
 	private Point actionBuffetContainerLocation = new Point(200, 400);
-	private Point pauseMenuLocation = new Point(0,0);
-	private Point OpaqueLocation = new Point(200, 0);
-	private Point pauseButtonLocation = new Point(750, 10);
+	private Point mazeLocation 					= new Point(200, 0);
+	private Point pauseMenuLocation				= new Point(0,0);
+	private Point OpaqueLocation 				= new Point(200, 0);
+	private Point pauseButtonLocation 			= new Point(750, 10);
 	
 	//root panel
 	private JPanel rootPanel;
@@ -55,14 +56,17 @@ public class GameplayView {
 	
 	private ContainerUI actionBuffetContainer = new ContainerUI(actionBuffetContainerLocation, actionBuffetContainerSize, Color.cyan);
 	
+	private ContainerUI maze = new ContainerUI(mazeLocation, mazeSize, Color.lightGray);
+	
 	private ContainerUI pauseMenu = new ContainerUI(pauseMenuLocation, pauseMenuSize, Color.GREEN);
 	
 	private ContainerUI opaque = new ContainerUI(OpaqueLocation, opaqueSize, new Color(100,100,100, 200));
 	
+	
 	//pause button
 	private ButtonUI pauseButton = new ButtonUI(pauseButtonLocation, pauseButtonSize, "", IconsUI.buttonIcon);
 	
-	//pauseMenu button
+	//pauseMenu buttons
 	private ButtonUI resumeButton = new ButtonUI(pauseMenuButtonSize, "Resume");
 	private ButtonUI saveButton = new ButtonUI(pauseMenuButtonSize, "Save");
 	private ButtonUI exitButton = new ButtonUI(pauseMenuButtonSize, "Exit");
@@ -121,9 +125,12 @@ public class GameplayView {
 		rootPanel.add(pauseMenu);
 		
 		
-		//hidePauseMenu();
+		hidePauseMenu();
 		rootPanel.add(actionchainContainer);
 		rootPanel.add(actionBuffetContainer);
+		
+		//adding maze
+		rootPanel.add(maze);
 		
 	}
 	
