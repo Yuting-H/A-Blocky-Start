@@ -16,16 +16,19 @@ public class StudentProgressionController implements Controller{
 	private StudentProgressionData data;
 	
 	/**
-	 * 
+	 * Constructor for this class
 	 */
 	public StudentProgressionController() {
 		
+		//create view which stores UI elements
 		view = new StudentProgressionView();
 		
 		this.data = null;
 		
+		//insert view to game frame
 		view.insertPanelToFrame();
 		
+		//adds functionality to UI elements
 		PopulateActionListener();
 	}
 	
@@ -34,6 +37,7 @@ public class StudentProgressionController implements Controller{
 	 */
 	private void PopulateActionListener() {
 		
+		//when back button is pressed, return to previous screen
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -55,10 +59,7 @@ public class StudentProgressionController implements Controller{
 		for (int i = 0; i < 10; i++) {
 			
 			progressionData = data.getProgression(i);
-<<<<<<< HEAD
-=======
-			
->>>>>>> 42ea74a71978cb5f3c4911e034d8cbd83e67e08c
+
 			if (progressionData == null) {
 				break;
 			}

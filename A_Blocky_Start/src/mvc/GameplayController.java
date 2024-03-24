@@ -16,18 +16,56 @@ public class GameplayController implements Controller{
 	private static GameplayView view = new GameplayView();
 
 	/**
-	 * 
+	 * Constructor for this class
 	 */
 	public GameplayController() {
+		
+		//insert root panel to game frame
 		view.insertPanelToFrame();
 		
+		//adds functionality to UI elements
 		populateActionListener();
 	}
 	
 	/**
-	 * 
+	 * Adds functionality to UI elements
 	 */
 	private void populateActionListener() {
+		
+		view.pauseButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.showPauseMenu();
+			}
+		});
+		
+		view.resumeButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.hidePauseMenu();
+			}
+		});
+		
+		//TODO: implement save action
+		view.saveButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//implement here
+			}
+		});
+		
+		view.exitButtonAddActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.hidePauseMenu();
+				Main.gameplayController.OnExit();
+				Main.mainMenuController.OnEnter();
+			}
+		});
 		
 		view.forwardButtonAddActionListener(new ActionListener() {
 			
