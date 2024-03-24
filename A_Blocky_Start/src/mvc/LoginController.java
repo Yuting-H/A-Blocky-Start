@@ -10,6 +10,8 @@ public class LoginController implements Controller {
 
 	// the view
 	private static LoginView view = new LoginView();
+	
+	private static LoginData data = new LoginData();
 
 	/**
 	 * Construtor
@@ -48,6 +50,14 @@ public class LoginController implements Controller {
 				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 			}
 		});
+	}
+	
+	/**
+	 * 
+	 * @return the mode of the game
+	 */
+	public UserTypeEnum getMode() {
+		return data.getMode();
 	}
 
 	/**
