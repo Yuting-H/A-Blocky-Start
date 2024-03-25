@@ -32,7 +32,7 @@ public class TeacherProgressionView {
 	//define UI
 	private JPanel rootPanel;
 	private ButtonUI backButton;
-	private ContainerUI container;
+	private PanelUI container;
 	private JScrollPane scrollPane;
 	
 	private SpinnerNumberModel model;

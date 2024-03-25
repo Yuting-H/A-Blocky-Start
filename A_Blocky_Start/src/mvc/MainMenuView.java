@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 
@@ -19,38 +20,39 @@ public class MainMenuView {
 	//size of this view
 	private Dimension viewSize = Main.getDimension();
 	
-	// location of the aside panel
-	final Rectangle asidePanelBound = new Rectangle(600, 0, 200, 800);
+	//locations
+	final Point asidenPanelLocation = new Point(600, 0);
+	final Point gameTitleLocation = new Point(0, 0);  //game title should be top of screen
 	
-	//location of the button container
-	final Rectangle buttonContainerBound = new Rectangle(650, 200 , 100, 200);
+	//sizes
+	final Dimension asidePanelSize = new Dimension(200, 800);
+	final Dimension gameTitleSize = new Dimension(600, 200); 
 	
 	/** The size of Main menu buttons*/ 
 	final Dimension ButtonSize = new Dimension(150, 40); 	
-	
-	/** panel for visual effect*/
-	ContainerUI asidePanel 	= new ContainerUI(asidePanelBound, Color.white);
-			
-	
+		
 	/** Amount of vertical space between each button*/
 	final int buttonSpacing = 5;
 	
 	//root panel
 	private JPanel rootPanel;
 	
+
+	/** panel for visual effect*/
+	PanelUI asidePanel 	= new PanelUI(asidenPanelLocation, asidePanelSize, Color.white);
+	
 	//game title
-	private JLabel title = new JLabel(IconUI.gameTitleIcon);
+	private LabelUI title = new LabelUI(gameTitleLocation, gameTitleSize, IconUI.gameTitleIcon);
 	
 			
 	//Buttons declaration
-
 	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconUI.continueButtonIcon);
-	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "", IconUI.newGameButtonIcon);
+	private ButtonUI newGamButton 		= new ButtonUI(ButtonSize, "", IconUI.newGameButtonIcon);
 	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconUI.tutorialButtonIcon);
-	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "", IconUI.progressionButtonIcon);
-	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "", IconUI.highscoreButtonIcon);
-	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "", IconUI.settingsButtonIcon);
-	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "", IconUI.exitButtonIcon);
+	private ButtonUI progressionButton 	= new ButtonUI(ButtonSize, "", IconUI.progressionButtonIcon);
+	private ButtonUI highScoreButton 	= new ButtonUI(ButtonSize, "", IconUI.highscoreButtonIcon);
+	private ButtonUI settingsButton		= new ButtonUI(ButtonSize, "", IconUI.settingsButtonIcon);
+	private ButtonUI exitButton			= new ButtonUI(ButtonSize, "", IconUI.exitButtonIcon);
 
 	
 	/**
@@ -77,9 +79,6 @@ public class MainMenuView {
 		rootPanel.setLayout(null);	
 		rootPanel.setVisible(false);
 		rootPanel.setBackground(Color.gray);
-		
-		title.setSize(viewSize);
-		title.setLocation(-100, -200); 
 		
 		rootPanel.add(title);
 		

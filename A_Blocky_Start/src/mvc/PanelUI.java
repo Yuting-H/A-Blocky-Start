@@ -54,6 +54,20 @@ public class PanelUI extends JPanel {
 	}
 	
 	/**
+	 * Construct a panel with location, size and color
+	 * @param location
+	 * @param size
+	 * @param color
+	 */
+	public PanelUI(Point location, Dimension size, Color color) {
+		setLocation(location);
+		setSize(size);
+		setPreferredSize(size);
+		setVisible(true);
+		setBackground(color);
+	}
+	
+	/**
 	 * Construct a default JPanel without any hidden default parameters.<br>
 	 * Used by GameplayView.<br>
 	 * @param layout Layout manager

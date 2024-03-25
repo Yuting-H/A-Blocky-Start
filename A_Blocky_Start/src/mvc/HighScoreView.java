@@ -39,7 +39,7 @@ public class HighScoreView{
 	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	//container for entries
-	private ContainerUI entriesContainer = new ContainerUI(entriesContainerLocation, entriesContainerSize, Color.LIGHT_GRAY);
+	private PanelUI entriesContainer = new PanelUI(entriesContainerLocation, entriesContainerSize, Color.LIGHT_GRAY);
 	
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 	
