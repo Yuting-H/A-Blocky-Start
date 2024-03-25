@@ -39,7 +39,7 @@ public class StudentProgressionView{
 	//define UI
 	private JPanel rootPanel;
 	private ButtonUI backButton;
-	private ContainerUI container;
+	private PanelUI container;
 	private JScrollPane scrollPane;
 	
 	//
@@ -70,7 +70,7 @@ public class StudentProgressionView{
 		rootPanel.add(backButton);
 		
 		//set up container 
-		container = new ContainerUI(containerLocation, containerSize, Color.white);
+		container = new PanelUI(containerLocation, containerSize, Color.white);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));  //set layout
 		container.setBorder(new EmptyBorder(new Insets(10, 50, 0, 50)));  //inset space
 		

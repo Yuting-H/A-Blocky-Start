@@ -52,15 +52,15 @@ public class GameplayView {
 	//root panel
 	private JPanel rootPanel;
 	
-	private ContainerUI actionchainContainer = new ContainerUI(actionchainContainerLocation, actionchainContainerSize, Color.red);
+	private PanelUI actionchainContainer = new PanelUI(actionchainContainerLocation, actionchainContainerSize, Color.red);
 	
-	private ContainerUI actionBuffetContainer = new ContainerUI(actionBuffetContainerLocation, actionBuffetContainerSize, Color.cyan);
+	private PanelUI actionBuffetContainer = new PanelUI(actionBuffetContainerLocation, actionBuffetContainerSize, Color.cyan);
 	
-	private ContainerUI maze = new ContainerUI(mazeLocation, mazeSize, Color.lightGray);
+	private PanelUI maze = new PanelUI(mazeLocation, mazeSize, Color.lightGray);
 	
-	private ContainerUI pauseMenu = new ContainerUI(pauseMenuLocation, pauseMenuSize, Color.GREEN);
+	private PanelUI pauseMenu = new PanelUI(pauseMenuLocation, pauseMenuSize, Color.GREEN);
 	
-	private ContainerUI opaque = new ContainerUI(OpaqueLocation, opaqueSize, new Color(100,100,100, 200));
+	private PanelUI opaque = new PanelUI(OpaqueLocation, opaqueSize, new Color(100,100,100, 200));
 	
 	
 	//pause button

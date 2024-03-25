@@ -52,7 +52,7 @@ public class Main {
 	
 
 		studentProgressionController.setUserData(userData);
-		gameplayController.OnEnter(); // TODO
+		mainMenuController.OnEnter(); // TODO
 
 
 		
