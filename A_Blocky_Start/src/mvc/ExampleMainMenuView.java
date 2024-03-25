@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 /**
  * This is the Example View class
+ * @deprecated
  */
 public class ExampleMainMenuView {
 	

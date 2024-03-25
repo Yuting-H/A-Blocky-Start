@@ -11,6 +11,8 @@ public class SettingsController implements Controller{
 	
 	private static SettingsView view = new SettingsView();
 	
+	private static SettingsData data = new SettingsData();
+	
 	/**
 	 * 
 	 */
@@ -51,5 +53,11 @@ public class SettingsController implements Controller{
 		view.setVisibility(false);
 	}
 	
+	/**
+	 * get the dimension from the data
+	 */
+	public Dimension getDimension() {
+		return new Dimension(data.getScreenHeight(), data.getScreenWidth());
+	}
 
 }

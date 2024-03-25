@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class TutorialView {
 	
-	private Dimension viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	
 	/** Contains all the tutorial prompts*/
 	private Dimension tutorialContainerSize = new Dimension(800, 500);
