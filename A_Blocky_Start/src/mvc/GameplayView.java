@@ -64,7 +64,8 @@ public class GameplayView {
 	
 	
 	//pause button
-	private ButtonUI pauseButton = new ButtonUI(pauseButtonLocation, pauseButtonSize, "", IconUI.buttonIcon);
+	//currently a placeholder
+	private ButtonUI pauseButton = new ButtonUI(pauseButtonLocation, pauseButtonSize, "", IconUI.backButtonIcon);
 	
 	//pauseMenu buttons
 	private ButtonUI resumeButton = new ButtonUI(pauseMenuButtonSize, "Resume");
@@ -178,8 +179,6 @@ public class GameplayView {
 	 * update the action chain UI according to action chain list
 	 */
 	public void refreshActionChain() {
-		
-
 		
 		actionchainContainer.repaint();
 		actionchainContainer.revalidate();
