@@ -64,8 +64,6 @@ public class IconsUI {
 					new ImageIcon("img/exit.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	
-	@Deprecated
-	public static ImageIcon buttonIcon = new ImageIcon("img/button.png");
 	
 	//TODO: add art for back button
 	public static ImageIcon backButtonIcon = new ImageIcon("img/BackButton.png");
