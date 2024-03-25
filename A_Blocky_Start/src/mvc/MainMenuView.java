@@ -26,7 +26,7 @@ public class MainMenuView {
 	final Rectangle buttonContainerBound = new Rectangle(650, 200 , 100, 200);
 	
 	/** The size of Main menu buttons*/ 
-	final Dimension ButtonSize = new Dimension(100, 20); 	
+	final Dimension ButtonSize = new Dimension(150, 40); 	
 	
 	/** panel for visual effect*/
 	ContainerUI asidePanel 	= new ContainerUI(asidePanelBound, Color.white);
@@ -37,15 +37,19 @@ public class MainMenuView {
 	
 	//root panel
 	private JPanel rootPanel;
+	
+	//game title
+	private JLabel title = new JLabel(IconsUI.gameTitleIcon);
+	
 			
 	//Buttons declaration
-	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue", IconsUI.buttonIcon);
-	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game", IconsUI.buttonIcon);
-	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial", IconsUI.buttonIcon);
-	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression", IconsUI.buttonIcon);
-	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "High Score", IconsUI.buttonIcon);
-	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings", IconsUI.buttonIcon);
-	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit", IconsUI.buttonIcon);
+	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconsUI.continueButtonIcon);
+	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "", IconsUI.newGameButtonIcon);
+	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconsUI.tutorialButtonIcon);
+	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "", IconsUI.progressionButtonIcon);
+	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "", IconsUI.highscoreButtonIcon);
+	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "", IconsUI.settingsButtonIcon);
+	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "", IconsUI.exitButtonIcon);
 	
 	/**
 	 * Constructor for main menu
@@ -72,9 +76,14 @@ public class MainMenuView {
 		rootPanel.setVisible(false);
 		rootPanel.setBackground(Color.gray);
 		
+		title.setSize(viewSize);
+		title.setLocation(-100, -200); 
+		
+		rootPanel.add(title);
+		
 		//populate buttons
 		asidePanel.setLayout(new FlowLayout());
-		asidePanel.setBorder(new EmptyBorder(new Insets(200, 10, 10, 10)));  //Space buttons from border
+		asidePanel.setBorder(new EmptyBorder(new Insets(100, 10, 10, 10)));  //Space buttons from border
 		asidePanel.add(continueButton);
 		asidePanel.add(newGamButton);
 		asidePanel.add(tutorialButton);
