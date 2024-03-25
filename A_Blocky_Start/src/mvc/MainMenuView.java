@@ -1,10 +1,13 @@
 package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 /**
  * @author Yuting<br>
@@ -28,8 +31,6 @@ public class MainMenuView {
 	/** panel for visual effect*/
 	ContainerUI asidePanel 	= new ContainerUI(asidePanelBound, Color.white);
 			
-	/** Contains all the buttons*/
-	ContainerUI buttonContainer = new ContainerUI(buttonContainerBound, Color.magenta);
 	
 	/** Amount of vertical space between each button*/
 	final int buttonSpacing = 5;
@@ -71,23 +72,17 @@ public class MainMenuView {
 		rootPanel.setVisible(false);
 		rootPanel.setBackground(Color.gray);
 		
-		//populate button container
-		buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
-		buttonContainer.add(continueButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(newGamButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(tutorialButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(progressionButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(highScoreButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(settingsButton);
-		buttonContainer.add(Box.createVerticalStrut(buttonSpacing));
-		buttonContainer.add(exitButton);
-			
-		rootPanel.add(buttonContainer);
+		//populate buttons
+		asidePanel.setLayout(new FlowLayout());
+		asidePanel.setBorder(new EmptyBorder(new Insets(200, 10, 10, 10)));  //Space buttons from border
+		asidePanel.add(continueButton);
+		asidePanel.add(newGamButton);
+		asidePanel.add(tutorialButton);
+		asidePanel.add(progressionButton);
+		asidePanel.add(highScoreButton);
+		asidePanel.add(settingsButton);
+		asidePanel.add(exitButton);
+		
 		rootPanel.add(asidePanel);
 	}
 	
@@ -97,7 +92,7 @@ public class MainMenuView {
 	 */
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
-		buttonContainer.setVisible(visibility);
+		asidePanel.setVisible(visibility);
 	}
 	
 	public void continueButtonAddActionListener(ActionListener actionListener) {

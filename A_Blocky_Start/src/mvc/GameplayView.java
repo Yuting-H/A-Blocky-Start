@@ -179,8 +179,6 @@ public class GameplayView {
 	 */
 	public void refreshActionChain() {
 		
-
-		
 		actionchainContainer.repaint();
 		actionchainContainer.revalidate();
 

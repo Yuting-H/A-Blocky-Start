@@ -11,4 +11,6 @@ public class IconsUI {
 	
 	public static ImageIcon backButtonIcon = new ImageIcon("img/BackButton.png");
 	
+	
+	
 }
