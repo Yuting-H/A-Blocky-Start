@@ -41,11 +41,22 @@ public class TeacherProgressionController implements Controller {
 		});
 
 	}
-	
-	public void setUserData(UserData userData)
-	{
-		
-		
+
+	public void setUserData(UserData userData) {
+		this.data = new TeacherProgressionData();
+		StudentProgressionData studentData = new StudentProgressionData(userData);
+		ProgressionData progressionData;
+
+		for (int i = 0; i < 10; i++) {
+			progressionData = studentData.getProgression(i);
+
+			if (progressionData == null) {
+				break;
+			}
+			view.setEntry(i, progressionData.getStageID(), progressionData.getCompleted(),
+					progressionData.getShortestSteps(), progressionData.getHighestScore(),
+					progressionData.getTimeSpent(), progressionData.getAttempts());
+		}
 	}
 
 	/**
@@ -55,6 +66,11 @@ public class TeacherProgressionController implements Controller {
 	public void OnEnter() {
 		view.setVisibility(true);
 		this.previousController = Main.mainMenuController;
+	}
+
+	public void OnEnterSpecial(Controller previousController) {
+		OnEnter();
+		this.previousController = previousController;
 	}
 
 	/**
