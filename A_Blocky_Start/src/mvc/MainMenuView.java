@@ -38,13 +38,13 @@ public class MainMenuView {
 	private JPanel rootPanel;
 			
 	//Buttons declaration
-	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue", IconsUI.buttonIcon);
-	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game", IconsUI.buttonIcon);
-	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial", IconsUI.buttonIcon);
-	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression", IconsUI.buttonIcon);
-	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "High Score", IconsUI.buttonIcon);
-	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings", IconsUI.buttonIcon);
-	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit", IconsUI.buttonIcon);
+	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "Continue", IconUI.buttonIcon);
+	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "New Game", IconUI.buttonIcon);
+	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "Tutorial", IconUI.buttonIcon);
+	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "Progression", IconUI.buttonIcon);
+	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "High Score", IconUI.buttonIcon);
+	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "Settings", IconUI.buttonIcon);
+	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "exit", IconUI.buttonIcon);
 	
 	/**
 	 * Constructor for main menu
