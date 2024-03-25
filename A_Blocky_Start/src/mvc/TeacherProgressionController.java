@@ -1,26 +1,50 @@
 package mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * 
  */
-public class TeacherProgressionController implements Controller{
+public class TeacherProgressionController implements Controller {
 
-	private TeacherProgressionView view = new TeacherProgressionView();
-	
+	private TeacherProgressionView view;
+
+	private Controller previousController;
+
+	private TeacherProgressionData data;
+
 	/**
 	 * 
 	 */
 	public TeacherProgressionController() {
-		
+		view = new TeacherProgressionView();
+
+		this.data = null;
+
 		view.insertPanelToFrame();
-		
-		populateActionListener();
+
+		PopulateActionListener();
 	}
-	
+
 	/**
 	 * 
 	 */
-	private void populateActionListener() {
+	private void PopulateActionListener() {
+		view.backButtonAddActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.studentProgressionController.OnExit();
+				previousController.OnEnter();
+			}
+		});
+
+	}
+	
+	public void setUserData(UserData userData)
+	{
+		
 		
 	}
 
@@ -30,6 +54,7 @@ public class TeacherProgressionController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
+		this.previousController = Main.mainMenuController;
 	}
 
 	/**
@@ -39,6 +64,5 @@ public class TeacherProgressionController implements Controller{
 	public void OnExit() {
 		view.setVisibility(false);
 	}
-	
-	
+
 }
