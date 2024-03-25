@@ -28,7 +28,7 @@ public class SettingsView {
 	
 	private JPanel rootPanel;
 	
-	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	private JLabel colorBlindLabel = new LabelUI(colorBlindLabelLocation, labelSize, "Colorblind mode:");
 	

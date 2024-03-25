@@ -66,7 +66,7 @@ public class StudentProgressionView{
 		rootPanel.setLayout(null);
 		
 		//added go back button to prrogression
-		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
 		//set up container 

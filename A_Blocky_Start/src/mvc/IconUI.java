@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
  * @author Yuting
  * This class contains all the image used in the game
  */
-public class IconsUI {
+public class IconUI {
 	
 	//determines the quality of resampling images
 	private static int samplingRate = 15;

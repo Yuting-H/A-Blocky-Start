@@ -39,17 +39,17 @@ public class MainMenuView {
 	private JPanel rootPanel;
 	
 	//game title
-	private JLabel title = new JLabel(IconsUI.gameTitleIcon);
+	private JLabel title = new JLabel(IconUI.gameTitleIcon);
 	
 			
 	//Buttons declaration
-	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconsUI.continueButtonIcon);
-	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "", IconsUI.newGameButtonIcon);
-	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconsUI.tutorialButtonIcon);
-	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "", IconsUI.progressionButtonIcon);
-	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "", IconsUI.highscoreButtonIcon);
-	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "", IconsUI.settingsButtonIcon);
-	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "", IconsUI.exitButtonIcon);
+	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconUI.continueButtonIcon);
+	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "", IconUI.newGameButtonIcon);
+	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconUI.tutorialButtonIcon);
+	private ButtonUI progressionButton = new ButtonUI(ButtonSize, "", IconUI.progressionButtonIcon);
+	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "", IconUI.highscoreButtonIcon);
+	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "", IconUI.settingsButtonIcon);
+	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "", IconUI.exitButtonIcon);
 	
 	/**
 	 * Constructor for main menu

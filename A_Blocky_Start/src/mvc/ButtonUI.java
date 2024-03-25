@@ -39,7 +39,7 @@ public class ButtonUI extends JButton{
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
-		setIcon(IconsUI.buttonIcon);	//set image
+		setIcon(IconsUI.backButtonIcon);	//set image
 		setText(text);				//set text
 		
 		//aligns text
@@ -81,7 +81,7 @@ public class ButtonUI extends JButton{
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
-		setIcon(IconsUI.buttonIcon);	//set image
+		setIcon(icon);	//set image
 		setText(text);				//set text
 		setIcon(icon);
 		

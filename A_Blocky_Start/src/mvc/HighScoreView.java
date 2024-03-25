@@ -36,7 +36,7 @@ public class HighScoreView{
 	private JPanel rootPanel;
 	
 	//button
-	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	//container for entries
 	private ContainerUI entriesContainer = new ContainerUI(entriesContainerLocation, entriesContainerSize, Color.LIGHT_GRAY);
