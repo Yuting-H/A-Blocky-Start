@@ -27,14 +27,24 @@ public class SettingsController implements Controller{
 	 * 
 	 */
 	private void populateActionListener() {
+		
+		//when back button is pressed
 		view.backButtonAddActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.settingsController.OnExit();
 				Main.mainMenuController.OnEnter();
+				updateSetting();
 			}
 		});
+	}
+	
+	/**
+	 * This function updates setting data 
+	 * @author Simon
+	 */
+	private void updateSetting() {
+		//TODO: get colorblind settigs from view and store in data
 	}
 	
 	/**
