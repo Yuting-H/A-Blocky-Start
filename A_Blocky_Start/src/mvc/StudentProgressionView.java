@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 public class StudentProgressionView{
 	
 	//Define sizes
-	private Dimension viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 490);
 	private Dimension entryContainerSize = new Dimension(500, 100);

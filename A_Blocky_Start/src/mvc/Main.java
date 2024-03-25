@@ -1,5 +1,7 @@
 package mvc;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,7 +16,8 @@ public class Main {
 	/** The JFrame the game runs in*/
 	 public static JFrame gameFrame = new JFrame();
 	 
-	//TODO: Create other controllers 
+	 public static SettingsController settingsController = new SettingsController();	 
+	 
 	 public static ExampleMainMenuController exampleMainMenuController = new ExampleMainMenuController();
 	 
 	 public static LoginController loginController = new LoginController();
@@ -26,8 +29,6 @@ public class Main {
 	 public static StudentProgressionController studentProgressionController = new StudentProgressionController();
 	 
 	 public static GameplayController gameplayController = new GameplayController();
-	 
-	 public static SettingsController settingsController = new SettingsController();
 	 
 	 public static HighScoreController highScoreController = new HighScoreController();
 	 
@@ -51,7 +52,7 @@ public class Main {
 	
 
 		studentProgressionController.setUserData(userData);
-		gameplayController.OnEnter();
+		mainMenuController.OnEnter();
 
 
 		
@@ -67,8 +68,16 @@ public class Main {
 		gameFrame.setLayout(null);
 		gameFrame.setVisible(true);  
 		gameFrame.setResizable(false);
-		gameFrame.setSize(800, 600);
+		gameFrame.setSize(settingsController.getDimension());
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	/**
+	 * Get the size of the screen
+	 */
+	public static Dimension getDimension() {
+		return settingsController.getDimension();
 		
 	}
 	

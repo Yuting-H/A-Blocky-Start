@@ -39,8 +39,8 @@ public class SettingsData {
 	 * Initialize the settings data.
 	 */
 	public SettingsData() {
-		screenHeight = 1280;
-		screenWidth = 720;
+		screenHeight = 800;
+		screenWidth = 600;
 		colourblindMode = false;
 		volumeLevel = 0;
 	}

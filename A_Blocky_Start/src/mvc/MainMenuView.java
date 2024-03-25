@@ -14,7 +14,7 @@ import javax.swing.*;
 public class MainMenuView {
 	
 	//size of this view
-	private Dimension viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	
 	// location of the aside panel
 	final Rectangle asidePanelBound = new Rectangle(600, 0, 200, 800);
