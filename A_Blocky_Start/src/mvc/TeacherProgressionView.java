@@ -58,7 +58,7 @@ public class TeacherProgressionView {
 		rootPanel.setLayout(null);
 		
 		//added go back button to prrogression
-		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
 		model = new SpinnerNumberModel(1, 0, 10, 1);
 		pageSelector = new JSpinner(model);
