@@ -65,7 +65,7 @@ public class GameplayView {
 	
 	//pause button
 	//currently a placeholder
-	private ButtonUI pauseButton = new ButtonUI(pauseButtonLocation, pauseButtonSize, "", IconsUI.backButtonIcon);
+	private ButtonUI pauseButton = new ButtonUI(pauseButtonLocation, pauseButtonSize, "", IconUI.backButtonIcon);
 	
 	//pauseMenu buttons
 	private ButtonUI resumeButton = new ButtonUI(pauseMenuButtonSize, "Resume");
