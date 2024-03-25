@@ -43,6 +43,7 @@ public class MainMenuView {
 	
 			
 	//Buttons declaration
+
 	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconUI.continueButtonIcon);
 	private ButtonUI newGamButton 	= new ButtonUI(ButtonSize, "", IconUI.newGameButtonIcon);
 	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconUI.tutorialButtonIcon);
@@ -50,6 +51,7 @@ public class MainMenuView {
 	private ButtonUI highScoreButton = new ButtonUI(ButtonSize, "", IconUI.highscoreButtonIcon);
 	private ButtonUI settingsButton	= new ButtonUI(ButtonSize, "", IconUI.settingsButtonIcon);
 	private ButtonUI exitButton		= new ButtonUI(ButtonSize, "", IconUI.exitButtonIcon);
+
 	
 	/**
 	 * Constructor for main menu

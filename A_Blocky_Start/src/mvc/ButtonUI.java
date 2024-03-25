@@ -1,4 +1,5 @@
 package mvc;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -39,7 +40,9 @@ public class ButtonUI extends JButton{
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
+
 		setIcon(IconUI.backButtonIcon);	//set image
+
 		setText(text);				//set text
 		
 		//aligns text
@@ -81,7 +84,9 @@ public class ButtonUI extends JButton{
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
+
 		setIcon(icon);	//set image
+
 		setText(text);				//set text
 		setIcon(icon);
 		
