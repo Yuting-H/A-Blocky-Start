@@ -2,6 +2,8 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.spi.AbstractResourceBundleProvider;
 
 /**
  * 
@@ -12,15 +14,20 @@ public class TeacherProgressionController implements Controller {
 
 	private Controller previousController;
 
-	private TeacherProgressionData data;
+	private ArrayList<UserData> userData;
+
+	private TeacherProgressionData teacherData;
 
 	/**
 	 * 
 	 */
 	public TeacherProgressionController() {
+
 		view = new TeacherProgressionView();
 
-		this.data = Main.loginController.getActiveUser();
+		userData = new ArrayList<UserData>();
+
+		teacherData = null;
 
 		view.insertPanelToFrame();
 
@@ -30,6 +37,16 @@ public class TeacherProgressionController implements Controller {
 	/**
 	 * 
 	 */
+
+	public void setUserData() {
+		teacherData = new TeacherProgressionData();
+
+		for (int i = 0; i < 10; i++) {
+			userData.add(teacherData.getUserData(i));
+		}
+
+	}
+
 	private void PopulateActionListener() {
 		view.backButtonAddActionListener(new ActionListener() {
 
