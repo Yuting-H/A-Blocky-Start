@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import mvc.HighScoreData;
 
+/**
+ * Unit test for HighScoreData.
+ * @version 1.0
+ * @since March 12, 2024
+ * @author Simon Mccabe
+ */
+
 class HighScoreDataTest {
 
 	private HighScoreData highScoreData;

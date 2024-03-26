@@ -5,14 +5,19 @@ import java.awt.event.ActionListener;
 
 /**
  * LoginController Contains LoginModel and LoginView
+ * @version 0.2
+ * @author Yuting
+ * @author Eunhak
  */
 public class LoginController implements Controller {
 
 	// the view
 	private static LoginView view = new LoginView();
-	
+	// the model
 	private static LoginData data = new LoginData();
-
+	
+	static final String TEACHERPassword = "GradeOurPorject100%";
+	static final String DEVELOPERPassword = "TooManyMergeConflicts!";
 	/**
 	 * Construtor
 	 */
@@ -37,17 +42,29 @@ public class LoginController implements Controller {
 				//check if username is empty
 				if (view.getUsername().isEmpty() || view.getUsername().isEmpty()) {
 					//notify user
-				}else {
 					
+				}else {
 					//if password == teacher password then enable teacher mode
+					if (view.getPassword() == TEACHERPassword) {
+//						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
+					}
+					//if password matches developer password enable developer mode
+					else if (view.getPassword() == DEVELOPERPassword) {
+						
+					}
+					// Student mode
+					else {
+						data.setUsernameInput(view.getUsername());
+						data.setPasswordInput(view.getPassword());
+						data.registerActiveUser();
+						data.loginActiveUser();
+					}
+					Main.loginController.OnExit();	
+					Main.mainMenuController.OnEnter();
+					//print login info
+					System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 					
 				}
-				
-				//put lines below in the above else bracked
-				Main.loginController.OnExit();	
-				Main.mainMenuController.OnEnter();
-				//print login info
-				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 			}
 		});
 	}
