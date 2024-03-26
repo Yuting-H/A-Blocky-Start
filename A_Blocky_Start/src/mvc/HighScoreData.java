@@ -55,15 +55,11 @@ public class HighScoreData {
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			String line;
 			
-			int counter = 0;
 			// Read each line
 			while ((line = reader.readLine()) != null) {
 				// Decode each line
 				String[] parts = line.split(",");
 				if (parts.length >= 2) {
-					
-					//System.out.println(counter);
-					counter++;
 					highScoreData.addNameScore(parts[0], Integer.parseInt(parts[1]));
 				}
 			}

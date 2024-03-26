@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import mvc.HighScoreData;
 
+/**
+ * Unit test for HighScoreData.
+ * @version 1.0
+ * @since March 12, 2024
+ * @author Simon Mccabe
+ */
+
 class HighScoreDataTest {
 
 	private HighScoreData highScoreData;
@@ -41,7 +48,7 @@ class HighScoreDataTest {
     @Test
     void testImportData() {
         HighScoreData highScoreData = HighScoreData.importData();
-        assertNotNull(highScoreData, "highScoreData should not be null after importing them.");
+        assertNotNull(highScoreData);
         assertEquals("BruceLee", highScoreData.getUsername(0)); 
         assertEquals(15, highScoreData.getHighScore(0));
     }

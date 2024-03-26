@@ -42,8 +42,11 @@ public class LoginData {
 	 */
 	public UserTypeEnum getMode() {
 		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
+			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
+			
 		} else if (usernameInput.equalsIgnoreCase(DEVELOPERUsername)) {
+			System.out.println("Developer mode");
 			return UserTypeEnum.DEVELOPER;
 		}
 			
@@ -92,6 +95,7 @@ public class LoginData {
 		
 		// Check user type
 		if (getMode() == UserTypeEnum.TEACHER) {
+			
 			return false; // cannot register a new TEACHER account
 		} else if (getMode() == UserTypeEnum.DEVELOPER) {
 			return false; // cannot register a new DEVELOPER account

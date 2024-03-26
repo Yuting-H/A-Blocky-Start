@@ -137,19 +137,23 @@ public class SettingsData {
 	}
 
 	/**
-	 * Mutate the screen height.
+	 * Mutate the screen height (if it is non-negative).
 	 * @param screenHeight Screen width
 	 */
 	public void setScreenHeight(int screenHeight) {
-		this.screenHeight = screenHeight;
+		if (screenHeight >= 0) {
+			this.screenHeight = screenHeight;
+		}
 	}
 
 	/**
-	 * Mutate the screen width.
+	 * Mutate the screen width (if it is non-negative).
 	 * @param screenWidth Screen width
 	 */
 	public void setScreenWidth(int screenWidth) {
-		this.screenWidth = screenWidth;
+		if (screenWidth >= 0) {
+			this.screenWidth = screenWidth;
+		}
 	}
 	
 	/**
@@ -161,10 +165,12 @@ public class SettingsData {
 	}
 
 	/**
-	 * Mutate the volume level.
+	 * Mutate the volume level (if it is non-negative).
 	 * @param volumeLevel Volume level
 	 */
 	public void setVolumeLevel(int volumeLevel) {
-		this.volumeLevel = volumeLevel;
+		if (volumeLevel >= 0) {
+			this.volumeLevel = volumeLevel;
+		}
 	}
 }
