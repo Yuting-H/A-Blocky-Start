@@ -95,6 +95,7 @@ public class LoginData {
 		
 		// Check user type
 		if (getMode() == UserTypeEnum.TEACHER) {
+			
 			return false; // cannot register a new TEACHER account
 		} else if (getMode() == UserTypeEnum.DEVELOPER) {
 			return false; // cannot register a new DEVELOPER account

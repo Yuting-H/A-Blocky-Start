@@ -44,6 +44,7 @@ public class HighScoreController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
+		
 	}
 
 	/**

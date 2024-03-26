@@ -42,6 +42,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
+		
+		
 		configureGameFrame();  //sets up the game's JFrame
 
 		UserData userData = UserData.importData("aliceliddell");
@@ -52,7 +54,9 @@ public class Main {
 	
 
 		studentProgressionController.setUserData(userData);
+
 		loginController.OnEnter();
+
 
 
 		
