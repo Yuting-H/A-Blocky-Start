@@ -54,11 +54,9 @@ public class Main {
 	
 
 		studentProgressionController.setUserData(userData);
-<<<<<<< HEAD
-		loginController.OnEnter(); // TODO
-=======
+
 		loginController.OnEnter();
->>>>>>> 0de89957b8590b81f191ed8774ea43e95298c58f
+
 
 
 		

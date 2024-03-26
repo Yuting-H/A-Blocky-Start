@@ -40,16 +40,10 @@ public class LoginController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				
 				//check if username is empty
-<<<<<<< HEAD
+
 				if (view.getUsername().isEmpty() ) {
 
 					//TODO: notify user their username is empty,  
-					
-				}else {
-=======
-				if (view.getUsername().isEmpty() || view.getUsername().isEmpty()) {
-					//notify user
->>>>>>> 0de89957b8590b81f191ed8774ea43e95298c58f
 					
 				}else {
 					//if password == teacher password then enable teacher mode
