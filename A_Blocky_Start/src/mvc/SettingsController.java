@@ -49,6 +49,17 @@ public class SettingsController implements Controller{
 	 */
 	private void updateSetting() {
 		//TODO: get colorblind settigs from view and store in data
+		String colourblindStr = view.getColourBlindSetting();
+		
+		if (colourblindStr.compareTo("On") == 0) {
+			data.setColourblindMode(true);
+		}		
+		
+		else {
+			data.setColourblindMode(false);
+		}
+		
+		
 	}
 	
 	/**

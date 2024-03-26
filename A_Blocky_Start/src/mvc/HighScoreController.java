@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class HighScoreController implements Controller{
 	
 	private static HighScoreView view = new HighScoreView();
-	
+	private static HighScoreData data;
 	/**
 	 * 
 	 */
@@ -44,7 +44,17 @@ public class HighScoreController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
-		
+		updateHighScore();
+	}
+	
+	private void updateHighScore() {
+		data = HighScoreData.importData();
+		//data.importData();
+		for(int i = 0; i < 5; i++) {
+			view.addHighscore(i, data.getUsername(i), data.getHighScore(i));
+		}
+		data.exportHighScore();
+
 	}
 
 	/**
@@ -52,6 +62,7 @@ public class HighScoreController implements Controller{
 	 */
 	@Override
 	public void OnExit() {
+		
 		view.setVisibility(false);
 	}
 }

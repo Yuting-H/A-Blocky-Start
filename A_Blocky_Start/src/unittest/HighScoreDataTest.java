@@ -48,7 +48,7 @@ class HighScoreDataTest {
     @Test
     void testImportData() {
         HighScoreData highScoreData = HighScoreData.importData();
-        assertNotNull(highScoreData, "highScoreData should not be null after importing them.");
+        assertNotNull(highScoreData);
         assertEquals("BruceLee", highScoreData.getUsername(0)); 
         assertEquals(15, highScoreData.getHighScore(0));
     }
