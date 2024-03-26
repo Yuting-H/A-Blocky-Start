@@ -20,8 +20,8 @@ public class GameplayControllerDemo implements Controller {
 	public static void main(String[] args) {
 		
 		testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		testFrame.setSize(new Dimension(850, 650));
-		testFrame.setResizable(true);
+		testFrame.setSize(new Dimension(0, 0));
+		testFrame.setResizable(false);
 		testFrame.setLayout(null);
 		testFrame.setVisible(true);
 		
@@ -137,6 +137,7 @@ public class GameplayControllerDemo implements Controller {
 	public void OnEnter() {
 		view.setVisibility(true);
 		view.setPauseMenuVisibility(false);
+		testFrame.setSize(new Dimension(815, 640));
 	}
 
 
@@ -144,6 +145,7 @@ public class GameplayControllerDemo implements Controller {
 	public void OnExit() {
 		view.setVisibility(false);
 		view.setPauseMenuVisibility(false);
+		testFrame.setSize(new Dimension(800, 600));
 	}
 
 }
