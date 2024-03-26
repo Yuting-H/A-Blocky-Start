@@ -44,7 +44,6 @@ public class HighScoreController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
-		//HighScoreData.importData();
 		updateHighScore();
 	}
 	
@@ -55,6 +54,7 @@ public class HighScoreController implements Controller{
 			view.addHighscore(i, data.getUsername(i), data.getHighScore(i));
 		}
 		data.exportHighScore();
+
 	}
 
 	/**

@@ -32,10 +32,14 @@ public class SettingsController implements Controller{
 		view.backButtonAddActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				Main.settingsController.OnExit();
 				Main.mainMenuController.OnEnter();
 				updateSetting();
 			}
+			
+			
 		});
 	}
 	
