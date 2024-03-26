@@ -42,6 +42,17 @@ public class LabelUI extends JLabel{
 		setHorizontalTextPosition(JLabel.CENTER);
 		setVerticalTextPosition(JLabel.CENTER);
 	}
+	
+	public LabelUI(Point location, Dimension size, Icon icon) {
+		
+		setVisible(true);
+		setLocation(location);
+		setSize(size);
+		setIcon(icon);
+		
+		setHorizontalTextPosition(JLabel.CENTER);
+		setVerticalTextPosition(JLabel.CENTER);
+	}
 
 	/**
 	 * @deprecated
