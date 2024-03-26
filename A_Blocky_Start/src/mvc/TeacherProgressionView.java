@@ -74,29 +74,6 @@ public class TeacherProgressionView {
 		rootPanel.add(pageSelector);
 	}
 
-	public void setEntry(int index, int stageID, boolean completed, int shortestSteps, int highScore, int timeSpent,
-			int attempts) {
-		PanelUI entry = entries.get(index);
-
-		entry.setLayout(new FlowLayout());
-
-		LabelUI stageIDUI = new LabelUI(labelSize, "" + stageID);
-		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
-		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
-		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
-		LabelUI timeSpentUI = new LabelUI(labelSize, "" + timeSpent);
-		LabelUI attemptsUI = new LabelUI(labelSize, "" + attempts);
-		ButtonUI playButton = new ButtonUI(labelSize, "Play");
-
-		entry.add(stageIDUI);
-		entry.add(completedUI);
-		entry.add(shortestStepsUI);
-		entry.add(highestScoreUI);
-		entry.add(timeSpentUI);
-		entry.add(attemptsUI);
-		entry.add(playButton);
-	}
-
 	/**
 	 * 
 	 */
