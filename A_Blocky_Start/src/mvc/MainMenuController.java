@@ -64,8 +64,17 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				Main.mainMenuController.OnExit();
-				Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
+				
+				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
+					Main.teacherProgressionController.OnEnter();
+				}else {
+					Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
+				}
+				
+				
+				
 			}
 		});
 		
