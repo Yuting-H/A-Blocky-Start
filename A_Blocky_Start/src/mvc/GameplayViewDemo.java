@@ -22,8 +22,8 @@ public class GameplayViewDemo {
 
 	// Gameplay screen panels
 	private PanelUI rootPanel;
-	private PanelUI actionChainArea;
-	private PanelUI actionBuffetArea;
+	private ScrollPaneUI actionChainArea;
+	private ScrollPaneUI actionBuffetArea;
 	private PanelUI mazeArea;
 	private PanelUI iconArea;
 	private PanelUI actionChainContent;
@@ -32,10 +32,6 @@ public class GameplayViewDemo {
 	// Pause menu panels
 	private PanelUI pauseMenuSideArea;
 	private ButtonUI pauseMenuDarkArea; // it is used as a panel to disable all buttons layered below it
-	
-	// Gameplay screen scroll panes
-	private ScrollPaneUI actionChainScrollPane;
-	private ScrollPaneUI actionBuffetScrollPane;
 	
 	// Gameplay screen buttons
 	private ButtonUI iconPauseMenuButton;
@@ -66,27 +62,18 @@ public class GameplayViewDemo {
 	 */
 	private void initPanel() {
 		// Initialize panels
-		rootPanel = new PanelUI(false, new Dimension(800, 600), new Point(0, 0), Color.BLACK);
-		actionChainArea = new PanelUI(true, new Dimension(300, 600), new Point(0, 0), Color.RED);
-		actionBuffetArea = new PanelUI(true, new Dimension(500, 150), new Point(300, 450), Color.ORANGE);
+		actionChainContent = new PanelUI(true, new Dimension(280, 600), new Point(0, 0), Color.GREEN);
+		actionChainContent.setLayout(new BoxLayout(actionChainContent, BoxLayout.Y_AXIS));
+		actionBuffetContent = new PanelUI(true, new Dimension(520, 150), new Point(280, 450), Color.GREEN);
+		actionBuffetContent.setLayout(new BoxLayout(actionBuffetContent, BoxLayout.X_AXIS));
+		
+		rootPanel = new PanelUI(false, new Dimension(800, 600), new Point(0, 0), Color.WHITE);
+		actionChainArea = new ScrollPaneUI(actionChainContent, 1, true, new Dimension(300, 600), new Point(0, 0));
+		actionBuffetArea = new ScrollPaneUI(actionBuffetContent, 0, true, new Dimension(500, 150), new Point(300, 450));
 		mazeArea = new PanelUI(true, new Dimension(450, 450), new Point(300, 0), Color.YELLOW);
 		iconArea = new PanelUI(true, new Dimension(100, 450), new Point(750, 0), Color.GREEN);
 		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
 		pauseMenuDarkArea = new ButtonUI(false, FRAME_SIZE, new Point(0, 0));
-		
-		// Initialize scroll panes
-		actionChainContent = new PanelUI(true, new Dimension(280, 600), new Point(0, 0), Color.GRAY);
-		actionChainContent.setLayout(new BoxLayout(actionChainContent, BoxLayout.Y_AXIS));
-		actionBuffetContent = new PanelUI(true, new Dimension(520, 150), new Point(280, 450), Color.LIGHT_GRAY);
-		actionBuffetContent.setLayout(new BoxLayout(actionBuffetContent, BoxLayout.X_AXIS));
-
-		actionChainScrollPane = new ScrollPaneUI(actionChainArea, 1);
-		//actionChainScrollPane.add(actionChainContent);
-		actionBuffetScrollPane = new ScrollPaneUI(actionBuffetArea, 0);
-		//actionBuffetScrollPane.add(actionBuffetContent);
-		
-		actionChainArea.add(actionChainScrollPane);
-		actionBuffetArea.add(actionBuffetScrollPane);
 		
 		// Panels that get added earlier are on top of later panels
 		rootPanel.add(pauseMenuSideArea);

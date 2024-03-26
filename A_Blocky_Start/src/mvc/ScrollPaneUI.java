@@ -15,24 +15,27 @@ public class ScrollPaneUI extends JScrollPane {
 	 * Creates an empty JScrollPane.<br>
 	 * Used by GameplayView.<br>
 	 * @param basePanel The JPanel that contains this JScrollPane
-	 * @param direction 0 = horizontal scroll bar, 1 = vertical scroll bar, 2 = both
+	 * @param scrollDirection 0 = horizontal scroll bar, 1 = vertical scroll bar, 2 = both
 	 */
-	public ScrollPaneUI(JPanel basePanel, int direction) {
-		if (direction == 0) {
+	public ScrollPaneUI(JPanel innerPanel, int scrollDirection, boolean visibility, Dimension dimension, Point position) {
+		super(innerPanel);
+		
+		if (scrollDirection == 0) {
 			setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 			setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_NEVER);
-		} else if (direction == 1) {
+		} else if (scrollDirection == 1) {
 			setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 			setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		} else {
 			setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 			setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		}
+		
 		setWheelScrollingEnabled(true);
-		setVisible(true);
-		setSize(basePanel.getSize());
-		setLocation(new Point(0, 0));
-		setBackground(basePanel.getBackground());
+		setVisible(visibility);
+		setSize(dimension);
+		setLocation(position);
+		setBackground(new Color(0, 0, 0, 0));
 	}
 	
 }
