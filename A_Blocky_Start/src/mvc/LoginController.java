@@ -5,14 +5,19 @@ import java.awt.event.ActionListener;
 
 /**
  * LoginController Contains LoginModel and LoginView
+ * @version 0.2
+ * @author Yuting
+ * @author Eunhak
  */
 public class LoginController implements Controller {
 
 	// the view
 	private static LoginView view = new LoginView();
-	
+	// the model
 	private static LoginData data = new LoginData();
-
+	
+	static final String TEACHERPassword = "GradeOurPorject100%";
+	static final String DEVELOPERPassword = "TooManyMergeConflicts!";
 	/**
 	 * Construtor
 	 */
@@ -35,21 +40,39 @@ public class LoginController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				
 				//check if username is empty
+<<<<<<< HEAD
 				if (view.getUsername().isEmpty() ) {
 
 					//TODO: notify user their username is empty,  
 					
 				}else {
+=======
+				if (view.getUsername().isEmpty() || view.getUsername().isEmpty()) {
+					//notify user
+>>>>>>> 0de89957b8590b81f191ed8774ea43e95298c58f
 					
+				}else {
 					//if password == teacher password then enable teacher mode
+					if (view.getPassword() == TEACHERPassword) {
+//						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
+					}
+					//if password matches developer password enable developer mode
+					else if (view.getPassword() == DEVELOPERPassword) {
+						
+					}
+					// Student mode
+					else {
+						data.setUsernameInput(view.getUsername());
+						data.setPasswordInput(view.getPassword());
+						data.registerActiveUser();
+						data.loginActiveUser();
+					}
+					Main.loginController.OnExit();	
+					Main.mainMenuController.OnEnter();
+					//print login info
+					System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 					
 				}
-				
-				//put lines below in the above else bracked
-				Main.loginController.OnExit();	
-				Main.mainMenuController.OnEnter();
-				//print login info
-				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 			}
 		});
 	}

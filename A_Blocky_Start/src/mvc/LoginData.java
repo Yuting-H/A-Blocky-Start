@@ -42,8 +42,11 @@ public class LoginData {
 	 */
 	public UserTypeEnum getMode() {
 		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
+			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
+			
 		} else if (usernameInput.equalsIgnoreCase(DEVELOPERUsername)) {
+			System.out.println("Developer mode");
 			return UserTypeEnum.DEVELOPER;
 		}
 			
