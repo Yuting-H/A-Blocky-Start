@@ -138,9 +138,15 @@ public class ButtonUI extends JButton{
 		setBorder(BorderFactory.createEmptyBorder());
 		setFocusable(false);
 		setVisible(visibility);
-		setLocation(position);
+		if (position != null) {
+			setLocation(position);
+		}
 		setSize(dimension);
-		setBounds(new Rectangle(position, dimension));
+		if (position != null) {
+			setBounds(new Rectangle(position, dimension));
+		} else {
+			setBounds(new Rectangle(new Point(0, 0), dimension));
+		}
 		setIcon(icon);
 	}
 	

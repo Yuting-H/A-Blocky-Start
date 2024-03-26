@@ -16,6 +16,7 @@ public class GameplayViewDemo {
 	
 	// Size of various buttons
 	private static final Dimension TEXT_BUTTON_SIZE = new Dimension(150, 40);
+	private static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
 	private static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
 	private static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
 	private static final Dimension FRAME_SIZE = new Dimension(800, 600); // TODO
@@ -41,6 +42,12 @@ public class GameplayViewDemo {
 	private ButtonUI iconObjectivesButton;
 	private ButtonUI iconHintsButton;
 	private ButtonUI iconTypeChainButton;
+	private ButtonUI addForwardButton;
+	private ButtonUI addBackButton;
+	private ButtonUI addLeftButton;
+	private ButtonUI addRightButton;
+	private ButtonUI addGotoButton;
+	private ButtonUI addLoopButton;
 	
 	// Pause menu buttons
 	private ButtonUI backButton;
@@ -61,27 +68,14 @@ public class GameplayViewDemo {
 	 * Help to initialize the root panel and all sub-panels.
 	 */
 	private void initPanel() {
-		// Initialize panels
-		actionChainContent = new PanelUI(true, new Dimension(280, 600), new Point(0, 0), Color.GREEN);
-		actionChainContent.setLayout(new BoxLayout(actionChainContent, BoxLayout.Y_AXIS));
-		actionBuffetContent = new PanelUI(true, new Dimension(520, 150), new Point(280, 450), Color.GREEN);
-		actionBuffetContent.setLayout(new BoxLayout(actionBuffetContent, BoxLayout.X_AXIS));
 		
-		rootPanel = new PanelUI(false, new Dimension(800, 600), new Point(0, 0), Color.WHITE);
-		actionChainArea = new ScrollPaneUI(actionChainContent, 1, true, new Dimension(300, 600), new Point(0, 0));
-		actionBuffetArea = new ScrollPaneUI(actionBuffetContent, 0, true, new Dimension(500, 150), new Point(300, 450));
-		mazeArea = new PanelUI(true, new Dimension(450, 450), new Point(300, 0), Color.YELLOW);
-		iconArea = new PanelUI(true, new Dimension(100, 450), new Point(750, 0), Color.GREEN);
-		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
-		pauseMenuDarkArea = new ButtonUI(false, FRAME_SIZE, new Point(0, 0));
-		
-		// Panels that get added earlier are on top of later panels
-		rootPanel.add(pauseMenuSideArea);
-		rootPanel.add(pauseMenuDarkArea);
-		rootPanel.add(actionChainArea);
-		rootPanel.add(actionBuffetArea);
-		rootPanel.add(mazeArea);
-		rootPanel.add(iconArea);
+		// Initialize action buffet buttons
+		addForwardButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addForwardButtonIcon);
+		addBackButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addBackButtonIcon);
+		addLeftButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addLeftButtonIcon);
+		addRightButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addRightButtonIcon);
+		addGotoButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addGotoButtonIcon);
+		addLoopButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addLoopButtonIcon);
 		
 		// Initialize icon panel buttons
 		iconPauseMenuButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 0), IconUI.pauseMenuButtonIcon);
@@ -92,6 +86,25 @@ public class GameplayViewDemo {
 		iconHintsButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 200), IconUI.hintsButtonIcon);
 		iconTypeChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 250), IconUI.typeChainButtonIcon);
 		
+		// Initialize panels
+		actionChainContent = new PanelUI(true, new Dimension(300, 2000), null, Color.GREEN);
+		actionChainContent.setLayout(new BoxLayout(actionChainContent, BoxLayout.Y_AXIS));
+		actionChainContent.add(new ActionBlockUI(1, ActionTypeEnum.LOOP, 3, 2, 1));
+		
+		actionBuffetContent = new PanelUI(true, new Dimension(2000, 150), null, Color.GREEN);
+		actionBuffetContent.setLayout(new BoxLayout(actionBuffetContent, BoxLayout.X_AXIS));
+		actionBuffetContent.add(addForwardButton);
+		actionBuffetContent.add(addBackButton);
+		actionBuffetContent.add(addLeftButton);
+		actionBuffetContent.add(addRightButton);
+		actionBuffetContent.add(addGotoButton);
+		actionBuffetContent.add(addLoopButton);
+		
+		rootPanel = new PanelUI(false, new Dimension(800, 600), new Point(0, 0), Color.WHITE);
+		actionChainArea = new ScrollPaneUI(actionChainContent, 1, true, new Dimension(300, 600), new Point(0, 0));
+		actionBuffetArea = new ScrollPaneUI(actionBuffetContent, 0, true, new Dimension(500, 150), new Point(300, 450));
+		mazeArea = new PanelUI(true, new Dimension(450, 450), new Point(300, 0), Color.YELLOW);
+		iconArea = new PanelUI(true, new Dimension(100, 450), new Point(750, 0), Color.GREEN);
 		iconArea.add(iconPauseMenuButton);
 		iconArea.add(iconRunChainButton);
 		iconArea.add(iconPauseChainButton);
@@ -99,6 +112,16 @@ public class GameplayViewDemo {
 		iconArea.add(iconObjectivesButton);
 		iconArea.add(iconHintsButton);
 		iconArea.add(iconTypeChainButton);
+		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
+		pauseMenuDarkArea = new ButtonUI(false, FRAME_SIZE, new Point(0, 0));
+		
+		// Panels that get added earlier are on top of later panels
+		rootPanel.add(pauseMenuSideArea);
+		rootPanel.add(pauseMenuDarkArea);
+		rootPanel.add(actionChainArea);
+		rootPanel.add(actionBuffetArea);
+		rootPanel.add(mazeArea);
+		rootPanel.add(iconArea);
 		
 		// Initialize pause menu buttons
 		backButton = new ButtonUI(true, BACK_BUTTON_SIZE, new Point(10, 10), IconUI.backButtonIcon);
@@ -139,6 +162,7 @@ public class GameplayViewDemo {
 		iconPauseChainButton.setVisible(!showRun);
 	}
 	
+	// Icon buttons
 	public void iconPauseMenuButton(ActionListener actionListener) {
 		iconPauseMenuButton.addActionListener(actionListener);;
 	}
@@ -167,6 +191,32 @@ public class GameplayViewDemo {
 		iconTypeChainButton.addActionListener(actionListener);
 	}
 	
+	// Action buffet buttons
+	public void addForwardButton(ActionListener actionListener) {
+		addForwardButton.addActionListener(actionListener);
+	}
+	
+	public void addBackButton(ActionListener actionListener) {
+		addBackButton.addActionListener(actionListener);
+	}
+	
+	public void addLeftButton(ActionListener actionListener) {
+		addLeftButton.addActionListener(actionListener);
+	}
+	
+	public void addRightButton(ActionListener actionListener) {
+		addRightButton.addActionListener(actionListener);
+	}
+	
+	public void addGotoButton(ActionListener actionListener) {
+		addGotoButton.addActionListener(actionListener);
+	}
+	
+	public void addLoopButton(ActionListener actionListener) {
+		addLoopButton.addActionListener(actionListener);
+	}
+	
+	// Pause menu buttons
 	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}

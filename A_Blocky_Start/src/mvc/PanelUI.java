@@ -80,8 +80,12 @@ public class PanelUI extends JPanel {
 	public PanelUI(boolean visibility, Dimension dimension, Point position, Color bgColor) {
 		setLayout(null);
 		setVisible(visibility);
-		setSize(dimension);
-		setLocation(position);
+		if (dimension != null) {
+			setSize(dimension);
+		}
+		if (position != null) {
+			setLocation(position);
+		}
 		setBackground(bgColor);
 	}
 

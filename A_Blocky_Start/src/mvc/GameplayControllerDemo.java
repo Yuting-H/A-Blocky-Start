@@ -43,6 +43,7 @@ public class GameplayControllerDemo implements Controller {
 	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
+		// Icon buttons
 		view.iconPauseMenuButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -95,6 +96,50 @@ public class GameplayControllerDemo implements Controller {
 			}
 		});
 		
+		// Action buffet buttons
+		view.addForwardButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addForwardButton"); // TODO
+			}
+		});
+		
+		view.addBackButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addBackButton"); // TODO
+			}
+		});
+		
+		view.addLeftButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addLeftButton"); // TODO
+			}
+		});
+		
+		view.addRightButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addRightButton"); // TODO
+			}
+		});
+		
+		view.addGotoButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addGotoButton"); // TODO
+			}
+		});
+		
+		view.addLoopButton(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("addLoopButton"); // TODO
+			}
+		});
+		
+		// Pause menu buttons
 		view.backButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

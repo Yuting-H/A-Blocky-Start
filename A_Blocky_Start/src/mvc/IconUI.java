@@ -111,4 +111,22 @@ public class IconUI {
 	// TODO missing sprite
 	public static ImageIcon typeChainButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
 	
+	// TODO missing sprite
+	public static ImageIcon addForwardButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
+	// TODO missing sprite
+	public static ImageIcon addBackButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
+	// TODO missing sprite
+	public static ImageIcon addLeftButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
+	// TODO missing sprite
+	public static ImageIcon addRightButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
+	// TODO missing sprite
+	public static ImageIcon addGotoButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
+	// TODO missing sprite
+	public static ImageIcon addLoopButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
+	
 }
