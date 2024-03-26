@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 /**
  * LoginController Contains LoginModel and LoginView
+ * @version 0.2
+ * @author Yuting
+ * @author Eunhak
  */
 public class LoginController implements Controller {
 
