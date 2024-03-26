@@ -25,7 +25,7 @@ public class TutorialView {
 	private Point backButtonLocation = new Point(10, 10);
 	
 	
-	private JPanel contentContainer = new ContainerUI(containerLocation, tutorialContainerSize, Color.white);
+	private JPanel contentContainer = new PanelUI(containerLocation, tutorialContainerSize, Color.white);
 	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	private JPanel rootPanel;

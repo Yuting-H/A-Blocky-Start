@@ -175,7 +175,7 @@ public class UserData {
 			for (int i = 0; i < progressionList.size(); ++i) {
 				ProgressionData pd = getProgressionAtIndex(i);
 				// Use the ProgressionData.exportData() method to generate encoded data string
-				writer.write(pd.exportData());
+				writer.write(pd.exportData() + "\n");
 			}
 			
 			writer.close();
