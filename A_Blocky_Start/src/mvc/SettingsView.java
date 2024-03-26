@@ -20,8 +20,8 @@ public class SettingsView {
 	
 	//define sizes
 	private Dimension backButtonSize = new Dimension(30,30);
-	private Dimension labelSize = new Dimension(120,20);
-	private Dimension comboBoxSize = new Dimension(130,30);
+	private Dimension labelSize = new Dimension(120,36);
+	private Dimension comboBoxSize = new Dimension(130,40);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
@@ -88,10 +88,9 @@ public class SettingsView {
 		volumeLevelSlider.setVisible(true);
 		volumeLevelSlider.setSize(comboBoxSize);
 		volumeLevelSlider.setLocation(volumeLevelSliderLocation);
-		volumeLevelSlider.setPaintTicks(true);
-		volumeLevelSlider.setMinorTickSpacing(25);
+		volumeLevelSlider.setPaintTrack(true);
 		volumeLevelSlider.setMajorTickSpacing(50);
-		volumeLevelSlider.setMinorTickSpacing(75);
+		volumeLevelSlider.setPaintLabels(true);
 		rootPanel.add(volumeLevelSlider);
 		
 		
