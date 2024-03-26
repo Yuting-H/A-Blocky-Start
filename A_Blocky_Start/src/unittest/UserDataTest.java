@@ -2,7 +2,9 @@ package unittest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
@@ -13,20 +15,11 @@ import mvc.UserTypeEnum;
 
 /**
  * Unit test for UserData.
- * @version 0.3
+ * @version 0.5
  * @since Mar 14, 2024
  * @author Eunhak Kim
  */
 class UserDataTest {
-
-	/**
-	 * Test method for {@link mvc.UserData#UserData(mvc.UserTypeEnum, java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	void testUserData() {
-		
-		fail("Not yet implemented"); // TODO
-	}
 
 	/**
 	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
@@ -34,7 +27,7 @@ class UserDataTest {
 	@Test
 	void testImportDataUserType() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getUserType(), UserTypeEnum.STUDENT);
+		assertEquals(UserTypeEnum.STUDENT, ud.getUserType());
 	}
 	
 	/**
@@ -43,7 +36,7 @@ class UserDataTest {
 	@Test
 	void testImportDataUsername() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getUsername(), "student");
+		assertEquals("student", ud.getUsername());
 	}
 	
 	/**
@@ -52,7 +45,7 @@ class UserDataTest {
 	@Test
 	void testImportDataPassword() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getPassword(), "pass1234");	
+		assertEquals("pass1234", ud.getPassword());	
 	}
 	
 	/**
@@ -61,7 +54,7 @@ class UserDataTest {
 	@Test
 	void testImportDataTotalScore() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getTotalScore(), 6);
+		assertEquals(6, ud.getTotalScore());
 	}
 	
 	/**
@@ -70,7 +63,7 @@ class UserDataTest {
 	@Test
 	void testImportDataTotalTimeSpent() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getTotalTimeSpent(), 70);
+		assertEquals(70, ud.getTotalTimeSpent());
 	}
 	
 	/**
@@ -79,7 +72,7 @@ class UserDataTest {
 	@Test
 	void testImportDataTotalAttempts() {
 		UserData ud = UserData.importData("student");
-		assertEquals(ud.getTotalAttempts(), 10);
+		assertEquals(10, ud.getTotalAttempts());
 	}
 	
 	/**
@@ -89,14 +82,15 @@ class UserDataTest {
 	void testImportDataProgression() {
 		UserData ud = UserData.importData("student");
 		int result = ud.getProgressionAtIndex(1).getTimeSpent();
-		assertEquals(result, 20);
+		assertEquals(20, result);
 	}
 
 	/**
 	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * @throws FileNotFoundException 
 	 */
 	@Test
-	void testExportUserData() {
+	void testExportUserDataFirstLine() throws FileNotFoundException {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
 		ud.addTotalScore(6);
 		ud.addTotalTimeSpent(70);
@@ -113,9 +107,85 @@ class UserDataTest {
 		ud.exportUserData();
 
 		String filename = UserData.toFilename("student");
-//		FileReader fileIn = new FileReader(filename);
-//		Scanner scnr = new Scanner(fileIn);
-//		scnr.useDelimiter(","); // since this is a CSV file
+		FileReader fileIn = new FileReader(filename);
+		Scanner scnr = new Scanner(fileIn);
+		String firstLine = "STUDENT,student,pass1234,6,70,10";
+		
+		assertEquals(firstLine, scnr.nextLine());
+		
+		scnr.close();
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * @throws FileNotFoundException 
+	 */
+	@Test
+	void testExportUserDataSecondLine() throws FileNotFoundException {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalScore(6);
+		ud.addTotalTimeSpent(70);
+		ud.addTotalAttempts(10);
+		
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		
+		ud.exportUserData();
+
+		String filename = UserData.toFilename("student");
+		FileReader fileIn = new FileReader(filename);
+		Scanner scnr = new Scanner(fileIn);
+		scnr.nextLine();
+		assertEquals(stage1, scnr.nextLine());
+		
+		scnr.close();
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * @throws FileNotFoundException 
+	 */
+	@Test
+	void testExportUserDataThirdLine() throws FileNotFoundException {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalScore(6);
+		ud.addTotalTimeSpent(70);
+		ud.addTotalAttempts(10);
+		
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		
+		ud.exportUserData();
+
+		String filename = UserData.toFilename("student");
+		FileReader fileIn = new FileReader(filename);
+		Scanner scnr = new Scanner(fileIn);
+		scnr.nextLine();
+		scnr.nextLine();
+
+		assertEquals(stage2, scnr.nextLine());
+		
+		scnr.close();
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * @throws Exception 
+	 */
+	@Test
+	void testExportUserDataNotStudent() {
+		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacher", "GradeUs100%");
+		assertThrows(Exception.class, ()->{ud.exportUserData();});
 	}
 
 	/**
@@ -124,7 +194,7 @@ class UserDataTest {
 	@Test
 	void testToFilename() {
 		String filename = "./userdata/student_userdata.csv";
-		assertEquals(UserData.toFilename("student"), filename);
+		assertEquals(filename, UserData.toFilename("student"));
 	}
 
 	/**
@@ -133,6 +203,7 @@ class UserDataTest {
 	@Test
 	void testGetUserType() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals(UserTypeEnum.STUDENT, ud.getUserType());
 	}
 
 	/**
@@ -141,6 +212,7 @@ class UserDataTest {
 	@Test
 	void testGetUsername() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals("student", ud.getUsername());
 	}
 
 	/**
@@ -149,6 +221,7 @@ class UserDataTest {
 	@Test
 	void testGetPassword() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals("pass1234", ud.getPassword());
 	}
 
 	/**
@@ -157,6 +230,7 @@ class UserDataTest {
 	@Test
 	void testGetTotalScore() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals(6, ud.getTotalScore());
 	}
 
 	/**
@@ -165,6 +239,7 @@ class UserDataTest {
 	@Test
 	void testGetTotalTimeSpent() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals(70, ud.getTotalTimeSpent());
 	}
 
 	/**
@@ -173,6 +248,7 @@ class UserDataTest {
 	@Test
 	void testGetTotalAttempts() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertEquals(10, ud.getTotalAttempts());
 	}
 
 	/**
@@ -181,14 +257,49 @@ class UserDataTest {
 	@Test
 	void testGetProgressionList() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ArrayList<ProgressionData> progList = new ArrayList<ProgressionData>();
+
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		progList.add(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		progList.add(pd);
+		
+		assertEquals(progList, ud.getProgressionList());
 	}
 
 	/**
 	 * Test method for {@link mvc.UserData#getProgressionAtIndex(int)}.
 	 */
 	@Test
-	void testGetProgressionAtIndex() {
+	void testGetProgressionAtIndex1() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ArrayList<ProgressionData> progList = new ArrayList<ProgressionData>();
+
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		progList.add(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		progList.add(pd);
+		
+		assertEquals(progList.get(1), ud.getProgressionAtIndex(1));
+	}
+	
+	/**
+	 * Test method for {@link mvc.UserData#getProgressionAtIndex(int)}.
+	 */
+	@Test
+	void testGetProgressionAtIndexNull() {
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertNull(ud.getProgressionAtIndex(-1));
 	}
 
 	/**
@@ -197,6 +308,8 @@ class UserDataTest {
 	@Test
 	void testAddTotalScore() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalScore(7);
+		assertEquals(7, ud.getTotalScore());
 	}
 
 	/**
@@ -204,23 +317,38 @@ class UserDataTest {
 	 */
 	@Test
 	void testAddTotalTimeSpent() {
-		fail("Not yet implemented"); // TODO
-	}
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalTimeSpent(100);
+		assertEquals(100, ud.getTotalTimeSpent());
+		}
 
 	/**
 	 * Test method for {@link mvc.UserData#addTotalAttempts(int)}.
 	 */
 	@Test
 	void testAddTotalAttempts() {
-		fail("Not yet implemented"); // TODO
-	}
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		ud.addTotalAttempts(3);
+		assertEquals(3, ud.getTotalAttempts());
+		}
 
 	/**
 	 * Test method for {@link mvc.UserData#updateTotalStats()}.
 	 */
 	@Test
 	void testUpdateTotalStats() {
-		fail("Not yet implemented"); // TODO
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+
+		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		ProgressionData pd = ProgressionData.importData(stage1);
+		ud.addProgressionData(pd);
+		
+		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		pd = ProgressionData.importData(stage2);
+		ud.addProgressionData(pd);
+		
+		ud.updateTotalStats();
+		assertEquals(10, ud.getTotalAttempts());
 	}
 
 	/**
@@ -228,7 +356,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testIsStudent() {
-		fail("Not yet implemented"); // TODO
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		assertTrue(ud.isSTUDENT());
 	}
 
 	/**
@@ -236,15 +365,17 @@ class UserDataTest {
 	 */
 	@Test
 	void testIsTeacher() {
-		fail("Not yet implemented"); // TODO
-	}
+		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacher", "pass1234");
+		assertTrue(ud.isTEACHER());
+		}
 
 	/**
 	 * Test method for {@link mvc.UserData#isDeveloper()}.
 	 */
 	@Test
 	void testIsDeveloper() {
-		fail("Not yet implemented"); // TODO
+		UserData ud = new UserData(UserTypeEnum.DEVELOPER, "developer", "pass1234");
+		assertTrue(ud.isDEVELOPER());
 	}
 
 }

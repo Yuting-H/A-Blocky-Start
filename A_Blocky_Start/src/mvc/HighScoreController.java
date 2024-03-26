@@ -39,7 +39,7 @@ public class HighScoreController implements Controller{
 	}
 	
 	/**
-	 * 
+	 * Is called when showing Highscore view
 	 */
 	@Override
 	public void OnEnter() {
@@ -47,7 +47,7 @@ public class HighScoreController implements Controller{
 	}
 
 	/**
-	 * 
+	 * Is called when exiting Highscore view
 	 */
 	@Override
 	public void OnExit() {
