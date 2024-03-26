@@ -32,7 +32,7 @@ public class ActionBlockData {
 		this.args = args;
 		this.counter = -1; // none value
 		
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			// loop (end - start) times
 			this.counter = args.get(0) - args.get(1);
 		}
@@ -52,8 +52,8 @@ public class ActionBlockData {
 		ActionTypeEnum type = ActionTypeEnum.fromString(dataList[0]);
 		
 		// Check type
-		if (type == ActionTypeEnum.Unknown) {
-			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
+		if (type == ActionTypeEnum.UNKNOWN) {
+			return new ActionBlockData(ActionTypeEnum.UNKNOWN, new ArrayList<Integer>());
 		}
 		
 		// Decode list of arguments
@@ -67,10 +67,10 @@ public class ActionBlockData {
 		}
 		
 		// Check number of arguments
-		if ((type == ActionTypeEnum.Goto) && (args.size() != 1)) {
-			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
-		} else if ((type == ActionTypeEnum.Loop) && (args.size() != 3)) {
-			return new ActionBlockData(ActionTypeEnum.Unknown, new ArrayList<Integer>());
+		if ((type == ActionTypeEnum.GOTO) && (args.size() != 1)) {
+			return new ActionBlockData(ActionTypeEnum.UNKNOWN, new ArrayList<Integer>());
+		} else if ((type == ActionTypeEnum.LOOP) && (args.size() != 3)) {
+			return new ActionBlockData(ActionTypeEnum.UNKNOWN, new ArrayList<Integer>());
 		}
 		
 		// Call constructor
@@ -119,7 +119,7 @@ public class ActionBlockData {
 	 * @return End point
 	 */
 	public int getEndPoint() {
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			return args.get(0);
 		}
 		
@@ -131,7 +131,7 @@ public class ActionBlockData {
 	 * @return Start point
 	 */
 	public int getStartPoint() {
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			return args.get(1);
 		}
 		
@@ -143,9 +143,9 @@ public class ActionBlockData {
 	 * @return Line number for jump
 	 */
 	public int getJumpLine() {
-		if (type == ActionTypeEnum.Goto) {
+		if (type == ActionTypeEnum.GOTO) {
 			return args.get(0);
-		} else if (type == ActionTypeEnum.Loop) {
+		} else if (type == ActionTypeEnum.LOOP) {
 			return args.get(2);
 		}
 		
@@ -157,7 +157,7 @@ public class ActionBlockData {
 	 * @return Internal counter
 	 */
 	public int getCounter() {
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			return counter;
 		}
 		
@@ -168,7 +168,7 @@ public class ActionBlockData {
 	 * Decrement internal counter by 1.
 	 */
 	public void decCounter() {
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			--counter;
 		}
 	}
@@ -177,21 +177,20 @@ public class ActionBlockData {
 	 * Reset internal counter.
 	 */
 	public void resetCounter() {
-		if (type == ActionTypeEnum.Loop) {
+		if (type == ActionTypeEnum.LOOP) {
 			// loop (end - start) times
 			counter = args.get(0) - args.get(1);
 		}
 	}
 	
 	/**
-	 * TODO: missing test cases
 	 * Check if this instruction is a jump, i.e. "Goto" or "Loop" block.
 	 * @return True if the action block needs to jump, false otherwise
 	 */
 	public boolean isJump() {
-		if (type == ActionTypeEnum.Goto) {
+		if (type == ActionTypeEnum.GOTO) {
 			return true;
-		} else if ((type == ActionTypeEnum.Loop) && (counter == 0)) {
+		} else if ((type == ActionTypeEnum.LOOP) && (counter == 0)) {
 			return true; // "Loop" is finished
 		}
 		

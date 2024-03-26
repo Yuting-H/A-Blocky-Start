@@ -17,7 +17,7 @@ import javax.swing.event.ChangeListener;
  */
 public class TeacherProgressionView {
 	
-	private Dimension viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 490);
 	private Dimension entryContainerSize = new Dimension(500, 100);
@@ -32,7 +32,7 @@ public class TeacherProgressionView {
 	//define UI
 	private JPanel rootPanel;
 	private ButtonUI backButton;
-	private ContainerUI container;
+	private PanelUI container;
 	private JScrollPane scrollPane;
 	
 	private SpinnerNumberModel model;
@@ -58,7 +58,7 @@ public class TeacherProgressionView {
 		rootPanel.setLayout(null);
 		
 		//added go back button to prrogression
-		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
 		model = new SpinnerNumberModel(1, 0, 10, 1);
 		pageSelector = new JSpinner(model);

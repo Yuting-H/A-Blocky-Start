@@ -8,5 +8,25 @@ package mvc;
  * @author Chun Ho Chan
  */
 public enum UserTypeEnum {
-	Student, Teacher, Developer;
+	STUDENT, TEACHER, DEVELOPER;
+	
+	/**
+	 * Convert encoded string to an enumerator.
+	 * @param data Encoded data string
+	 * @return Enumerator of actions
+	 */
+	public static UserTypeEnum fromString(String data) {
+		// Remove whitespace
+		data = data.strip().toUpperCase();
+		
+		// Check data of action
+		if (data.equals("TEACHER")) {
+			return TEACHER;
+		} else if (data.equals("DEVELOPER")) {
+			return DEVELOPER;
+		}
+		
+		// Invalid encoded string
+		return STUDENT;
+	}
 }

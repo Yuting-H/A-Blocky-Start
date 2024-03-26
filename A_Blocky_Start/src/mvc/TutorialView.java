@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class TutorialView {
 	
-	private Dimension viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	
 	/** Contains all the tutorial prompts*/
 	private Dimension tutorialContainerSize = new Dimension(800, 500);
@@ -25,8 +25,8 @@ public class TutorialView {
 	private Point backButtonLocation = new Point(10, 10);
 	
 	
-	private JPanel contentContainer = new ContainerUI(containerLocation, tutorialContainerSize, Color.white);
-	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconsUI.backButtonIcon);
+	private JPanel contentContainer = new PanelUI(containerLocation, tutorialContainerSize, Color.white);
+	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	private JPanel rootPanel;
 	

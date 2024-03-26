@@ -43,6 +43,10 @@ public class HighScoreData {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static HighScoreData importData() {
 		// Call constructor
 		HighScoreData highScoreData = new HighScoreData();

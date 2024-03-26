@@ -1,4 +1,5 @@
 package mvc;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -39,7 +40,9 @@ public class ButtonUI extends JButton{
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
-		setIcon(IconsUI.buttonIcon);	//set image
+
+		setIcon(IconUI.backButtonIcon);	//set image
+
 		setText(text);				//set text
 		
 		//aligns text
@@ -53,12 +56,37 @@ public class ButtonUI extends JButton{
 		
 	}
 	
+	/**
+	 * Creates a new button without a location
+	 * @param size
+	 * @param text
+	 * @param icon
+	 */
+	ButtonUI(Dimension size, String text, Icon icon){
+		setVisible(true);			//make button visible
+		setSize(size);
+		setIcon(icon);	//set image
+		setText(text);				//set text
+		setIcon(icon);
+		
+		//aligns text
+		setHorizontalTextPosition(JButton.CENTER);
+		setVerticalTextPosition(JButton.CENTER);
+		
+		//remove default background
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorder(BorderFactory.createEmptyBorder());
+	}
+	
 	ButtonUI(Point location, Dimension size, String text, Icon icon) {
 		
 		setVisible(true);			//make button visible
 		setLocation(location);			//set size and location
 		setSize(size);
-		setIcon(IconsUI.buttonIcon);	//set image
+
+		setIcon(icon);	//set image
+
 		setText(text);				//set text
 		setIcon(icon);
 		
@@ -98,7 +126,41 @@ public class ButtonUI extends JButton{
 		
 	}
 	
+	/**
+	 * Construct a transparent JButton that only has an icon.
+	 * @param visibility Visibility
+	 * @param dimension Dimension
+	 * @param position Position, can be null
+	 * @param icon Icon
+	 */
+	public ButtonUI(boolean visibility, Dimension dimension, Point position, Icon icon) {
+		setContentAreaFilled(false);
+		setBorder(BorderFactory.createEmptyBorder());
+		setFocusable(false);
+		setVisible(visibility);
+		setLocation(position);
+		setSize(dimension);
+		setBounds(new Rectangle(position, dimension));
+		setIcon(icon);
+	}
 	
-	
+	/**
+	 * Construct a dark, semi-transparent JButton that has no output.<br>
+	 * Used as an overlay in pause menu to blocks input to all buttons layered underneath it.<be>
+	 * @param active Active
+	 * @param dimension Dimension
+	 * @param position Position, can be null
+	 */
+	public ButtonUI(boolean active, Dimension dimension, Point position) {
+		setContentAreaFilled(true);
+		setBackground(new Color(0, 0, 0, 150));
+		setBorder(BorderFactory.createEmptyBorder());
+		setFocusable(false);
+		setEnabled(active);
+		setVisible(active);
+		setLocation(position);
+		setSize(dimension);
+		setBounds(new Rectangle(position, dimension));
+	}
 	
 }

@@ -12,12 +12,16 @@ import java.util.Scanner;
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version 1.0
+ * @version 1.2.2
  * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
  */
 public class UserData {
+	/**
+	 * Filename prefix of user data files
+	 */
+	public static final String filenamePrefix = "./userdata/";
 	/**
 	 * Filename suffix of user data files
 	 */
@@ -92,17 +96,21 @@ public class UserData {
 			int totalAttempts = scnr.nextInt();
 			
 			// Call constructor
-			UserData userData = new UserData(UserTypeEnum.valueOf(usertype), username, password);
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
 			
 			// Add the rest of the attributes
 			userData.addTotalScore(totalScore);
 			userData.addTotalTimeSpent(totalTimeSpent);
 			userData.addTotalAttempts(totalAttempts);
 			
+			// Clear the extra commas in the first line
+			scnr.nextLine();
+			
 			// Add each stage separately
 			while (scnr.hasNextLine()) {
 			    // Read each line and feed it to the ProgressionData.importData() method
 				ProgressionData importData = ProgressionData.importData(scnr.nextLine());
+				
 				// Then add the newly created ProgressionData object to the list
 			    userData.addProgressionData(importData);
 			}
@@ -127,8 +135,13 @@ public class UserData {
 	 * "..."<br>
 	 */
 	public void exportUserData() {
-		
+	
 		try {
+			// exception for teachers and developers
+			if (userType != UserTypeEnum.STUDENT) {
+				throw new Exception("User data cannot be exported for teachers and developers");
+			}
+
 			String filename = toFilename(username);
 			
 			File fileOut = new File(filename);
@@ -162,13 +175,14 @@ public class UserData {
 			for (int i = 0; i < progressionList.size(); ++i) {
 				ProgressionData pd = getProgressionAtIndex(i);
 				// Use the ProgressionData.exportData() method to generate encoded data string
-				writer.write(pd.exportData());
+				writer.write(pd.exportData() + "\n");
 			}
 			
 			writer.close();
 
 		} catch (IOException e) {
-			e.printStackTrace(); // TODO: remove this later
+			System.out.println("Bad input");
+		} catch (Exception e) {
 			Main.errorLogController.addError(e);
 		}
 	}
@@ -178,7 +192,7 @@ public class UserData {
 	 * @return Filename of user data file
 	 */
 	public static String toFilename(String username) {
-		return username.toLowerCase() + filenameSuffix;
+		return filenamePrefix + username.toLowerCase() + filenameSuffix;
 	}
 
 	/**
@@ -298,32 +312,32 @@ public class UserData {
 	 * Adds a single progression data to the list.
 	 * @param importData the ProgressionData to add
 	 */
-	private void addProgressionData(ProgressionData progression) {
+	public void addProgressionData(ProgressionData progression) {
 		progressionList.add(progression);
 	}
 	
 	/**
-	 * Check whether the user is a student.
-	 * @return True if user is a student, false otherwise
+	 * Check whether the user is a STUDENT.
+	 * @return True if user is a STUDENT, false otherwise
 	 */
-	public boolean isStudent() {
-		return userType == UserTypeEnum.Student;
+	public boolean isSTUDENT() {
+		return userType == UserTypeEnum.STUDENT;
 	}
 	
 	/**
-	 * Check whether the user is a teacher.
-	 * @return True if user is a teacher, false otherwise
+	 * Check whether the user is a TEACHER.
+	 * @return True if user is a TEACHER, false otherwise
 	 */
-	public boolean isTeacher() {
-		return userType == UserTypeEnum.Teacher;
+	public boolean isTEACHER() {
+		return userType == UserTypeEnum.TEACHER;
 	}
 	
 	/**
-	 * Check whether the user is a developer.
-	 * @return True if user is a developer, false otherwise
+	 * Check whether the user is a DEVELOPER.
+	 * @return True if user is a DEVELOPER, false otherwise
 	 */
-	public boolean isDeveloper() {
-		return userType == UserTypeEnum.Developer;
+	public boolean isDEVELOPER() {
+		return userType == UserTypeEnum.DEVELOPER;
 	}
 	
 }

@@ -1,7 +1,7 @@
 package mvc;
 
 /**
- * 
+ * @deprecated
  */
 public class ExampleMainMenuController implements Controller{
 	

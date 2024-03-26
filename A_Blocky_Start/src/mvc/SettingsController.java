@@ -11,6 +11,8 @@ public class SettingsController implements Controller{
 	
 	private static SettingsView view = new SettingsView();
 	
+	private static SettingsData data = new SettingsData();
+	
 	/**
 	 * 
 	 */
@@ -21,15 +23,28 @@ public class SettingsController implements Controller{
 		populateActionListener();
 	}
 	
+	/**
+	 * 
+	 */
 	private void populateActionListener() {
+		
+		//when back button is pressed
 		view.backButtonAddActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.settingsController.OnExit();
 				Main.mainMenuController.OnEnter();
+				updateSetting();
 			}
 		});
+	}
+	
+	/**
+	 * This function updates setting data 
+	 * @author Simon
+	 */
+	private void updateSetting() {
+		//TODO: get colorblind settigs from view and store in data
 	}
 	
 	/**
@@ -48,5 +63,11 @@ public class SettingsController implements Controller{
 		view.setVisibility(false);
 	}
 	
+	/**
+	 * get the dimension from the data
+	 */
+	public Dimension getDimension() {
+		return new Dimension(data.getScreenHeight(), data.getScreenWidth());
+	}
 
 }

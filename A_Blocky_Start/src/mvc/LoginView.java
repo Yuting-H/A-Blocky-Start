@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class LoginView {
 	
 	//declaring bounds for components for this panel
-	Dimension 	viewSize = new Dimension(800, 600);
+	private Dimension viewSize = Main.getDimension();
 	
 	//root panel
 	private static JPanel rootpanel;
@@ -26,7 +26,8 @@ public class LoginView {
 	private Point usernameTextFieldLocation	= new Point(400, 100);
 	private Point passwordLabelLocation 	= new Point(200, 200);
 	private Point passwordTextFieldLocation = new Point(400, 200);
-	private Point loginButtonLocation 		= new Point(350, 300);
+	private Point loginButtonLocation 		= new Point(450, 300);
+	private Point registerButtonLocation	= new Point(250, 300);
 	
 	//declaring size of UI elements
 	private Dimension labelSize 		= new Dimension(100,20);
@@ -39,6 +40,7 @@ public class LoginView {
 	LabelUI			passwordFieldLabel	= new LabelUI(passwordLabelLocation, labelSize, "Password:");
 	TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
 	ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
+	ButtonUI 		registerButton 		= new ButtonUI(registerButtonLocation, loginButtonSize, "Register");
 	
 	/**
 	 * Creates the view instance
@@ -92,6 +94,13 @@ public class LoginView {
 	 */
 	public void loginButtonAddAction(ActionListener actionListener) {
 		loginButton.addActionListener(actionListener);
+	}
+	
+	/**
+	 * 
+	 */
+	public void registerButtonAddAction(ActionListener actionListener) {
+		registerButton.addActionListener(actionListener);
 	}
 	
 	/**

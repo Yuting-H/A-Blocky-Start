@@ -9,26 +9,35 @@ import java.awt.event.ActionListener;
 public class StudentProgressionController implements Controller{
 	
 	/** The view*/
-	private StudentProgressionView view = new StudentProgressionView();
+	private StudentProgressionView view;
 	
 	private Controller previousController;
 	
-	private StudentProgressionData[] studentProgressionDatas = new StudentProgressionData[10];
+	private StudentProgressionData data;
 	
 	/**
-	 * 
+	 * Constructor for this class
 	 */
 	public StudentProgressionController() {
+		
+		//create view which stores UI elements
+		view = new StudentProgressionView();
+		
+		this.data = null;
+		
+		//insert view to game frame
 		view.insertPanelToFrame();
 		
+		//adds functionality to UI elements
 		PopulateActionListener();
 	}
 	
 	/**
-	 * 
+	 * Adds action listener to UI elements
 	 */
 	private void PopulateActionListener() {
 		
+		//when back button is pressed, return to previous screen
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -38,6 +47,33 @@ public class StudentProgressionController implements Controller{
 			}
 		});
 		
+	}
+	
+	/**
+	 * 
+	 * @param userData
+	 */
+	public void setUserData(UserData userData) {
+		this.data = new StudentProgressionData(userData);
+		ProgressionData progressionData;
+		for (int i = 0; i < 10; i++) {
+			
+			progressionData = data.getProgression(i);
+
+			if (progressionData == null) {
+				break;
+			}
+			
+			view.setEntry(
+					i,
+					progressionData.getStageID(),
+					progressionData.getCompleted(),
+					progressionData.getShortestSteps(),
+					progressionData.getHighestScore(), 
+					progressionData.getTimeSpent(), 
+					progressionData.getAttempts()
+				);
+		}
 	}
 	
 	/**
