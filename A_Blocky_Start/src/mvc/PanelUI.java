@@ -6,6 +6,7 @@ import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -54,16 +55,15 @@ public class PanelUI extends JPanel {
 	}
 	
 	/**
-	 * Construct a default JPanel without any hidden default parameters.<br>
+	 * Construct a default JPanel without any LayoutManager.<br>
 	 * Used by GameplayView.<br>
-	 * @param layout Layout manager
 	 * @param visibility Visibility
 	 * @param dimension Dimension
 	 * @param position Position
 	 * @param bgColor Background color
 	 */
-	public PanelUI(LayoutManager layout, boolean visibility, Dimension dimension, Point position, Color bgColor) {
-		setLayout(layout);
+	public PanelUI(boolean visibility, Dimension dimension, Point position, Color bgColor) {
+		setLayout(null);
 		setVisible(visibility);
 		setSize(dimension);
 		setLocation(position);
