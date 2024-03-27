@@ -100,6 +100,7 @@ public class SettingsView {
 		//resolution combobox label
 		rootPanel.add(resolutionLabel);
 		
+		//re
 		rootPanel.add(volumeLevelLabel);
 		
 		//back button
@@ -128,6 +129,14 @@ public class SettingsView {
 	 */
 	public String getResolutionSetting() {
 		return (String) resolutionComboBox.getSelectedItem();
+	}
+	
+	/**
+	 * 
+	 * @return the selected level in volume level slider
+	 */
+	public int getVolumeLevelSetting() {
+		return volumeLevelSlider.getValue();
 	}
 	
 	/**
