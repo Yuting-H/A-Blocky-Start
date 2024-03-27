@@ -2,12 +2,13 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
- * LoginController Contains LoginModel and LoginView
+ * LoginController controls LoginData and LoginView
  * @version 0.2
- * @author Yuting
- * @author Eunhak
+ * @author Yuting Hou
+ * @author Eunhak Kim
  */
 public class LoginController implements Controller {
 
@@ -39,28 +40,26 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
-				//check if username is empty
-
-				if (view.getUsername().isEmpty() ) {
-
-					//TODO: notify user their username is empty,  
+				//check if username is acceptable
+				if (!(data.setUsernameInput(view.getUsername()))) {
+					System.out.println("Enter username");
+				}
+				//check if password is acceptable
+				if (!(data.setPasswordInput(view.getPassword()))) {
+					System.out.println("Enter password");
+				}
+				else {
+					//register if new user, then logs in with the provided username and password
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					if (data.registerActiveUser()) {
+						System.out.println("New user registered");
+					}
 					
-				}else {
-					//if password == teacher password then enable teacher mode
-					if (view.getPassword() == TEACHERPassword) {
-//						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
+					if (!data.loginActiveUser()) {
+						System.out.println("Login failed");
 					}
-					//if password matches developer password enable developer mode
-					else if (view.getPassword() == DEVELOPERPassword) {
-						
-					}
-					// Student mode
-					else {
-						data.setUsernameInput(view.getUsername());
-						data.setPasswordInput(view.getPassword());
-						data.registerActiveUser();
-						data.loginActiveUser();
-					}
+					
 					Main.loginController.OnExit();	
 					Main.mainMenuController.OnEnter();
 					//print login info
@@ -72,7 +71,7 @@ public class LoginController implements Controller {
 	}
 	
 	/**
-	 * 
+	 * Access the game mode
 	 * @return the mode of the game
 	 */
 	public UserTypeEnum getMode() {
@@ -80,14 +79,14 @@ public class LoginController implements Controller {
 	}
 
 	/**
-	 * 
+	 * Show the screen
 	 */
 	public void OnEnter() {
 		view.setVisible(true);
 	}
 
 	/**
-	 * 
+	 * Close the screen
 	 */
 	public void OnExit() {
 		view.setVisible(false);

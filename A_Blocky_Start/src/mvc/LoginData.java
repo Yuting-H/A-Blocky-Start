@@ -95,7 +95,6 @@ public class LoginData {
 		
 		// Check user type
 		if (getMode() == UserTypeEnum.TEACHER) {
-			
 			return false; // cannot register a new TEACHER account
 		} else if (getMode() == UserTypeEnum.DEVELOPER) {
 			return false; // cannot register a new DEVELOPER account
@@ -113,19 +112,15 @@ public class LoginData {
 	 * @return True if successful, false if account does not exist or incorrect password
 	 */
 	public boolean loginActiveUser() {
-		// Check if file exists
+		
+		// Try opening the user data file
+		UserData userData = UserData.importData(usernameInput);
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}
 		
-		// Try opening the user data file
-		UserData userData = UserData.importData(usernameInput);
-		if (userData == null) {
-			return false; // file does not exist
-		}
-		
 		// Verify password
-		if (!userData.getPassword().equals(passwordInput)) {
+		if (!(userData.getPassword().equals(passwordInput))) {
 			return false; // incorrect password
 		}
 		
@@ -141,7 +136,7 @@ public class LoginData {
 	 * @return True if only contains letters and digits
 	 */
 	private boolean isAcceptableUsername(String username) {
-		if (usernameInput.matches("[a-zA-Z0-9]+")) {
+		if (username.matches("[a-zA-Z0-9]+")) {
 			return true;
 		}
 		return false;
@@ -151,8 +146,8 @@ public class LoginData {
 	 * Help to check if the password is acceptable. 
 	 * @return True if the password is not empty, false otherwise
 	 */
-	private boolean isAcceptablePassword(String username) {
-		if (passwordInput.length() > 0) {
+	private boolean isAcceptablePassword(String password) {
+		if (password.length() > 0) {
 			return true;
 		}
 		
