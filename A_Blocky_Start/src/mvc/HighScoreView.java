@@ -104,7 +104,7 @@ public class HighScoreView{
 	
 	/**
 	 * Adds a highscore to 
-	 * @param index 1 to 5, 0 being at the top
+	 * @param index 0 to 4, 0 being at the top
 	 * @param name the player's name
 	 * @param score the highscore entry
 	 */

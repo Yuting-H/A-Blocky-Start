@@ -165,6 +165,53 @@ public class ActionBlockData {
 	}
 	
 	/**
+	 * Mutate end point of loop.
+	 * @param endPoint End point
+	 * @return True if successful, false otherwise.
+	 */
+	public boolean setEndPoint(int endPoint) {
+		if (type == ActionTypeEnum.LOOP) {
+			args.set(0, endPoint);
+			resetCounter();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Mutate start point of loop.
+	 * @param startPoint Start point
+	 * @return True if successful, false otherwise.
+	 */
+	public boolean setStartPoint(int startPoint) {
+		if (type == ActionTypeEnum.LOOP) {
+			args.set(1, startPoint);
+			resetCounter();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Mutate line number for jump.
+	 * @param jumpLine Jump Line
+	 * @return True if successful, false otherwise.
+	 */
+	public boolean setJumpLine(int jumpLine) {
+		if (type == ActionTypeEnum.GOTO) {
+			args.set(0, jumpLine);
+			return true;
+		} else if (type == ActionTypeEnum.LOOP) {
+			args.set(2, jumpLine);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Decrement internal counter by 1.
 	 */
 	public void decCounter() {
