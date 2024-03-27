@@ -70,11 +70,11 @@ public class PanelUI extends JPanel {
 	}
 	
 	/**
-	 * Construct a default JPanel without any hidden default parameters.<br>
+	 * Construct a default JPanel without any layout manager.<br>
 	 * Used by GameplayView.<br>
 	 * @param visibility Visibility
-	 * @param dimension Dimension
-	 * @param position Position
+	 * @param dimension Dimension, can be null
+	 * @param position Position, can be null
 	 * @param bgColor Background color
 	 */
 	public PanelUI(boolean visibility, Dimension dimension, Point position, Color bgColor) {

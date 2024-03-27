@@ -109,7 +109,7 @@ public class IconUI {
 	public static ImageIcon hintsButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
 	
 	// TODO missing sprite
-	public static ImageIcon typeChainButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
+	public static ImageIcon debugChainButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
 	
 	// TODO missing sprite
 	public static ImageIcon addForwardButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130

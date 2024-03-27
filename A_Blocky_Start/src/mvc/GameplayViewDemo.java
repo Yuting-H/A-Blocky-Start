@@ -3,14 +3,11 @@ package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.ScrollPane;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 public class GameplayViewDemo {
 	
@@ -20,6 +17,9 @@ public class GameplayViewDemo {
 	private static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
 	private static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
 	private static final Dimension FRAME_SIZE = new Dimension(800, 600); // TODO
+	
+	// Action block UI
+	private ArrayList<ActionBlockUI> actionBlockUIList;
 
 	// Gameplay screen panels
 	private PanelUI rootPanel;
@@ -27,7 +27,7 @@ public class GameplayViewDemo {
 	private ScrollPaneUI actionBuffetArea;
 	private PanelUI mazeArea;
 	private PanelUI iconArea;
-	private PanelUI actionChainContent;
+	private LayeredPaneUI actionChainContent;
 	private PanelUI actionBuffetContent;
 	
 	// Pause menu panels
@@ -35,13 +35,13 @@ public class GameplayViewDemo {
 	private ButtonUI pauseMenuDarkArea; // it is used as a panel to disable all buttons layered below it
 	
 	// Gameplay screen buttons
-	private ButtonUI iconPauseMenuButton;
-	private ButtonUI iconRunChainButton;
-	private ButtonUI iconPauseChainButton;
-	private ButtonUI iconResetChainButton;
-	private ButtonUI iconObjectivesButton;
-	private ButtonUI iconHintsButton;
-	private ButtonUI iconTypeChainButton;
+	private ButtonUI pauseMenuButton;
+	private ButtonUI runChainButton;
+	private ButtonUI pauseChainButton;
+	private ButtonUI resetChainButton;
+	private ButtonUI objectivesButton;
+	private ButtonUI hintsButton;
+	private ButtonUI debugChainButton;
 	private ButtonUI addForwardButton;
 	private ButtonUI addBackButton;
 	private ButtonUI addLeftButton;
@@ -69,6 +69,9 @@ public class GameplayViewDemo {
 	 */
 	private void initPanel() {
 		
+		// Initialize list of action block UI
+		actionBlockUIList = new ArrayList<ActionBlockUI>();
+		
 		// Initialize action buffet buttons
 		addForwardButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addForwardButtonIcon);
 		addBackButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addBackButtonIcon);
@@ -78,20 +81,19 @@ public class GameplayViewDemo {
 		addLoopButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addLoopButtonIcon);
 		
 		// Initialize icon panel buttons
-		iconPauseMenuButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 0), IconUI.pauseMenuButtonIcon);
-		iconRunChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.runChainButtonIcon);
-		iconPauseChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.pauseChainButtonIcon);
-		iconResetChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 100), IconUI.resetChainuttonIcon);
-		iconObjectivesButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 150), IconUI.objectivesButtonIcon);
-		iconHintsButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 200), IconUI.hintsButtonIcon);
-		iconTypeChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 250), IconUI.typeChainButtonIcon);
+		pauseMenuButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 0), IconUI.pauseMenuButtonIcon);
+		runChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.runChainButtonIcon);
+		pauseChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.pauseChainButtonIcon);
+		resetChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 100), IconUI.resetChainuttonIcon);
+		objectivesButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 150), IconUI.objectivesButtonIcon);
+		hintsButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 200), IconUI.hintsButtonIcon);
+		debugChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 250), IconUI.debugChainButtonIcon);
 		
 		// Initialize panels
-		actionChainContent = new PanelUI(true, new Dimension(300, 2000), null, Color.GREEN);
+		actionChainContent = new LayeredPaneUI(true, new Dimension(300, 10000), null, Color.GREEN);
 		actionChainContent.setLayout(new BoxLayout(actionChainContent, BoxLayout.Y_AXIS));
-		actionChainContent.add(new ActionBlockUI(1, ActionTypeEnum.LOOP, 3, 2, 1));
 		
-		actionBuffetContent = new PanelUI(true, new Dimension(2000, 150), null, Color.GREEN);
+		actionBuffetContent = new PanelUI(true, new Dimension(10000, 150), null, Color.GREEN);
 		actionBuffetContent.setLayout(new BoxLayout(actionBuffetContent, BoxLayout.X_AXIS));
 		actionBuffetContent.add(addForwardButton);
 		actionBuffetContent.add(addBackButton);
@@ -105,13 +107,13 @@ public class GameplayViewDemo {
 		actionBuffetArea = new ScrollPaneUI(actionBuffetContent, 0, true, new Dimension(500, 150), new Point(300, 450));
 		mazeArea = new PanelUI(true, new Dimension(450, 450), new Point(300, 0), Color.YELLOW);
 		iconArea = new PanelUI(true, new Dimension(100, 450), new Point(750, 0), Color.GREEN);
-		iconArea.add(iconPauseMenuButton);
-		iconArea.add(iconRunChainButton);
-		iconArea.add(iconPauseChainButton);
-		iconArea.add(iconResetChainButton);
-		iconArea.add(iconObjectivesButton);
-		iconArea.add(iconHintsButton);
-		iconArea.add(iconTypeChainButton);
+		iconArea.add(pauseMenuButton);
+		iconArea.add(runChainButton);
+		iconArea.add(pauseChainButton);
+		iconArea.add(resetChainButton);
+		iconArea.add(objectivesButton);
+		iconArea.add(hintsButton);
+		iconArea.add(debugChainButton);
 		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
 		pauseMenuDarkArea = new ButtonUI(false, FRAME_SIZE, new Point(0, 0));
 		
@@ -156,39 +158,59 @@ public class GameplayViewDemo {
 	 * @param showRun 1 = set as Run, 0 = set as Pause
 	 */
 	public void setRunPauseChainButton(boolean showRun) {
-		iconRunChainButton.setEnabled(showRun);
-		iconRunChainButton.setVisible(showRun);
-		iconPauseChainButton.setEnabled(!showRun);
-		iconPauseChainButton.setVisible(!showRun);
+		runChainButton.setEnabled(showRun);
+		runChainButton.setVisible(showRun);
+		pauseChainButton.setEnabled(!showRun);
+		pauseChainButton.setVisible(!showRun);
+	}
+	
+	public void refrestActionChainUI() {
+		actionChainArea.repaint();
+		actionChainArea.revalidate();
+	}
+	
+	public void clearActionChainUI() {
+		actionBlockUIList.clear();
+		actionChainContent.removeAll();
+	}
+	
+	public void appendActionBlockUI(int lineNumber, ActionBlockUI blockUI) {
+		actionBlockUIList.add(lineNumber, blockUI);
+		actionChainContent.add(blockUI, -1);
+	}
+	
+	public void removeActionBlockUI(int lineNumber) {
+		actionBlockUIList.remove(lineNumber);
+		actionChainContent.remove(lineNumber);
 	}
 	
 	// Icon buttons
-	public void iconPauseMenuButton(ActionListener actionListener) {
-		iconPauseMenuButton.addActionListener(actionListener);;
+	public void pauseMenuButton(ActionListener actionListener) {
+		pauseMenuButton.addActionListener(actionListener);;
 	}
 	
-	public void iconRunChainButton(ActionListener actionListener) {
-		iconRunChainButton.addActionListener(actionListener);
+	public void runChainButton(ActionListener actionListener) {
+		runChainButton.addActionListener(actionListener);
 	}
 	
-	public void iconPauseChainButton(ActionListener actionListener) {
-		iconPauseChainButton.addActionListener(actionListener);
+	public void pauseChainButton(ActionListener actionListener) {
+		pauseChainButton.addActionListener(actionListener);
 	}
 	
-	public void iconResetChainButton(ActionListener actionListener) {
-		iconResetChainButton.addActionListener(actionListener);
+	public void resetChainButton(ActionListener actionListener) {
+		resetChainButton.addActionListener(actionListener);
 	}
 	
-	public void iconObjectivesButton(ActionListener actionListener) {
-		iconObjectivesButton.addActionListener(actionListener);
+	public void objectivesButton(ActionListener actionListener) {
+		objectivesButton.addActionListener(actionListener);
 	}
 	
-	public void iconHintsButton(ActionListener actionListener) {
-		iconHintsButton.addActionListener(actionListener);
+	public void hintsButton(ActionListener actionListener) {
+		hintsButton.addActionListener(actionListener);
 	}
 	
-	public void iconTypeChainButton(ActionListener actionListener) {
-		iconTypeChainButton.addActionListener(actionListener);
+	public void debugChainButton(ActionListener actionListener) {
+		debugChainButton.addActionListener(actionListener);
 	}
 	
 	// Action buffet buttons
