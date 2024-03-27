@@ -55,7 +55,7 @@ public class Main {
 
 		studentProgressionController.setUserData(userData);
 
-		loginController.OnEnter();
+		teacherProgressionController.OnEnter();
 
 
 

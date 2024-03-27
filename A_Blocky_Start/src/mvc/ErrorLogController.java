@@ -1,10 +1,15 @@
 package mvc;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * This controller class handles error logging. 
  * @version 1.0
  * @since Mar 17, 2024
  * @author Chun Ho Chan (Edward)
+ * @author Eunhak Kim
  */
 public class ErrorLogController implements Controller {
 
@@ -32,11 +37,20 @@ public class ErrorLogController implements Controller {
 	/**
 	 * Append an error message to the error log file.
 	 * @param e Error message
+	 * @throws IOException 
 	 */
 	public void addWarning(Exception e) {
-		// TODO: append warning to an error log
 		
-		System.out.println(">> Warning << " + e.toString());
+		try {
+			File log = new File(filename);
+			log.createNewFile(); // create a new file if not found
+			FileWriter writer = new FileWriter(filename, true);
+			writer.write(">> Warning << " + e.toString() + '\n');
+			System.out.println(">> Warning << " + e.toString());
+			writer.close();
+		} catch (IOException e1) {
+			addError(e1);
+		}
 	}
 	
 	/**
@@ -44,18 +58,34 @@ public class ErrorLogController implements Controller {
 	 * @param e Error message
 	 */
 	public void addError(Exception e) {
-		// TODO: append error to an error log
+		File log = new File(filename);
 		
-		System.out.println(">> Error << " + e.toString());
+		try {
+			log.createNewFile(); // create a new file if not found
+			FileWriter writer = new FileWriter(filename, true);
+			writer.write(">> Error << " + e.toString() + '\n');
+			System.out.println(">> Error << " + e.toString());
+			writer.close();
+		} catch (IOException e1) {
+			addError(e1);
+		}
+		
 	}
 	
 	/**
 	 * Clear the error log file.
 	 */
 	public void clearErrorLog() {
-		// TODO: wipe the error log file
-		
-		System.out.println("Error log cleared.");
+		File log = new File(filename);
+		try {
+			log.createNewFile(); // create a new file if not found
+			FileWriter writer = new FileWriter(filename);	
+			writer.write("");
+			System.out.println("Error log cleared.");
+			writer.close();
+		} catch (IOException e1) {
+			addError(e1);
+		}
 	}
 
 }

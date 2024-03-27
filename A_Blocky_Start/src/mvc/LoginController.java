@@ -2,14 +2,15 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.xml.crypto.Data;
 
 /**
- * LoginController Contains LoginModel and LoginView
+ * LoginController controls LoginData and LoginView
  * @version 0.2
- * @author Yuting
- * @author Eunhak
+ * @author Yuting Hou
+ * @author Eunhak Kim
  */
 public class LoginController implements Controller {
 
@@ -41,6 +42,7 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
+<<<<<<< HEAD
 				//check if username is empty
 
 				data.setUsernameInput(view.getUsername());
@@ -73,6 +75,27 @@ public class LoginController implements Controller {
 						data.setPasswordInput(view.getPassword());
 						data.registerActiveUser();
 						data.loginActiveUser();
+=======
+				//check if username is acceptable
+				if (!(data.setUsernameInput(view.getUsername()))) {
+					System.out.println("Enter username");
+				}
+				//check if password is acceptable
+				if (!(data.setPasswordInput(view.getPassword()))) {
+					System.out.println("Enter password");
+				}
+				else {
+					//register if new user, then logs in with the provided username and password
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					if (data.registerActiveUser()) {
+						System.out.println("New user registered");
+					}
+					
+					if (!data.loginActiveUser()) {
+						System.out.println("Login failed");
+					}
+>>>>>>> 3228dbe1a8db54289dcb8ce0f7d226cb1ecc856f
 					
 					Main.loginController.OnExit();	
 					Main.mainMenuController.OnEnter();
@@ -85,7 +108,7 @@ public class LoginController implements Controller {
 	}
 	
 	/**
-	 * 
+	 * Access the game mode
 	 * @return the mode of the game
 	 */
 	public UserTypeEnum getMode() {
@@ -93,14 +116,14 @@ public class LoginController implements Controller {
 	}
 
 	/**
-	 * 
+	 * Show the screen
 	 */
 	public void OnEnter() {
 		view.setVisible(true);
 	}
 
 	/**
-	 * 
+	 * Close the screen
 	 */
 	public void OnExit() {
 		view.setVisible(false);

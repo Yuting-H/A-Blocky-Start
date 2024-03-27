@@ -75,7 +75,7 @@ public class StudentProgressionView{
 		container.setBorder(new EmptyBorder(new Insets(10, 50, 0, 50)));  //inset space
 		
 		//adds 10 progression to container
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 10; i++) {
 			
 			PanelUI curr = newEntry();  //create empty container
 			

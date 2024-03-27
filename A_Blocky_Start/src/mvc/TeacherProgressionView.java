@@ -52,6 +52,7 @@ public class TeacherProgressionView {
 	 * 
 	 */
 	private void initPanel() {
+		
 		//sets up root panel
 		rootPanel.setSize(viewSize);
 		rootPanel.setBackground(Color.red);
@@ -60,14 +61,21 @@ public class TeacherProgressionView {
 		//added go back button to prrogression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
+		//adds page selector
 		model = new SpinnerNumberModel(1, 0, 10, 1);
 		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
 		pageSelector.setVisible(false);  //hides unwanted appereance
 		
+		//adds back button
 		rootPanel.add(backButton);
 		rootPanel.add(pageSelector);
+		backButton.setVisible(false);
+		
+		//adds container
+		container = new PanelUI(containerLocation, containerSize, Color.cyan);
+		
 		
 
 	}
@@ -85,6 +93,8 @@ public class TeacherProgressionView {
 	 */
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
+		backButton.setVisible(visibility);
+		pageSelector.setVisible(visibility);
 	}
 	
 	public void backButtonAddActionListener(ActionListener actionListener) {
