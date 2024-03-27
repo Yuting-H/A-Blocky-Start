@@ -1,4 +1,6 @@
 package mvc;
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 
 
@@ -7,6 +9,13 @@ import javax.swing.ImageIcon;
  * This class contains all the image used in the game
  */
 public class IconUI {
+	
+	// Size of various UI elements
+	public static final Dimension FRAME_SIZE = new Dimension(800, 600); // TODO delete this later
+	public static final Dimension TEXT_BUTTON_SIZE = new Dimension(150, 40);
+	public static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
+	public static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
+	public static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
 	
 	//determines the quality of re-sampling images
 	private static int samplingRate = 15;
@@ -110,6 +119,9 @@ public class IconUI {
 	
 	// TODO missing sprite
 	public static ImageIcon debugChainButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
+	
+	// TODO missing sprite
+	public static ImageIcon removeBlockButtonIcon = new ImageIcon("img/PauseMenuButton.png"); // 50 x 50
 	
 	// TODO missing sprite
 	public static ImageIcon addForwardButtonIcon = new ImageIcon("img/AddTestButton.png"); // 100 x 130
