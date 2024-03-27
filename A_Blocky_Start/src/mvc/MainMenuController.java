@@ -66,7 +66,7 @@ public class MainMenuController implements Controller{
 			public void actionPerformed(ActionEvent e) {
 				
 				Main.mainMenuController.OnExit();
-				
+				System.out.println(Main.loginController.getMode());
 				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
 					Main.teacherProgressionController.OnEnter();
 				}else {

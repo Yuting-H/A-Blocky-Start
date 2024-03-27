@@ -3,6 +3,8 @@ package mvc;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.xml.crypto.Data;
+
 /**
  * LoginController Contains LoginModel and LoginView
  * @version 0.2
@@ -41,19 +43,29 @@ public class LoginController implements Controller {
 				
 				//check if username is empty
 
+				data.setUsernameInput(view.getUsername());
+				data.setPasswordInput(view.getPassword());
+				
 				if (view.getUsername().isEmpty() ) {
 
 					//TODO: notify user their username is empty,  
 					
 				}else {
+					
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					
 					//if password == teacher password then enable teacher mode
 					if (view.getPassword().compareTo(TEACHERPassword) == 0) {
+						
 						System.out.println("Logged in as teacher");
-//						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
+						
 					}
 					//if password matches developer password enable developer mode
 					else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
+						
 						System.out.println("Logged in as developer");
+						
 					}
 					//load user data
 					
