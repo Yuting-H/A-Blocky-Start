@@ -46,7 +46,6 @@ public class TeacherProgressionView {
 	 * 
 	 */
 	public TeacherProgressionView() {
-
 		rootPanel = new JPanel();
 
 		initPanel();
