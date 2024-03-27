@@ -55,11 +55,6 @@ public class TeacherProgressionView {
 		//sets up root panel
 		rootPanel.setSize(viewSize);
 		rootPanel.setBackground(Color.red);
-		//if (Main.settingsController.isColourblindMode()) {
-			//int grayScale = ((Color.red.getRed() + Color.red.getGreen() + Color.red.getBlue())/3);
-		//	rootPanel.setBackground(new Color(grayScale, grayScale, grayScale));
-			
-		//}
 		rootPanel.setLayout(null);
 		
 		//added go back button to progression
