@@ -129,7 +129,7 @@ public class ButtonUI extends JButton{
 	/**
 	 * Construct a transparent JButton that only has an icon.
 	 * @param visibility Visibility
-	 * @param dimension Dimension
+	 * @param dimension Dimension, can be null
 	 * @param position Position, can be null
 	 * @param icon Icon
 	 */
@@ -138,26 +138,34 @@ public class ButtonUI extends JButton{
 		setBorder(BorderFactory.createEmptyBorder());
 		setFocusable(false);
 		setVisible(visibility);
-		setLocation(position);
-		setSize(dimension);
-		setBounds(new Rectangle(position, dimension));
+		if (position != null) {
+			setLocation(position);
+		}
+		if (dimension != null) {
+			setSize(dimension);
+		}
+		if (position != null) {
+			setBounds(new Rectangle(position, dimension));
+		} else {
+			setBounds(new Rectangle(new Point(0, 0), dimension));
+		}
 		setIcon(icon);
 	}
 	
 	/**
 	 * Construct a dark, semi-transparent JButton that has no output.<br>
 	 * Used as an overlay in pause menu to blocks input to all buttons layered underneath it.<be>
-	 * @param active Active
+	 * @param visibility Visibility
 	 * @param dimension Dimension
 	 * @param position Position, can be null
 	 */
-	public ButtonUI(boolean active, Dimension dimension, Point position) {
+	public ButtonUI(boolean visibility, Dimension dimension, Point position) {
 		setContentAreaFilled(true);
 		setBackground(new Color(0, 0, 0, 150));
 		setBorder(BorderFactory.createEmptyBorder());
 		setFocusable(false);
-		setEnabled(active);
-		setVisible(active);
+		setEnabled(visibility);
+		setVisible(visibility);
 		setLocation(position);
 		setSize(dimension);
 		setBounds(new Rectangle(position, dimension));
