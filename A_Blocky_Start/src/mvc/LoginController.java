@@ -47,20 +47,21 @@ public class LoginController implements Controller {
 					
 				}else {
 					//if password == teacher password then enable teacher mode
-					if (view.getPassword() == TEACHERPassword) {
+					if (view.getPassword().compareTo(TEACHERPassword) == 0) {
+						System.out.println("Logged in as teacher");
 //						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
 					}
 					//if password matches developer password enable developer mode
-					else if (view.getPassword() == DEVELOPERPassword) {
-						
+					else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
+						System.out.println("Logged in as developer");
 					}
-					// Student mode
-					else {
+					//load user data
+					
 						data.setUsernameInput(view.getUsername());
 						data.setPasswordInput(view.getPassword());
 						data.registerActiveUser();
 						data.loginActiveUser();
-					}
+					
 					Main.loginController.OnExit();	
 					Main.mainMenuController.OnEnter();
 					//print login info
