@@ -11,13 +11,6 @@ import javax.swing.JFrame;
 
 public class GameplayViewDemo {
 	
-	// Size of various buttons
-	private static final Dimension TEXT_BUTTON_SIZE = new Dimension(150, 40);
-	private static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
-	private static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
-	private static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
-	private static final Dimension FRAME_SIZE = new Dimension(800, 600); // TODO
-	
 	// Action block UI
 	private ArrayList<ActionBlockUI> actionBlockUIList;
 
@@ -61,7 +54,7 @@ public class GameplayViewDemo {
 	 */
 	public GameplayViewDemo() {
 		initPanel();
-		setRunPauseChainButton(true);
+		setRunPauseButtonVisibility(true);
 	}
 	
 	/**
@@ -73,21 +66,21 @@ public class GameplayViewDemo {
 		actionBlockUIList = new ArrayList<ActionBlockUI>();
 		
 		// Initialize action buffet buttons
-		addForwardButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addForwardButtonIcon);
-		addBackButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addBackButtonIcon);
-		addLeftButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addLeftButtonIcon);
-		addRightButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addRightButtonIcon);
-		addGotoButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addGotoButtonIcon);
-		addLoopButton = new ButtonUI(true, ACTION_BUTTON_SIZE, null, IconUI.addLoopButtonIcon);
+		addForwardButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addForwardButtonIcon);
+		addBackButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addBackButtonIcon);
+		addLeftButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addLeftButtonIcon);
+		addRightButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addRightButtonIcon);
+		addGotoButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addGotoButtonIcon);
+		addLoopButton = new ButtonUI(true, IconUI.ACTION_BUTTON_SIZE, null, IconUI.addLoopButtonIcon);
 		
 		// Initialize icon panel buttons
-		pauseMenuButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 0), IconUI.pauseMenuButtonIcon);
-		runChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.runChainButtonIcon);
-		pauseChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 50), IconUI.pauseChainButtonIcon);
-		resetChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 100), IconUI.resetChainuttonIcon);
-		objectivesButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 150), IconUI.objectivesButtonIcon);
-		hintsButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 200), IconUI.hintsButtonIcon);
-		debugChainButton = new ButtonUI(true, ICON_BUTTON_SIZE, new Point(0, 250), IconUI.debugChainButtonIcon);
+		pauseMenuButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 0), IconUI.pauseMenuButtonIcon);
+		runChainButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 50), IconUI.runChainButtonIcon);
+		pauseChainButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 50), IconUI.pauseChainButtonIcon);
+		resetChainButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 100), IconUI.resetChainuttonIcon);
+		objectivesButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 150), IconUI.objectivesButtonIcon);
+		hintsButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 200), IconUI.hintsButtonIcon);
+		debugChainButton = new ButtonUI(true, IconUI.ICON_BUTTON_SIZE, new Point(0, 250), IconUI.debugChainButtonIcon);
 		
 		// Initialize panels
 		actionChainContent = new LayeredPaneUI(true, new Dimension(300, 10000), null, Color.GREEN);
@@ -115,7 +108,7 @@ public class GameplayViewDemo {
 		iconArea.add(hintsButton);
 		iconArea.add(debugChainButton);
 		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
-		pauseMenuDarkArea = new ButtonUI(false, FRAME_SIZE, new Point(0, 0));
+		pauseMenuDarkArea = new ButtonUI(false, IconUI.FRAME_SIZE, new Point(0, 0));
 		
 		// Panels that get added earlier are on top of later panels
 		rootPanel.add(pauseMenuSideArea);
@@ -126,11 +119,11 @@ public class GameplayViewDemo {
 		rootPanel.add(iconArea);
 		
 		// Initialize pause menu buttons
-		backButton = new ButtonUI(true, BACK_BUTTON_SIZE, new Point(10, 10), IconUI.backButtonIcon);
-		saveButton = new ButtonUI(true, TEXT_BUTTON_SIZE, new Point(75, 100), IconUI.saveButtonIcon);
-		tutorialButton = new ButtonUI(true, TEXT_BUTTON_SIZE, new Point(75, 150), IconUI.tutorialButtonIcon);
-		settingsButton = new ButtonUI(true, TEXT_BUTTON_SIZE, new Point(75, 200), IconUI.settingsButtonIcon);
-		mainMenuButton = new ButtonUI(true, TEXT_BUTTON_SIZE, new Point(75, 250), IconUI.mainMenuButtonIcon);
+		backButton = new ButtonUI(true, IconUI.BACK_BUTTON_SIZE, new Point(10, 10), IconUI.backButtonIcon);
+		saveButton = new ButtonUI(true, IconUI.TEXT_BUTTON_SIZE, new Point(75, 100), IconUI.saveButtonIcon);
+		tutorialButton = new ButtonUI(true, IconUI.TEXT_BUTTON_SIZE, new Point(75, 150), IconUI.tutorialButtonIcon);
+		settingsButton = new ButtonUI(true, IconUI.TEXT_BUTTON_SIZE, new Point(75, 200), IconUI.settingsButtonIcon);
+		mainMenuButton = new ButtonUI(true, IconUI.TEXT_BUTTON_SIZE, new Point(75, 250), IconUI.mainMenuButtonIcon);
 		
 		pauseMenuSideArea.add(backButton);
 		pauseMenuSideArea.add(saveButton);
@@ -153,18 +146,17 @@ public class GameplayViewDemo {
 		pauseMenuDarkArea.setVisible(visibility);
 	}
 	
-	/**
-	 * Choose whether to show the Run Chain or Pause Chain button.
-	 * @param showRun 1 = set as Run, 0 = set as Pause
-	 */
-	public void setRunPauseChainButton(boolean showRun) {
-		runChainButton.setEnabled(showRun);
-		runChainButton.setVisible(showRun);
-		pauseChainButton.setEnabled(!showRun);
-		pauseChainButton.setVisible(!showRun);
+	public void setActionBlockUIStatus(int indexPrevious, int indexCurrent, int indexNext) {
+		actionBlockUIList.get(indexPrevious).setStatus(0);
+		actionBlockUIList.get(indexNext).setStatus(2);
+		actionBlockUIList.get(indexCurrent).setStatus(1);
 	}
 	
-	public void refrestActionChainUI() {
+	public void setActionBlockUICounter(int index, int counter) {
+		actionBlockUIList.get(index).setCounterText(counter);
+	}
+	
+	public void refreshActionChainUI() {
 		actionChainArea.repaint();
 		actionChainArea.revalidate();
 	}
@@ -179,9 +171,15 @@ public class GameplayViewDemo {
 		actionChainContent.add(blockUI, -1);
 	}
 	
-	public void removeActionBlockUI(int lineNumber) {
-		actionBlockUIList.remove(lineNumber);
-		actionChainContent.remove(lineNumber);
+	/**
+	 * Choose whether to show the Run Chain or Pause Chain button.
+	 * @param showRun 1 = set as Run, 0 = set as Pause
+	 */
+	public void setRunPauseButtonVisibility(boolean showRun) {
+		runChainButton.setEnabled(showRun);
+		runChainButton.setVisible(showRun);
+		pauseChainButton.setEnabled(!showRun);
+		pauseChainButton.setVisible(!showRun);
 	}
 	
 	// Icon buttons

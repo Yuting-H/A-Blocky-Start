@@ -174,7 +174,8 @@ public class ActionChainData {
 		}
 		
 		// Add action block and update index of the "End" block
-		actionBlockList.add(indexEnd++, actionBlock);
+		actionBlockList.add(index, actionBlock);
+		++indexEnd;
 		
 		// Successful
 		return true;
@@ -241,6 +242,7 @@ public class ActionChainData {
 		
 		// Remove action block
 		actionBlockList.remove(index);
+		--indexEnd;
 		
 		// Successful
 		return true;
@@ -281,11 +283,12 @@ public class ActionChainData {
 		} else if (indexCurrent == indexEnd) {
 			indexNext = indexEnd; // "End" block reached
 		} else {
-			++indexNext; // next action block in line
+			// Decrement internal counter
+			currentBlock.decCounter();
+			
+			// Set next action block in line
+			++indexNext;
 		}
-		
-		// Decrement internal counter
-		currentBlock.decCounter();
 		
 		// Check if action chain has crashed
 		if (isExecuteCrashed()) {
