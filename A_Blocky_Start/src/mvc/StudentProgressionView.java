@@ -37,7 +37,7 @@ public class StudentProgressionView{
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
-	private Point containerLocation = new Point(50, 50);  //contains all student's progression
+	private Point containerLocation = new Point(0, 50);  //contains all student's progression
 	
 	//define UI
 	private JPanel rootPanel;
