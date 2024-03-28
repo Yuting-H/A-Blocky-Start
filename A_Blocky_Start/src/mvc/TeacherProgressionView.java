@@ -99,6 +99,8 @@ public class TeacherProgressionView {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		rootPanel.add(scrollPane);
+		
+		rootPanel.setVisible(false);
 	}
 	
 	/**
