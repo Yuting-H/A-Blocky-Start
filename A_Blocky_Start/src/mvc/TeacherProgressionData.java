@@ -12,10 +12,6 @@ import java.util.ArrayList;
  */
 public class TeacherProgressionData {
 	/**
-	 * Path of user data directory
-	 */
-	public static final String directoryPath = "./userdata";
-	/**
 	 * Maximum number of entries to display in a page
 	 */
 	public static final int entriesPerPage = 10;
@@ -28,10 +24,6 @@ public class TeacherProgressionData {
 	 */
 	private ArrayList<String> shortFilenameList;
 	/**
-	 * List currently loaded user data objects
-	 */
-	private ArrayList<UserData> userDataList;
-	/**
 	 * Current page number
 	 */
 	private int page;
@@ -42,17 +34,19 @@ public class TeacherProgressionData {
 	public TeacherProgressionData() {
 		longFilenameList = new ArrayList<String>();
 		shortFilenameList = new ArrayList<String>();
-		userDataList = new ArrayList<UserData>();
 		page = 1;
 		
 		// Open the directory
-		File folder = new File(directoryPath);
+		String path = UserData.filenamePrefix;
+		path = path.substring(0, path.length() - 1);
+		File folder = new File(path);
 		
 		// Load all filenames into the list
 		File[] fileList = folder.listFiles();
 		for (int i = 0; i < fileList.length; i++) {
 			if (fileList[i].isFile()) {
-				longFilenameList.add(fileList[i].getName());
+				// Add strings of folder path + filename
+				longFilenameList.add(UserData.filenamePrefix + fileList[i].getName());
 			}
 		}
 	}
@@ -60,7 +54,7 @@ public class TeacherProgressionData {
 	/**
 	 * Access a user data from the list.
 	 * @param index Index (0..9)
-	 * @return UserData at index, null if out-of-bound.
+	 * @return UserData at index, null if not found.
 	 */
 	public UserData getUserData(int index) {
 		// Check index
@@ -68,18 +62,11 @@ public class TeacherProgressionData {
 			return null; // out-of-bound
 		}
 		
-		String str = shortFilenameList.get(index);
-		return UserData.importData(str, false);
-		
-		/*
 		try {
-			
-			
-			return userDataList.get(index);
+			return UserData.importData(shortFilenameList.get(index));
 		} catch (IndexOutOfBoundsException e) {
 			return null; // not found
 		}
-		*/
 	}
 	
 	/**
@@ -98,13 +85,13 @@ public class TeacherProgressionData {
 		// Remove all previous entries
 		shortFilenameList.clear();
 
-		// Start index
-		int index = (page - 1) * 10;
+		// Starting index's offset
+		int offset = (page - 1) * 10;
 
 		// Load new entries
 		for (int i = 0; i < entriesPerPage; i++) {
-			if (index + i < longFilenameList.size()) {
-				shortFilenameList.add(longFilenameList.get(index + i));
+			if (offset + i < longFilenameList.size()) {
+				shortFilenameList.add(longFilenameList.get(offset + i));
 			} else {
 				break; // no more entries to load
 			}
