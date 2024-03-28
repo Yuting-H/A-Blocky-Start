@@ -24,14 +24,15 @@ public class HighScoreView{
 	private Dimension entriesContainerSize = new Dimension(600, 500);
 	private Dimension entriesSize = new Dimension(600, 50);
 	private Dimension entriesLabelSize = new Dimension(100, 20);
+	private Dimension highScoreTitleSize = new Dimension (120,36);
 	
 	//spacing between high score entries
 	private int margin = 20; 
 	
 	//locations
 	private Point backButtonLocation = new Point(10, 10);
-	private Point entriesContainerLocation = new Point(100, 0);
-	
+	private Point entriesContainerLocation = new Point(100, 50);
+	private Point highScoreTitleLocation = new Point(375,10);
 	//panel containing all UI elements
 	private JPanel rootPanel;
 	
@@ -39,13 +40,15 @@ public class HighScoreView{
 	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 	
 	//container for entries
-	private PanelUI entriesContainer = new PanelUI(entriesContainerLocation, entriesContainerSize, Color.LIGHT_GRAY);
+	private PanelUI entriesContainer = new PanelUI(entriesContainerLocation, entriesContainerSize, IconUI.darkOrange);
 	
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 	
 	private ArrayList<LabelUI> nameEntries = new ArrayList<LabelUI>();
 	
 	private ArrayList<LabelUI> highScoreEntries = new ArrayList<LabelUI>();
+	
+	private JLabel highScoreTitleLabel = new LabelUI(highScoreTitleLocation, highScoreTitleSize, "High Scores");
 	
 	/**
 	 * Constructor
@@ -58,7 +61,7 @@ public class HighScoreView{
 	}
 	
 	/**
-	 * initialze root panel
+	 * initialize root panel
 	 */
 	private void initPanel() {
 		
@@ -67,9 +70,12 @@ public class HighScoreView{
 		rootPanel.setLayout(null);
 		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);
+		rootPanel.setBackground(IconUI.mediumOrange);
 		
 		//buttons
 		rootPanel.add(backButton);
+		
+		rootPanel.add(highScoreTitleLabel);
 		
 		//set up grid with 5 rows and 1 column
 		GridLayout layout = new GridLayout(5, 1);
@@ -123,7 +129,7 @@ public class HighScoreView{
 	 * @return entry a Panel containing the player's name and score
 	 */
 	public PanelUI newEntryUI(JLabel name, JLabel score) {
-		PanelUI entry = new PanelUI(entriesSize, Color.white);
+		PanelUI entry = new PanelUI(entriesSize, IconUI.lightOrange);
 		entry.setLayout(new BoxLayout(entry, BoxLayout.X_AXIS));
 		entry.add(Box.createHorizontalStrut(20));
 		entry.add(name);

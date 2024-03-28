@@ -28,14 +28,16 @@ public class StudentProgressionView{
 	//Define sizes
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
+
 	private Dimension containerSize = new Dimension(785, 800);
 	private Dimension scrollPanelSize = new Dimension(785, 495);
 	private Dimension entryContainerSize = new Dimension(700, 50);
+
 	private Dimension labelSize = new Dimension(100, 20);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
-	private Point containerLocation = new Point(0, 50);  //contains all student's progression
+	private Point containerLocation = new Point(50, 50);  //contains all student's progression
 	
 	//define UI
 	private JPanel rootPanel;
@@ -63,10 +65,12 @@ public class StudentProgressionView{
 		
 		//set up progression panel
 		rootPanel.setSize(viewSize);
-		rootPanel.setBackground(Color.ORANGE);
+
+		rootPanel.setBackground(IconUI.mediumOrange);
+
 		rootPanel.setLayout(null);
 		
-		//added go back button to prrogression
+		//added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
@@ -74,6 +78,7 @@ public class StudentProgressionView{
 		container = new PanelUI(containerLocation, containerSize, Color.white);
 		FlowLayout layout = new FlowLayout();
 		container.setLayout(new FlowLayout());  //set layout
+
 		
 		//adds 10 progression to container
 		for (int i = 0; i < 10; i++) {
@@ -116,7 +121,7 @@ public class StudentProgressionView{
 		entry.setSize(entryContainerSize);
 		entry.setBackground(Color.LIGHT_GRAY);
 		
-		LabelUI stageIDUI = new LabelUI(labelSize, "" + stageID);
+		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID + '\n');
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
 		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
 		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
@@ -131,6 +136,7 @@ public class StudentProgressionView{
 		entry.add(timeSpentUI);
 		entry.add(attemptsUI);
 		entry.add(playButton);
+		
 	}
 	
 	/**
