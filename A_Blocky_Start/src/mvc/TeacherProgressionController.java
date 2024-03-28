@@ -42,38 +42,43 @@ public class TeacherProgressionController implements Controller{
 		//add functionalty to selector
 		view.selectorAddChangeListener(new ChangeListener() {
 			
-			//when state change
+			//when the number is changed
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				
+				//refresh view
 				refreshView();
 			}
 		});
 	}
 	
+	/**
+	 * This function loads userdata into and refreses teacherprogression view
+	 */
 	private void refreshView() {
 		
-		//set data
+		//updates data, sets page
 		data.setPage(view.getPage());
 		data.updateEntries();
 		
-		//add 10 entries to view
+		//add the entries on the page to view
+		//some entries may not exist
 		for (int i = 0; i < 10; i++) {
 			
-			
-			
 			UserData currData = data.getUserData(i);
+			
+			//if this entry exist, update
 			if (currData != null) {
 				view.setEntry(
 						i, 
-						currData.getUsername(), 
+						currData.getUsername().substring(0, currData.getUsername().length() - 13), 
 						currData.getTotalTimeSpent(), 
 						currData.getTotalAttempts(), 
 						currData.getTotalScore(), 
 						-1
 						);
-			}else {
-				view.setEntry(i, "Empty", i, i, i, i);
+			}else {  //if this entry does not exist, update with a blank
+				view.setEntry(i, "Empty", 0, 0, 0, 0);
 			}
 			
 			view.repaint();
@@ -87,6 +92,7 @@ public class TeacherProgressionController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
+		refreshView();
 	}
 
 	/**
