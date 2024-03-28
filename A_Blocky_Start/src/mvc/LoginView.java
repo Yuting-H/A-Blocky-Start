@@ -28,11 +28,15 @@ public class LoginView {
 	private Point passwordTextFieldLocation = new Point(400, 200);
 	private Point loginButtonLocation 		= new Point(450, 300);
 	private Point registerButtonLocation	= new Point(250, 300);
+	private Point loginTitleLabelLocation	= new Point(375,10);
+	private Point reminderLabelLocation		= new Point(400, 80);
 	
 	//declaring size of UI elements
 	private Dimension labelSize 		= new Dimension(100,20);
 	private Dimension textFieldSize		= new Dimension(200,20);
 	private Dimension loginButtonSize	= new Dimension(100, 20);
+	private Dimension loginTitleSize	= new Dimension(120,36);
+	private Dimension longLabelSize  	= new Dimension(200, 20);
 	
 	//declaring UI elements for this panel
 	LabelUI 		usernameFieldLabel 	= new LabelUI(usernameLabelLocation, labelSize, "Username:");
@@ -41,6 +45,8 @@ public class LoginView {
 	TextFieldUI 	passwordTextField	= new TextFieldUI(passwordTextFieldLocation, textFieldSize);
 	ButtonUI		loginButton 		= new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
 	ButtonUI 		registerButton 		= new ButtonUI(registerButtonLocation, loginButtonSize, "Register");
+	LabelUI 		loginTitleLabel 	= new LabelUI(loginTitleLabelLocation, loginTitleSize, "Login/Register");
+	LabelUI			reminderLabel 		= new LabelUI(reminderLabelLocation, longLabelSize, "Username cannot be empty");
 	
 	/**
 	 * Creates the view instance
@@ -63,14 +69,19 @@ public class LoginView {
 		rootpanel.setSize(viewSize);
 		rootpanel.setLayout(null);		
 		rootpanel.setVisible(false);
-		rootpanel.setBackground(Color.gray);
+		rootpanel.setBackground(IconUI.mediumOrange);
 		
 		//adding UI elements
 		rootpanel.add(usernameFieldLabel);
 		rootpanel.add(usernameTextField);
 		rootpanel.add(passwordFieldLabel);
 		rootpanel.add(passwordTextField);
+		rootpanel.add(reminderLabel);
+		rootpanel.add(registerButton);
 		rootpanel.add(loginButton);
+		rootpanel.add(registerButton);
+		rootpanel.add(loginTitleLabel);
+		
 		
 	}
 	

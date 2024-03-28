@@ -10,9 +10,9 @@ import java.io.File;
  * @author Chun Ho Chan (Edward)
  */
 public class LoginData {
-	private static final String TEACHERUsername = "TEACHER";
+	private static final String TEACHER_USERNAME = "TEACHER";
 	// TEACHERPassword = "GradeOurPorject100%"
-	private static final String DEVELOPERUsername = "DEVELOPER";
+	private static final String DEVELOPER_USERNAME = "DEVELOPER";
 	// DEVELOPERPassword = "TooManyMergeConflicts!"
 	private String usernameInput;
 	private String passwordInput;
@@ -41,11 +41,13 @@ public class LoginData {
 	 * @return Active user type
 	 */
 	public UserTypeEnum getMode() {
-		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
+		
+		
+		if (usernameInput.equalsIgnoreCase(TEACHER_USERNAME)) {
 			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
 			
-		} else if (usernameInput.equalsIgnoreCase(DEVELOPERUsername)) {
+		} else if (usernameInput.equalsIgnoreCase(DEVELOPER_USERNAME)) {
 			System.out.println("Developer mode");
 			return UserTypeEnum.DEVELOPER;
 		}
@@ -114,7 +116,7 @@ public class LoginData {
 	public boolean loginActiveUser() {
 		
 		// Try opening the user data file
-		UserData userData = UserData.importData(usernameInput);
+		UserData userData = UserData.importData(UserData.toFilename(usernameInput));
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}
@@ -139,6 +141,7 @@ public class LoginData {
 		if (username.matches("[a-zA-Z0-9]+")) {
 			return true;
 		}
+		System.out.println("Unacceptable username: " + username);
 		return false;
 	}
 	

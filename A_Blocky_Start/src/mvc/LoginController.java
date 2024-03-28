@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.xml.crypto.Data;
+
 /**
  * LoginController controls LoginData and LoginView
  * @version 0.2
@@ -20,7 +22,7 @@ public class LoginController implements Controller {
 	static final String TEACHERPassword = "GradeOurPorject100%";
 	static final String DEVELOPERPassword = "TooManyMergeConflicts!";
 	/**
-	 * Construtor
+	 * Constructor
 	 */
 	public LoginController() {
 		view.insertPanelToFrame();
@@ -40,6 +42,40 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
+
+				//check if username is empty
+
+				data.setUsernameInput(view.getUsername());
+				data.setPasswordInput(view.getPassword());
+				
+				if (view.getUsername().isEmpty() ) {
+
+					//TODO: notify user their username is empty,  
+					
+				}else {
+					
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					
+					//if password == teacher password then enable teacher mode
+					if (view.getPassword().compareTo(TEACHERPassword) == 0) {
+						
+						System.out.println("Logged in as teacher");
+						
+					}
+					//if password matches developer password enable developer mode
+					else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
+						
+						System.out.println("Logged in as developer");
+						
+					}
+					//load user data
+					
+						data.setUsernameInput(view.getUsername());
+						data.setPasswordInput(view.getPassword());
+						data.registerActiveUser();
+						data.loginActiveUser();
+
 				//check if username is acceptable
 				if (!(data.setUsernameInput(view.getUsername()))) {
 					System.out.println("Enter username");
@@ -67,7 +103,7 @@ public class LoginController implements Controller {
 					
 				}
 			}
-		});
+		}});
 	}
 	
 	/**
@@ -90,6 +126,8 @@ public class LoginController implements Controller {
 	 */
 	public void OnExit() {
 		view.setVisible(false);
+		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
+
 	}
 
 }
