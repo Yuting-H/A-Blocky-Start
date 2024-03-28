@@ -41,6 +41,9 @@ public class LoginData {
 	 * @return Active user type
 	 */
 	public UserTypeEnum getMode() {
+		
+		System.out.println("LoginData.getMode: username: " + usernameInput + " Teacher: " + TEACHERUsername);
+		
 		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
 			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
@@ -59,9 +62,11 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setUsernameInput(String username) {
+		/*
 		if (!isAcceptableUsername(username)) {
 			return false;
 		}
+		*/
 		
 		// Successful
 		usernameInput = username;
@@ -74,9 +79,11 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setPasswordInput(String password) {
+		/*
 		if (!isAcceptablePassword(password)) {
 			return false;
 		}
+		*/
 		
 		// Successful
 		passwordInput = password;
@@ -114,7 +121,7 @@ public class LoginData {
 	public boolean loginActiveUser() {
 		
 		// Try opening the user data file
-		UserData userData = UserData.importData(usernameInput);
+		UserData userData = UserData.importData(usernameInput, false);
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}
@@ -139,6 +146,7 @@ public class LoginData {
 		if (username.matches("[a-zA-Z0-9]+")) {
 			return true;
 		}
+		System.out.println("Unacceptable username: " + username);
 		return false;
 	}
 	
