@@ -44,6 +44,19 @@ public class TeacherProgressionController implements Controller{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				data.setPage(view.getPage());
+				data.updateEntries();
+				
+				for (int i = 0; i < 10; i++) {
+					UserData currData = data.getUserData(i);
+					view.setEntry(
+							i, 
+							currData.getUsername(), 
+							currData.getTotalTimeSpent(), 
+							currData.getTotalAttempts(), 
+							currData.getTotalScore(), 
+							-1
+							);
+				}
 			}
 		});
 	}
