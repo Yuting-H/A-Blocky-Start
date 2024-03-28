@@ -23,8 +23,8 @@ public class TeacherProgressionView {
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 1000);
-	private Dimension entryContainerSize = new Dimension(500, 100);
-	private Dimension labelSize = new Dimension(100, 20);
+	private Dimension entryContainerSize = new Dimension(700, 50);
+	private Dimension labelSize = new Dimension(200, 20);
 	private Dimension selectorSize = new Dimension(50, 20);
 
 	
@@ -62,7 +62,7 @@ public class TeacherProgressionView {
 		
 		//sets up root panel
 		rootPanel.setSize(viewSize);
-		rootPanel.setBackground(Color.red);
+		rootPanel.setBackground(Color.orange);
 		rootPanel.setLayout(null);
 		
 		//added go back button to prrogression
@@ -81,7 +81,7 @@ public class TeacherProgressionView {
 		backButton.setVisible(false);
 		
 		// container
-		container = new PanelUI(containerLocation, containerSize, Color.cyan);
+		container = new PanelUI(containerLocation, containerSize, Color.WHITE);
 		
 		//add 10 entries
 		for (int i = 0; i < 10; i++) {
@@ -119,6 +119,11 @@ public class TeacherProgressionView {
 		LabelUI completedStageLabel = new LabelUI(labelSize, "" + completedStage);
 		
 		PanelUI entry = entries.get(index);
+		FlowLayout layout = new FlowLayout();
+		layout.setHgap(20);
+		entry.setLayout(layout);
+		
+		entry.setBackground(Color.LIGHT_GRAY);
 		entry.removeAll();
 		entry.repaint();
 		entry.revalidate();
@@ -128,7 +133,7 @@ public class TeacherProgressionView {
 		entry.add(totalScoreLabel);
 		entry.add(completedStageLabel);
 		
-		entry.setLayout(new FlowLayout());
+		
 		
 	}
 	

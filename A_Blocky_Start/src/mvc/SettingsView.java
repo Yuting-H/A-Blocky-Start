@@ -71,7 +71,7 @@ public class SettingsView {
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);
-		rootPanel.setBackground(Color.gray);
+		rootPanel.setBackground(Color.lightGray);
 		
 		//add colourblind mode selection combobox
 		colourBlindComboBox.setVisible(true);
