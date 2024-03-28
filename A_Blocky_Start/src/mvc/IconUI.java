@@ -1,4 +1,6 @@
 package mvc;
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 
@@ -11,6 +13,9 @@ public class IconUI {
 	//determines the quality of re-sampling images
 	private static int samplingRate = 15;
 	
+	public static Color lightOrange = new Color(255, 220, 120, 255);
+	public static Color mediumOrange = new Color(250, 150, 50, 255);
+	public static Color darkOrange = new Color(200, 100, 50, 255);
 	//game title
 	public static ImageIcon gameTitleIcon = 
 			new ImageIcon(

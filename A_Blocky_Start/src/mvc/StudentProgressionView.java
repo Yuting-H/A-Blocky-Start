@@ -28,13 +28,13 @@ public class StudentProgressionView{
 	//Define sizes
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
-	private Dimension containerSize = new Dimension(785, 490);
-	private Dimension entryContainerSize = new Dimension(500, 100);
+	private Dimension containerSize = new Dimension(700, 450);
+	private Dimension entryContainerSize = new Dimension(100, 500);
 	private Dimension labelSize = new Dimension(100, 20);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
-	private Point containerLocation = new Point(0, 50);  //contains all student's progression
+	private Point containerLocation = new Point(50, 50);  //contains all student's progression
 	
 	//define UI
 	private JPanel rootPanel;
@@ -62,15 +62,15 @@ public class StudentProgressionView{
 		
 		//set up progression panel
 		rootPanel.setSize(viewSize);
-		rootPanel.setBackground(Color.BLUE);
+		rootPanel.setBackground(IconUI.mediumOrange);
 		rootPanel.setLayout(null);
 		
-		//added go back button to prrogression
+		//added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		rootPanel.add(backButton);
 		
 		//set up container 
-		container = new PanelUI(containerLocation, containerSize, Color.white);
+		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));  //set layout
 		container.setBorder(new EmptyBorder(new Insets(10, 50, 0, 50)));  //inset space
 		
@@ -114,7 +114,7 @@ public class StudentProgressionView{
 		
 		entry.setLayout(new FlowLayout());
 		
-		LabelUI stageIDUI = new LabelUI(labelSize, "" + stageID);
+		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID + '\n');
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
 		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
 		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
@@ -129,6 +129,7 @@ public class StudentProgressionView{
 		entry.add(timeSpentUI);
 		entry.add(attemptsUI);
 		entry.add(playButton);
+		
 	}
 	
 	/**

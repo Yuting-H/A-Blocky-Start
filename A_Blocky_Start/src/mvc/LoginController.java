@@ -19,7 +19,7 @@ public class LoginController implements Controller {
 	static final String TEACHERPassword = "GradeOurPorject100%";
 	static final String DEVELOPERPassword = "TooManyMergeConflicts!";
 	/**
-	 * Construtor
+	 * Constructor
 	 */
 	public LoginController() {
 		view.insertPanelToFrame();

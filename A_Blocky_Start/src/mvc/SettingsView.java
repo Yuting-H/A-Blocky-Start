@@ -22,6 +22,7 @@ public class SettingsView {
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension labelSize = new Dimension(120,36);
 	private Dimension comboBoxSize = new Dimension(130,40);
+	private Dimension settingsTitleSize = new Dimension(120,36);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
@@ -31,7 +32,7 @@ public class SettingsView {
 	private Point resolutionLabelLocation = new Point(300,200);
 	private Point volumeLevelSliderLocation = new Point(450,300);
 	private Point volumeLevelLabelLocation = new Point(300,300);
-	private Point settingsLabelLocation = new Point(375,10);
+	private Point settingsTitleLocation = new Point(375,10);
 	
 	private JPanel rootPanel;
 	
@@ -43,7 +44,7 @@ public class SettingsView {
 	
 	private JLabel volumeLevelLabel = new LabelUI(volumeLevelLabelLocation, labelSize, "Volume Level:");
 	
-	private JLabel settingsLabel = new LabelUI(settingsLabelLocation, labelSize, "Settings");
+	private JLabel settingsLabel = new LabelUI(settingsTitleLocation, settingsTitleSize, "Settings");
 	
 	//colourblind selection 
 	private String[] colourblindComboboxOptions = {"Off", "On"};
@@ -74,7 +75,7 @@ public class SettingsView {
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);
-		rootPanel.setBackground(Color.white);
+		rootPanel.setBackground(IconUI.mediumOrange);
 		
 		//add colourblind mode selection combobox
 		colourBlindComboBox.setVisible(true);
