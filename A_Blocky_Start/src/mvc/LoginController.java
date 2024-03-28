@@ -42,7 +42,7 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
-<<<<<<< HEAD
+
 				//check if username is empty
 
 				data.setUsernameInput(view.getUsername());
@@ -75,7 +75,7 @@ public class LoginController implements Controller {
 						data.setPasswordInput(view.getPassword());
 						data.registerActiveUser();
 						data.loginActiveUser();
-=======
+
 				//check if username is acceptable
 				if (!(data.setUsernameInput(view.getUsername()))) {
 					System.out.println("Enter username");
@@ -95,7 +95,6 @@ public class LoginController implements Controller {
 					if (!data.loginActiveUser()) {
 						System.out.println("Login failed");
 					}
->>>>>>> 3228dbe1a8db54289dcb8ce0f7d226cb1ecc856f
 					
 					Main.loginController.OnExit();	
 					Main.mainMenuController.OnEnter();
@@ -104,7 +103,7 @@ public class LoginController implements Controller {
 					
 				}
 			}
-		});
+		}});
 	}
 	
 	/**

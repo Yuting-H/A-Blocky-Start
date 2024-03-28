@@ -2,12 +2,15 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -19,10 +22,11 @@ public class TeacherProgressionView {
 	
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
-	private Dimension containerSize = new Dimension(785, 490);
+	private Dimension containerSize = new Dimension(785, 1000);
 	private Dimension entryContainerSize = new Dimension(500, 100);
 	private Dimension labelSize = new Dimension(100, 20);
 	private Dimension selectorSize = new Dimension(50, 20);
+
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
@@ -37,6 +41,9 @@ public class TeacherProgressionView {
 	
 	private SpinnerNumberModel model;
 	private JSpinner pageSelector;
+	
+	//10 entries per page
+	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 	
 	/**
 	 * 
@@ -62,7 +69,7 @@ public class TeacherProgressionView {
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
 		//adds page selector
-		model = new SpinnerNumberModel(1, 0, 10, 1);
+		model = new SpinnerNumberModel(1, 1, 10, 1);
 		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
@@ -73,11 +80,73 @@ public class TeacherProgressionView {
 		rootPanel.add(pageSelector);
 		backButton.setVisible(false);
 		
-		//adds container
+		// container
 		container = new PanelUI(containerLocation, containerSize, Color.cyan);
 		
+		//add 10 entries
+		for (int i = 0; i < 10; i++) {
+			PanelUI curr = newEntry();
+			
+			entries.add(curr);
+			container.add(curr);
+			
+		}
 		
-
+		//convert container into scrollview, add scroll view
+		scrollPane = new JScrollPane(container);
+		scrollPane.setSize(785, 490);
+		scrollPane.setLocation(containerLocation);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		rootPanel.add(scrollPane);
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @param studentName
+	 * @param timeSpent
+	 * @param totalAttempts
+	 * @param totalScore
+	 * @param completedStage
+	 */
+	public void setEntry(int index, String studentName, int timeSpent, int totalAttempts, int totalScore, int completedStage) {
+		
+		LabelUI nameLabel = new LabelUI(labelSize, studentName);
+		LabelUI timeSpentLabel = new  LabelUI(labelSize, "" + timeSpent);
+		LabelUI totalAttemptsLabel = new LabelUI(labelSize, "" + totalAttempts);
+		LabelUI totalScoreLabel = new LabelUI(labelSize, "" + totalScore);
+		LabelUI completedStageLabel = new LabelUI(labelSize, "" + completedStage);
+		
+		PanelUI entry = entries.get(index);
+		entry.add(nameLabel);
+		entry.add(timeSpentLabel);
+		entry.add(totalAttemptsLabel);
+		entry.add(totalScoreLabel);
+		entry.add(completedStageLabel);
+		
+		entry.setLayout(new FlowLayout());
+		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public PanelUI newEntry() {
+		
+		PanelUI newEntry = new PanelUI(entryContainerSize);
+		
+		return newEntry;
+		
+	}
+	
+	/**
+	 * 
+	 * @return the current page
+	 */
+	public int getPage() {
+		return (int) pageSelector.getValue();
 	}
 	
 	/**
@@ -101,7 +170,7 @@ public class TeacherProgressionView {
 		backButton.addActionListener(actionListener);
 	}
 	
-	public void selectorAddActionListener(ChangeListener changeListener) {
+	public void selectorAddChangeListener(ChangeListener changeListener) {
 		pageSelector.addChangeListener(changeListener);
 	}
 }
