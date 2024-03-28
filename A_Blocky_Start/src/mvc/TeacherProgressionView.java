@@ -12,22 +12,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
  * 
  */
 public class TeacherProgressionView {
-	
+
 	private Dimension viewSize = Main.getDimension();
+
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 1000);
 	private Dimension entryContainerSize = new Dimension(700, 50);
 	private Dimension labelSize = new Dimension(200, 20);
 	private Dimension selectorSize = new Dimension(50, 20);
 
-	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
 	private Point containerLocation = new Point(0, 50);  //contains all student's progression
@@ -38,27 +37,27 @@ public class TeacherProgressionView {
 	private ButtonUI backButton;
 	private PanelUI container;
 	private JScrollPane scrollPane;
-	
+
 	private SpinnerNumberModel model;
 	private JSpinner pageSelector;
 	
 	//10 entries per page
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
-	
+
 	/**
 	 * 
 	 */
 	public TeacherProgressionView() {
-		
 		rootPanel = new JPanel();
-		
+
 		initPanel();
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void initPanel() {
+
 		
 		//sets up root panel
 		rootPanel.setSize(viewSize);
@@ -73,7 +72,7 @@ public class TeacherProgressionView {
 		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
-		pageSelector.setVisible(false);  //hides unwanted appereance
+		pageSelector.setVisible(false);  //hides unwanted appearance
 		
 		//adds back button
 		rootPanel.add(backButton);
@@ -92,7 +91,7 @@ public class TeacherProgressionView {
 			
 		}
 		
-		//convert container into scrollview, add scroll view
+		//convert container into scroll view, add scroll view
 		scrollPane = new JScrollPane(container);
 		scrollPane.setSize(785, 490);
 		scrollPane.setLocation(containerLocation);
@@ -158,14 +157,14 @@ public class TeacherProgressionView {
 	public int getPage() {
 		return (int) pageSelector.getValue();
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void insertPanelToFrame() {
 		Main.gameFrame.add(rootPanel);
 	}
-	
+
 	/**
 	 * 
 	 * @param visibility
@@ -175,7 +174,7 @@ public class TeacherProgressionView {
 		backButton.setVisible(visibility);
 		pageSelector.setVisible(visibility);
 	}
-	
+
 	public void backButtonAddActionListener(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
