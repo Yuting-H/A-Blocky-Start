@@ -126,6 +126,8 @@ public class LoginController implements Controller {
 	 */
 	public void OnExit() {
 		view.setVisible(false);
+		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
+
 	}
 
 }
