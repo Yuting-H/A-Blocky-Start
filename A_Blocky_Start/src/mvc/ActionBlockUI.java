@@ -43,7 +43,7 @@ public class ActionBlockUI extends JPanel {
 		
 		removeBlockButton = new ButtonUI(true, new Dimension(50, 50), null, IconUI.removeBlockButtonIcon);
 		
-		actionIcon = new LabelUI(IconUI.ICON_BUTTON_SIZE, null, IconUI.pauseMenuButtonIcon); // TODO
+		actionIcon = new LabelUI(IconUI.ICON_BUTTON_SIZE, null, IconUI.startBlockIcon);
 		
 		lineText = new LabelUI(new Dimension(50, 30), null, "line");
 		typeText = new LabelUI(new Dimension(100, 30), null, "action type");
@@ -54,9 +54,6 @@ public class ActionBlockUI extends JPanel {
 		minusText = new LabelUI(new Dimension(50, 50), null, "minus");
 		counterText = new LabelUI(new Dimension(150, 50), null, "");
 		
-		setVisible(true);
-		setLayout(null);
-		
 		if (type == ActionTypeEnum.LOOP) {
 			setSize(new Dimension(ACTION_BLOCK_WIDTH, ACTION_BLOCK_HEIGHT * 3));
 		} else if (type == ActionTypeEnum.GOTO) {
@@ -65,6 +62,45 @@ public class ActionBlockUI extends JPanel {
 			setSize(new Dimension(ACTION_BLOCK_WIDTH, ACTION_BLOCK_HEIGHT * 1));
 		} else {
 			setSize(new Dimension(ACTION_BLOCK_WIDTH, ACTION_BLOCK_HEIGHT * 0 + 30)); // stage ID bar
+		}
+		
+		setVisible(true);
+		setLayout(null);
+		setPreferredSize(getSize());
+		setMinimumSize(getSize());
+		setMaximumSize(getSize());
+		
+		switch (type) {
+		case UNKNOWN:
+			actionIcon.setIcon(IconUI.startBlockIcon);
+			break;
+		case START:
+			actionIcon.setIcon(IconUI.startBlockIcon);
+			break;
+		case END:
+			actionIcon.setIcon(IconUI.endBlockIcon);
+			break;
+		case FORWARD:
+			actionIcon.setIcon(IconUI.forwardBlockIcon);
+			break;
+		case BACK:
+			actionIcon.setIcon(IconUI.backBlockIcon);
+			break;
+		case LEFT:
+			actionIcon.setIcon(IconUI.leftBlockIcon);
+			break;
+		case RIGHT:
+			actionIcon.setIcon(IconUI.rightBlockIcon);
+			break;
+		case GOTO:
+			actionIcon.setIcon(IconUI.gotoBlockIcon);
+			break;
+		case LOOP:
+			actionIcon.setIcon(IconUI.loopBlockIcon);
+			break;
+		default:
+			actionIcon.setIcon(IconUI.startBlockIcon);
+			break;
 		}
 		
 		if (type == ActionTypeEnum.UNKNOWN) {
@@ -91,6 +127,17 @@ public class ActionBlockUI extends JPanel {
 			add(actionText);
 		}
 		
+		if (type == ActionTypeEnum.GOTO) {
+			// GOTO action block
+			
+			jumpText.setLocation(new Point(10, 50));
+			add(jumpText);
+			jumpLineField.setLocation(new Point(110, 60));
+			add(jumpLineField);
+			immediatelyText.setLocation(new Point(165, 50));
+			add(immediatelyText);
+		}
+		
 		if (type == ActionTypeEnum.LOOP) {
 			// LOOP action block
 			
@@ -110,21 +157,6 @@ public class ActionBlockUI extends JPanel {
 			add(counterText);
 			setCounterText(endPoint - startPoint);
 		}
-		
-		if (type == ActionTypeEnum.GOTO) {
-			// GOTO action block
-			
-			jumpText.setLocation(new Point(10, 50));
-			add(jumpText);
-			jumpLineField.setLocation(new Point(110, 60));
-			add(jumpLineField);
-			immediatelyText.setLocation(new Point(165, 50));
-			add(immediatelyText);
-		}
-		
-		setPreferredSize(getSize());
-		setMinimumSize(getSize());
-		setMaximumSize(getSize());
 		
 		if (type != ActionTypeEnum.UNKNOWN) {
 			setStatus(0);
