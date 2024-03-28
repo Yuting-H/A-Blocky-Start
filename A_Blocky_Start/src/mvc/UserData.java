@@ -74,15 +74,15 @@ public class UserData {
 	/**
 	 * Decode the encoded data stored in a user data file. 
 	 * @see exportData() for details. 
-	 * @param mode the mode, true = username, false = filename
 	 * @param name Account name of user<br>
+	 * @param studentMode the mode, true = username, false = filename
 	 * @return UserData, or null if the file does not exist.
 	 */
-	public static UserData importData(String name, boolean mode) {
+	public static UserData importData(String name, boolean studentMode) {
 
 		String filename = toFilename(name);
 		
-		if (mode) {
+		if (studentMode) {
 			filename = toFilename(name);
 		}else {
 			filename = filenamePrefix + name;
