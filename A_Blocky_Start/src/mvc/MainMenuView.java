@@ -78,7 +78,7 @@ public class MainMenuView {
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);	
 		rootPanel.setVisible(false);
-		rootPanel.setBackground(Color.gray);
+		rootPanel.setBackground(Color.lightGray);
 		
 		rootPanel.add(title);
 		
