@@ -112,11 +112,11 @@ public class TeacherProgressionView {
 	 */
 	public void setEntry(int index, String studentName, int timeSpent, int totalAttempts, int totalScore, int completedStage) {
 		
-		LabelUI nameLabel = new LabelUI(labelSize, studentName);
-		LabelUI timeSpentLabel = new  LabelUI(labelSize, "" + timeSpent);
-		LabelUI totalAttemptsLabel = new LabelUI(labelSize, "" + totalAttempts);
-		LabelUI totalScoreLabel = new LabelUI(labelSize, "" + totalScore);
-		LabelUI completedStageLabel = new LabelUI(labelSize, "" + completedStage);
+		LabelUI nameLabel = new LabelUI(labelSize, "Name: " + studentName);
+		LabelUI timeSpentLabel = new  LabelUI(labelSize, "Time Spent: " + timeSpent);
+		LabelUI totalAttemptsLabel = new LabelUI(labelSize, "Total Attempts: " + totalAttempts);
+		LabelUI totalScoreLabel = new LabelUI(labelSize, "Total Score: " + totalScore);
+		LabelUI completedStageLabel = new LabelUI(labelSize, "Label Size: " + completedStage);
 		
 		PanelUI entry = entries.get(index);
 		FlowLayout layout = new FlowLayout();
