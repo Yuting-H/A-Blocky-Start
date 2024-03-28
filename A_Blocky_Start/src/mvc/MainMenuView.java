@@ -78,7 +78,7 @@ public class MainMenuView {
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);	
 		rootPanel.setVisible(false);
-		rootPanel.setBackground(Color.gray);
+		rootPanel.setBackground(Color.lightGray);
 		
 		rootPanel.add(title);
 		
@@ -103,6 +103,9 @@ public class MainMenuView {
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
 		asidePanel.setVisible(visibility);
+		rootPanel.repaint();
+		Main.gameFrame.revalidate();
+		Main.gameFrame.repaint();
 	}
 	
 	public void continueButtonAddActionListener(ActionListener actionListener) {

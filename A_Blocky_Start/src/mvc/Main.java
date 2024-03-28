@@ -1,6 +1,7 @@
 package mvc;
 
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +13,8 @@ import javax.swing.JPanel;
  * @author Yuting
  */
 public class Main {
+	
+	public static PanelUI colorblindPanel = new PanelUI(new Point(0,0), new Dimension(800, 600), IconUI.colorblindColor);
 	
 	/** The JFrame the game runs in*/
 	 public static JFrame gameFrame = new JFrame();
@@ -41,12 +44,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		
+
 		
 		configureGameFrame();  //sets up the game's JFrame
-
-		UserData userData = UserData.importData("aliceliddell");
+		
+		UserData userData = UserData.importData("aliceliddell", true);
 		
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
@@ -55,11 +57,30 @@ public class Main {
 
 		studentProgressionController.setUserData(userData);
 
-		loginController.OnEnter();
-
-
+		mainMenuController.OnEnter();
 
 		
+		setColorblindVisibility(settingsController.isColourblindMode());
+		
+		
+
+	}
+	
+	public static void setColorblindVisibility(boolean isColourblindMode) {
+		
+		if (isColourblindMode) {
+			gameFrame.remove(gameFrame.getComponentAt(0, 0));
+			
+			gameFrame.add(colorblindPanel);
+			
+			gameFrame.setComponentZOrder(colorblindPanel, 0);
+			
+			gameFrame.repaint();
+			
+			gameFrame.revalidate();
+		}
+
+
 	}
 	
 	

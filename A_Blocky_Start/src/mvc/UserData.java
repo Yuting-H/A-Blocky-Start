@@ -74,12 +74,19 @@ public class UserData {
 	/**
 	 * Decode the encoded data stored in a user data file. 
 	 * @see exportData() for details. 
-	 * @param username Account name of user<br>
+	 * @param mode the mode, true = username, false = filename
+	 * @param name Account name of user<br>
 	 * @return UserData, or null if the file does not exist.
 	 */
-	public static UserData importData(String username) {
+	public static UserData importData(String name, boolean mode) {
 
-		String filename = toFilename(username);
+		String filename = toFilename(name);
+		
+		if (mode) {
+			filename = toFilename(name);
+		}else {
+			filename = filenamePrefix + name;
+		}
 		
 		try {
 			
@@ -93,10 +100,10 @@ public class UserData {
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
 			int totalTimeSpent = scnr.nextInt();
-			int totalAttempts = scnr.nextInt();
+			int totalAttempts = 1;
 			
 			// Call constructor
-			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), name, password);
 			
 			// Add the rest of the attributes
 			userData.addTotalScore(totalScore);
