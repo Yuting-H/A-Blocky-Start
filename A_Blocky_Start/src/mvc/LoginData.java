@@ -121,7 +121,7 @@ public class LoginData {
 	public boolean loginActiveUser() {
 		
 		// Try opening the user data file
-		UserData userData = UserData.importData(usernameInput);
+		UserData userData = UserData.importData(usernameInput, false);
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}

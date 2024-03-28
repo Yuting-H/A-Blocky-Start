@@ -39,23 +39,33 @@ public class TeacherProgressionController implements Controller{
 			}
 		});
 		
+		//add functionalty to selector
 		view.selectorAddChangeListener(new ChangeListener() {
 			
+			//when state change
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				
+				//set data
 				data.setPage(view.getPage());
 				data.updateEntries();
 				
+				//add 10 entries to view
 				for (int i = 0; i < 10; i++) {
 					UserData currData = data.getUserData(i);
-					view.setEntry(
-							i, 
-							currData.getUsername(), 
-							currData.getTotalTimeSpent(), 
-							currData.getTotalAttempts(), 
-							currData.getTotalScore(), 
-							-1
-							);
+					if (currData != null) {
+						view.setEntry(
+								i, 
+								currData.getUsername(), 
+								currData.getTotalTimeSpent(), 
+								currData.getTotalAttempts(), 
+								currData.getTotalScore(), 
+								-1
+								);
+					}else {
+						view.setEntry(i, "Empty", i, i, i, i);
+					}
+					
 				}
 			}
 		});
