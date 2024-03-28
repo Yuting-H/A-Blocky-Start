@@ -76,6 +76,7 @@ public class SettingsView {
 		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);
 		rootPanel.setBackground(IconUI.mediumOrange);
+
 		
 		//add colourblind mode selection combobox
 		colourBlindComboBox.setVisible(true);

@@ -2,12 +2,15 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.xml.crypto.Data;
 
 /**
- * LoginController Contains LoginModel and LoginView
+ * LoginController controls LoginData and LoginView
  * @version 0.2
- * @author Yuting
- * @author Eunhak
+ * @author Yuting Hou
+ * @author Eunhak Kim
  */
 public class LoginController implements Controller {
 
@@ -39,28 +42,60 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
+
 				//check if username is empty
 
+				data.setUsernameInput(view.getUsername());
+				data.setPasswordInput(view.getPassword());
+				
 				if (view.getUsername().isEmpty() ) {
 
 					//TODO: notify user their username is empty,  
 					
 				}else {
+					
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					
 					//if password == teacher password then enable teacher mode
-					if (view.getPassword() == TEACHERPassword) {
-//						data.getActiveUserData() = new UserData(UserTypeEnum.TEACHER, );
-					}
-					//if password matches developer password enable developer mode
-					else if (view.getPassword() == DEVELOPERPassword) {
+					if (view.getPassword().compareTo(TEACHERPassword) == 0) {
+						
+						System.out.println("Logged in as teacher");
 						
 					}
-					// Student mode
-					else {
+					//if password matches developer password enable developer mode
+					else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
+						
+						System.out.println("Logged in as developer");
+						
+					}
+					//load user data
+					
 						data.setUsernameInput(view.getUsername());
 						data.setPasswordInput(view.getPassword());
 						data.registerActiveUser();
 						data.loginActiveUser();
+
+				//check if username is acceptable
+				if (!(data.setUsernameInput(view.getUsername()))) {
+					System.out.println("Enter username");
+				}
+				//check if password is acceptable
+				if (!(data.setPasswordInput(view.getPassword()))) {
+					System.out.println("Enter password");
+				}
+				else {
+					//register if new user, then logs in with the provided username and password
+					data.setUsernameInput(view.getUsername());
+					data.setPasswordInput(view.getPassword());
+					if (data.registerActiveUser()) {
+						System.out.println("New user registered");
 					}
+					
+					if (!data.loginActiveUser()) {
+						System.out.println("Login failed");
+					}
+					
 					Main.loginController.OnExit();	
 					Main.mainMenuController.OnEnter();
 					//print login info
@@ -68,11 +103,11 @@ public class LoginController implements Controller {
 					
 				}
 			}
-		});
+		}});
 	}
 	
 	/**
-	 * 
+	 * Access the game mode
 	 * @return the mode of the game
 	 */
 	public UserTypeEnum getMode() {
@@ -80,14 +115,14 @@ public class LoginController implements Controller {
 	}
 
 	/**
-	 * 
+	 * Show the screen
 	 */
 	public void OnEnter() {
 		view.setVisible(true);
 	}
 
 	/**
-	 * 
+	 * Close the screen
 	 */
 	public void OnExit() {
 		view.setVisible(false);

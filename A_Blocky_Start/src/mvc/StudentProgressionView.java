@@ -28,8 +28,11 @@ public class StudentProgressionView{
 	//Define sizes
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
-	private Dimension containerSize = new Dimension(700, 450);
-	private Dimension entryContainerSize = new Dimension(100, 500);
+
+	private Dimension containerSize = new Dimension(785, 800);
+	private Dimension scrollPanelSize = new Dimension(785, 495);
+	private Dimension entryContainerSize = new Dimension(700, 50);
+
 	private Dimension labelSize = new Dimension(100, 20);
 	
 	//define locations
@@ -62,7 +65,9 @@ public class StudentProgressionView{
 		
 		//set up progression panel
 		rootPanel.setSize(viewSize);
+
 		rootPanel.setBackground(IconUI.mediumOrange);
+
 		rootPanel.setLayout(null);
 		
 		//added go back button to progression
@@ -70,12 +75,13 @@ public class StudentProgressionView{
 		rootPanel.add(backButton);
 		
 		//set up container 
-		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
-		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));  //set layout
-		container.setBorder(new EmptyBorder(new Insets(10, 50, 0, 50)));  //inset space
+		container = new PanelUI(containerLocation, containerSize, Color.white);
+		FlowLayout layout = new FlowLayout();
+		container.setLayout(new FlowLayout());  //set layout
+
 		
 		//adds 10 progression to container
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 10; i++) {
 			
 			PanelUI curr = newEntry();  //create empty container
 			
@@ -85,16 +91,15 @@ public class StudentProgressionView{
 			
 		}
 
-		//botton margin
-		container.add(Box.createVerticalStrut(100));
 		
 		//init scroll bar, container is converted
 		scrollPane = new JScrollPane(container);
 		
 		//change scroll bar settings
-		scrollPane.setSize(containerSize);
+		scrollPane.setSize(scrollPanelSize);
 		scrollPane.setLocation(containerLocation);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVisible(false);
 		
 		//adding scrollable container to progression panel
@@ -113,6 +118,8 @@ public class StudentProgressionView{
 		PanelUI entry = entries.get(index);
 		
 		entry.setLayout(new FlowLayout());
+		entry.setSize(entryContainerSize);
+		entry.setBackground(Color.LIGHT_GRAY);
 		
 		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID + '\n');
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);

@@ -310,6 +310,13 @@ class ActionBlockDataTest {
 	}
 	
 	@Test
+	void IsJumpLoopCountMinusOne() {
+		String data = "Loop_-1_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(true, block.isJump());
+	}
+	
+	@Test
 	void IsJumpLoopCountEnded() {
 		String data = "Loop_1_0_10";
 		ActionBlockData block = ActionBlockData.importData(data);

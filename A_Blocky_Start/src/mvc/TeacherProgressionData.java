@@ -64,15 +64,22 @@ public class TeacherProgressionData {
 	 */
 	public UserData getUserData(int index) {
 		// Check index
-		if ((index < 0) || (index > entriesPerPage - 1)) {
+		if ((index < 0) || (index > entriesPerPage - 1) || index > shortFilenameList.size() -1) {
 			return null; // out-of-bound
 		}
 		
+		String str = shortFilenameList.get(index);
+		return UserData.importData(str, false);
+		
+		/*
 		try {
+			
+			
 			return userDataList.get(index);
 		} catch (IndexOutOfBoundsException e) {
 			return null; // not found
 		}
+		*/
 	}
 	
 	/**
