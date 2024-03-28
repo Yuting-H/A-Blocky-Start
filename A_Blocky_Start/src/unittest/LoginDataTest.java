@@ -71,7 +71,7 @@ class LoginDataTest {
 		ld.setUsernameInput("aliceliddell");
 		ld.setPasswordInput("pass1234");
 		ld.loginActiveUser();
-		UserData ud = UserData.importData("aliceliddell");
+		UserData ud = UserData.importData("aliceliddell", true);
 		assertEquals(ud, ld.getActiveUserData());
 	}
 

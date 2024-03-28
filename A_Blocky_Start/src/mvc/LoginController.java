@@ -42,67 +42,36 @@ public class LoginController implements Controller {
 			//switch from login view to main menu view 
 			public void actionPerformed(ActionEvent e) {
 				
-
-				//check if username is empty
-
-				data.setUsernameInput(view.getUsername());
-				data.setPasswordInput(view.getPassword());
-				
-				if (view.getUsername().isEmpty() ) {
-
-					//TODO: notify user their username is empty,  
-					
-				}else {
-					
-					data.setUsernameInput(view.getUsername());
-					data.setPasswordInput(view.getPassword());
-					
-					//if password == teacher password then enable teacher mode
-					if (view.getPassword().compareTo(TEACHERPassword) == 0) {
-						
-						System.out.println("Logged in as teacher");
-						
-					}
-					//if password matches developer password enable developer mode
-					else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
-						
-						System.out.println("Logged in as developer");
-						
-					}
-					//load user data
-					
-						data.setUsernameInput(view.getUsername());
-						data.setPasswordInput(view.getPassword());
-						data.registerActiveUser();
-						data.loginActiveUser();
-
 				//check if username is acceptable
 				if (!(data.setUsernameInput(view.getUsername()))) {
-					System.out.println("Enter username");
+					System.out.println("Bad username");
 				}
 				//check if password is acceptable
 				if (!(data.setPasswordInput(view.getPassword()))) {
 					System.out.println("Enter password");
 				}
-				else {
-					//register if new user, then logs in with the provided username and password
-					data.setUsernameInput(view.getUsername());
-					data.setPasswordInput(view.getPassword());
-					if (data.registerActiveUser()) {
-						System.out.println("New user registered");
-					}
-					
-					if (!data.loginActiveUser()) {
-						System.out.println("Login failed");
-					}
-					
-					Main.loginController.OnExit();	
-					Main.mainMenuController.OnEnter();
-					//print login info
-					System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
-					
+				//register if new user
+				if (data.registerActiveUser()) {
+					System.out.println("New user registered");
 				}
-			}
+				//logs in with the provided username and password
+				if (!data.loginActiveUser()) {
+					System.out.println("Login failed");
+				}
+				
+				//if password == teacher password then enable teacher mode
+				if (view.getPassword().compareTo(TEACHERPassword) == 0) {
+					System.out.println("Logged in as teacher");
+				}
+				//if password matches developer password enable developer mode
+				else if (view.getPassword().compareTo(DEVELOPERPassword) == 0) {
+					System.out.println("Logged in as developer");	
+				}
+				
+				Main.loginController.OnExit();	
+				Main.mainMenuController.OnEnter();
+				//print login info
+				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 		}});
 	}
 	
