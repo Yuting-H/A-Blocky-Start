@@ -61,6 +61,12 @@ public class SettingsController implements Controller{
 		
 		
 	}
+	public boolean isColourblindMode() {		
+		
+		return data.getColourblindMode();
+		
+	}
+	
 	
 	/**
 	 * 

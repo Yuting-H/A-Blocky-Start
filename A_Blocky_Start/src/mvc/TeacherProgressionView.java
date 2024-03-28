@@ -65,7 +65,7 @@ public class TeacherProgressionView {
 		rootPanel.setBackground(Color.orange);
 		rootPanel.setLayout(null);
 		
-		//added go back button to prrogression
+		//added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
 		//adds page selector

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -19,14 +20,19 @@ public class TutorialView {
 	
 	private Dimension backButtonSize = new Dimension(30, 30);
 	
+	private Dimension tutorialTitleSize = new Dimension(120,36);
+	
 	
 	private Point containerLocation = new Point(0,50);
 	
 	private Point backButtonLocation = new Point(10, 10);
 	
+	private Point tutorialTitleLocation = new Point(375,10);
+	
 	
 	private JPanel contentContainer = new PanelUI(containerLocation, tutorialContainerSize, Color.white);
 	private ButtonUI backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
+	private JLabel tutorialTitle = new LabelUI(tutorialTitleLocation, tutorialTitleSize, "Tutorial");
 	
 	private JPanel rootPanel;
 	
@@ -49,11 +55,13 @@ public class TutorialView {
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);
 		rootPanel.setVisible(false);  //hide unwanted occurance
-		rootPanel.setBackground(Color.gray);
+		rootPanel.setBackground(IconUI.mediumOrange);
 		
+		contentContainer.setBackground(IconUI.lightOrange);
 		
 		rootPanel.add(backButton);
-		rootPanel.add(contentContainer); 
+		rootPanel.add(contentContainer);
+		rootPanel.add(tutorialTitle);
 	}
 	
 	/**
