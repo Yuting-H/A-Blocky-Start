@@ -237,7 +237,7 @@ public class ActionBlockData {
 	public boolean isJump() {
 		if (type == ActionTypeEnum.GOTO) {
 			return true;
-		} else if ((type == ActionTypeEnum.LOOP) && (counter == 0)) {
+		} else if ((type == ActionTypeEnum.LOOP) && (counter <= 0)) {
 			return true; // "Loop" is finished
 		}
 		
