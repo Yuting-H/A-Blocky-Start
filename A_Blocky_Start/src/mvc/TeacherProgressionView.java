@@ -119,6 +119,9 @@ public class TeacherProgressionView {
 		LabelUI completedStageLabel = new LabelUI(labelSize, "" + completedStage);
 		
 		PanelUI entry = entries.get(index);
+		entry.removeAll();
+		entry.repaint();
+		entry.revalidate();
 		entry.add(nameLabel);
 		entry.add(timeSpentLabel);
 		entry.add(totalAttemptsLabel);
@@ -172,5 +175,13 @@ public class TeacherProgressionView {
 	
 	public void selectorAddChangeListener(ChangeListener changeListener) {
 		pageSelector.addChangeListener(changeListener);
+	}
+	
+	public void repaint() {
+		rootPanel.repaint();
+	}
+	
+	public void revalidate() {
+		rootPanel.revalidate();
 	}
 }
