@@ -48,7 +48,11 @@ public class Main {
 		
 		configureGameFrame();  //sets up the game's JFrame
 		
+<<<<<<< HEAD
 		UserData userData = UserData.importData("aliceliddell");
+=======
+		UserData userData = UserData.importData("aliceliddell", true);
+>>>>>>> b029e41cb947558cd89a62f7d3f2d52a0f346111
 		
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
