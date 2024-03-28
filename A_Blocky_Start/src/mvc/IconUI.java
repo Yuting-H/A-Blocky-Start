@@ -1,6 +1,7 @@
 package mvc;
-import java.awt.Dimension;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 
 
@@ -19,6 +20,11 @@ public class IconUI {
 	
 	// TODO re-scale images of incorrect sizes
 	private static int samplingRate = 1;
+	
+	public static Color lightOrange = new Color(255, 220, 120, 255);
+	public static Color mediumOrange = new Color(250, 150, 50, 255);
+	public static Color darkOrange = new Color(200, 100, 50, 255);
+	public static Color colorblindColor = new Color(150, 255, 150, 100);
 	
 	//game title
 	public static ImageIcon gameTitleIcon = 

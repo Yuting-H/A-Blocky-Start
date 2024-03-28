@@ -3,13 +3,18 @@
  */
 package unittest;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import mvc.LoginData;
+import mvc.UserData;
+import mvc.UserTypeEnum;
+
 /**
  * Unit test for {@link mvc.LoginData}
- * @version 0.1
+ * @version 0.2
  * @since Mar 25, 2024
  * @author Eunhak Kim
  *
@@ -17,27 +22,13 @@ import org.junit.jupiter.api.Test;
 class LoginDataTest {
 
 	/**
-	 * Test method for {@link mvc.LoginData#LoginData()}.
-	 */
-	@Test
-	void testLoginData() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link mvc.LoginData#getActiveUserData()}.
-	 */
-	@Test
-	void testGetActiveUserData() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
 	 * Test method for {@link mvc.LoginData#getMode()}.
 	 */
 	@Test
 	void testGetMode() {
-		fail("Not yet implemented"); // TODO
+		LoginData ld = new LoginData();
+		ld.setUsernameInput("tEAchEr");
+		assertEquals(UserTypeEnum.TEACHER, ld.getMode());
 	}
 
 	/**
@@ -45,7 +36,8 @@ class LoginDataTest {
 	 */
 	@Test
 	void testSetUsernameInput() {
-		fail("Not yet implemented"); // TODO
+		LoginData ld = new LoginData();
+		assertFalse(ld.setUsernameInput("$"));
 	}
 
 	/**
@@ -53,7 +45,8 @@ class LoginDataTest {
 	 */
 	@Test
 	void testSetPasswordInput() {
-		fail("Not yet implemented"); // TODO
+		LoginData ld = new LoginData();
+		assertTrue(ld.setPasswordInput("#$*2"));
 	}
 
 	/**
@@ -61,7 +54,17 @@ class LoginDataTest {
 	 */
 	@Test
 	void testRegisterActiveUser() {
-		fail("Not yet implemented"); // TODO
+		LoginData ld = new LoginData();
+		ld.setUsernameInput("Dummy");
+		ld.setPasswordInput("0000");
+		ld.registerActiveUser();
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "Dummy", "0000");
+		
+		boolean equalness = true;
+		equalness = equalness && (ud.getUserType().equals(ld.getActiveUserData().getUserType()));
+		equalness = equalness && (ud.getUsername().equals(ld.getActiveUserData().getUsername()));
+		equalness = equalness && (ud.getPassword().equals(ld.getActiveUserData().getPassword()));
+		assertTrue(equalness);
 	}
 
 	/**
@@ -69,7 +72,17 @@ class LoginDataTest {
 	 */
 	@Test
 	void testLoginActiveUser() {
-		fail("Not yet implemented"); // TODO
+		LoginData ld = new LoginData();
+		ld.setUsernameInput("aliceliddell");
+		ld.setPasswordInput("pass1234");
+		ld.loginActiveUser();
+		UserData ud = UserData.importData(UserData.toFilename("aliceliddell"));
+		
+		boolean equalness = true;
+		equalness = equalness && (ud.getUserType().equals(ld.getActiveUserData().getUserType()));
+		equalness = equalness && (ud.getUsername().equals(ld.getActiveUserData().getUsername()));
+		equalness = equalness && (ud.getPassword().equals(ld.getActiveUserData().getPassword()));
+		assertTrue(equalness);
 	}
 
 }
