@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -17,7 +18,7 @@ import javax.swing.event.ChangeListener;
 /**
  * 
  */
-public class TeacherProgressionView {
+public class TeacherProgressionView implements View {
 
 	private Dimension viewSize = Main.getDimension();
 
@@ -45,44 +46,41 @@ public class TeacherProgressionView {
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public TeacherProgressionView() {
-		rootPanel = new JPanel();
-
 		initPanel();
+		setVisibility(false);
 	}
+	
+	@Override
+	public void initPanel() {
 
-	/**
-	 * 
-	 */
-	private void initPanel() {
-
-		
-		//sets up root panel
+		// sets up root panel
+		rootPanel = new JPanel();
 		rootPanel.setSize(viewSize);
 		rootPanel.setBackground(Color.orange);
 		rootPanel.setLayout(null);
 		
-		//added go back button to progression
+		// added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		
-		//adds page selector
+		// adds page selector
 		model = new SpinnerNumberModel(1, 1, 10, 1);
 		pageSelector = new JSpinner(model);
 		pageSelector.setLocation(selectorLocation);
 		pageSelector.setSize(selectorSize);
 		pageSelector.setVisible(false);  //hides unwanted appearance
 		
-		//adds back button
+		// adds back button
 		rootPanel.add(backButton);
 		rootPanel.add(pageSelector);
-		backButton.setVisible(false);
+		backButton.setVisible(true);
 		
 		// container
 		container = new PanelUI(containerLocation, containerSize, Color.WHITE);
 		
-		//add 10 entries
+		// add 10 entries
 		for (int i = 0; i < 10; i++) {
 			PanelUI curr = newEntry();
 			
@@ -91,7 +89,7 @@ public class TeacherProgressionView {
 			
 		}
 		
-		//convert container into scroll view, add scroll view
+		// convert container into scroll view, add scroll view
 		scrollPane = new JScrollPane(container);
 		scrollPane.setSize(785, 490);
 		scrollPane.setLocation(containerLocation);
@@ -102,15 +100,24 @@ public class TeacherProgressionView {
 		rootPanel.setVisible(false);
 	}
 	
-	/**
-	 * 
-	 * @param index
-	 * @param studentName
-	 * @param timeSpent
-	 * @param totalAttempts
-	 * @param totalScore
-	 * @param completedStage
-	 */
+	@Override
+	public void refreshPanel() {
+		rootPanel.repaint();
+		rootPanel.revalidate();
+	}
+
+	@Override
+	public void insertPanelToFrame(JFrame frame) {
+		frame.add(rootPanel);
+	}
+	
+	@Override
+	public void setVisibility(boolean visibility) {
+		rootPanel.setVisible(visibility);
+		backButton.setVisible(visibility);
+		pageSelector.setVisible(visibility);
+	}
+
 	public void setEntry(int index, String studentName, int timeSpent, int totalAttempts, int totalScore, int completedStage) {
 		
 		LabelUI nameLabel = new LabelUI(labelSize, "Name: " + studentName);
@@ -137,11 +144,7 @@ public class TeacherProgressionView {
 		
 		
 	}
-	
-	/**
-	 * 
-	 * @return
-	 */
+
 	public PanelUI newEntry() {
 		
 		PanelUI newEntry = new PanelUI(entryContainerSize);
@@ -150,30 +153,11 @@ public class TeacherProgressionView {
 		
 	}
 	
-	/**
-	 * 
-	 * @return the current page
-	 */
 	public int getPage() {
 		return (int) pageSelector.getValue();
 	}
-
-	/**
-	 * 
-	 */
-	public void insertPanelToFrame() {
-		Main.gameFrame.add(rootPanel);
-	}
-
-	/**
-	 * 
-	 * @param visibility
-	 */
-	public void setVisibility(boolean visibility) {
-		rootPanel.setVisible(visibility);
-		backButton.setVisible(visibility);
-		pageSelector.setVisible(visibility);
-	}
+	
+	// Action Listeners
 
 	public void backButtonAddActionListener(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
@@ -182,12 +166,7 @@ public class TeacherProgressionView {
 	public void selectorAddChangeListener(ChangeListener changeListener) {
 		pageSelector.addChangeListener(changeListener);
 	}
+
 	
-	public void repaint() {
-		rootPanel.repaint();
-	}
-	
-	public void revalidate() {
-		rootPanel.revalidate();
-	}
+
 }

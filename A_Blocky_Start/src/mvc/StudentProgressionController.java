@@ -26,7 +26,7 @@ public class StudentProgressionController implements Controller{
 		this.data = null;
 		
 		//insert view to game frame
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		//adds functionality to UI elements
 		PopulateActionListener();

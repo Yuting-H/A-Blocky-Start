@@ -21,7 +21,7 @@ public class GameplayController implements Controller{
 	public GameplayController() {
 		
 		//insert root panel to game frame
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		//adds functionality to UI elements
 		populateActionListener();

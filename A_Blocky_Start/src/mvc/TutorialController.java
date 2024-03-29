@@ -17,7 +17,7 @@ public class TutorialController {
 	 */
 	public TutorialController() {
 		
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		populateActionListener();
 	}
