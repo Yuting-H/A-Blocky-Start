@@ -107,7 +107,6 @@ public class MainMenuView implements View {
 	@Override
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
-		continueButton.setVisible(visibility);
 	}
 	
 	// Action Listeners
