@@ -30,14 +30,17 @@ public class StudentProgressionView{
 	private Dimension backButtonSize = new Dimension(30,30);
 
 	private Dimension containerSize = new Dimension(785, 800);
-	private Dimension scrollPanelSize = new Dimension(785, 495);
+	private Dimension scrollPanelSize = new Dimension(700, 470);
 	private Dimension entryContainerSize = new Dimension(700, 50);
 
 	private Dimension labelSize = new Dimension(100, 20);
+	private Dimension progressionTitleSize = new Dimension(120,36);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
 	private Point containerLocation = new Point(50, 50);  //contains all student's progression
+	private Point progressionTitleLocation = new Point(375,10);
+	
 	
 	//define UI
 	private JPanel rootPanel;
@@ -47,6 +50,8 @@ public class StudentProgressionView{
 	
 	//
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
+	
+	private JLabel progressionTitleLabel = new LabelUI(progressionTitleLocation, progressionTitleSize, "Continue Game");
 	
 	/**
 	 * constructor for displaying
@@ -75,15 +80,16 @@ public class StudentProgressionView{
 		rootPanel.add(backButton);
 		
 		//set up container 
-		container = new PanelUI(containerLocation, containerSize, Color.white);
-		FlowLayout layout = new FlowLayout();
+		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
 		container.setLayout(new FlowLayout());  //set layout
-
+		
+		rootPanel.add(progressionTitleLabel);
 		
 		//adds 10 progression to container
 		for (int i = 0; i < 10; i++) {
 			
 			PanelUI curr = newEntry();  //create empty container
+			curr.setBackground(IconUI.darkOrange);
 			
 			entries.add(curr);  //add empty container to list
 			container.add(entries.get(i));  //add the containers from list to screen
@@ -119,9 +125,9 @@ public class StudentProgressionView{
 		
 		entry.setLayout(new FlowLayout());
 		entry.setSize(entryContainerSize);
-		entry.setBackground(Color.LIGHT_GRAY);
+		//entry.setBackground(IconUI.darkOrange);
 		
-		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID + '\n');
+		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID);
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
 		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
 		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
