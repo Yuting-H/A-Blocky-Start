@@ -19,7 +19,7 @@ public class IconUI {
 	public static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
 	
 	// TODO re-scale images of incorrect sizes
-	private static int samplingRate = 1;
+	private static int samplingRate = 15;
 	
 	public static Color lightOrange = new Color(255, 220, 120, 255);
 	public static Color mediumOrange = new Color(250, 150, 50, 255);
@@ -30,7 +30,7 @@ public class IconUI {
 	public static ImageIcon gameTitleIcon = 
 			new ImageIcon(
 					//scale image to 600x100 with sampling rate 15
-					new ImageIcon("img/GameTitle.png").getImage().getScaledInstance(600, 100, samplingRate)  
+					new ImageIcon("img/GameTitle.png").getImage().getScaledInstance(600, 500, samplingRate)  
 					);	//transforms image to ImageIcon
 	
 	// main menu background
@@ -38,7 +38,7 @@ public class IconUI {
 	public static ImageIcon mainMenuBackgroundIcon = 
 			new ImageIcon(
 					//scale image to 600x100 with sampling rate 15
-					new ImageIcon("img/GameBackground.png").getImage().getScaledInstance(600, 100, samplingRate)  
+					new ImageIcon("img/MenuBlank.png").getImage().getScaledInstance(600, 100, samplingRate)  
 					);	//transforms image to ImageIcon
 	
 	//Button ImageIcons
@@ -47,51 +47,51 @@ public class IconUI {
 	public static ImageIcon continueButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/ContinueButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuContinue.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon newGameButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/NewGameButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/menuNewGame.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon tutorialButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/TutorialBuutton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuTutorial.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon progressionButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/ProgressionButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuProgression.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon highscoreButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/HighScoreSButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuHighScores.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon settingsButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/SettingsButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuSettings.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	
 	//
 	public static ImageIcon exitButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/ExitButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuExit.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	
 	// TODO: missing sprite
 	public static ImageIcon saveButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/SaveButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuSave.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	
 	// TODO: missing sprite
@@ -102,7 +102,7 @@ public class IconUI {
 					);
 	
 	// 30 x 30
-	public static ImageIcon backButtonIcon = new ImageIcon("img/BackButton.png");
+	public static ImageIcon backButtonIcon = new ImageIcon("img/IconBack.png");
 	
 	// 50 x 50
 	public static ImageIcon pauseMenuButtonIcon = new ImageIcon("img/PauseMenuButton.png");
