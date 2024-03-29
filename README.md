@@ -98,7 +98,7 @@ Note:
 
 ## 7. Teacher Mode Activation
 
-To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**".  
+To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurProject100%**".  
 
 ## 8. Developer Mode Activation
 
