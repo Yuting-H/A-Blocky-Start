@@ -14,7 +14,7 @@ import mvc.UserTypeEnum;
 
 /**
  * Unit test for {@link mvc.LoginData}
- * @version 0.2
+ * @version 1.0
  * @since Mar 25, 2024
  * @author Eunhak Kim
  *
@@ -76,6 +76,7 @@ class LoginDataTest {
 		ld.setUsernameInput("aliceliddell");
 		ld.setPasswordInput("pass1234");
 		ld.loginActiveUser();
+
 		UserData ud = UserData.importData(UserData.toFilename("aliceliddell"));
 		
 		boolean equalness = true;

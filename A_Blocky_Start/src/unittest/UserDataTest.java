@@ -26,7 +26,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataUserType() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals(UserTypeEnum.STUDENT, ud.getUserType());
 	}
 	
@@ -35,7 +35,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataUsername() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals("student", ud.getUsername());
 	}
 	
@@ -44,7 +44,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataPassword() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals("pass1234", ud.getPassword());	
 	}
 	
@@ -53,7 +53,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalScore() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals(6, ud.getTotalScore());
 	}
 	
@@ -62,7 +62,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalTimeSpent() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals(70, ud.getTotalTimeSpent());
 	}
 	
@@ -71,7 +71,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalAttempts() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		assertEquals(10, ud.getTotalAttempts());
 	}
 	
@@ -80,7 +80,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataProgression() {
-		UserData ud = UserData.importData("student");
+		UserData ud = UserData.importData(UserData.toFilename("student"));
 		int result = ud.getProgressionAtIndex(1).getTimeSpent();
 		assertEquals(20, result);
 	}
@@ -96,11 +96,11 @@ class UserDataTest {
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
 		
-		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		String stage1 = "1,TRUE,0,3,20,2,/,START,FORWARD,END";
 		ProgressionData pd = ProgressionData.importData(stage1);
 		ud.addProgressionData(pd);
 		
-		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		String stage2 = "2,TRUE,0,3,50,8,/,START,FORWARD,LEFT,FORWARD,END";
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
@@ -127,11 +127,11 @@ class UserDataTest {
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
 		
-		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		String stage1 = "1,TRUE,0,3,20,2,/,START,FORWARD,END";
 		ProgressionData pd = ProgressionData.importData(stage1);
 		ud.addProgressionData(pd);
 		
-		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		String stage2 = "2,TRUE,0,3,50,8,/,START,FORWARD,LEFT,FORWARD,END";
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
@@ -157,11 +157,11 @@ class UserDataTest {
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
 		
-		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
+		String stage1 = "1,TRUE,0,3,20,2,/,START,FORWARD,END";
 		ProgressionData pd = ProgressionData.importData(stage1);
 		ud.addProgressionData(pd);
 		
-		String stage2 = "2,TRUE,3,3,50,8,/,Start,Forward,Left,Forward,End";
+		String stage2 = "2,TRUE,0,3,50,8,/,START,FORWARD,LEFT,FORWARD,END";
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
