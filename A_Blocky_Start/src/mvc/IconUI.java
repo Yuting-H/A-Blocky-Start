@@ -53,7 +53,7 @@ public class IconUI {
 	public static ImageIcon newGameButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/menuNewGame.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuNewGame.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	//
 	public static ImageIcon tutorialButtonIcon = 
@@ -98,31 +98,31 @@ public class IconUI {
 	public static ImageIcon mainMenuButtonIcon = 
 			new ImageIcon(
 					//scale image with sampling rate 1
-					new ImageIcon("img/MainMenuButton.png").getImage().getScaledInstance(150, 40, samplingRate)
+					new ImageIcon("img/MenuBlank.png").getImage().getScaledInstance(150, 40, samplingRate)
 					);
 	
 	// 30 x 30
 	public static ImageIcon backButtonIcon = new ImageIcon("img/IconBack.png");
 	
 	// 50 x 50
-	public static ImageIcon pauseMenuButtonIcon = new ImageIcon("img/PauseMenuButton.png");
-	public static ImageIcon runChainButtonIcon = new ImageIcon("img/RunActionChainButton.png");
-	public static ImageIcon pauseChainButtonIcon = new ImageIcon("img/PauseActionChainButton.png");
-	public static ImageIcon resetChainuttonIcon = new ImageIcon("img/ResetActionChainButton.png");
-	public static ImageIcon objectivesButtonIcon = new ImageIcon("img/ObjectivesButton.png");
-	public static ImageIcon hintsButtonIcon = new ImageIcon("img/HintsButton.png");
-	public static ImageIcon debugChainButtonIcon = new ImageIcon("img/DebugButton.png");
-	public static ImageIcon removeBlockButtonIcon = new ImageIcon("img/TrashButton.png");
+	public static ImageIcon pauseMenuButtonIcon = new ImageIcon("img/IconMenu.png");
+	public static ImageIcon runChainButtonIcon = new ImageIcon("img/IconRun.png");
+	public static ImageIcon pauseChainButtonIcon = new ImageIcon("img/IconPause.png");
+	public static ImageIcon resetChainuttonIcon = new ImageIcon("img/IconReset.png");
+	public static ImageIcon objectivesButtonIcon = new ImageIcon("img/IconObjectives.png");
+	public static ImageIcon hintsButtonIcon = new ImageIcon("img/IconHints.png");
+	public static ImageIcon debugChainButtonIcon = new ImageIcon("img/IconDebug.png");
+	public static ImageIcon removeBlockButtonIcon = new ImageIcon("img/IconTrash.png");
 	
 	// 50 x 50
-	public static ImageIcon startBlockIcon = new ImageIcon("img/StartBlock.png");
-	public static ImageIcon endBlockIcon = new ImageIcon("img/EndBlock.png");
-	public static ImageIcon forwardBlockIcon = new ImageIcon("img/ForwardBlock.png");
-	public static ImageIcon backBlockIcon = new ImageIcon("img/BackBlock.png");
-	public static ImageIcon leftBlockIcon = new ImageIcon("img/LeftBlock.png");
-	public static ImageIcon rightBlockIcon = new ImageIcon("img/RightBlock.png");
-	public static ImageIcon gotoBlockIcon = new ImageIcon("img/GotoBlock.png");
-	public static ImageIcon loopBlockIcon = new ImageIcon("img/LoopBlock.png");
+	public static ImageIcon startBlockIcon = new ImageIcon("img/ActionStart.png");
+	public static ImageIcon endBlockIcon = new ImageIcon("img/ActionEnd.png");
+	public static ImageIcon forwardBlockIcon = new ImageIcon("img/ActionForward.png");
+	public static ImageIcon backBlockIcon = new ImageIcon("img/ActionBack.png");
+	public static ImageIcon leftBlockIcon = new ImageIcon("img/ActionLeft.png");
+	public static ImageIcon rightBlockIcon = new ImageIcon("img/ActionRight.png");
+	public static ImageIcon gotoBlockIcon = new ImageIcon("img/ActionGoto.png");
+	public static ImageIcon loopBlockIcon = new ImageIcon("img/ActionLoop.png");
 	
 	// 50 x 50
 	public static ImageIcon mazeSpawnIcon = new ImageIcon("img/MazeSpawn.png");
@@ -139,27 +139,27 @@ public class IconUI {
 	 // 100 x 130
 	public static ImageIcon addForwardButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddForwardBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetForward.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	public static ImageIcon addBackButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddBackBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetBack.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	public static ImageIcon addLeftButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddLeftBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetLeft.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	public static ImageIcon addRightButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddRightBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetRight.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	public static ImageIcon addGotoButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddGotoBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetGoto.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	public static ImageIcon addLoopButtonIcon = new ImageIcon(
 			// TODO re-scale image
-			new ImageIcon("img/AddLoopBlockButton.png").getImage().getScaledInstance(100, 130, samplingRate)
+			new ImageIcon("img/BuffetLoop.png").getImage().getScaledInstance(100, 130, samplingRate)
 			);
 	
 }
