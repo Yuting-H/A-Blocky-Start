@@ -42,7 +42,6 @@ public class LoginData {
 	 */
 	public UserTypeEnum getMode() {
 		
-		
 		if (usernameInput.equalsIgnoreCase(TEACHER_USERNAME)) {
 			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
@@ -51,7 +50,6 @@ public class LoginData {
 			System.out.println("Developer mode");
 			return UserTypeEnum.DEVELOPER;
 		}
-			
 		return UserTypeEnum.STUDENT; // default mode
 	}
 	
@@ -61,10 +59,11 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setUsernameInput(String username) {
+
 		if (!isAcceptableUsername(username)) {
 			return false;
 		}
-		
+
 		// Successful
 		usernameInput = username;
 		return true;
@@ -76,10 +75,11 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setPasswordInput(String password) {
+
 		if (!isAcceptablePassword(password)) {
 			return false;
 		}
-		
+
 		// Successful
 		passwordInput = password;
 		return true;

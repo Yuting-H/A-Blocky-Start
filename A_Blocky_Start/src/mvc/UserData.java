@@ -12,7 +12,7 @@ import java.util.Scanner;
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version 1.2.2
+ * @version 1.3
  * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
@@ -81,7 +81,6 @@ public class UserData {
 	public static UserData importData(String filename) {
 
 		try {
-			
 			FileReader fileIn = new FileReader(filename);
 			Scanner scnr = new Scanner(fileIn);
 			scnr.useDelimiter(","); // since this is a CSV file
@@ -151,7 +150,7 @@ public class UserData {
 			fileOut.createNewFile(); // create a new file if not found
 			
 			// Wipe the user data file
-			FileWriter writer = new FileWriter(fileOut);
+			FileWriter writer = new FileWriter(fileOut, true);
 			writer.write(""); 
 			
 			// Recalculate all statistics
