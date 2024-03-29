@@ -142,8 +142,10 @@ public class StudentProgressionView implements View {
 		
 		BorderLayout layout = new BorderLayout();
 		
-		PanelUI stats = new PanelUI(new Dimension(200, 200), IconUI.darkOrange);
-		stats.setLayout(new BoxLayout(stats, BoxLayout.Y_AXIS));
+		PanelUI stats1 = new PanelUI(new Dimension(200, 200), IconUI.darkOrange);
+		PanelUI stats2 = new PanelUI(new Dimension(200, 200), IconUI.darkOrange);
+		stats1.setLayout(new BoxLayout(stats1, BoxLayout.Y_AXIS));
+		stats2.setLayout(new BoxLayout(stats2, BoxLayout.Y_AXIS));
 		
 		entry.setLayout(layout);
 		entry.setSize(entryContainerSize);
@@ -157,15 +159,20 @@ public class StudentProgressionView implements View {
 		LabelUI attemptsUI = new LabelUI(labelSize, "Attempts: " + attempts);
 		ButtonUI playButton = new ButtonUI(labelSize, "", IconUI.playButtonIcon);
 		
-		stats.setBorder(new EmptyBorder(new Insets(0, 20, 0, 0)));
-		stats.add(stageIDUI);
-		stats.add(completedUI);
-		stats.add(shortestStepsUI);
-		stats.add(highestScoreUI);
-		stats.add(timeSpentUI);
-		stats.add(attemptsUI);
-		entry.add(stats, BorderLayout.WEST);
-		
+		stats1.setBorder(new EmptyBorder(new Insets(20, 20, 20, 0)));
+		stats1.add(stageIDUI);
+		stats1.add(Box.createGlue());
+		stats1.add(completedUI);
+		stats1.add(Box.createGlue());
+		stats1.add(shortestStepsUI);
+		stats2.setBorder(new EmptyBorder(new Insets(20, 20, 20, 0)));
+		stats2.add(highestScoreUI);
+		stats2.add(Box.createGlue());
+		stats2.add(timeSpentUI);
+		stats2.add(Box.createGlue());
+		stats2.add(attemptsUI);
+		entry.add(stats1, BorderLayout.WEST);
+		entry.add(stats2, BorderLayout.CENTER);
 		entry.add(playButton, BorderLayout.EAST);
 		
 	}
