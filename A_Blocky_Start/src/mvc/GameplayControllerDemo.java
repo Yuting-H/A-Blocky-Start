@@ -16,7 +16,7 @@ public class GameplayControllerDemo implements Controller {
 	
 	public static JFrame testFrame = new JFrame(); // TODO remove this
 	public static GameplayViewDemo view = new GameplayViewDemo();
-	public static UserData user = UserData.importData("brucelee"); // TODO remove this
+	public static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
 	public static ProgressionData progress = user.getProgressionAtIndex(4); // TODO use a setter
 	public static ActionChainData chain = progress.getActionChain();
 	
