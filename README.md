@@ -4,7 +4,9 @@
 
 ### a. Team Members:
 
-* Chun Ho Chan, Edward
+* **Full Name**
+  * **Email Address**
+* Chun Ho Chan (Edward)
   * ccha232@uwo.ca
 * Yuting Hou
   * yhou294@uwo.ca
@@ -34,6 +36,8 @@ This game project was created as part of CompSci 2212B at Western University.
 ## 2. Required Libraries & 3rd Party Tools
 
 (TODO: A list of the required libraries and third party tools required to run or build your software (include version numbers).)  
+* **Library/Tool**
+  * **Version Number**
 * Java JDK-21
   * version 21.0.2
 * Java Swing
@@ -58,38 +62,48 @@ This should include details on how to obtain and install any third party librari
 
 ## 6. Account Usernames & Passwords
 
-+----------------+--------------+------------------------+
-| Account Type   | Username     | Password               |
-+================+==============+========================+
-| Student        | AliceLiddell | pass1234               |
-| Student        | JaneDoe      | pass5678               |
-| Student        | JohnDoe      | pass5678               |
-| Student        | BruceLee     | pass9012               |
-+----------------+--------------+------------------------+
-| Student (Test) | Student      | pass1234               |
-+----------------+--------------+------------------------+
-| Teacher        | Teacher      | GradeOurPorject100%    |
-+----------------+--------------+------------------------+
-| Developer      | Developer    | TooManyMergeConflicts! |
-+----------------+--------------+------------------------+
+* **User Type**
+  * **Username**
+    * **Password**
+* STUDENT
+  * AliceLiddell
+    * pass1234
+* STUDENT
+  * JaneDoe
+    * pass5678
+* STUDENT
+  * JohnDoe
+    * pass5678
+* STUDENT
+  * BruceLee
+    * pass9012
+* STUDENT
+  * Student
+    * pass1234
+* TEACHER
+  * Teacher
+    * GradeOurPorject100%
+* DEVELOPER
+  * Developer
+    * TooManyMergeConflicts!
 
 Note:  
-* New student accounts can be registered with a custom username (case-insensitive) and a custom password.  
-* All teachers share the same pre-defined teacher account.  
-* All teachers share the same pre-defined teacher account.  
-* All developers share the same pre-defined developer account.  
-* 4 student accounts are included for system testing.  
-* 1 test account is included for unit testing.  
+* New STUDENT accounts can be registered with a custom username (case-insensitive) and a custom password (case-sensitive).  
+* Existing STUDENT accounts can be logged in with the corresponding username (case-insensitive) and password (case-sensitive).  
+* All passwords are stored in the corresponding user data file in a CSV format; teachers can change any password manually using Microsoft Excel (or similar apps).  
+* All teachers share one pre-defined TEACHER account.  
+* All developers share one pre-defined DEVELOPER account.  
+* 4 STUDENT accounts are included for demonstration purposes.  
+* 1 test account, "Student", is included for system testing.  
 
 ## 7. Teacher Mode Activation
 
-To access teacher mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**". 
+To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**". 
 
 ## 8. Developer Mode Activation
 
-To access developer mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**". 
+To access DEVELOPER mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**". 
 
 ## 9. Notes For TA
 
-(TODO: Anything else that would be helpful for the TA marking your project to know.)  
 **Thank you for playing our game!**  
