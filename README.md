@@ -45,7 +45,7 @@ This game project was created as part of CompSci 2212B at Western University.
 * Eclipse Java IDE
   * version 2023-09
 * JUnit 5
-  * pre-installed as part of Eclipse
+  * pre-installed as part of Eclipse Java IDE
 
 ## 3. How To Compile (step-by-step guide)
 
