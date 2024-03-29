@@ -18,9 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ButtonUI;
-import javax.swing.plaf.LabelUI;
-import javax.swing.plaf.PanelUI;
+
 
 /**
  * This class display the progression of a player
@@ -78,7 +76,7 @@ public class StudentProgressionView implements View {
 		rootPanel.add(backButton);
 
 		// add progression label
-		progressionTitleLabel = new LabelUI(progressionTitleLocation, progressionTitleSize, "Continue Game");
+		progressionTitleLabel = new LabelUI(progressionTitleLocation, labelSize, "Continue Game");
 		rootPanel.add(progressionTitleLabel);
 
 		// set up container 
