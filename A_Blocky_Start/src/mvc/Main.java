@@ -51,16 +51,16 @@ public class Main {
 		//TODO debug userdata load
 		
 
-		//UserData userData = UserData.importData(UserData.filenamePrefix + "aliceliddell" + UserData.filenameSuffix);
+		UserData userData = UserData.importData(UserData.filenamePrefix + "aliceliddell" + UserData.filenameSuffix);
 
 		//Load initial screen, which should be the login screen
 		//you can change to other views for debug purposes
 		//System.out.println(userData.toString());
 	
 
-		//studentProgressionController.setUserData(userData);
+		studentProgressionController.setUserData(userData);
 
-		loginController.OnEnter();
+		mainMenuController.OnEnter();
 
 		
 		setColorblindVisibility(settingsController.isColourblindMode());

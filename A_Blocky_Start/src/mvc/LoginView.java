@@ -44,8 +44,8 @@ public class LoginView implements View {
 	TextFieldUI usernameTextField = new TextFieldUI(usernameTextFieldLocation, textFieldSize);
 	LabelUI passwordFieldLabel = new LabelUI(passwordLabelLocation, labelSize, "Password:");
 	TextFieldUI passwordTextField = new TextFieldUI(passwordTextFieldLocation, textFieldSize);
-	ButtonUI loginButton = new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
-	ButtonUI registerButton = new ButtonUI(registerButtonLocation, loginButtonSize, "Register");
+	ButtonUI loginButton = new ButtonUI(loginButtonLocation, loginButtonSize, "", IconUI.loginButtonIcon);
+	ButtonUI registerButton = new ButtonUI(registerButtonLocation, loginButtonSize, "", IconUI.registerButtonIcon);
 	LabelUI loginTitleLabel = new LabelUI(loginTitleLabelLocation, loginTitleSize, "Login / Register");
 	LabelUI reminderLabel = new LabelUI(reminderLabelLocation, longLabelSize, "Username cannot be empty");
 	
