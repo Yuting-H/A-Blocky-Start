@@ -56,6 +56,7 @@ public class IconUI {
 	public static ImageIcon saveButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
 	public static ImageIcon mainMenuButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
 	public static ImageIcon blankButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
+	public static ImageIcon playButtonIcon = new ImageIcon("img/menuPlay.png");
 
 	// 30 x 30
 	public static ImageIcon backButtonIcon = new ImageIcon("img/IconBack.png");

@@ -68,6 +68,7 @@ public class LoginController implements Controller {
 					System.out.println("Logged in as developer");	
 				}
 				
+				//TODO: continonally check these
 				Main.loginController.OnExit();	
 				Main.mainMenuController.OnEnter();
 				//print login info
