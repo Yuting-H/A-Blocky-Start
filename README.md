@@ -79,7 +79,7 @@ This should include details on how to obtain and install any third party librari
     * pass9012
 * STUDENT
   * Student
-    * pass1234
+    * BestTeamEver>:)
 * TEACHER
   * Teacher
     * GradeOurPorject100%
