@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.LabelUI;
+import javax.swing.plaf.PanelUI;
 
 /**
  * This class display the progression of a player
@@ -39,7 +42,8 @@ public class StudentProgressionView implements View {
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
 	private Point containerLocation = new Point(0, 50);  //contains all student's progression
-	
+	private Point progressionTitleLocation = new Point(375,10);
+
 	//define UI
 	private JPanel rootPanel;
 	private ButtonUI backButton;
@@ -48,11 +52,12 @@ public class StudentProgressionView implements View {
 	
 	//
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
+	private JLabel progressionTitleLabel;
 	
 	/**
 	 * Constructor.
 	 */
-	public StudentProgressionView(){
+	public StudentProgressionView() {
 		initPanel();
 		setVisibility(false);
 	}
@@ -71,9 +76,13 @@ public class StudentProgressionView implements View {
 		// added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		rootPanel.add(backButton);
-		
+
+		// add progression label
+		progressionTitleLabel = new LabelUI(progressionTitleLocation, progressionTitleSize, "Continue Game");
+		rootPanel.add(progressionTitleLabel);
+
 		// set up container 
-		container = new PanelUI(containerLocation, containerSize, Color.white);
+		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
 		FlowLayout layout = new FlowLayout();
 		container.setLayout(new FlowLayout());  // set layout
 
@@ -82,6 +91,7 @@ public class StudentProgressionView implements View {
 		for (int i = 0; i < 10; i++) {
 			
 			PanelUI curr = newEntry();  // create empty container
+			curr.setBackground(IconUI.darkOrange);
 			
 			entries.add(curr);  // add empty container to list
 			container.add(entries.get(i));  // add the containers from list to screen
@@ -132,9 +142,9 @@ public class StudentProgressionView implements View {
 		
 		entry.setLayout(new FlowLayout());
 		entry.setSize(entryContainerSize);
-		entry.setBackground(Color.LIGHT_GRAY);
+		entry.setBackground(IconUI.darkOrange);
 		
-		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID + '\n');
+		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID);
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
 		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
 		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
