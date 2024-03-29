@@ -15,7 +15,7 @@ public class HighScoreController implements Controller{
 	 */
 	public HighScoreController() {
 		
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		populateActionListener();
 		
@@ -39,7 +39,7 @@ public class HighScoreController implements Controller{
 	}
 	
 	/**
-	 * Is called when showing Highscore view
+	 * Is called when showing high score view
 	 */
 	@Override
 	public void OnEnter() {
@@ -58,7 +58,7 @@ public class HighScoreController implements Controller{
 	}
 
 	/**
-	 * Is called when exiting Highscore view
+	 * Is called when exiting high score view
 	 */
 	@Override
 	public void OnExit() {

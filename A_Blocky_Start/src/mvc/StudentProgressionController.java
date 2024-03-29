@@ -26,7 +26,7 @@ public class StudentProgressionController implements Controller{
 		this.data = null;
 		
 		//insert view to game frame
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		//adds functionality to UI elements
 		PopulateActionListener();
@@ -56,6 +56,7 @@ public class StudentProgressionController implements Controller{
 	public void setUserData(UserData userData) {
 		this.data = new StudentProgressionData(userData);
 		ProgressionData progressionData;
+		
 		for (int i = 0; i < 10; i++) {
 			
 			progressionData = data.getProgression(i);
