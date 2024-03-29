@@ -12,11 +12,11 @@ public class MainMenuController implements Controller{
 	private static MainMenuView view = new MainMenuView();
 	
 	/**
-	 * Main menu controller constuctor
+	 * Main menu controller constructor
 	 * Called in Main
 	 */
 	public MainMenuController() {
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		populateActionListener();
 	}

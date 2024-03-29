@@ -25,7 +25,7 @@ public class LoginController implements Controller {
 	 * Constructor
 	 */
 	public LoginController() {
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 
 		populateActionListener();
 	}
@@ -118,14 +118,14 @@ public class LoginController implements Controller {
 	 * Show the screen
 	 */
 	public void OnEnter() {
-		view.setVisible(true);
+		view.setVisibility(true);;
 	}
 
 	/**
 	 * Close the screen
 	 */
 	public void OnExit() {
-		view.setVisible(false);
+		view.setVisibility(false);;
 		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
 
 	}

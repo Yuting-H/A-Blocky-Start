@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-public class GameplayViewDemo {
+public class GameplayViewDemo implements View {
 	
 	// Action block UI
 	private ArrayList<ActionBlockUI> actionBlockUIList;
@@ -50,17 +50,15 @@ public class GameplayViewDemo {
 	private ButtonUI mainMenuButton;
 	
 	/**
-	 * Construct a gameplay view.
+	 * Constructor.
 	 */
 	public GameplayViewDemo() {
 		initPanel();
 		setRunPauseButtonVisibility(true);
 	}
 	
-	/**
-	 * Help to initialize the root panel and all sub-panels.
-	 */
-	private void initPanel() {
+	@Override
+	public void initPanel() {
 		
 		// Initialize list of action block UI
 		actionBlockUIList = new ArrayList<ActionBlockUI>();
@@ -132,10 +130,18 @@ public class GameplayViewDemo {
 		pauseMenuSideArea.add(mainMenuButton);
 	}
 	
+	@Override
+	public void refreshPanel() {
+		rootPanel.repaint();
+		rootPanel.revalidate();
+	}
+	
+	@Override
 	public void insertPanelToFrame(JFrame frame) {
 		frame.add(rootPanel);
 	}
 	
+	@Override
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
 	}
@@ -182,7 +188,8 @@ public class GameplayViewDemo {
 		pauseChainButton.setVisible(!showRun);
 	}
 	
-	// Icon buttons
+	// Action Listeners - Icon Buttons
+	
 	public void pauseMenuButton(ActionListener actionListener) {
 		pauseMenuButton.addActionListener(actionListener);;
 	}
@@ -211,7 +218,7 @@ public class GameplayViewDemo {
 		debugChainButton.addActionListener(actionListener);
 	}
 	
-	// Action buffet buttons
+	// Action Listeners - Action Buffet
 	public void addForwardButton(ActionListener actionListener) {
 		addForwardButton.addActionListener(actionListener);
 	}
@@ -236,7 +243,8 @@ public class GameplayViewDemo {
 		addLoopButton.addActionListener(actionListener);
 	}
 	
-	// Pause menu buttons
+	// Action Listeners - Pause Menu
+	
 	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
