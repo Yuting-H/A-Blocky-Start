@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class UserData {
 	/**
-	 * Filename prefix of user data files
+	 * Filename prefix of user data files/ Directory name
 	 */
 	public static final String filenamePrefix = "./userdata/";
 	/**
@@ -72,22 +72,14 @@ public class UserData {
 	}
 	
 	/**
-	 * Decode the encoded data stored in a user data file. 
+	 * Decode the encoded data stored in a user data file.<br>
+	 * 
 	 * @see exportData() for details. 
-	 * @param mode the mode, true = username, false = filename
-	 * @param name Account name of user<br>
+	 * @param filename Filename of the user data (prefix + username + suffix)<br>
 	 * @return UserData, or null if the file does not exist.
 	 */
-	public static UserData importData(String name, boolean mode) {
+	public static UserData importData(String filename) {
 
-		String filename = toFilename(name);
-		
-		if (mode) {
-			filename = toFilename(name);
-		}else {
-			filename = filenamePrefix + name;
-		}
-		
 		try {
 			
 			FileReader fileIn = new FileReader(filename);
@@ -102,8 +94,12 @@ public class UserData {
 			int totalTimeSpent = scnr.nextInt();
 			int totalAttempts = 1;
 			
+			// Extract username from filename
+			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+			System.out.println(filename + "," + username);
+			
 			// Call constructor
-			UserData userData = new UserData(UserTypeEnum.fromString(usertype), name, password);
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
 			
 			// Add the rest of the attributes
 			userData.addTotalScore(totalScore);
@@ -195,8 +191,9 @@ public class UserData {
 	}
 
 	/**
-	 * Convert username to the filename of this user's data file
-	 * @return Filename of user data file
+	 * Convert username to the filename of this user's data file. 
+	 * @param username Username
+	 * @return Filename of that user data (prefix + username + suffix)
 	 */
 	public static String toFilename(String username) {
 		return filenamePrefix + username.toLowerCase() + filenameSuffix;

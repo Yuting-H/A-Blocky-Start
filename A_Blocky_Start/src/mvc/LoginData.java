@@ -10,9 +10,9 @@ import java.io.File;
  * @author Chun Ho Chan (Edward)
  */
 public class LoginData {
-	private static final String TEACHERUsername = "TEACHER";
+	private static final String TEACHER_USERNAME = "TEACHER";
 	// TEACHERPassword = "GradeOurPorject100%"
-	private static final String DEVELOPERUsername = "DEVELOPER";
+	private static final String DEVELOPER_USERNAME = "DEVELOPER";
 	// DEVELOPERPassword = "TooManyMergeConflicts!"
 	private String usernameInput;
 	private String passwordInput;
@@ -42,13 +42,12 @@ public class LoginData {
 	 */
 	public UserTypeEnum getMode() {
 		
-		System.out.println("LoginData.getMode: username: " + usernameInput + " Teacher: " + TEACHERUsername);
 		
-		if (usernameInput.equalsIgnoreCase(TEACHERUsername)) {
+		if (usernameInput.equalsIgnoreCase(TEACHER_USERNAME)) {
 			System.out.println("Teacher mode");
 			return UserTypeEnum.TEACHER;
 			
-		} else if (usernameInput.equalsIgnoreCase(DEVELOPERUsername)) {
+		} else if (usernameInput.equalsIgnoreCase(DEVELOPER_USERNAME)) {
 			System.out.println("Developer mode");
 			return UserTypeEnum.DEVELOPER;
 		}
@@ -62,11 +61,9 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setUsernameInput(String username) {
-		/*
 		if (!isAcceptableUsername(username)) {
 			return false;
 		}
-		*/
 		
 		// Successful
 		usernameInput = username;
@@ -79,11 +76,9 @@ public class LoginData {
 	 * @return True if successful, false if not accepted
 	 */
 	public boolean setPasswordInput(String password) {
-		/*
 		if (!isAcceptablePassword(password)) {
 			return false;
 		}
-		*/
 		
 		// Successful
 		passwordInput = password;
@@ -121,7 +116,7 @@ public class LoginData {
 	public boolean loginActiveUser() {
 		
 		// Try opening the user data file
-		UserData userData = UserData.importData(usernameInput, false);
+		UserData userData = UserData.importData(UserData.toFilename(usernameInput));
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}

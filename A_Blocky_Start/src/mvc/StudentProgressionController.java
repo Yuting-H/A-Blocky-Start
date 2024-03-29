@@ -56,6 +56,7 @@ public class StudentProgressionController implements Controller{
 	public void setUserData(UserData userData) {
 		this.data = new StudentProgressionData(userData);
 		ProgressionData progressionData;
+		
 		for (int i = 0; i < 10; i++) {
 			
 			progressionData = data.getProgression(i);

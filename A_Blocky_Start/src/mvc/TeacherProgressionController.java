@@ -2,32 +2,37 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 /**
  * 
  */
-public class TeacherProgressionController implements Controller{
+public class TeacherProgressionController implements Controller {
 
 	private TeacherProgressionView view = new TeacherProgressionView();
 	
 	private TeacherProgressionData data = new TeacherProgressionData();
-	
+
 	/**
 	 * 
 	 */
 	public TeacherProgressionController() {
-		
+
+		view = new TeacherProgressionView();
+
+		data = new TeacherProgressionData();
+
 		view.insertPanelToFrame();
-		
+
 		populateActionListener();
 	}
-	
+
 	/**
 	 * 
 	 */
+
 	private void populateActionListener() {
 		
 		view.backButtonAddActionListener(new ActionListener() {
@@ -39,7 +44,7 @@ public class TeacherProgressionController implements Controller{
 			}
 		});
 		
-		//add functionalty to selector
+		//add functionality to selector
 		view.selectorAddChangeListener(new ChangeListener() {
 			
 			//when the number is changed
@@ -53,7 +58,7 @@ public class TeacherProgressionController implements Controller{
 	}
 	
 	/**
-	 * This function loads userdata into and refreses teacherprogression view
+	 * This function loads user data into and refreshes teacher progression view
 	 */
 	private void refreshView() {
 		
@@ -92,7 +97,6 @@ public class TeacherProgressionController implements Controller{
 	@Override
 	public void OnEnter() {
 		view.setVisibility(true);
-		refreshView();
 	}
 
 	/**
@@ -102,6 +106,5 @@ public class TeacherProgressionController implements Controller{
 	public void OnExit() {
 		view.setVisibility(false);
 	}
-	
-	
+
 }

@@ -1,3 +1,0 @@
->> Error << java.lang.Exception: User data cannot be exported for teachers and developers
->> Warning << java.io.FileNotFoundException: .\userdata\aliceliddell (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\Teacher (The system cannot find the file specified)
