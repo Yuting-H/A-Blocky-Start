@@ -24,7 +24,7 @@ public class TeacherProgressionController implements Controller {
 
 		data = new TeacherProgressionData();
 
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 
 		populateActionListener();
 	}
@@ -86,8 +86,7 @@ public class TeacherProgressionController implements Controller {
 				view.setEntry(i, "Empty", 0, 0, 0, 0);
 			}
 			
-			view.repaint();
-			view.revalidate();
+			view.refreshPanel();
 		}
 	}
 

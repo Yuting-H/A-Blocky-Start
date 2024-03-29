@@ -11,15 +11,15 @@ public class ExampleMainMenuController implements Controller{
 	/**
 	 * This method inserts 
 	 */
-	public static void insertPanel() {
-		view.insertPanel();
+	public static void insertPanelToFrame() {
+		view.insertPanelToFrame(Main.gameFrame);
 	}
 
 	/**
 	 * 
 	 */
 	public void OnEnter() {
-		view.setVisible(true);
+		view.setVisibility(true);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class ExampleMainMenuController implements Controller{
 	 */
 	
 	public void OnExit() {
-		view.setVisible(false);
+		view.setVisibility(false);
 	}
 
 }

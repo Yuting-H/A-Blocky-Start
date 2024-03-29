@@ -60,7 +60,7 @@ public class Main {
 
 		//studentProgressionController.setUserData(userData);
 
-		loginController.OnEnter();
+		mainMenuController.OnEnter();
 
 		
 		setColorblindVisibility(settingsController.isColourblindMode());

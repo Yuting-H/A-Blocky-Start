@@ -18,7 +18,7 @@ public class SettingsController implements Controller{
 	 */
 	public SettingsController() {
 		
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		populateActionListener();
 	}

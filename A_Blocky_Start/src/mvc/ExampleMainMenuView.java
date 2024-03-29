@@ -2,55 +2,52 @@ package mvc;
 
 import java.awt.Color;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
  * This is the Example View class
  * @deprecated
  */
-public class ExampleMainMenuView {
+public class ExampleMainMenuView implements View {
 	
-	//create instance of JPanle, this will be the base of the view
-	private JPanel panel;
+	// create instance of JPanle, this will be the base of the view
+	private JPanel rootPanel;
 	
 	/**
-	 * Constructor 
+	 * Constructor.
 	 */
 	public ExampleMainMenuView() {
-		
-		//creates a new JPnale as base
-		panel = new JPanel();
-		
-		//adds aesthetic to base
-		this.initPanel();
+		initPanel();
+		setVisibility(false);
 	}
 	
-	/**
-	 * Set the aesthetic of the panel
-	 */
-	private void initPanel() {
+	@Override
+	public void initPanel() {
 		
-		panel.setVisible(true);
-		panel.setBackground(Color.magenta);
-		panel.setSize(800,600);
+		rootPanel = new JPanel();
+		rootPanel.setVisible(true);
+		rootPanel.setBackground(Color.magenta);
+		rootPanel.setSize(800,600);
 		
 	}
 	
-	/**
-	 * This method inserts the panel into the gameFrame
-	 * This should only be called once
-	 */
-	public void insertPanel() {
-		Main.gameFrame.add(panel);
+	@Override
+	public void refreshPanel() {
+		rootPanel.repaint();
+		rootPanel.revalidate();
 	}
 	
-	/**
-	 * This method sets the visibilty of the view
-	 * @param visibility
-	 */
-	public void setVisible(boolean visibility) {
-		panel.setVisible(visibility);
+	@Override
+	public void insertPanelToFrame(JFrame frame) {
+		frame.add(rootPanel);
 	}
 	
+	@Override
+	public void setVisibility(boolean visibility) {
+		rootPanel.setVisible(visibility);
+	}
+	
+	// Action Listeners
 
 }

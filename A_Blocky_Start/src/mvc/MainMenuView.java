@@ -11,41 +11,44 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @author Yuting<br>
- * 
  * This is the main menu of the game
+ * @author Yuting
  */
-public class MainMenuView {
+public class MainMenuView implements View {
 	
-	//size of this view
+	// size of this view
 	private Dimension viewSize = Main.getDimension();
 	
-	//locations
+	// locations
 	final Point asidenPanelLocation = new Point(600, 0);
-	final Point gameTitleLocation = new Point(0, 0);  //game title should be top of screen
+	final Point gameTitleLocation = new Point(0, 0);  // game title should be top of screen
 	
-	//sizes
+	// sizes
 	final Dimension asidePanelSize = new Dimension(200, 800);
-	final Dimension gameTitleSize = new Dimension(600, 200); 
+	final Dimension gameTitleSize = new Dimension(600, 600); 
 	
-	/** The size of Main menu buttons*/ 
+	/**
+	 * The size of Main menu buttons
+	 */ 
 	final Dimension ButtonSize = new Dimension(150, 40); 	
 		
-	/** Amount of vertical space between each button*/
+	/**
+	 * Amount of vertical space between each button
+	 */
 	final int buttonSpacing = 5;
 	
-	//root panel
+	// root panel
 	private JPanel rootPanel;
 	
 
 	/** panel for visual effect*/
 	PanelUI asidePanel 	= new PanelUI(asidenPanelLocation, asidePanelSize, Color.white);
 	
-	//game title
+	// game title
 	private LabelUI title = new LabelUI(gameTitleLocation, gameTitleSize, IconUI.gameTitleIcon);
 	
 			
-	//Buttons declaration
+	// buttons declaration
 	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconUI.continueButtonIcon);
 	private ButtonUI newGamButton 		= new ButtonUI(ButtonSize, "", IconUI.newGameButtonIcon);
 	private ButtonUI tutorialButton  	= new ButtonUI(ButtonSize, "", IconUI.tutorialButtonIcon);
@@ -56,25 +59,19 @@ public class MainMenuView {
 
 	
 	/**
-	 * Constructor for main menu
+	 * Constructor.
 	 */
 	public MainMenuView() {
-		
-		//init root panel
-		rootPanel = new JPanel();
-		
-		//create UI components
-		this.initPanel();
+		initPanel();
+		setVisibility(false);
 	}
 	
-	/**
-	 * create UI components
-	 */
-	private void initPanel() {
+	@Override
+	public void initPanel() {
+		// TODO deleted: switch panel button action, add this back in in in the controller
 		
-		//deleted: switch panel button action, add this back in in in the controller
-		
-		//set up root panel
+		// set up root panel
+		rootPanel = new JPanel();
 		rootPanel.setSize(viewSize);
 		rootPanel.setLayout(null);	
 		rootPanel.setVisible(false);
@@ -82,7 +79,7 @@ public class MainMenuView {
 		
 		rootPanel.add(title);
 		
-		//populate buttons
+		// populate buttons
 		asidePanel.setLayout(new FlowLayout());
 		asidePanel.setBorder(new EmptyBorder(new Insets(100, 10, 10, 10)));  //Space buttons from border
 		asidePanel.add(continueButton);
@@ -96,17 +93,24 @@ public class MainMenuView {
 		rootPanel.add(asidePanel);
 	}
 	
-	/**
-	 * 
-	 * @param visibility
-	 */
+	@Override
+	public void refreshPanel() {
+		rootPanel.repaint();
+		rootPanel.revalidate();
+	}
+	
+	@Override
+	public void insertPanelToFrame(JFrame frame) {
+		frame.add(rootPanel);
+	}
+
+	@Override
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
-		asidePanel.setVisible(visibility);
-		rootPanel.repaint();
-		Main.gameFrame.revalidate();
-		Main.gameFrame.repaint();
+		continueButton.setVisible(visibility);
 	}
+	
+	// Action Listeners
 	
 	public void continueButtonAddActionListener(ActionListener actionListener) {
 		continueButton.addActionListener(actionListener);
@@ -134,13 +138,6 @@ public class MainMenuView {
 	
 	public void exitButtonAddActionListener(ActionListener actionListener) {
 		exitButton.addActionListener(actionListener);
-	}
-	
-	/**
-	 * Insert the root panel to gameFrame
-	 */
-	public void insertPanelToFrame() {
-		Main.gameFrame.add(rootPanel);
 	}
 
 }
