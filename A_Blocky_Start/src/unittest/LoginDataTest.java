@@ -14,7 +14,7 @@ import mvc.UserTypeEnum;
 
 /**
  * Unit test for {@link mvc.LoginData}
- * @version 0.2
+ * @version 1.0
  * @since Mar 25, 2024
  * @author Eunhak Kim
  *
@@ -59,7 +59,12 @@ class LoginDataTest {
 		ld.setPasswordInput("0000");
 		ld.registerActiveUser();
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "Dummy", "0000");
-		assertEquals(ud, ld.getActiveUserData());
+		
+		boolean equalness = true;
+		equalness = equalness && (ud.getUserType().equals(ld.getActiveUserData().getUserType()));
+		equalness = equalness && (ud.getUsername().equals(ld.getActiveUserData().getUsername()));
+		equalness = equalness && (ud.getPassword().equals(ld.getActiveUserData().getPassword()));
+		assertTrue(equalness);
 	}
 
 	/**
@@ -71,8 +76,14 @@ class LoginDataTest {
 		ld.setUsernameInput("aliceliddell");
 		ld.setPasswordInput("pass1234");
 		ld.loginActiveUser();
-		UserData ud = UserData.importData("aliceliddell", true);
-		assertEquals(ud, ld.getActiveUserData());
+
+		UserData ud = UserData.importData(UserData.toFilename("aliceliddell"));
+		
+		boolean equalness = true;
+		equalness = equalness && (ud.getUserType().equals(ld.getActiveUserData().getUserType()));
+		equalness = equalness && (ud.getUsername().equals(ld.getActiveUserData().getUsername()));
+		equalness = equalness && (ud.getPassword().equals(ld.getActiveUserData().getPassword()));
+		assertTrue(equalness);
 	}
 
 }

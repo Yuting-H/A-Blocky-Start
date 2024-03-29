@@ -12,14 +12,14 @@ import java.util.Scanner;
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version 1.2.2
+ * @version 1.3
  * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
  */
 public class UserData {
 	/**
-	 * Filename prefix of user data files
+	 * Filename prefix of user data files/ Directory name
 	 */
 	public static final String filenamePrefix = "./userdata/";
 	/**
@@ -72,24 +72,15 @@ public class UserData {
 	}
 	
 	/**
-	 * Decode the encoded data stored in a user data file. 
+	 * Decode the encoded data stored in a user data file.<br>
+	 * 
 	 * @see exportData() for details. 
-	 * @param name Account name of user<br>
-	 * @param studentMode the mode, true = username, false = filename
+	 * @param filename Filename of the user data (prefix + username + suffix)<br>
 	 * @return UserData, or null if the file does not exist.
 	 */
-	public static UserData importData(String name, boolean studentMode) {
+	public static UserData importData(String filename) {
 
-		String filename = toFilename(name);
-		
-		if (studentMode) {
-			filename = toFilename(name);
-		}else {
-			filename = filenamePrefix + name;
-		}
-		
 		try {
-			
 			FileReader fileIn = new FileReader(filename);
 			Scanner scnr = new Scanner(fileIn);
 			scnr.useDelimiter(","); // since this is a CSV file
@@ -102,8 +93,12 @@ public class UserData {
 			int totalTimeSpent = scnr.nextInt();
 			int totalAttempts = 1;
 			
+			// Extract username from filename
+			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+			System.out.println(filename + "," + username);
+			
 			// Call constructor
-			UserData userData = new UserData(UserTypeEnum.fromString(usertype), name, password);
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
 			
 			// Add the rest of the attributes
 			userData.addTotalScore(totalScore);
@@ -155,7 +150,7 @@ public class UserData {
 			fileOut.createNewFile(); // create a new file if not found
 			
 			// Wipe the user data file
-			FileWriter writer = new FileWriter(fileOut);
+			FileWriter writer = new FileWriter(fileOut, true);
 			writer.write(""); 
 			
 			// Recalculate all statistics
@@ -195,8 +190,9 @@ public class UserData {
 	}
 
 	/**
-	 * Convert username to the filename of this user's data file
-	 * @return Filename of user data file
+	 * Convert username to the filename of this user's data file. 
+	 * @param username Username
+	 * @return Filename of that user data (prefix + username + suffix)
 	 */
 	public static String toFilename(String username) {
 		return filenamePrefix + username.toLowerCase() + filenameSuffix;
