@@ -1,18 +1,27 @@
 package mvc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This model class stores a user's progress in the game. 
  * It loads/saves data using the user's data file. 
  * The user's ProgressionData (per stage) is stored as separate objects. 
- * @version March 14, 2024
- * @since ???
+ * @version 1.3
+ * @since Mar 14, 2024
  * @author Eunhak Kim
  * @author Chun Ho Chan (Edward)
  */
 public class UserData {
-	
+	/**
+	 * Filename prefix of user data files/ Directory name
+	 */
+	public static final String filenamePrefix = "./userdata/";
 	/**
 	 * Filename suffix of user data files
 	 */
@@ -26,7 +35,7 @@ public class UserData {
 	 */
 	private String username;
 	/**
-	 * Account password of user (filename = username + filenameSuffix)
+	 * Account password of user 
 	 */
 	private String password;
 	/**
@@ -63,39 +72,60 @@ public class UserData {
 	}
 	
 	/**
-	 * Decode the encoded data stored in a user data file. 
-	 * See exportData() for details. 
-	 * Return null if the file does not exist.
-	 * @param username Account name of user<br>
+	 * Decode the encoded data stored in a user data file.<br>
+	 * 
+	 * @see exportData() for details. 
+	 * @param filename Filename of the user data (prefix + username + suffix)<br>
+	 * @return UserData, or null if the file does not exist.
 	 */
-	public static UserData importData(String username) {
-		// TODO: Try opening the file
-		// ...create a file variable
-		// Note: the filename = username + filenameSuffix.
-		
-		// TODO: If file does not exist, return null
-		// if (...) {return null;}
-		
-		// TODO: Decode the first line of the user data file
-		// ...store them in temporary variables
-		
-		// Call constructor
-		UserData userData = new UserData(null, null, null); // TODO: replace null with temporary variables
-		
-		// Add the rest of the attributes
-		userData.totalScore = -1; // TODO: replace -1 with temporary variables
-		userData.totalTimeSpent = -1; // TODO: replace -1 with temporary variables
-		userData.totalAttempts = -1; // TODO: replace -1 with temporary variables
-		
-		// Add each stage separately
-		// while (!endOfFile(File)) {
-		//   // read each line and feed it to the ProgressionData.importData() method
-		//   userData.addProgressionData(ProgressionData.importData(File.readline()))
-		// }
-		
-		return userData;
+	public static UserData importData(String filename) {
+
+		try {
+			FileReader fileIn = new FileReader(filename);
+			Scanner scnr = new Scanner(fileIn);
+			scnr.useDelimiter(","); // since this is a CSV file
+			
+			// Decode the first line and store them in temporary variables
+			String usertype = scnr.next();
+			scnr.next(); // skip username, which we know
+			String password = scnr.next();
+			int totalScore = scnr.nextInt();
+			int totalTimeSpent = scnr.nextInt();
+			int totalAttempts = 1;
+			
+			// Extract username from filename
+			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+			System.out.println(filename + "," + username);
+			
+			// Call constructor
+			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
+			
+			// Add the rest of the attributes
+			userData.addTotalScore(totalScore);
+			userData.addTotalTimeSpent(totalTimeSpent);
+			userData.addTotalAttempts(totalAttempts);
+			
+			// Clear the extra commas in the first line
+			scnr.nextLine();
+			
+			// Add each stage separately
+			while (scnr.hasNextLine()) {
+			    // Read each line and feed it to the ProgressionData.importData() method
+				ProgressionData importData = ProgressionData.importData(scnr.nextLine());
+				
+				// Then add the newly created ProgressionData object to the list
+			    userData.addProgressionData(importData);
+			}
+			scnr.close();
+
+ 			return userData;
+			
+		} catch (FileNotFoundException e) {
+			Main.errorLogController.addWarning(e);
+			return null;
+		}
 	}
-	
+
 	/**
 	 * Export this user's data to the user data file.
 	 * The first line contains user information and total statistics. 
@@ -107,25 +137,69 @@ public class UserData {
 	 * "..."<br>
 	 */
 	public void exportUserData() {
-		// Wipe the existing user data file, or create a new user data file if file not found
-		// Note: filename = username + filenameSuffix
-		// ...
-		
-		// Re-calculate all 4 overall statistics
-		// i.e. totalTimeSpent = progressionData1.getTimeSpent() + progressionData2.getTimeSpent() + ...
-		// ...
+	
+		try {
+			// exception for teachers and developers
+			if (userType != UserTypeEnum.STUDENT) {
+				throw new Exception("User data cannot be exported for teachers and developers");
+			}
+
+			String filename = toFilename(username);
+			
+			File fileOut = new File(filename);
+			fileOut.createNewFile(); // create a new file if not found
+			
+			// Wipe the user data file
+			FileWriter writer = new FileWriter(fileOut, true);
+			writer.write(""); 
+			
+			// Recalculate all statistics
+			updateTotalStats();
+			
+			// Write the first line to the file
+			String firstLine = "";
+			firstLine += userType.toString();
+			firstLine += ',';
+			firstLine += username;
+			firstLine += ',';
+			firstLine += password;
+			firstLine += ',';
+			firstLine += totalScore;
+			firstLine += ',';
+			firstLine += totalTimeSpent;
+			firstLine += ',';
+			firstLine += totalAttempts;
+			firstLine += '\n';
+			
+			writer.write(firstLine);
+			
+			// Write each per-stage progression data in its own line
+			for (int i = 0; i < progressionList.size(); ++i) {
+				ProgressionData pd = getProgressionAtIndex(i);
+				// Use the ProgressionData.exportData() method to generate encoded data string
+				writer.write(pd.exportData() + "\n");
+			}
+			
+			writer.close();
+
+		} catch (IOException e) {
+			System.out.println("Bad input");
+		} catch (Exception e) {
+			Main.errorLogController.addError(e);
+		}
 	}
 
 	/**
-	 * Access the filename of this user's data file
-	 * @return Filename of user data file
+	 * Convert username to the filename of this user's data file. 
+	 * @param username Username
+	 * @return Filename of that user data (prefix + username + suffix)
 	 */
-	public String getFilename() {
-		return username + filenameSuffix;
+	public static String toFilename(String username) {
+		return filenamePrefix + username.toLowerCase() + filenameSuffix;
 	}
 
 	/**
-	 * ...
+	 * Access the user type
 	 * @return the userType
 	 */
 	public UserTypeEnum getUserType() {
@@ -133,7 +207,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the username
 	 * @return the username
 	 */
 	public String getUsername() {
@@ -141,7 +215,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the password
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -149,7 +223,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the total score for this user
 	 * @return the totalScore
 	 */
 	public int getTotalScore() {
@@ -157,7 +231,7 @@ public class UserData {
 	}
 	
 	/**
-	 * ...
+	 * Access the total time spent for this user
 	 * @return the totalTimeSpent
 	 */
 	public int getTotalTimeSpent() {
@@ -165,7 +239,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the total number of attempts for this user
 	 * @return the totalAttempts
 	 */
 	public int getTotalAttempts() {
@@ -173,7 +247,7 @@ public class UserData {
 	}
 
 	/**
-	 * ...
+	 * Access the list containing the per-stage data
 	 * @return the progressionDataList
 	 */
 	public ArrayList<ProgressionData> getProgressionList() {
@@ -181,16 +255,41 @@ public class UserData {
 	}
 	
 	/**
-	 * ...
-	 * @return the progressionDataList
+	 * Access the data for a stage from the list
+	 * @param index Index of the stage
+	 * @return ProgressionData, or null if not found
 	 */
 	public ProgressionData getProgressionAtIndex(int index) {
-		// TODO: Check if index is out of bound
-		// ...
-		// return null;
+		// Check if index is out of bound
+		if (index < 0 || index >= progressionList.size())
+			return null;
 		
 		// Stage found
 		return progressionList.get(index);
+	}
+	
+	/**
+	 * Add to the total score.
+	 * @param score Score
+	 */
+	public void addTotalScore(int score) {
+		totalScore += score;
+	}
+	
+	/**
+	 * Add to the total time spent (in minutes).
+	 * @param timeSpent Time spent 
+	 */
+	public void addTotalTimeSpent(int timeSpent) {
+		totalTimeSpent += timeSpent;
+	}
+	
+	/**
+	 * Add to the total number of attempts.
+	 * @param attempts Number of attempts
+	 */
+	public void addTotalAttempts(int attempts) {
+		totalAttempts += attempts;
 	}
 	
 	/**
@@ -206,33 +305,41 @@ public class UserData {
 		ProgressionData temp = null;
 		for (int i = 0; i < progressionList.size(); ++i) {
 			temp = progressionList.get(i);
-			totalScore += temp.getHighestScore();
-			totalTimeSpent += temp.getTimeSpent();
-			totalAttempts += temp.getAttempts();
+			addTotalScore(temp.getHighestScore());
+			addTotalTimeSpent(temp.getTimeSpent());
+			addTotalAttempts(temp.getAttempts());
 		}
 	}
 	
 	/**
-	 * Check whether the user is a student.
-	 * @return Boolean value
+	 * Adds a single progression data to the list.
+	 * @param importData the ProgressionData to add
 	 */
-	public boolean isStudent() {
+	public void addProgressionData(ProgressionData progression) {
+		progressionList.add(progression);
+	}
+	
+	/**
+	 * Check whether the user is a STUDENT.
+	 * @return True if user is a STUDENT, false otherwise
+	 */
+	public boolean isSTUDENT() {
 		return userType == UserTypeEnum.STUDENT;
 	}
 	
 	/**
-	 * Check whether the user is a teacher.
-	 * @return Boolean value
+	 * Check whether the user is a TEACHER.
+	 * @return True if user is a TEACHER, false otherwise
 	 */
-	public boolean isTeacher() {
+	public boolean isTEACHER() {
 		return userType == UserTypeEnum.TEACHER;
 	}
 	
 	/**
-	 * Check whether the user is a developer.
-	 * @return Boolean value
+	 * Check whether the user is a DEVELOPER.
+	 * @return True if user is a DEVELOPER, false otherwise
 	 */
-	public boolean isDeveloper() {
+	public boolean isDEVELOPER() {
 		return userType == UserTypeEnum.DEVELOPER;
 	}
 	

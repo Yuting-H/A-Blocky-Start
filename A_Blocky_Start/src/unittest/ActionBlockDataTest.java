@@ -12,7 +12,7 @@ import mvc.ActionTypeEnum;
 
 /**
  * Unit test for ActionBlockData.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 12, 2024
  * @author Chun Ho Chan (Edward)
  */
@@ -20,21 +20,21 @@ class ActionBlockDataTest {
 
 	@Test
 	void ConstructEmpty() {
-		ActionTypeEnum type = ActionTypeEnum.Unknown;
+		ActionTypeEnum type = ActionTypeEnum.UNKNOWN;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		assertAll(() -> new ActionBlockData(type, args));
 	}
 	
 	@Test
 	void ConstructStart() {
-		ActionTypeEnum type = ActionTypeEnum.Start;
+		ActionTypeEnum type = ActionTypeEnum.START;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		assertAll(() -> new ActionBlockData(type, args));
 	}
 	
 	@Test
 	void ConstructGoto() {
-		ActionTypeEnum type = ActionTypeEnum.Goto;
+		ActionTypeEnum type = ActionTypeEnum.GOTO;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		args.add(10); // Line to jump)
 		assertAll(() -> new ActionBlockData(type, args));
@@ -42,7 +42,7 @@ class ActionBlockDataTest {
 	
 	@Test
 	void ConstructLoop() {
-		ActionTypeEnum type = ActionTypeEnum.Loop;
+		ActionTypeEnum type = ActionTypeEnum.LOOP;
 		ArrayList<Integer> args = new ArrayList<Integer>();
 		args.add(5);  // End point
 		args.add(3);  // Start point
@@ -58,25 +58,25 @@ class ActionBlockDataTest {
 	
 	@Test
 	void ImportStart() {
-		String data = "Start";
+		String data = "START";
 		assertAll(() -> ActionBlockData.importData(data));
 	}
 	
 	@Test
 	void ImportGoto() {
-		String data = "Goto_10";
+		String data = "GOTO_10";
 		assertAll(() -> ActionBlockData.importData(data));
 	}
 	
 	@Test
 	void ImportLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		assertAll(() -> ActionBlockData.importData(data));
 	}
 	
 	@Test
 	void ImportWrongGotoWeirdArguments() {
-		String data = "Goto__IO";
+		String data = "GOTO__IO";
 		assertAll(() -> ActionBlockData.importData(data));
 	}
 	
@@ -84,56 +84,56 @@ class ActionBlockDataTest {
 	void ExportEmpty() {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), "Unknown");
+		assertEquals("UNKNOWN", block.exportData());
 	}
 	
 	@Test
 	void ExportStart() {
-		String data = "Start";
+		String data = "START";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), data);
+		assertEquals(data, block.exportData());
 	}
 	
 	@Test
 	void ExportGoto() {
-		String data = "Goto_10";
+		String data = "GOTO_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), data);
+		assertEquals(data, block.exportData());
 	}
 	
 	@Test
 	void ExportLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), data);
+		assertEquals(data, block.exportData());
 	}
 	
 	@Test
 	void ExportWrongGotoWeirdArguments() {
-		String data = "Goto__IO";
+		String data = "GOTO__IO";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), "Unknown");
+		assertEquals("UNKNOWN", block.exportData());
 	}
 	
 	@Test
 	void ExportWrongLoopTooFewArguments() {
-		String data = "Loop_1_2";
+		String data = "LOOP_1_2";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), "Unknown");
+		assertEquals("UNKNOWN", block.exportData());
 	}
 	
 	@Test
 	void ExportWrongLoopTooManyArguments() {
-		String data = "Loop_1_2_3_4";
+		String data = "LOOP_1_2_3_4";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.exportData(), "Unknown");
+		assertEquals("UNKNOWN", block.exportData());
 	}
 	
 	@Test
 	void GetTypeLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getType(), ActionTypeEnum.Loop);
+		assertEquals(ActionTypeEnum.LOOP, block.getType());
 	}
 	
 	@Test
@@ -141,106 +141,106 @@ class ActionBlockDataTest {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		assertEquals(block.getArgs(), list);
+		assertEquals(list, block.getArgs());
 	}
 	
 	@Test
 	void GetArgsStart() {
-		String data = "Start";
+		String data = "START";
 		ActionBlockData block = ActionBlockData.importData(data);
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		assertEquals(block.getArgs(), list);
+		assertEquals(list, block.getArgs());
 	}
 	
 	@Test
 	void GetArgsGoto() {
-		String data = "Goto_10";
+		String data = "GOTO_10";
 		ActionBlockData block = ActionBlockData.importData(data);
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(10);
-		assertEquals(block.getArgs(), list);
+		assertEquals(list, block.getArgs());
 	}
 	
 	@Test
 	void GetArgsLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(5);
 		list.add(3);
 		list.add(10);
-		assertEquals(block.getArgs(), list);
+		assertEquals(list, block.getArgs());
 	}
 	
 	@Test
 	void GetArgsGotoWrongArguments() {
-		String data = "Goto__IO";
+		String data = "GOTO__IO";
 		ActionBlockData block = ActionBlockData.importData(data);
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		assertEquals(block.getArgs(), list);
+		assertEquals(list, block.getArgs());
 	}
 	
 	@Test
 	void GetEndPointEmpty() {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getEndPoint(), -1);
+		assertEquals(-1, block.getEndPoint());
 	}
 	
 	@Test
 	void GetEndPointLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getEndPoint(), 5);
+		assertEquals(5, block.getEndPoint());
 	}
 	
 	@Test
 	void GetStartPointEmpty() {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getStartPoint(), -1);
+		assertEquals(-1, block.getStartPoint());
 	}
 	
 	@Test
 	void GetStartPointLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getStartPoint(), 3);
+		assertEquals(3, block.getStartPoint());
 	}
 	
 	@Test
 	void GetJumpLineEmpty() {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getJumpLine(), -1);
+		assertEquals(-1, block.getJumpLine());
 	}
 	
 	@Test
 	void GetJumpLineGoto() {
-		String data = "Goto_10";
+		String data = "GOTO_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getJumpLine(), 10);
+		assertEquals(10, block.getJumpLine());
 	}
 	
 	@Test
 	void GetJumpLineLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getJumpLine(), 10);
+		assertEquals(10, block.getJumpLine());
 	}
 	
 	@Test
 	void GetCounterEmpty() {
 		String data = "";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getCounter(), -1);
+		assertEquals(-1, block.getCounter());
 	}
 	
 	@Test
 	void GetCounterLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
-		assertEquals(block.getCounter(), 5 - 3);
+		assertEquals(5 - 3, block.getCounter());
 	}
 	
 	@Test
@@ -249,16 +249,16 @@ class ActionBlockDataTest {
 		ActionBlockData block = ActionBlockData.importData(data);
 		int oldCounter = block.getCounter();
 		block.decCounter();
-		assertEquals(block.getCounter(), oldCounter);
+		assertEquals(oldCounter, block.getCounter());
 	}
 	
 	@Test
 	void DecCounterLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
 		int oldCounter = block.getCounter();
 		block.decCounter();
-		assertEquals(block.getCounter(), oldCounter - 1);
+		assertEquals(oldCounter - 1, block.getCounter());
 	}
 	
 	@Test
@@ -268,17 +268,69 @@ class ActionBlockDataTest {
 		int oldCounter = block.getCounter();
 		block.decCounter();
 		block.resetCounter();
-		assertEquals(block.getCounter(), oldCounter);
+		assertEquals(oldCounter, block.getCounter());
 	}
 	
 	@Test
 	void ResetCounterLoop() {
-		String data = "Loop_5_3_10";
+		String data = "LOOP_5_3_10";
 		ActionBlockData block = ActionBlockData.importData(data);
 		int oldCounter = block.getCounter();
 		block.decCounter();
 		block.resetCounter();
-		assertEquals(block.getCounter(), oldCounter);
+		assertEquals(oldCounter, block.getCounter());
+	}
+	
+	@Test
+	void IsJumpStart() {
+		String data = "START";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(false, block.isJump());
+	}
+	
+	@Test
+	void IsJumpGoto() {
+		String data = "GOTO_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(true, block.isJump());
+	}
+	
+	@Test
+	void IsJumpLoopCountZero() {
+		String data = "Loop_0_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(true, block.isJump());
+	}
+	
+	@Test
+	void IsJumpLoopCountOne() {
+		String data = "Loop_1_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(false, block.isJump());
+	}
+	
+	@Test
+	void IsJumpLoopCountMinusOne() {
+		String data = "Loop_-1_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		assertEquals(true, block.isJump());
+	}
+	
+	@Test
+	void IsJumpLoopCountEnded() {
+		String data = "Loop_1_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		block.decCounter(); // counter = 0
+		assertEquals(true, block.isJump());
+	}
+	
+	@Test
+	void IsJumpLoopCountReset() {
+		String data = "Loop_1_0_10";
+		ActionBlockData block = ActionBlockData.importData(data);
+		block.decCounter(); // counter = 0
+		block.resetCounter(); // counter = 1 - 0
+		assertEquals(false, block.isJump());
 	}
 
 }

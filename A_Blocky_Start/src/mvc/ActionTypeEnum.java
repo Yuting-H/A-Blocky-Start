@@ -2,16 +2,15 @@ package mvc;
 
 /**
  * Enumerator of all possible types of action.
- * @version March 12, 2024
+ * @version 1.0
  * @since March 11, 2024
  * @author Chun Ho Chan (Edward)
  */
-
 public enum ActionTypeEnum {
 	/**
 	 * Enumerator of actions
 	 */
-	Unknown, Start, End, Forward, Back, Left, Right, Goto, Loop;
+	UNKNOWN, START, END, FORWARD, BACK, LEFT, RIGHT, GOTO, LOOP;
 	
 	/**
 	 * Convert encoded string to an enumerator.
@@ -20,28 +19,28 @@ public enum ActionTypeEnum {
 	 */
 	public static ActionTypeEnum fromString(String data) {
 		// Remove whitespace
-		data = data.strip().toLowerCase();
+		data = data.strip().toUpperCase();
 		
 		// Check data of action
-		if (data.equals("start")) {
-			return Start;
-		} else if (data.equals("end")) {
-			return End;
-		} else if (data.equals("forward")) {
-			return Forward;
-		} else if (data.equals("back")) {
-			return Back;
-		} else if (data.equals("left")) {
-			return Left;
-		} else if (data.equals("right")) {
-			return Right;
-		} else if (data.indexOf("goto") != -1) {
-			return Goto;
-		} else if (data.indexOf("loop") != -1) {
-			return Loop;
+		if (data.equals("START")) {
+			return START;
+		} else if (data.equals("END")) {
+			return END;
+		} else if (data.equals("FORWARD")) {
+			return FORWARD;
+		} else if (data.equals("BACK")) {
+			return BACK;
+		} else if (data.equals("LEFT")) {
+			return LEFT;
+		} else if (data.equals("RIGHT")) {
+			return RIGHT;
+		} else if (data.indexOf("GOTO") != -1) {
+			return GOTO;
+		} else if (data.indexOf("LOOP") != -1) {
+			return LOOP;
 		}
 		
 		// Invalid encoded string
-		return Unknown;
+		return UNKNOWN;
 	}
 }

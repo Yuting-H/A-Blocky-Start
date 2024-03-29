@@ -12,19 +12,21 @@ public class MainMenuController implements Controller{
 	private static MainMenuView view = new MainMenuView();
 	
 	/**
+	 * Main menu controller constructor
 	 * Called in Main
 	 */
 	public MainMenuController() {
-		view.insertPanelToFrame();
+		view.insertPanelToFrame(Main.gameFrame);
 		
 		populateActionListener();
 	}
 	
 	/**
-	 * 
+	 * Adds functionality to UI elements
 	 */
 	private void populateActionListener() {
 		
+		//continue button
 		view.continueButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -38,13 +40,16 @@ public class MainMenuController implements Controller{
 			}
 		});
 		
+		//new game button
 		view.newGameButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//TODO add action
 			}
 		});
 		
+		//tutorial button
 		view.tutorialButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -54,15 +59,26 @@ public class MainMenuController implements Controller{
 			}
 		});
 		
+		//progression button
 		view.progressionButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				Main.mainMenuController.OnExit();
-				Main.studentProgressionController.OnEnter();
+				System.out.println(Main.loginController.getMode());
+				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
+					Main.teacherProgressionController.OnEnter();
+				}else {
+					Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
+				}
+				
+				
+				
 			}
 		});
 		
+		//high score button
 		view.highscoreButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -72,6 +88,7 @@ public class MainMenuController implements Controller{
 			}
 		});
 		
+		//setting button
 		view.settingsButtonAddActionListener(new ActionListener() {
 			
 			@Override
@@ -92,18 +109,22 @@ public class MainMenuController implements Controller{
 	}
 
 	/**
-	 * 
+	 * Is called when entering main menu
 	 */
 	@Override
 	public void OnEnter() {
+		
+		//shows the view
 		view.setVisibility(true);
 	}
 
 	/**
-	 * 
+	 * Is called when exiting 
 	 */
 	@Override
 	public void OnExit() {
+		
+		//hides the view
 		view.setVisibility(false);
 	}
 	

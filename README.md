@@ -3,50 +3,107 @@
 ## 0. Copyright & Credits
 
 ### a. Team Members:
-* Chun Ho Chan, Edward   (ccha232@uwo.ca)  
-* Yuting Hou             (yhou294@uwo.ca)  
-* Doyle Blacklock        (dblacklo@uwo.ca)  
-* Simon Mccabe           (smccab9@uwo.ca)  
-* Eunhak Kim             (ekim429@uwo.ca)  
+
+* *Full Name*
+  * *Email Address*
+* Chun Ho Chan (Edward)
+  * ccha232@uwo.ca
+* Yuting Hou
+  * yhou294@uwo.ca
+* Doyle Blacklock
+  * dblacklo@uwo.ca
+* Simon Mccabe
+  * smccab9@uwo.ca
+* Eunhak Kim
+  * ekim429@uwo.ca
 
 ### b. Group ID:
+
 Group 68  
 
 ### c. Course Term:
+
 Winter 2024  
 
 ### d. Course Info:
+
 This game project was created as part of CompSci 2212B at Western University.  
 
 ## 1. Short Description
+
 (TODO: A short description of your software and what it does.)  
 
 ## 2. Required Libraries & 3rd Party Tools
+
 (TODO: A list of the required libraries and third party tools required to run or build your software (include version numbers).)  
-* Java JDK-21                 (version 21.0.2)
-* Java Swing                  (pre-installed in JDK-21)
-* Eclipse Java IDE            (version 2023-09)
-* JUnit 5                     (pre-installed in Eclipse)
+* *Library/Tool*
+  * *Version Number*
+* Java JDK-21
+  * version 21.0.2
+* Java Swing
+  * pre-installed as part of JDK-21
+* Eclipse Java IDE
+  * version 2023-09
+* JUnit 5
+  * pre-installed as part of Eclipse Java IDE
 
 ## 3. How To Compile (step-by-step guide)
+
 (TODO: A detailed step by step guide for building your software (compiling it from source code).  
 This should include details on how to obtain and install any third party libraries.)  
 
 ## 4. How To Run (step-by-step guide)
+
 (TODO: A detailed step by step guide on how to run your already built (compiled) software.)  
 
 ## 5. User Guide
+
 (TODO: A user guide, that explains how to use your software.)  
 
 ## 6. Account Usernames & Passwords
-(TODO: If your software uses accounts, a password, or pin you must include any account username/password, pin, etc. required to use your software.)  
+
+* *User Type*
+  * *Username*
+    * *Password*
+* STUDENT
+  * AliceLiddell
+    * pass1234
+* STUDENT
+  * JaneDoe
+    * pass5678
+* STUDENT
+  * JohnDoe
+    * pass5678
+* STUDENT
+  * BruceLee
+    * pass9012
+* STUDENT
+  * Student
+    * BestTeamEver>:)
+* TEACHER
+  * Teacher
+    * GradeOurPorject100%
+* DEVELOPER
+  * Developer
+    * TooManyMergeConflicts!
+
+Note:  
+* New STUDENT accounts can be registered with a custom username (case-insensitive) and a custom password (case-sensitive).  
+* Existing STUDENT accounts can be logged in with the corresponding username (case-insensitive) and password (case-sensitive).  
+* All passwords are stored in the corresponding user data file in a CSV format; teachers can change any password manually using Microsoft Excel (or similar apps).  
+* All teachers share one pre-defined TEACHER account.  
+* All developers share one pre-defined DEVELOPER account.  
+* 4 STUDENT accounts are included for demonstration purposes.  
+* 1 test account, "Student", is included for system testing.  
 
 ## 7. Teacher Mode Activation
-(TODO: You must also include details on how to access your teacher mode.)  
+
+To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurProject100%**".  
 
 ## 8. Developer Mode Activation
-(TODO: You must also include details on how to access your developer mode.)  
+
+To access DEVELOPER mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**".  
 
 ## 9. Notes For TA
-(TODO: Anything else that would be helpful for the TA marking your project to know.)  
+
 **Thank you for playing our game!**  
