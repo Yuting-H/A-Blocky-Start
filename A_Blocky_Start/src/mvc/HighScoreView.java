@@ -20,7 +20,7 @@ public class HighScoreView implements View {
 	// Sizes
 	private Dimension viewSize = new Dimension(800, 600);
 	private Dimension backButtonSize = new Dimension(30, 30); 
-	private Dimension entriesContainerSize = new Dimension(600, 475);
+	private Dimension entriesContainerSize = new Dimension(600, 500);
 	private Dimension entriesSize = new Dimension(600, 50);
 	private Dimension entriesLabelSize = new Dimension(100, 20);
 	private Dimension highScoreTitleSize = new Dimension (120,36);

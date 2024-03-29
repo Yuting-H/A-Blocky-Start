@@ -25,7 +25,7 @@ public class MainMenuView implements View {
 	
 	// sizes
 	final Dimension asidePanelSize = new Dimension(200, 800);
-	final Dimension gameTitleSize = new Dimension(600, 600); 
+	final Dimension gameTitleSize = new Dimension(600, 200); 
 	
 	/**
 	 * The size of Main menu buttons
@@ -107,7 +107,12 @@ public class MainMenuView implements View {
 	@Override
 	public void setVisibility(boolean visibility) {
 		rootPanel.setVisible(visibility);
-		continueButton.setVisible(visibility);
+		
+		// TODO are these needed?
+		asidePanel.setVisible(visibility);
+		refreshPanel();
+		Main.gameFrame.revalidate();
+		Main.gameFrame.repaint();
 	}
 	
 	// Action Listeners
