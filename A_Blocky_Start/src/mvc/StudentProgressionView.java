@@ -12,34 +12,36 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.LabelUI;
+import javax.swing.plaf.PanelUI;
 
 /**
  * This class display the progression of a player
  * @author Yuting <br>
  * 
  */
-public class StudentProgressionView{
+public class StudentProgressionView implements View {
 	
 	//Define sizes
 	private Dimension viewSize = Main.getDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
 
 	private Dimension containerSize = new Dimension(785, 800);
-	private Dimension scrollPanelSize = new Dimension(700, 470);
+	private Dimension scrollPanelSize = new Dimension(785, 495);
 	private Dimension entryContainerSize = new Dimension(700, 50);
 
 	private Dimension labelSize = new Dimension(100, 20);
-	private Dimension progressionTitleSize = new Dimension(120,36);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
-
-	private Point containerLocation = new Point(50, 50);  //contains all student's progression
+	private Point containerLocation = new Point(0, 50);  //contains all student's progression
 	private Point progressionTitleLocation = new Point(375,10);
 
 	//define UI
@@ -50,82 +52,97 @@ public class StudentProgressionView{
 	
 	//
 	private ArrayList<PanelUI> entries = new ArrayList<PanelUI>();
-	
-	private JLabel progressionTitleLabel = new LabelUI(progressionTitleLocation, progressionTitleSize, "Continue Game");
+	private JLabel progressionTitleLabel;
 	
 	/**
-	 * constructor for displaying
+	 * Constructor.
 	 */
-	public StudentProgressionView(){
-		
-		rootPanel = new JPanel();
-		
+	public StudentProgressionView() {
 		initPanel();
+		setVisibility(false);
 	}
 	
-	/**
-	 * 
-	 */
-	private void initPanel() {
+	@Override
+	public void initPanel() {
 		
-		//set up progression panel
+		// set up progression panel
+		rootPanel = new JPanel();
 		rootPanel.setSize(viewSize);
 
 		rootPanel.setBackground(IconUI.mediumOrange);
 
 		rootPanel.setLayout(null);
 		
-		//added go back button to progression
+		// added go back button to progression
 		backButton = new ButtonUI(backButtonLocation, backButtonSize, "", IconUI.backButtonIcon);
 		rootPanel.add(backButton);
-		
-		//set up container 
-		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
-		container.setLayout(new FlowLayout());  //set layout
-		
+
+		// add progression label
+		progressionTitleLabel = new LabelUI(progressionTitleLocation, progressionTitleSize, "Continue Game");
 		rootPanel.add(progressionTitleLabel);
+
+		// set up container 
+		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
+		FlowLayout layout = new FlowLayout();
+		container.setLayout(new FlowLayout());  // set layout
+
 		
-		//adds 10 progression to container
+		// adds 10 progression to container
 		for (int i = 0; i < 10; i++) {
 			
-			PanelUI curr = newEntry();  //create empty container
+			PanelUI curr = newEntry();  // create empty container
 			curr.setBackground(IconUI.darkOrange);
 			
-			entries.add(curr);  //add empty container to list
-			container.add(entries.get(i));  //add the containers from list to screen
-			container.add(Box.createVerticalStrut(20));  //spacing between each progression
+			entries.add(curr);  // add empty container to list
+			container.add(entries.get(i));  // add the containers from list to screen
+			container.add(Box.createVerticalStrut(20));  // spacing between each progression
 			
 		}
 
 		
-		//init scroll bar, container is converted
+		// initialize scroll bar, container is converted
 		scrollPane = new JScrollPane(container);
 		
-		//change scroll bar settings
+		// change scroll bar settings
 		scrollPane.setSize(scrollPanelSize);
 		scrollPane.setLocation(containerLocation);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVisible(false);
 		
-		//adding scrollable container to progression panel
+		// adding scrollable container to progression panel
 		rootPanel.add(scrollPane);
 		
-		setVisibility(false);  //stops unwanted panel apperence
+		setVisibility(false);  // stops unwanted panel appearance
 	}
 	
-	/**
-	 * 
-	 * @param index the index of the progression
-	 * TODO: this function needs to display progression data
-	 */
+	@Override
+	public void refreshPanel() {
+		rootPanel.repaint();
+		rootPanel.revalidate();
+	}
+
+	@Override
+	public void insertPanelToFrame(JFrame frame) {
+		frame.add(rootPanel);
+	}
+	
+	@Override
+	public void setVisibility(boolean visibility) {
+		rootPanel.setVisible(visibility);
+		backButton.setVisible(visibility);
+		scrollPane.setVisible(visibility);
+	}
+	
+	//@param index the index of the progression
+	//TODO: this function needs to display progression data
 	public void setEntry(int index, int stageID, boolean completed, int shortestSteps, int highScore, int timeSpent, int attempts) {
 		
 		PanelUI entry = entries.get(index);
 		
 		entry.setLayout(new FlowLayout());
 		entry.setSize(entryContainerSize);
-		//entry.setBackground(IconUI.darkOrange);
+		entry.setBackground(IconUI.darkOrange);
 		
 		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID);
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
@@ -146,7 +163,7 @@ public class StudentProgressionView{
 	}
 	
 	/**
-	 * This method adds a empty progression record container to the screen
+	 * This method adds an empty progression record container to the screen.
 	 */
 	public PanelUI newEntry() {
 		
@@ -156,29 +173,13 @@ public class StudentProgressionView{
 		return entry;
 	}
 	
-	/**
-	 * Adds root panel to game frame
-	 */
-	public void insertPanelToFrame() {
-		Main.gameFrame.add(rootPanel);
-	}
+	// Action Listeners
 	
-	/**
-	 * 
-	 * @param visibility
-	 */
-	public void setVisibility(boolean visibility) {
-		rootPanel.setVisible(visibility);
-		backButton.setVisible(visibility);
-		scrollPane.setVisible(visibility);
-	}
-	
-	/**
-	 * 
-	 * @param actionListener
-	 */
 	public void backButtonAddActionListener(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
+
+
+	
 
 }
