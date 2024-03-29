@@ -4,8 +4,8 @@
 
 ### a. Team Members:
 
-* **Full Name**
-  * **Email Address**
+* *Full Name*
+  * *Email Address*
 * Chun Ho Chan (Edward)
   * ccha232@uwo.ca
 * Yuting Hou
@@ -36,8 +36,8 @@ This game project was created as part of CompSci 2212B at Western University.
 ## 2. Required Libraries & 3rd Party Tools
 
 (TODO: A list of the required libraries and third party tools required to run or build your software (include version numbers).)  
-* **Library/Tool**
-  * **Version Number**
+* *Library/Tool*
+  * *Version Number*
 * Java JDK-21
   * version 21.0.2
 * Java Swing
@@ -62,9 +62,9 @@ This should include details on how to obtain and install any third party librari
 
 ## 6. Account Usernames & Passwords
 
-* **User Type**
-  * **Username**
-    * **Password**
+* *User Type*
+  * *Username*
+    * *Password*
 * STUDENT
   * AliceLiddell
     * pass1234
@@ -98,11 +98,11 @@ Note:
 
 ## 7. Teacher Mode Activation
 
-To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**". 
+To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**".  
 
 ## 8. Developer Mode Activation
 
-To access DEVELOPER mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**". 
+To access DEVELOPER mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**".  
 
 ## 9. Notes For TA
 
