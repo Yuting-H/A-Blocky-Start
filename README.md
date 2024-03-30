@@ -29,6 +29,15 @@ Winter 2024
 
 This game project was created as part of CompSci 2212B at Western University.  
 
+### e. 3rd Party Resources
+
+* *Media Type (license)*
+  * *"Source Title", creator*
+    * *Source URL*
+* Background Music (CC BY license)
+  * "Bad Apple!! 8bit remix (Touhou: Lotus Land Story)", made by ZahranW.
+    * https://youtu.be/lNm85uXR3RM
+
 ## 1. Short Description
 
 (TODO: A short description of your software and what it does.)  
