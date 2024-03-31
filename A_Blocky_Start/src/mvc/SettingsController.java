@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class SettingsController implements Controller{
+public class SettingsController implements Controller {
 	
 	private static SettingsView view = new SettingsView();
 	
@@ -17,10 +17,11 @@ public class SettingsController implements Controller{
 	 * 
 	 */
 	public SettingsController() {
-		
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
+		view.setResolutionField(data.getScreenWidth(), data.getScreenHeight());
+		view.setColourBlindField(data.getColourblindMode());
+		view.setVolumeLevelField(data.getVolumePercentage());
 	}
 	
 	/**
@@ -32,9 +33,8 @@ public class SettingsController implements Controller{
 		view.backButtonAddActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.settingsController.OnExit();
-				Main.mainMenuController.OnEnter();
-				updateSetting();
+				Main.settingsController.onExit();
+				Main.mainMenuController.onEnter();
 			}
 		});
 	}
@@ -43,23 +43,15 @@ public class SettingsController implements Controller{
 	 * This function updates setting data 
 	 * @author Simon
 	 */
-	private void updateSetting() {
-		//TODO: get colourblind settings from view and store in data
-		String colourblindStr = view.getColourBlindSetting();
+	private void updateSettings() {
+		data.setScreenWidth(800);
+		data.setScreenHeight(600);
+		data.setColourblindMode(view.getColourBlindField().equalsIgnoreCase("On"));
+		data.setVolumeLevel(view.getVolumeLevelField());
 		
-		// TODO bad code style
-		
-		if (colourblindStr.equalsIgnoreCase("On")) {
-			data.setColourblindMode(true);
-			Main.setColorblindVisibility(true);
-		} else {
-			data.setColourblindMode(false);
-			Main.setColorblindVisibility(false);
-		}
-		
-		
+		data.exportData();
 	}
-	public boolean isColourblindMode() {		
+	public boolean isColourblindActive() {		
 		return data.getColourblindMode();
 	}
 	
@@ -67,17 +59,18 @@ public class SettingsController implements Controller{
 	 * 
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
-		data.exportData();
+		updateSettings();
 	}
 	
 	/**

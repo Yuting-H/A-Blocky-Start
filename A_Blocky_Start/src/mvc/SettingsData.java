@@ -101,6 +101,7 @@ public class SettingsData {
 			
 			// Close the file
 			writer.close();
+			
 		} catch (Exception e) {
 			Main.errorLogController.addError(e);
 		}
@@ -164,6 +165,7 @@ public class SettingsData {
 	 */
 	public void setColourblindMode(boolean colourblindMode) {
 		this.colourblindMode = colourblindMode;
+		System.out.println("Setter: " + this.colourblindMode + "," + colourblindMode);
 	}
 
 	/**
@@ -171,7 +173,7 @@ public class SettingsData {
 	 * @param volumeLevel Volume level
 	 */
 	public void setVolumeLevel(int volumePercentage) {
-		if (volumePercentage >= 0 && volumePercentage <= 100) {
+		if ((volumePercentage >= 0) && (volumePercentage <= 100)) {
 			this.volumePercentage = volumePercentage;
 		}
 	}

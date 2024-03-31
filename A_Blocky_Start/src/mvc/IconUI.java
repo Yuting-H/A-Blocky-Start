@@ -24,7 +24,7 @@ public class IconUI {
 	public static Color lightOrange = new Color(255, 220, 120, 255);
 	public static Color mediumOrange = new Color(250, 150, 50, 255);
 	public static Color darkOrange = new Color(200, 100, 50, 255);
-	public static Color colorblindColor = new Color(150, 255, 150, 100);
+	public static Color colorblindColor = new Color(255, 0, 255, 100);
 	
 	//game title
 	public static ImageIcon gameTitleIcon = 
