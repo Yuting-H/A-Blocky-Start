@@ -11,7 +11,7 @@ public class SettingsController implements Controller{
 	
 	private static SettingsView view = new SettingsView();
 	
-	private static SettingsData data = new SettingsData();
+	private static SettingsData data = SettingsData.importData();
 	
 	/**
 	 * 
@@ -32,14 +32,10 @@ public class SettingsController implements Controller{
 		view.backButtonAddActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
 				Main.settingsController.OnExit();
 				Main.mainMenuController.OnEnter();
 				updateSetting();
 			}
-			
-			
 		});
 	}
 	
@@ -48,25 +44,24 @@ public class SettingsController implements Controller{
 	 * @author Simon
 	 */
 	private void updateSetting() {
-		//TODO: get colorblind settigs from view and store in data
+		//TODO: get colourblind settings from view and store in data
 		String colourblindStr = view.getColourBlindSetting();
 		
-		if (colourblindStr.compareTo("On") == 0) {
-			data.setColourblindMode(true);
-		}		
+		// TODO bad code style
 		
-		else {
+		if (colourblindStr.equalsIgnoreCase("On")) {
+			data.setColourblindMode(true);
+			Main.setColorblindVisibility(true);
+		} else {
 			data.setColourblindMode(false);
+			Main.setColorblindVisibility(false);
 		}
 		
 		
 	}
 	public boolean isColourblindMode() {		
-		
 		return data.getColourblindMode();
-		
 	}
-	
 	
 	/**
 	 * 
@@ -88,7 +83,7 @@ public class SettingsController implements Controller{
 	 * get the dimension from the data
 	 */
 	public Dimension getDimension() {
-		return new Dimension(data.getScreenHeight(), data.getScreenWidth());
+		return new Dimension(data.getScreenWidth(), data.getScreenHeight());
 	}
 
 }
