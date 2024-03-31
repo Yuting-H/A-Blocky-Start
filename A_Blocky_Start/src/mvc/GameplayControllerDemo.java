@@ -37,7 +37,7 @@ public class GameplayControllerDemo implements Controller {
 		
 		GameplayControllerDemo controller = new GameplayControllerDemo();
 		
-		controller.OnEnter();
+		controller.onEnter();
 	}
 	
 	/**
@@ -53,16 +53,17 @@ public class GameplayControllerDemo implements Controller {
 	}
 	
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
 		view.setPauseMenuVisibility(false);
+		Main.setColorblindOverlay();
 		testFrame.setSize(new Dimension(815, 640));
 		resetActionChain();
 	}
 
 
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
 		view.setPauseMenuVisibility(false);
 		testFrame.setSize(new Dimension(800, 600));
