@@ -1,4 +1,5 @@
 package mvc;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -33,9 +34,9 @@ public class StudentProgressionView implements View {
 
 	private Dimension containerSize = new Dimension(785, 800);
 	private Dimension scrollPanelSize = new Dimension(785, 495);
-	private Dimension entryContainerSize = new Dimension(700, 50);
+	private Dimension entryContainerSize = new Dimension(500, 100);
 
-	private Dimension labelSize = new Dimension(100, 20);
+	private Dimension labelSize = new Dimension(400, 20);
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
@@ -81,6 +82,7 @@ public class StudentProgressionView implements View {
 
 		// set up container 
 		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
+		container.setBorder(new EmptyBorder(new Insets(0, 100, 0, 100)));
 		FlowLayout layout = new FlowLayout();
 		container.setLayout(new FlowLayout());  // set layout
 
@@ -138,25 +140,40 @@ public class StudentProgressionView implements View {
 		
 		PanelUI entry = entries.get(index);
 		
-		entry.setLayout(new FlowLayout());
+		BorderLayout layout = new BorderLayout();
+		
+		PanelUI stats1 = new PanelUI(new Dimension(200, 200), IconUI.darkOrange);
+		PanelUI stats2 = new PanelUI(new Dimension(200, 200), IconUI.darkOrange);
+		stats1.setLayout(new BoxLayout(stats1, BoxLayout.Y_AXIS));
+		stats2.setLayout(new BoxLayout(stats2, BoxLayout.Y_AXIS));
+		
+		entry.setLayout(layout);
 		entry.setSize(entryContainerSize);
 		entry.setBackground(IconUI.darkOrange);
 		
 		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID);
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
-		LabelUI shortestStepsUI = new LabelUI(labelSize, "" + shortestSteps);
-		LabelUI highestScoreUI = new LabelUI(labelSize, "" + highScore);
-		LabelUI timeSpentUI = new LabelUI(labelSize, "" + timeSpent);
-		LabelUI attemptsUI = new LabelUI(labelSize, "" + attempts);
-		ButtonUI playButton = new ButtonUI(labelSize, "Play");
+		LabelUI shortestStepsUI = new LabelUI(labelSize, "Shortest Steps: " + shortestSteps);
+		LabelUI highestScoreUI = new LabelUI(labelSize, "High Score: " + highScore);
+		LabelUI timeSpentUI = new LabelUI(labelSize, "Time Spent: " + timeSpent);
+		LabelUI attemptsUI = new LabelUI(labelSize, "Attempts: " + attempts);
+		ButtonUI playButton = new ButtonUI(labelSize, "", IconUI.playButtonIcon);
 		
-		entry.add(stageIDUI);
-		entry.add(completedUI);
-		entry.add(shortestStepsUI);
-		entry.add(highestScoreUI);
-		entry.add(timeSpentUI);
-		entry.add(attemptsUI);
-		entry.add(playButton);
+		stats1.setBorder(new EmptyBorder(new Insets(20, 20, 20, 0)));
+		stats1.add(stageIDUI);
+		stats1.add(Box.createGlue());
+		stats1.add(completedUI);
+		stats1.add(Box.createGlue());
+		stats1.add(shortestStepsUI);
+		stats2.setBorder(new EmptyBorder(new Insets(20, 20, 20, 0)));
+		stats2.add(highestScoreUI);
+		stats2.add(Box.createGlue());
+		stats2.add(timeSpentUI);
+		stats2.add(Box.createGlue());
+		stats2.add(attemptsUI);
+		entry.add(stats1, BorderLayout.WEST);
+		entry.add(stats2, BorderLayout.CENTER);
+		entry.add(playButton, BorderLayout.EAST);
 		
 	}
 	
