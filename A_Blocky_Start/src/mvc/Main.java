@@ -17,7 +17,7 @@ public class Main {
 	/**
 	 * The JFrame that the game runs in.
 	 */
-	public static JFrame gameFrame = new JFrame();
+	public static JFrame gameFrame = new JFrame("A Blocky Start");
 	
 	/**
 	 * Colourblind overlay JPanel.

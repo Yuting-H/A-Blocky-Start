@@ -106,7 +106,7 @@ public class GameplayViewDemo implements View {
 		iconArea.add(hintsButton);
 		iconArea.add(debugChainButton);
 		pauseMenuSideArea = new PanelUI(false, new Dimension(300, 600), new Point(0, 0), Color.BLUE);
-		pauseMenuDarkArea = new ButtonUI(false, IconUI.FRAME_SIZE, new Point(0, 0));
+		pauseMenuDarkArea = new ButtonUI(false, Main.getGameFrameDimension(), new Point(0, 0));
 		
 		// Panels that get added earlier are on top of later panels
 		rootPanel.add(pauseMenuSideArea);

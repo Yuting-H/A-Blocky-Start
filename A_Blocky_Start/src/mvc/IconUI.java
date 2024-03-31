@@ -11,37 +11,28 @@ import javax.swing.ImageIcon;
  */
 public class IconUI {
 	
-	// Size of various UI elements
-	public static final Dimension FRAME_SIZE = new Dimension(800, 600); // TODO delete this later
-	public static final Dimension TEXT_BUTTON_SIZE = new Dimension(150, 40);
-	public static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
-	public static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
-	public static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
-	
-	// TODO re-scale images of incorrect sizes
-	private static int samplingRate = 15;
+	// Game colour scheme
 	
 	public static Color lightOrange = new Color(255, 220, 120, 255);
 	public static Color mediumOrange = new Color(250, 150, 50, 255);
 	public static Color darkOrange = new Color(200, 100, 50, 255);
 	public static Color colorblindColor = new Color(255, 0, 255, 100);
 	
-	//game title
-	public static ImageIcon gameTitleIcon = 
-			new ImageIcon(
-					//scale image to 600x100 with sampling rate 15
-					new ImageIcon("img/GameTitle.png").getImage().getScaledInstance(600, 500, samplingRate)  
-					);	//transforms image to ImageIcon
+	// Size of various UI elements
 	
-	// main menu background
-	// TODO missing sprite
-	public static ImageIcon mainMenuBackgroundIcon = 
-			new ImageIcon(
-					//scale image to 600x100 with sampling rate 15
-					new ImageIcon("img/MenuBlank.png").getImage().getScaledInstance(600, 100, samplingRate)  
-					);	//transforms image to ImageIcon
+	public static final Dimension TEXT_BUTTON_SIZE = new Dimension(150, 40);
+	public static final Dimension ICON_BUTTON_SIZE = new Dimension(50, 50);
+	public static final Dimension BACK_BUTTON_SIZE = new Dimension(30, 30);
+	public static final Dimension ACTION_BUTTON_SIZE = new Dimension(100, 130);
 	
-	//Button ImageIcons
+	
+	
+	// Game Title Background Image
+	
+	// 600 x 600
+	public static ImageIcon gameTitleIcon = new ImageIcon("img/GameTitle.png");
+	
+	// Button Images
 	
 	// 150 x 40
 	public static ImageIcon loginButtonIcon = new ImageIcon("img/MenuLogin.png");
