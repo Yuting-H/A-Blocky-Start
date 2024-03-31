@@ -77,6 +77,7 @@ public class SettingsController implements Controller{
 	@Override
 	public void OnExit() {
 		view.setVisibility(false);
+		data.exportData();
 	}
 	
 	/**

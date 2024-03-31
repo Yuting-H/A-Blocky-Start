@@ -45,6 +45,7 @@ public class Main {
 
 		// Sets up the game's JFrame
 		configureGameFrame();
+		setColorblindVisibility(Main.settingsController.isColourblindMode());
 		
 		// Load initial screen, which is the login screen
 		loginController.OnEnter();
@@ -63,12 +64,8 @@ public class Main {
 		gameFrame.repaint();
 		gameFrame.revalidate();
 		
-		// set up colourblind overlay
+		// add colourblind overlay
 		gameFrame.add(colourblindPanel);
-		gameFrame.setComponentZOrder(colourblindPanel, 0);
-		setColorblindVisibility(settingsController.isColourblindMode());
-		gameFrame.repaint();
-		gameFrame.revalidate();
 	}
 	
 	/**
@@ -84,6 +81,9 @@ public class Main {
 	 */
 	public static void setColorblindVisibility(boolean isColourblindMode) {
 		colourblindPanel.setVisible(isColourblindMode);
+		gameFrame.setComponentZOrder(colourblindPanel, 0);
+		gameFrame.repaint();
+		gameFrame.revalidate();
 	}
 	
 }

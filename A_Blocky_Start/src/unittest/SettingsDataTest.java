@@ -44,7 +44,7 @@ class SettingsDataTest {
 	    settings.setVolumeLevel(settings.getVolumePercentage() + 10);
 	    
 	    // Export modified settings
-	    settings.exportSettings();
+	    settings.exportData();
 
 	    // Re-import to verify changes
 	    SettingsData modifiedSettings = SettingsData.importData();
@@ -59,7 +59,7 @@ class SettingsDataTest {
 	    modifiedSettings.setColourblindMode(!settings.getColourblindMode());
 	    modifiedSettings.setVolumeLevel(settings.getVolumePercentage() - 10);
 	    
-	    modifiedSettings.exportSettings();
+	    modifiedSettings.exportData();
 	}
 	
 	@Test

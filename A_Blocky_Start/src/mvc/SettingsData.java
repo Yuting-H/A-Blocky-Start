@@ -91,7 +91,7 @@ public class SettingsData {
 	 * Format: (without spaces)<br>
 	 * "screenHeight, screenWidth, colourblindMode, volumeLevel"<br>
 	 */
-	public void exportSettings() {
+	public void exportData() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 			// Concatenate settings into a single line, separated by commas
 			String settingsLine = "" + screenWidth + "," + screenHeight + "," + colourblindMode + "," + volumePercentage;
