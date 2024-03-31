@@ -68,6 +68,7 @@ public class LoginController implements Controller {
 					System.out.println("Logged in as developer");	
 				}
 				
+				//TODO: check condition, switch if save exist
 				Main.loginController.OnExit();	
 				Main.mainMenuController.OnEnter();
 				//print login info
