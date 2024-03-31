@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 public class MainMenuView implements View {
 	
 	// size of this view
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	
 	// locations
 	final Point asidenPanelLocation = new Point(600, 0);
