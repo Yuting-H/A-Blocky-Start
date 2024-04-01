@@ -33,6 +33,14 @@ public class MazeData {
 	 */
 	public static final int MAX_COLUMNS = 9;
 	/**
+	 * Points for collecting a key
+	 */
+	public static final int POINTS_FOR_KEY = 20;
+	/**
+	 * Points for reaching an exit
+	 */
+	public static final int POINTS_FOR_EXIT = 40;
+	/**
 	 * Stage ID
 	 */
 	int stageID;
@@ -43,21 +51,21 @@ public class MazeData {
 	/**
 	 * Row number of robot's current position
 	 */
-	int mazeRobotRow;
+	int robotRow;
 	/**
 	 * Column number of robot's current position
 	 */
-	int mazeRobotColumn;
+	int robotColumn;
 	/**
 	 * Row offset of robot's next forward position<br>
 	 * -1 = up, 1 = down
 	 */
-	int mazeRobotRowOffset;
+	int robotRowOffset;
 	/**
 	 * Column offset of robot's next forward position<br>
 	 * -1 = left, 1 = right
 	 */
-	int mazeRobotColumnOffset;
+	int robotColumnOffset;
 	/**
 	 * Current player score
 	 */
@@ -75,15 +83,15 @@ public class MazeData {
 	 * Construct a maze data object.
 	 * @param stageID Stage ID
 	 * @param mazeItemGrid 2D grid of maze items
-	 * @param mazeRobotRow Row number of robot's current position
-	 * @param mazeRobotColumn Column number of robot's current position
+	 * @param robotRow Row number of robot's current position
+	 * @param robotColumn Column number of robot's current position
 	 */
-	public MazeData(int stageID, MazeTypeEnum[][] mazeItemGrid, int mazeRobotRow, int mazeRobotColumn) {
+	public MazeData(int stageID, MazeTypeEnum[][] mazeItemGrid, int robotRow, int robotColumn) {
 		this.mazeItemGrid = mazeItemGrid;
-		this.mazeRobotRow = mazeRobotRow;
-		this.mazeRobotColumn = mazeRobotColumn;
-		this.mazeRobotRowOffset = 0;
-		this.mazeRobotColumnOffset = 1;
+		this.robotRow = robotRow;
+		this.robotColumn = robotColumn;
+		this.robotRowOffset = 0;
+		this.robotColumnOffset = 1;
 		this.score = 0;
 	}
 	
@@ -101,47 +109,50 @@ public class MazeData {
 	 */
 	public static MazeData importData(String filename) {
 		
-		MazeTypeEnum[][] maze = new MazeTypeEnum[MAX_ROWS][MAX_COLUMNS];
-		
 		try {
 			FileReader fileIn = new FileReader(filename);
 			Scanner scnr = new Scanner(fileIn);
-			scnr.useDelimiter(","); // since this is a CSV file
 			
 			// Decode the maze
-			int robotRow = 0;
-			int robotColumn = 0;
+			int spawnRow = 0;
+			int spawnColumn = 0;
+			MazeTypeEnum[][] maze = new MazeTypeEnum[MAX_ROWS][MAX_COLUMNS];
 			for (int i = 0; i < MAX_ROWS; i++) {
+				String dataStr = scnr.nextLine();
+				String[] row = dataStr.split(",");
 				
+				// Removes invisible characters, such as 'BOM'
 				for (int j = 0; j < MAX_COLUMNS; j++) {
-					maze[i][j] = MazeTypeEnum.fromString(scnr.next());
+					maze[i][j] = MazeTypeEnum.fromString(row[j]);
 					
 					if (maze[i][j] == MazeTypeEnum.SPAWN) {
-						robotRow = i;
-						robotColumn = j;
+						spawnRow = i;
+						spawnColumn = j;
+						System.out.println("spawned");
 					}
 				}
-				
-				scnr.nextLine();
 			}
 			
 			// Read objectives
 			String objectives = scnr.nextLine();
+			objectives = objectives.substring(1, objectives.indexOf('"', 1)); // discard the quotation marks
+			
+			// Read hints
 			String hints = scnr.nextLine();
+			hints = hints.substring(1, hints.indexOf('"', 1)); // discard the quotation marks
 			
 			// Extract stage ID from filename
 			String stageID = filename.substring(filenamePrefix.length() + filenameInfix.length(), filename.length() - filenameSuffix.length());
-			System.out.println(filename + "," + stageID); // TODO
 			
 			// Call constructor
-			MazeData mazeData = new MazeData(Integer.parseInt(stageID), maze, robotRow, robotColumn);
+			MazeData mazeData = new MazeData(Integer.parseInt(stageID), maze, spawnRow, spawnColumn);
 			
 			// Add the rest of the attributes
 			mazeData.setObjectives(objectives);
 			mazeData.setHints(hints);
 			
 			scnr.close();
-
+			
  			return mazeData;
 			
 		} catch (FileNotFoundException e) {
@@ -158,12 +169,168 @@ public class MazeData {
 	*/
 	
 	
+	public int getStageID() {
+		return stageID;
+	}
+	
+	public MazeTypeEnum getMazeItem(int row, int column) {
+		if (!isIndexOutOfBound(row, column)) {
+			return mazeItemGrid[row][column];
+		}
+		
+		return MazeTypeEnum.WALL; // out-of-bound areas are considered walls
+	}
+	
+	public int getRobotRow() {
+		return robotRow;
+	}
+	
+	public int getRobotColumn() {
+		return robotColumn;
+	}
+	
+	public int getRobotRowOffset() {
+		return robotRowOffset;
+	}
+	
+	public int getRobotColumnOffset() {
+		return robotColumnOffset;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public String getObjectives() {
+		return objectives;
+	}
+	
+	public String getHints() {
+		return hints;
+	}
+	
+	/**
+	 * Access the next tile that the robot is facing.
+	 * @param forward True if forward, false if back
+	 * @return MazeTypeEnum
+	 */
+	private MazeTypeEnum getFacingTile(boolean forward) {
+		int r = (forward ? robotRowOffset : robotRowOffset * -1);
+		int c = (forward ? robotColumnOffset : robotColumnOffset * -1);
+		
+		return getMazeItem(robotRow + r, robotColumn + c);
+	}
+	
 	public void setObjectives(String text) {
 		objectives = text;
 	}
 	
 	public void setHints(String text) {
 		hints = text;
+	}
+	
+	/**
+	 * Move the robot forward/ back.
+	 * @param forward True if forward, false if back
+	 * @return True if moved, false otherwise (blocked by wall or dead)
+	 */
+	public boolean moveRobot(boolean forward) {
+		// Check if dead or exited
+		if (isRobotDead() || isRobotExited()) {
+			return false;
+		}
+		
+		// Check if walking into special tiles
+		MazeTypeEnum next = getFacingTile(forward);
+		if (next == MazeTypeEnum.WALL) {
+			return false; // cannot walk into walls
+		} else if (next == MazeTypeEnum.KEY) {
+			score += POINTS_FOR_KEY;
+		} else if (next == MazeTypeEnum.EXIT) {
+			score += POINTS_FOR_EXIT;
+		} else if (next == MazeTypeEnum.TRAP) {
+			score += 0; // no points deducted
+		}
+		
+		// Move the robot
+		int r = (forward ? robotRowOffset : robotRowOffset * -1);
+		int c = (forward ? robotColumnOffset : robotColumnOffset * -1);
+		robotRow += r;
+		robotColumn += c;
+		
+		// Replace collectible item with an path tile
+		if ((next == MazeTypeEnum.KEY) || (next == MazeTypeEnum.TRAP)) {
+			mazeItemGrid[robotRow][robotColumn] = MazeTypeEnum.PATH;
+		}
+		
+		// Kill robot if hit a trap
+		if (next == MazeTypeEnum.TRAP) {
+			setRobotDead();
+		}
+		
+		// Successful
+		return true;
+	}
+	
+	/**
+	 * Rotate the robot counter-clockwise/ clockwise.
+	 * @param counterClockwise True if counter-clockwise, false if clockwise
+	 * @return True if rotated, false otherwise (dead)
+	 */
+	public boolean rotateRobot(boolean counterClockwise) {
+		// Check if dead or exited
+		if (isRobotDead() || isRobotExited()) {
+			return false;
+		}
+		
+		if (counterClockwise) {
+			if (robotRowOffset != 0) {
+				// Up --> Left, Down --> Right
+				robotColumnOffset = robotRowOffset;
+				robotRowOffset = 0;
+			} else if (robotColumnOffset != 0) {
+				// Left --> Down, Right --> Up
+				robotRowOffset = robotColumnOffset * -1;
+				robotColumnOffset = 0;
+			}
+		} else {
+			if (robotRowOffset != 0) {
+				// Up --> Right, Down --> Left
+				robotColumnOffset = robotRowOffset * -1;
+				robotRowOffset = 0;
+			} else if (robotColumnOffset != 0) {
+				// Left --> Up, Right --> Down
+				robotRowOffset = robotColumnOffset;
+				robotColumnOffset = 0;
+			}
+		}
+		
+		// Successful
+		return true;
+	}
+	
+	/**
+	 * Set the robot as dead.
+	 */
+	private void setRobotDead() {
+		robotRowOffset = 0;
+		robotColumnOffset = 0;
+	}
+	
+	/**
+	 * Check if the robot is dead.
+	 * @return True if dead, false otherwise
+	 */
+	private boolean isRobotDead() {
+		return ((robotRowOffset == 0) && (robotColumnOffset == 0));
+	}
+	
+	/**
+	 * Check if the robot has reached the exit.
+	 * @return True if exited, false otherwise
+	 */
+	private boolean isRobotExited() {
+		return (mazeItemGrid[robotRow][robotColumn] == MazeTypeEnum.EXIT);
 	}
 	
 	/**

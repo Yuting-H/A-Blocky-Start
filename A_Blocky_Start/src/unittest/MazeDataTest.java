@@ -22,6 +22,14 @@ class MazeDataTest {
 	}
 	
 	@Test
+	void ImportData() {
+		boolean success = true;
+		MazeData data = MazeData.importData(MazeData.toFilename(999));
+		success = success && true;
+		assertTrue(success);
+	}
+	
+	@Test
 	void ToFilenameStage999() {
 		assertEquals("./mazedata/stage999_mazedata.csv", MazeData.toFilename(999));
 	}

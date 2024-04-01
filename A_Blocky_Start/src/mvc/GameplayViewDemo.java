@@ -234,6 +234,11 @@ public class GameplayViewDemo implements View {
 		actionChainContent.add(blockUI, -1);
 	}
 	
+	public void refreshMazeUI() {
+		mazeArea.repaint();
+		mazeArea.revalidate();
+	}
+	
 	/**
 	 * Update the icon of a maze tile.
 	 * @param row Row number (0..MAX_ROWS)

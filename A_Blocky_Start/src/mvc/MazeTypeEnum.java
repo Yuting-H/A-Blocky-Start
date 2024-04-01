@@ -21,6 +21,9 @@ public enum MazeTypeEnum {
 		// Remove whitespace
 		data = data.strip().toUpperCase();
 		
+		// Remove leading invisible characters, such as the Byte-Order-Mark character
+		data = String.valueOf(data.charAt(data.length() - 1));
+		
 		// Check data of action
 		if (data.equals("W")) {
 			return WALL;

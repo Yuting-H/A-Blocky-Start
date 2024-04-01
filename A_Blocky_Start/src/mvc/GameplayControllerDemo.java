@@ -16,6 +16,7 @@ public class GameplayControllerDemo implements Controller {
 	
 	private static JFrame testFrame = new JFrame("A Blocky Start"); // TODO remove this
 	private static GameplayViewDemo view = new GameplayViewDemo();
+	private static int stageID = 999; // TODO use a setter
 	private static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
 	private static ProgressionData progress = user.getProgressionAtIndex(4); // TODO use a setter
 	private static ActionChainData chain = progress.getActionChain();
@@ -154,6 +155,7 @@ public class GameplayControllerDemo implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				resetActionChain();
+				resetMaze();
 				view.setActionChainDisable(false);
 				view.setActionBuffetDisable(false);
 				System.out.println("iconResetChainButton"); // TODO
@@ -308,24 +310,46 @@ public class GameplayControllerDemo implements Controller {
 	public void rebuildMazeUI() {
 		for (int i = 0; i < MazeData.MAX_ROWS; i++) {
 			for (int j = 0; j < MazeData.MAX_COLUMNS; j++) {
-				view.updateMazeItemIcon(i, j, MazeTypeEnum.TRAP); // TODO
+				view.updateMazeItemIcon(i, j, maze.getMazeItem(i, j));
 			}
 		}
+		view.updateMazeRobotIcon(maze.getRobotRow(), maze.getRobotColumn(), maze.getRobotRowOffset(), maze.getRobotColumnOffset());
 		
-		view.updateMazeRobotIcon(0, 0, 0, 0); // TODO
+		view.refreshMazeUI();
 	}
 	
 	public void resetMaze() {
+		maze = MazeData.importData(MazeData.toFilename(stageID));
 		rebuildMazeUI();
 	}
 	
+	/**
+	 * Execute one step in the action chain and update the maze accordingly.
+	 * @return True if executed, false otherwise (action chain ended or crashed)
+	 */
 	public boolean stepActionChain() {
+		// Update action chain UI
 		int indexPrevious = chain.getIndexCurrent();
 		boolean success = chain.executeStep();
 		int indexCurrent = chain.getIndexCurrent();
 		int indexNext = chain.getIndexNext();
 		view.setActionBlockUIStatus(indexPrevious, indexCurrent, indexNext);
 		view.setActionBlockUICounter(indexCurrent, chain.getActionBlock(indexCurrent).getCounter());
+		
+		// Update maze UI
+		ActionTypeEnum action = chain.getActionBlock(indexCurrent).getType();
+		if (action == ActionTypeEnum.FORWARD || action == ActionTypeEnum.BACK) {
+			boolean forward = (action == ActionTypeEnum.FORWARD);
+			maze.moveRobot(forward);
+			view.updateMazeRobotIcon(maze.getRobotRow(), maze.getRobotColumn(), maze.getRobotRowOffset(), maze.getRobotColumnOffset());
+			view.updateMazeItemIcon(maze.getRobotRow(), maze.getRobotColumn(), maze.getMazeItem(maze.getRobotRow(), maze.getRobotColumn()));
+		} else if (action == ActionTypeEnum.LEFT || action == ActionTypeEnum.RIGHT) {
+			boolean counterClockwise = (action == ActionTypeEnum.LEFT);
+			maze.rotateRobot(counterClockwise);
+			view.updateMazeRobotIcon(maze.getRobotRow(), maze.getRobotColumn(), maze.getRobotRowOffset(), maze.getRobotColumnOffset());
+		}
+		
+		// Successful
 		return success;
 	}
 	
@@ -339,9 +363,12 @@ public class GameplayControllerDemo implements Controller {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// Execute action chain by 1 step
 			boolean success = stepActionChain();
+			
+			// Check if action chain ended or crashed
 			if (!success) {
-				pauseActionChain();
+				pauseActionChain(); 
 			}
 		}
 	}
