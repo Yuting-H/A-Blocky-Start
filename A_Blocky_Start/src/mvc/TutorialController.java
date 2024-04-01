@@ -42,6 +42,7 @@ public class TutorialController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.tutorialController.onExit();
 				TutorialController.previous.onEnter(Main.tutorialController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}

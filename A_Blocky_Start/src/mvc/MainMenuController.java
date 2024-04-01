@@ -47,6 +47,7 @@ public class MainMenuController implements Controller {
 				
 				
 				//TODO: implement this
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -56,6 +57,7 @@ public class MainMenuController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO add action
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -66,6 +68,7 @@ public class MainMenuController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
 				Main.tutorialController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -82,6 +85,7 @@ public class MainMenuController implements Controller {
 				} else {
 					Main.teacherProgressionController.onEnter(Main.mainMenuController);
 				}
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 			
 		});
@@ -93,6 +97,7 @@ public class MainMenuController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
 				Main.highScoreController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -103,6 +108,7 @@ public class MainMenuController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
 				Main.settingsController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -111,6 +117,7 @@ public class MainMenuController implements Controller {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.soundController.playSound(SoundController.buttonClick);
 				System.exit(0);
 			}
 		});

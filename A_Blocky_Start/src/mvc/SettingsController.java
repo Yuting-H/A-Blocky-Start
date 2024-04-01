@@ -48,6 +48,7 @@ public class SettingsController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.settingsController.onExit();
 				SettingsController.previous.onEnter(Main.settingsController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}

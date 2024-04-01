@@ -45,6 +45,7 @@ public class HighScoreController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.highScoreController.onExit();
 				HighScoreController.previous.onEnter(Main.highScoreController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}

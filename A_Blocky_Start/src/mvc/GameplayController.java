@@ -77,6 +77,7 @@ public class GameplayController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.setPauseMenuVisibility(false);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -84,6 +85,7 @@ public class GameplayController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("saveButton"); // TODO
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -92,6 +94,7 @@ public class GameplayController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.gameplayController.onExit();
 				Main.tutorialController.onEnter(Main.gameplayController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -100,6 +103,7 @@ public class GameplayController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.gameplayController.onExit();
 				Main.settingsController.onEnter(Main.gameplayController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -108,6 +112,7 @@ public class GameplayController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.gameplayController.onExit();
 				Main.mainMenuController.onEnter(Main.gameplayController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -120,6 +125,7 @@ public class GameplayController implements Controller {
 				view.setRunPauseButtonVisibility(true);
 				
 				view.setPauseMenuVisibility(true);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -129,6 +135,7 @@ public class GameplayController implements Controller {
 				runActionChain();
 				view.setActionChainDisable(true);
 				view.setActionBuffetDisable(true);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -138,6 +145,7 @@ public class GameplayController implements Controller {
 				pauseActionChain();
 				view.setActionChainDisable(true);
 				view.setActionBuffetDisable(true);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -148,6 +156,7 @@ public class GameplayController implements Controller {
 				resetMaze();
 				view.setActionChainDisable(false);
 				view.setActionBuffetDisable(false);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -155,6 +164,7 @@ public class GameplayController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("iconObjectivesButton"); // TODO
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -162,6 +172,7 @@ public class GameplayController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("iconHintsButton"); // TODO
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -171,6 +182,7 @@ public class GameplayController implements Controller {
 				view.refreshActionChainUI(); // TODO delete this line
 				System.out.println(chain.exportData()); // TODO delete this line
 				System.out.println("iconTypeChainButton"); // TODO
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -184,6 +196,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -195,6 +208,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -206,6 +220,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -217,6 +232,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -229,6 +245,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -243,6 +260,7 @@ public class GameplayController implements Controller {
 				chain.addBeforeEnd(new ActionBlockData(type, args));
 				
 				rebuildActionChainUI();
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}

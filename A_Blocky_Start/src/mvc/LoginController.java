@@ -85,6 +85,8 @@ public class LoginController implements Controller {
 				Main.mainMenuController.onEnter(Main.loginController);
 				//print login info
 				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
+				
+				Main.soundController.playSound(SoundController.buttonClick);
 		}});
 	}
 	
