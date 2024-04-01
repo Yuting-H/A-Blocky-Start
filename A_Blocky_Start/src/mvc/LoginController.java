@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.xml.crypto.Data;
-
 /**
  * LoginController controls LoginData and LoginView
  * @version 0.2

@@ -12,14 +12,14 @@ import javax.swing.event.ChangeListener;
 
 public class GameplayControllerDemo implements Controller {
 
-	public static final int ACTION_CHAIN_SPEED = 500; // millisecond
+	private static final int ACTION_CHAIN_SPEED = 500; // millisecond
 	
-	public static JFrame testFrame = new JFrame(); // TODO remove this
-	public static GameplayViewDemo view = new GameplayViewDemo();
-	public static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
-	public static ProgressionData progress = user.getProgressionAtIndex(4); // TODO use a setter
-	public static ActionChainData chain = progress.getActionChain();
-	
+	private static JFrame testFrame = new JFrame("A Blocky Start"); // TODO remove this
+	private static GameplayViewDemo view = new GameplayViewDemo();
+	private static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
+	private static ProgressionData progress = user.getProgressionAtIndex(4); // TODO use a setter
+	private static ActionChainData chain = progress.getActionChain();
+	private static MazeData maze = MazeData.importData(MazeData.toFilename(999)); // TODO use a setter
 	
 	private Timer actionChainTimer;
 	
@@ -47,6 +47,7 @@ public class GameplayControllerDemo implements Controller {
 		view.insertPanelToFrame(GameplayControllerDemo.testFrame);
 		populateActionListener();
 		rebuildActionChainUI();
+		rebuildMazeUI();
 		
 		actionChainTimer = new Timer(ACTION_CHAIN_SPEED, this.new ActionChainListener());
 		actionChainTimer.setInitialDelay(0);
@@ -56,9 +57,13 @@ public class GameplayControllerDemo implements Controller {
 	public void onEnter() {
 		view.setVisibility(true);
 		view.setPauseMenuVisibility(false);
-		Main.setColorblindOverlay();
-		testFrame.setSize(new Dimension(815, 640));
+		view.setActionChainDisable(false);
+		view.setActionBuffetDisable(false);
 		resetActionChain();
+		resetMaze();
+		//Main.setColorblindOverlay(); // TODO
+		testFrame.setSize(new Dimension(815, 640));
+		
 	}
 
 
@@ -66,6 +71,8 @@ public class GameplayControllerDemo implements Controller {
 	public void onExit() {
 		view.setVisibility(false);
 		view.setPauseMenuVisibility(false);
+		view.setActionChainDisable(false);
+		view.setActionBuffetDisable(false);
 		testFrame.setSize(new Dimension(800, 600));
 		resetActionChain();
 	}
@@ -127,6 +134,8 @@ public class GameplayControllerDemo implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				runActionChain();
+				view.setActionChainDisable(true);
+				view.setActionBuffetDisable(true);
 				System.out.println("iconRunChainButton"); // TODO
 			}
 		});
@@ -135,6 +144,8 @@ public class GameplayControllerDemo implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pauseActionChain();
+				view.setActionChainDisable(true);
+				view.setActionBuffetDisable(true);
 				System.out.println("iconPauseChainButton"); // TODO
 			}
 		});
@@ -143,6 +154,8 @@ public class GameplayControllerDemo implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				resetActionChain();
+				view.setActionChainDisable(false);
+				view.setActionBuffetDisable(false);
 				System.out.println("iconResetChainButton"); // TODO
 			}
 		});
@@ -290,6 +303,20 @@ public class GameplayControllerDemo implements Controller {
 		pauseActionChain();
 		chain.executeReset();
 		rebuildActionChainUI();
+	}
+	
+	public void rebuildMazeUI() {
+		for (int i = 0; i < MazeData.MAX_ROWS; i++) {
+			for (int j = 0; j < MazeData.MAX_COLUMNS; j++) {
+				view.updateMazeItemIcon(i, j, MazeTypeEnum.TRAP); // TODO
+			}
+		}
+		
+		view.updateMazeRobotIcon(0, 0, 0, 0); // TODO
+	}
+	
+	public void resetMaze() {
+		rebuildMazeUI();
 	}
 	
 	public boolean stepActionChain() {
