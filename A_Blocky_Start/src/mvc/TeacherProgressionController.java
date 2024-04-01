@@ -46,6 +46,7 @@ public class TeacherProgressionController implements Controller {
 			public void actionPerformed(ActionEvent e) {
 				Main.teacherProgressionController.onExit();
 				TeacherProgressionController.previous.onEnter(Main.teacherProgressionController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
