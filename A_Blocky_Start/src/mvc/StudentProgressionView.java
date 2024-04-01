@@ -77,14 +77,14 @@ public class StudentProgressionView implements View {
 		rootPanel.add(backButton);
 
 		// add progression label
-		progressionTitleLabel = new LabelUI(progressionTitleLocation, labelSize, "Continue Game");
+		progressionTitleLabel = new LabelUI(progressionTitleLocation, labelSize, "Progress Screen (Student Mode)");
 		rootPanel.add(progressionTitleLabel);
 
 		// set up container 
 		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
 		container.setBorder(new EmptyBorder(new Insets(0, 100, 0, 100)));
 		FlowLayout layout = new FlowLayout();
-		container.setLayout(new FlowLayout());  // set layout
+		container.setLayout(new FlowLayout()); // set layout
 
 		
 		// adds 10 progression to container
@@ -93,9 +93,9 @@ public class StudentProgressionView implements View {
 			PanelUI curr = newEntry();  // create empty container
 			curr.setBackground(IconUI.darkOrange);
 			
-			entries.add(curr);  // add empty container to list
-			container.add(entries.get(i));  // add the containers from list to screen
-			container.add(Box.createVerticalStrut(20));  // spacing between each progression
+			entries.add(curr); // add empty container to list
+			container.add(entries.get(i)); // add the containers from list to screen
+			container.add(Box.createVerticalStrut(20)); // spacing between each progression
 			
 		}
 

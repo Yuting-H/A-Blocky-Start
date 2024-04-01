@@ -134,11 +134,11 @@ public class MazeData {
 			
 			// Read objectives
 			String objectives = scnr.nextLine();
-			objectives = objectives.substring(1, objectives.indexOf('"', 1)); // discard the quotation marks
+			objectives = objectives.substring(3, objectives.indexOf('"', 3)); // discard the quotation marks
 			
 			// Read hints
 			String hints = scnr.nextLine();
-			hints = hints.substring(1, hints.indexOf('"', 1)); // discard the quotation marks
+			hints = hints.substring(3, hints.indexOf('"', 3)); // discard the quotation marks
 			
 			// Extract stage ID from filename
 			String stageID = filename.substring(filenamePrefix.length() + filenameInfix.length(), filename.length() - filenameSuffix.length());

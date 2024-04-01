@@ -190,6 +190,10 @@ public class GameplayView implements View {
 		pauseMenuDarkArea.setVisible(visibility);
 	}
 	
+	public void setDebugButtonVisibility(boolean visibility) {
+		debugChainButton.setVisible(visibility);
+	}
+	
 	public void setActionChainDisable(boolean disable) {
 		actionChainDarkArea.setVisible(disable);
 	}

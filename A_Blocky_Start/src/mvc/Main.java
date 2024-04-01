@@ -19,8 +19,12 @@ public class Main {
 	 */
 	public static JFrame gameFrame = new JFrame("A Blocky Start");
 	
+	// Non-Screen controllers
+	public static ErrorLogController errorLogController = new ErrorLogController();
+	public static SoundController soundController = new SoundController();
+	
 	// Screen controllers
-	public static SettingsController settingsController = new SettingsController(); // must be first to be initialized
+	public static SettingsController settingsController = new SettingsController();
 	public static LoginController loginController = new LoginController();
 	public static MainMenuController mainMenuController = new MainMenuController();
 	public static StudentProgressionController studentProgressionController = new StudentProgressionController();
@@ -29,9 +33,7 @@ public class Main {
 	public static TutorialController tutorialController = new TutorialController();
 	public static HighScoreController highScoreController = new HighScoreController();
 	
-	// Non-Screen controllers
-	public static ErrorLogController errorLogController = new ErrorLogController();
-	public static SoundController soundController = new SoundController();
+	
 	
 	/**
 	 * Colourblind overlay JPanel.
@@ -56,6 +58,9 @@ public class Main {
 		// Play background music
 		soundController.playSound(SoundController.backgroundMusic);
 		soundController.updateVolume(100); // TODO load from settings
+		
+		// Clear error log
+		Main.errorLogController.clearErrorLog();
 	}
 	
 	/**
