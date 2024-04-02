@@ -390,6 +390,8 @@ public class GameplayController implements Controller {
 			progress.updateShortestSteps(chain.getActionBlockList().size() - 1);
 			saveProgressionData();
 			unlockNextStage();
+			user.updateTotalStats();
+			Main.highScoreController.addNameScore(user.getUsername(), user.getTotalScore());
 			Main.errorLogController.addPopup("You Win!", "You have completed stage " + stageID + "! Score: " + maze.getScore(), JOptionPane.INFORMATION_MESSAGE, null);
 		}
 		

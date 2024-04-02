@@ -57,7 +57,7 @@ public class Main {
 		
 		// Play background music
 		soundController.playSound(SoundController.backgroundMusic);
-		soundController.updateVolume(100); // TODO load from settings
+		soundController.updateVolume(Main.settingsController.getVolumePercentage());
 		
 		// Clear error log
 		Main.errorLogController.clearErrorLog();
