@@ -1,11 +1,7 @@
 package mvc;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.util.EventListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -114,11 +110,11 @@ public class LoginView implements View {
 	
 	// Action Listeners
 
-	public void loginButtonAddAction(ActionListener actionListener) {
+	public void loginButton(ActionListener actionListener) {
 		loginButton.addActionListener(actionListener);
 	}
 	
-	public void registerButtonAddAction(ActionListener actionListener) {
+	public void registerButton(ActionListener actionListener) {
 		registerButton.addActionListener(actionListener);
 	}
 	
