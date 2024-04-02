@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
  * 
  */
@@ -34,7 +37,6 @@ public class SettingsController implements Controller {
 	@Override
 	public void onExit() {
 		view.setVisibility(false);
-		updateSettings(); // TODO
 	}
 	
 	/**
@@ -42,8 +44,7 @@ public class SettingsController implements Controller {
 	 */
 	private void populateActionListener() {
 		
-		//when back button is pressed
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.settingsController.onExit();
@@ -51,20 +52,40 @@ public class SettingsController implements Controller {
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
+		
+		view.resolutionComboBox(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.setScreenWidth(800);
+				data.setScreenHeight(600);
+				data.exportData();
+			}
+			
+		});
+		
+		view.colourBlindComboBox(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.setColourblindMode(view.getColourBlindField().equalsIgnoreCase("On"));
+				data.exportData();
+			}
+			
+		});
+		
+		view.volumeLevelSlider(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				data.setVolumeLevel(view.getVolumeLevelField());
+				Main.soundController.updateVolume((float) data.getVolumePercentage());
+				data.exportData();
+			}
+			
+		});
 	}
 	
-	/**
-	 * This function updates setting data 
-	 * @author Simon
-	 */
-	private void updateSettings() {
-		data.setScreenWidth(800);
-		data.setScreenHeight(600);
-		data.setColourblindMode(view.getColourBlindField().equalsIgnoreCase("On"));
-		data.setVolumeLevel(view.getVolumeLevelField());
-		
-		data.exportData();
-	}
 	public boolean isColourblindActive() {		
 		return data.getColourblindMode();
 	}

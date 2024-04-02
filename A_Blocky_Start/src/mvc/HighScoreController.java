@@ -10,7 +10,7 @@ public class HighScoreController implements Controller {
 	
 	private static Controller previous;
 	private static HighScoreView view = new HighScoreView();
-	private static HighScoreData data = HighScoreData.importData(); // TODO
+	private static HighScoreData data = HighScoreData.importData();
 	
 	/**
 	 * Constructor.
@@ -39,7 +39,7 @@ public class HighScoreController implements Controller {
 	private void populateActionListener() {
 		
 		// back button
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -51,12 +51,10 @@ public class HighScoreController implements Controller {
 	}
 	
 	private void updateHighScore() {
-		//data.importData();
 		for(int i = 0; i < 5; i++) {
 			view.addHighscore(i, data.getUsername(i), data.getHighScore(i));
 		}
-		data.exportHighScore();
-
+		data.exportData();
 	}
 
 }

@@ -114,31 +114,31 @@ public class MainMenuView implements View {
 	
 	// Action Listeners
 	
-	public void continueButtonAddActionListener(ActionListener actionListener) {
+	public void continueButton(ActionListener actionListener) {
 		continueButton.addActionListener(actionListener);
 	}
 	
-	public void newGameButtonAddActionListener(ActionListener actionListener) {
+	public void newGameButton(ActionListener actionListener) {
 		newGamButton.addActionListener(actionListener);
 	}
 	
-	public void tutorialButtonAddActionListener(ActionListener actionListener) {
+	public void tutorialButton(ActionListener actionListener) {
 		tutorialButton.addActionListener(actionListener);
 	}
 	
-	public void progressionButtonAddActionListener(ActionListener actionListener) {
+	public void progressionButton(ActionListener actionListener) {
 		progressionButton.addActionListener(actionListener);
 	}
 	
-	public void highscoreButtonAddActionListener(ActionListener actionListener) {
+	public void highscoreButton(ActionListener actionListener) {
 		highScoreButton.addActionListener(actionListener);
 	}
 	
-	public void settingsButtonAddActionListener(ActionListener actionListener) {
+	public void settingsButton(ActionListener actionListener) {
 		settingsButton.addActionListener(actionListener);
 	}
 	
-	public void exitButtonAddActionListener(ActionListener actionListener) {
+	public void exitButton(ActionListener actionListener) {
 		exitButton.addActionListener(actionListener);
 	}
 

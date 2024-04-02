@@ -165,7 +165,6 @@ public class SettingsData {
 	 */
 	public void setColourblindMode(boolean colourblindMode) {
 		this.colourblindMode = colourblindMode;
-		System.out.println("Setter: " + this.colourblindMode + "," + colourblindMode);
 	}
 
 	/**

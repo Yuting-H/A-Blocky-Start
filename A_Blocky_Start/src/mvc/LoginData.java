@@ -45,10 +45,8 @@ public class LoginData {
 	public UserTypeEnum getMode() {
 		
 		if (usernameInput.equalsIgnoreCase(TEACHER_USERNAME)) {
-			Main.errorLogController.addPopup(">> Prompt <<", "Teacher mode activated.", JOptionPane.INFORMATION_MESSAGE, null);
 			return UserTypeEnum.TEACHER;
 		} else if (usernameInput.equalsIgnoreCase(DEVELOPER_USERNAME)) {
-			Main.errorLogController.addPopup(">> Prompt <<", "Developer mode activated.", JOptionPane.INFORMATION_MESSAGE, null);
 			return UserTypeEnum.DEVELOPER;
 		}
 		return UserTypeEnum.STUDENT; // default mode
@@ -105,6 +103,7 @@ public class LoginData {
 		
 		// Create a new user data file
 		activeUserData = new UserData(UserTypeEnum.STUDENT, usernameInput, passwordInput);
+		activeUserData.resetProgressionData();
 		activeUserData.exportData();
 		
 		// Successful

@@ -1,16 +1,22 @@
 package mvc;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ChangeListener;
+
 /**
- * 
+ * This controller class manages the student progression screen.
+ * @version 1.0
+ * @since March 11, 2024
+ * @author Doyle Blacklock
  */
 public class StudentProgressionController implements Controller {
 	
 	private static Controller previous;
 	private StudentProgressionView view = new StudentProgressionView();
-	private StudentProgressionData data = null;
+	private StudentProgressionData data;
 	
 	/**
 	 * Constructor.
@@ -38,7 +44,7 @@ public class StudentProgressionController implements Controller {
 	private void populateActionListener() {
 		
 		//when back button is pressed, return to previous screen
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -51,21 +57,19 @@ public class StudentProgressionController implements Controller {
 		
 	}
 	
-	/**
-	 * 
-	 * @param userData
-	 */
 	public void setUserData(UserData userData) {
 		data = new StudentProgressionData(userData);
-		ProgressionData progressionData;
 		
-		for (int i = 0; i < 10; i++) {
-			
+		ProgressionData progressionData;
+		for (int i = 0; i < data.entriesPerPage; i++) {
 			progressionData = data.getProgression(i);
 
 			if (progressionData == null) {
 				break;
 			}
+			
+			ButtonUI playButton = new ButtonUI(new Dimension(400, 20), "", IconUI.playButtonIcon);
+			playButton.addActionListener(new PlayButtonListener(i));
 			
 			view.setEntry(
 					i,
@@ -74,8 +78,33 @@ public class StudentProgressionController implements Controller {
 					progressionData.getShortestSteps(),
 					progressionData.getHighestScore(), 
 					progressionData.getTimeSpent(), 
-					progressionData.getAttempts()
-				);
+					progressionData.getAttempts(), 
+					playButton
+					);
 		}
+		
 	}
+	
+	// Action Listeners
+	
+	private class PlayButtonListener implements ActionListener {
+
+		private int stageID;
+		
+		public PlayButtonListener(int stageID) {
+			this.stageID = stageID;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			UserData activeUser = Main.loginController.getActiveUserData();
+			Main.gameplayController.setupStage(activeUser, stageID);
+			
+			Main.studentProgressionController.onExit();
+			Main.gameplayController.onEnter(Main.studentProgressionController);
+			Main.soundController.playSound(SoundController.buttonClick);
+		}
+		
+	}
+	
 }

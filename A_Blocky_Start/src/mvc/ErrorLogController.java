@@ -73,7 +73,7 @@ public class ErrorLogController {
 			log.createNewFile(); // create a new file if not found
 			FileWriter writer = new FileWriter(filename);	
 			writer.write("");
-			System.out.println("Error log cleared.");
+			
 			writer.close();
 		} catch (IOException e1) {
 			addError(e1);
