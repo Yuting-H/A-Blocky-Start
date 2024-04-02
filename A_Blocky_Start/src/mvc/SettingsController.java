@@ -96,5 +96,12 @@ public class SettingsController implements Controller {
 	public Dimension getDimension() {
 		return new Dimension(data.getScreenWidth(), data.getScreenHeight());
 	}
+	
+	/**
+	 * get the volume from the data
+	 */
+	public int getVolumePercentage() {
+		return data.getVolumePercentage();
+	}
 
 }

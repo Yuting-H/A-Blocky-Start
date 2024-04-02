@@ -56,5 +56,10 @@ public class HighScoreController implements Controller {
 		}
 		data.exportData();
 	}
+	
+	public void addNameScore(String username, int highScore){
+		data.addNameScore(username, highScore);
+		data.exportData();
+	}
 
 }
