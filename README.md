@@ -46,7 +46,7 @@ Note:
 
 ## 1. Short Description
 
-(TODO: A short description of your software and what it does.)  
+This is a game project (group assignment) of CompSci 2212B at Western University.  
 
 ## 2. Required Libraries & 3rd Party Tools
 
@@ -63,16 +63,21 @@ Note:
 
 ## 3. How To Compile (step-by-step guide)
 
-(TODO: A detailed step by step guide for building your software (compiling it from source code).  
-This should include details on how to obtain and install any third party libraries.)  
+Steps:  
+1. Download all of the required libraries & 3rd party tools listed above from their respective websites.  
+2. Open this project folder 'A_Blocky_Start' in the Eclipse IDE, and then click File > Export > Java > Runnable JAR File.  
+3. Follow the instructions on screen.  
 
 ## 4. How To Run (step-by-step guide)
 
-(TODO: A detailed step by step guide on how to run your already built (compiled) software.)  
+Steps:  
+1. Double click on the compiled JAR file.  
+2. Enter one of the username & password combinations below.  
 
 ## 5. User Guide
 
-(TODO: A user guide, that explains how to use your software.)  
+All of the necessary information can be found within the Tutorial screen, which can be accessed from the Main Menu screen after logging in.  
+Students can make custom accounts, while teachers/ developers must use a pre-defined account.  
 
 ## 6. Account Usernames & Passwords
 
