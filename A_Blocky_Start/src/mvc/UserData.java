@@ -149,7 +149,7 @@ public class UserData {
 			fileOut.createNewFile(); // create a new file if not found
 			
 			// Wipe the user data file
-			FileWriter writer = new FileWriter(fileOut, true);
+			FileWriter writer = new FileWriter(fileOut);
 			writer.write(""); 
 			
 			// Recalculate all statistics
@@ -316,6 +316,14 @@ public class UserData {
 	 */
 	public void addProgressionData(ProgressionData progression) {
 		progressionList.add(progression);
+	}
+	
+	/**
+	 * Reset all progression data.
+	 */
+	public void resetProgressionData() {
+		progressionList.clear();
+		addProgressionData(new ProgressionData(0));
 	}
 	
 	/**

@@ -25,6 +25,10 @@ public class MazeData {
 	 */
 	public static final String filenameSuffix = "_mazedata.csv";
 	/**
+	 * Highest stage ID
+	 */
+	public static final int HIGHEST_STAGE = 2;
+	/**
 	 * Maximum number of rows of tiles
 	 */
 	public static final int MAX_ROWS = 9;

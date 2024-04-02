@@ -22,9 +22,10 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * This class display the progression of a player
- * @author Yuting <br>
- * 
+ * This view class represents the student progression screen.
+ * @version 1.0
+ * @since March 11, 2024
+ * @author Yuting Hou
  */
 public class StudentProgressionView implements View {
 	
@@ -40,7 +41,7 @@ public class StudentProgressionView implements View {
 	
 	//define locations
 	private Point backButtonLocation = new Point(10,10);
-	private Point containerLocation = new Point(0, 50);  //contains all student's progression
+	private Point containerLocation = new Point(0, 50); // contains all student's progression
 	private Point progressionTitleLocation = new Point(375,10);
 
 	//define UI
@@ -83,14 +84,13 @@ public class StudentProgressionView implements View {
 		// set up container 
 		container = new PanelUI(containerLocation, containerSize, IconUI.lightOrange);
 		container.setBorder(new EmptyBorder(new Insets(0, 100, 0, 100)));
-		FlowLayout layout = new FlowLayout();
 		container.setLayout(new FlowLayout()); // set layout
 
 		
 		// adds 10 progression to container
 		for (int i = 0; i < 10; i++) {
 			
-			PanelUI curr = newEntry();  // create empty container
+			PanelUI curr = new PanelUI(entryContainerSize);;  // create empty container
 			curr.setBackground(IconUI.darkOrange);
 			
 			entries.add(curr); // add empty container to list
@@ -134,9 +134,7 @@ public class StudentProgressionView implements View {
 		scrollPane.setVisible(visibility);
 	}
 	
-	//@param index the index of the progression
-	//TODO: this function needs to display progression data
-	public void setEntry(int index, int stageID, boolean completed, int shortestSteps, int highScore, int timeSpent, int attempts) {
+	public void setEntry(int index, int stageID, boolean completed, int shortestSteps, int highScore, int timeSpent, int attempts, ButtonUI playButton) {
 		
 		PanelUI entry = entries.get(index);
 		
@@ -150,6 +148,7 @@ public class StudentProgressionView implements View {
 		entry.setLayout(layout);
 		entry.setSize(entryContainerSize);
 		entry.setBackground(IconUI.darkOrange);
+		entry.removeAll();
 		
 		LabelUI stageIDUI = new LabelUI(labelSize, "Level " + stageID);
 		LabelUI completedUI = new LabelUI(labelSize, "Completed: " + completed);
@@ -157,7 +156,6 @@ public class StudentProgressionView implements View {
 		LabelUI highestScoreUI = new LabelUI(labelSize, "High Score: " + highScore);
 		LabelUI timeSpentUI = new LabelUI(labelSize, "Time Spent: " + timeSpent);
 		LabelUI attemptsUI = new LabelUI(labelSize, "Attempts: " + attempts);
-		ButtonUI playButton = new ButtonUI(labelSize, "", IconUI.playButtonIcon);
 		
 		stats1.setBorder(new EmptyBorder(new Insets(20, 20, 20, 0)));
 		stats1.add(stageIDUI);
@@ -175,26 +173,13 @@ public class StudentProgressionView implements View {
 		entry.add(stats2, BorderLayout.CENTER);
 		entry.add(playButton, BorderLayout.EAST);
 		
-	}
-	
-	/**
-	 * This method adds an empty progression record container to the screen.
-	 */
-	public PanelUI newEntry() {
-		
-		//create a new PanelUI
-		PanelUI entry = new PanelUI(entryContainerSize);
-		
-		return entry;
+		refreshPanel();
 	}
 	
 	// Action Listeners
 	
-	public void backButtonAddActionListener(ActionListener actionListener) {
+	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
-
-
-	
 
 }

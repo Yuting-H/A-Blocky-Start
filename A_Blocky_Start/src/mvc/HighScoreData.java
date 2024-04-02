@@ -82,7 +82,7 @@ public class HighScoreData {
 	 * "username2, highScore2"<br>
 	 * "..."<br>
 	 */
-	public void exportHighScore() {
+	public void exportData() {
 		// Write to the CSVfile
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 			// Write each line

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
 
 /**
  * @author Yuting
@@ -96,20 +97,10 @@ public class SettingsView implements View {
 		volumeLevelSlider.setPaintLabels(true);
 		rootPanel.add(volumeLevelSlider);
 		
-		
-		// colourblind combobox label
 		rootPanel.add(colourBlindLabel);
-		
-		// resolution combobox label
 		rootPanel.add(resolutionLabel);
-		
-		// volume level label
 		rootPanel.add(volumeLevelLabel);
-		
-		// setting label
 		rootPanel.add(settingsLabel);
-		
-		// back button
 		rootPanel.add(backButton);
 	}
 	
@@ -181,8 +172,22 @@ public class SettingsView implements View {
 	
 	// Action Listeners
 	
-	public void backButtonAddActionListener(ActionListener actionListener) {
+	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
+	}
+	
+	public void resolutionComboBox(ActionListener actionListener) {
+		resolutionComboBox.addActionListener(actionListener);
+	}
+	
+	public void colourBlindComboBox(ActionListener actionListener) {
+		colourBlindComboBox.addActionListener(actionListener);
+	}
+	
+	// Change Listeners
+	
+	public void volumeLevelSlider(ChangeListener changeListener) {
+		volumeLevelSlider.addChangeListener(changeListener);
 	}
 
 }

@@ -11,18 +11,20 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class GameplayController implements Controller {
-
-	private static final int ACTION_CHAIN_SPEED = 500; // millisecond
+	
+	private static final int ACTION_CHAIN_SPEED = 300; // every 300 milliseconds
+	private static final int AUTO_SAVE_SPEED = 1000 * 60 * 5; // every 5 minutes
 	
 	private static Controller previous;
 	private static GameplayView view = new GameplayView();
-	private static int stageID = 2; // TODO use a setter
-	private static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
-	private static ProgressionData progress = user.getProgressionAtIndex(0); // TODO use a setter
-	private static ActionChainData chain = progress.getActionChain();
-	private static MazeData maze = MazeData.importData(MazeData.toFilename(stageID)); // TODO use a setter
+	private static UserData user;
+	private static ProgressionData progress;
+	private static ActionChainData chain;
+	private static int stageID;
+	private static MazeData maze;
 	
 	private Timer actionChainTimer;
+	private Timer autoSaveTimer;
 	
 	/**
 	 * Constructor.
@@ -30,11 +32,12 @@ public class GameplayController implements Controller {
 	public GameplayController() {
 		view.insertPanelToFrame(Main.gameFrame);
 		populateActionListener();
-		rebuildActionChainUI();
-		rebuildMazeUI();
 		
 		actionChainTimer = new Timer(ACTION_CHAIN_SPEED, this.new ActionChainTimerListener());
 		actionChainTimer.setInitialDelay(0);
+		
+		autoSaveTimer = new Timer(AUTO_SAVE_SPEED, this.new AutoSaveTimerListener());
+		autoSaveTimer.setInitialDelay(AUTO_SAVE_SPEED);
 	}
 	
 	@Override
@@ -50,6 +53,11 @@ public class GameplayController implements Controller {
 		view.setDebugButtonVisibility(Main.loginController.getMode() == UserTypeEnum.DEVELOPER);
 		resetActionChain();
 		resetMaze();
+		
+		progress.addAttempts(1);
+		progress.addTimeSpent(1);
+		
+		autoSaveTimer.restart();
 
 		Main.refreshColorblindOverlay();
 	}
@@ -66,6 +74,8 @@ public class GameplayController implements Controller {
 		view.setActionBuffetDisable(false);
 		resetActionChain();
 		resetMaze();
+		
+		autoSaveTimer.stop();
 	}
 	
 	/**
@@ -86,7 +96,7 @@ public class GameplayController implements Controller {
 		view.saveButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("saveButton"); // TODO
+				saveProgressionData();
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
@@ -265,6 +275,14 @@ public class GameplayController implements Controller {
 		});
 	}
 	
+	public void setupStage(UserData user, int stageID) {
+		GameplayController.user = user;
+		GameplayController.progress = user.getProgressionAtIndex(stageID);
+		GameplayController.chain = progress.getActionChain();
+		GameplayController.stageID = stageID;
+		GameplayController.maze = MazeData.importData(MazeData.toFilename(stageID));
+	}
+	
 	public void rebuildActionChainUI() {
 		view.clearActionChainUI();
 		
@@ -290,6 +308,20 @@ public class GameplayController implements Controller {
 	 */
 	public void setProgressionData(ProgressionData progressionData) {
 		progress = progressionData;
+	}
+	
+	public void saveProgressionData() {
+		if (user.isSTUDENT()) {
+			Main.errorLogController.addPopup("Game Saved", "Saved!", JOptionPane.INFORMATION_MESSAGE, null);
+			user.exportData(); // teachers and developers cannot save progress, since their accounts are shared
+		}
+	}
+	
+	public void unlockNextStage() {
+		if (user.getProgressionList().size() <= maze.HIGHEST_STAGE) {
+			user.addProgressionData(new ProgressionData(stageID + 1));
+			user.exportData();
+		}
 	}
 	
 	public void runActionChain() {
@@ -353,14 +385,19 @@ public class GameplayController implements Controller {
 		// Stop action chain when exit is reached
 		if (maze.getMazeItem(maze.getRobotRow(), maze.getRobotColumn()) == MazeTypeEnum.EXIT) {
 			pauseActionChain();
-			System.out.println("You win!"); // TODO
+			progress.markAsCompleted();
+			progress.updateHighestScore(maze.getScore());
+			progress.updateShortestSteps(chain.getActionBlockList().size() - 1);
+			saveProgressionData();
+			unlockNextStage();
+			Main.errorLogController.addPopup("You Win!", "You have completed stage " + stageID + "! Score: " + maze.getScore(), JOptionPane.INFORMATION_MESSAGE, null);
 		}
 		
 		// Successful
 		return success;
 	}
 	
-	// Action Listeners for Timer
+	// Action Listeners for Timers
 	
 	private class ActionChainTimerListener implements ActionListener {
 		
@@ -377,6 +414,19 @@ public class GameplayController implements Controller {
 			if (!success) {
 				pauseActionChain(); 
 			}
+		}
+	}
+	
+	private class AutoSaveTimerListener implements ActionListener {
+		
+		public AutoSaveTimerListener() {
+			// do nothing
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Save current progress
+			saveProgressionData();
 		}
 	}
 	

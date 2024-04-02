@@ -131,5 +131,21 @@ public class LoginController implements Controller {
 	public UserTypeEnum getMode() {
 		return data.getMode();
 	}
+	
+	/**
+	 * Access the active user data.
+	 * @return Active user data
+	 */
+	public UserData getActiveUserData() {
+		return data.getActiveUserData();
+	}
+	
+	/**
+	 * Reset the active user data.
+	 */
+	public void resetActiveUserData() {
+		data.getActiveUserData().resetProgressionData();
+		data.getActiveUserData().exportData();
+	}
 
 }

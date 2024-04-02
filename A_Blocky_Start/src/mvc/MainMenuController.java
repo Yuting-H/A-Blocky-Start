@@ -36,33 +36,45 @@ public class MainMenuController implements Controller {
 	 */
 	private void populateActionListener() {
 		
-		//continue button
-		view.continueButtonAddActionListener(new ActionListener() {
+		view.continueButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//for debug purpose, continue button leads to gameplay view
+				if (Main.loginController.getMode() == UserTypeEnum.STUDENT) {
+					// Access the last unlocked stage
+					UserData activeUser = Main.loginController.getActiveUserData();
+					int lastestStage = activeUser.getProgressionList().size() - 1;
+					Main.gameplayController.setupStage(activeUser, lastestStage);
+					
+					Main.mainMenuController.onExit();
+					Main.gameplayController.onEnter(Main.mainMenuController);
+				} else {
+					// Access the level selection screen
+					Main.mainMenuController.onExit();
+					Main.studentProgressionController.setUserData(Main.loginController.getActiveUserData());
+					Main.studentProgressionController.onEnter(Main.mainMenuController);
+				}
+				
+				Main.soundController.playSound(SoundController.buttonClick);
+			}
+		});
+		
+		view.newGameButton(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.loginController.resetActiveUserData();
+				int lastestStage = 0;
+				UserData activeUser = Main.loginController.getActiveUserData();
+				Main.gameplayController.setupStage(activeUser, lastestStage);
+				
 				Main.mainMenuController.onExit();
 				Main.gameplayController.onEnter(Main.mainMenuController);
-				
-				
-				//TODO: implement this
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
-		//new game button
-		view.newGameButtonAddActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//TODO add action
-				Main.soundController.playSound(SoundController.buttonClick);
-			}
-		});
-		
-		//tutorial button
-		view.tutorialButtonAddActionListener(new ActionListener() {
+		view.tutorialButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -72,26 +84,26 @@ public class MainMenuController implements Controller {
 			}
 		});
 		
-		//progression button
-		view.progressionButtonAddActionListener(new ActionListener() {
+		view.progressionButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				Main.mainMenuController.onExit();
-				System.out.println(Main.loginController.getMode());
+				
 				if (Main.loginController.getMode() == UserTypeEnum.STUDENT) {
+					Main.studentProgressionController.setUserData(Main.loginController.getActiveUserData());
 					Main.studentProgressionController.onEnter(Main.mainMenuController);
 				} else {
 					Main.teacherProgressionController.onEnter(Main.mainMenuController);
 				}
+				
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 			
 		});
 		
-		//high score button
-		view.highscoreButtonAddActionListener(new ActionListener() {
+		view.highscoreButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,8 +113,7 @@ public class MainMenuController implements Controller {
 			}
 		});
 		
-		//setting button
-		view.settingsButtonAddActionListener(new ActionListener() {
+		view.settingsButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -112,8 +123,7 @@ public class MainMenuController implements Controller {
 			}
 		});
 		
-		//exit application when exit button is clicked
-		view.exitButtonAddActionListener(new ActionListener() {
+		view.exitButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

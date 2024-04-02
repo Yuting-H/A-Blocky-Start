@@ -5,10 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
-/**
- * 
- */
 public class TeacherProgressionController implements Controller {
 
 	private static Controller previous;
@@ -27,6 +23,7 @@ public class TeacherProgressionController implements Controller {
 	public void onEnter(Controller previous) {
 		TeacherProgressionController.previous = previous;
 		view.setVisibility(true);
+		refreshView();
 		Main.refreshColorblindOverlay();
 	}
 
@@ -40,7 +37,7 @@ public class TeacherProgressionController implements Controller {
 	 */
 	private void populateActionListener() {
 		
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -50,16 +47,13 @@ public class TeacherProgressionController implements Controller {
 			}
 		});
 		
-		//add functionality to selector
-		view.selectorAddChangeListener(new ChangeListener() {
+		view.pageSelector(new ChangeListener() {
 			
-			//when the number is changed
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				
-				//refresh view
 				refreshView();
 			}
+			
 		});
 	}
 	
@@ -68,12 +62,12 @@ public class TeacherProgressionController implements Controller {
 	 */
 	private void refreshView() {
 		
-		//updates data, sets page
+		// update page, update entries
 		data.setPage(view.getPage());
 		data.updateEntries();
 		
-		//add the entries on the page to view
-		//some entries may not exist
+		// add the entries on the page to view
+		// some entries may not exist
 		for (int i = 0; i < 10; i++) {
 			
 			UserData currData = data.getUserData(i);
@@ -82,13 +76,14 @@ public class TeacherProgressionController implements Controller {
 			if (currData != null) {
 				view.setEntry(
 						i, 
-						currData.getUsername().substring(0, currData.getUsername().length() - 13), 
+						currData.getUsername(), 
 						currData.getTotalTimeSpent(), 
 						currData.getTotalAttempts(), 
 						currData.getTotalScore(), 
-						-1
+						currData.getProgressionList().size() - 1
 						);
-			}else {  //if this entry does not exist, update with a blank
+			} else {
+				// if this entry does not exist, update with a blank
 				view.setEntry(i, "Empty", 0, 0, 0, 0);
 			}
 			
