@@ -55,10 +55,10 @@ public class IconUI {
 	public static final ImageIcon highscoreButtonIcon = new ImageIcon("img/MenuHighScores.png");
 	public static final ImageIcon settingsButtonIcon = new ImageIcon("img/MenuSettings.png");
 	public static final ImageIcon exitButtonIcon = new ImageIcon("img/MenuExit.png");
-	public static final ImageIcon saveButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
-	public static final ImageIcon mainMenuButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
-	public static final ImageIcon blankButtonIcon = new ImageIcon("img/MenuBlank.png"); // TODO
-	public static final ImageIcon playButtonIcon = new ImageIcon("img/menuPlay.png");
+	public static final ImageIcon saveButtonIcon = new ImageIcon("img/MenuSave.png");
+	public static final ImageIcon mainMenuButtonIcon = new ImageIcon("img/MenuMainMenu.png");
+	public static final ImageIcon blankButtonIcon = new ImageIcon("img/MenuBlank.png");
+	public static final ImageIcon playButtonIcon = new ImageIcon("img/MenuPlay.png");
 
 	// 30 x 30
 	public static final ImageIcon backButtonIcon = new ImageIcon("img/IconBack.png");
@@ -104,5 +104,14 @@ public class IconUI {
 	public static final ImageIcon addRightButtonIcon = new ImageIcon("img/BuffetRight.png");
 	public static final ImageIcon addGotoButtonIcon = new ImageIcon("img/BuffetGoto.png");
 	public static final ImageIcon addLoopButtonIcon = new ImageIcon("img/BuffetLoop.png");
+	
+	// 800 x 600
+	public static final ImageIcon tutorial1 = new ImageIcon("img/Tutorial_1.png");
+	public static final ImageIcon tutorial2 = new ImageIcon("img/Tutorial_2.png");
+	public static final ImageIcon tutorial3 = new ImageIcon("img/Tutorial_3.png");
+	public static final ImageIcon tutorial4 = new ImageIcon("img/Tutorial_4.png");
+	public static final ImageIcon tutorial5 = new ImageIcon("img/Tutorial_5.png");
+	public static final ImageIcon tutorial6 = new ImageIcon("img/Tutorial_6.png");
+	public static final ImageIcon tutorial7 = new ImageIcon("img/Tutorial_7.png");
 	
 }

@@ -2,6 +2,8 @@ package mvc;
 
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
 /**
  * This model class stores, updates, and checks the current login data in the login screen.
  * @version 1.0
@@ -43,11 +45,10 @@ public class LoginData {
 	public UserTypeEnum getMode() {
 		
 		if (usernameInput.equalsIgnoreCase(TEACHER_USERNAME)) {
-			System.out.println("Teacher mode");
+			Main.errorLogController.addPopup(">> Prompt <<", "Teacher mode activated.", JOptionPane.INFORMATION_MESSAGE, null);
 			return UserTypeEnum.TEACHER;
-			
 		} else if (usernameInput.equalsIgnoreCase(DEVELOPER_USERNAME)) {
-			System.out.println("Developer mode");
+			Main.errorLogController.addPopup(">> Prompt <<", "Developer mode activated.", JOptionPane.INFORMATION_MESSAGE, null);
 			return UserTypeEnum.DEVELOPER;
 		}
 		return UserTypeEnum.STUDENT; // default mode
@@ -102,8 +103,9 @@ public class LoginData {
 			return false; // cannot register a new DEVELOPER account
 		}
 		
-		// Create a new user data
+		// Create a new user data file
 		activeUserData = new UserData(UserTypeEnum.STUDENT, usernameInput, passwordInput);
+		activeUserData.exportData();
 		
 		// Successful
 		return true;
@@ -114,15 +116,16 @@ public class LoginData {
 	 * @return True if successful, false if account does not exist or incorrect password
 	 */
 	public boolean loginActiveUser() {
-		
-		// Try opening the user data file
-		UserData userData = UserData.importData(UserData.toFilename(usernameInput));
+		// Check if file exists
 		if (!isExistingUser()) {
 			return false; // cannot log into non-existing account
 		}
 		
+		// Try opening the user data file
+		UserData userData = UserData.importData(UserData.toFilename(usernameInput));
+		
 		// Verify password
-		if (!(userData.getPassword().equals(passwordInput))) {
+		if (!userData.getPassword().equals(passwordInput)) {
 			return false; // incorrect password
 		}
 		
@@ -162,7 +165,7 @@ public class LoginData {
 	 * @param username
 	 * @return
 	 */
-	private boolean isExistingUser() {
+	public boolean isExistingUser() {
 		try {
 			// Try opening the user data file
 			String filename = UserData.toFilename(usernameInput);

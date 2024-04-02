@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -15,11 +16,11 @@ public class GameplayController implements Controller {
 	
 	private static Controller previous;
 	private static GameplayView view = new GameplayView();
+	private static int stageID = 2; // TODO use a setter
 	private static UserData user = UserData.importData(UserData.toFilename("brucelee")); // TODO remove this
-	private static ProgressionData progress = user.getProgressionAtIndex(4); // TODO use a setter
+	private static ProgressionData progress = user.getProgressionAtIndex(0); // TODO use a setter
 	private static ActionChainData chain = progress.getActionChain();
-	private static MazeData maze = MazeData.importData(MazeData.toFilename(999)); // TODO use a setter
-	private static int stageID = 999; // TODO use a setter
+	private static MazeData maze = MazeData.importData(MazeData.toFilename(stageID)); // TODO use a setter
 	
 	private Timer actionChainTimer;
 	
@@ -46,6 +47,7 @@ public class GameplayController implements Controller {
 		view.setPauseMenuVisibility(false);
 		view.setActionChainDisable(false);
 		view.setActionBuffetDisable(false);
+		view.setDebugButtonVisibility(Main.loginController.getMode() == UserTypeEnum.DEVELOPER);
 		resetActionChain();
 		resetMaze();
 
@@ -163,7 +165,7 @@ public class GameplayController implements Controller {
 		view.objectivesButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("iconObjectivesButton"); // TODO
+				Main.errorLogController.addPopup("Objectives", maze.getObjectives(), JOptionPane.INFORMATION_MESSAGE, IconUI.objectivesButtonIcon);
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
@@ -171,7 +173,7 @@ public class GameplayController implements Controller {
 		view.hintsButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("iconHintsButton"); // TODO
+				Main.errorLogController.addPopup("Hints", maze.getHints(), JOptionPane.INFORMATION_MESSAGE, IconUI.hintsButtonIcon);
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
@@ -179,9 +181,7 @@ public class GameplayController implements Controller {
 		view.debugChainButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				view.refreshActionChainUI(); // TODO delete this line
-				System.out.println(chain.exportData()); // TODO delete this line
-				System.out.println("iconTypeChainButton"); // TODO
+				Main.errorLogController.addPopup("Debug", "Action Chain Data:" + chain.exportData(), JOptionPane.INFORMATION_MESSAGE, IconUI.debugChainButtonIcon);
 				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
@@ -350,6 +350,12 @@ public class GameplayController implements Controller {
 			view.updateMazeRobotIcon(maze.getRobotRow(), maze.getRobotColumn(), maze.getRobotRowOffset(), maze.getRobotColumnOffset());
 		}
 		
+		// Stop action chain when exit is reached
+		if (maze.getMazeItem(maze.getRobotRow(), maze.getRobotColumn()) == MazeTypeEnum.EXIT) {
+			pauseActionChain();
+			System.out.println("You win!"); // TODO
+		}
+		
 		// Successful
 		return success;
 	}
@@ -390,6 +396,8 @@ public class GameplayController implements Controller {
 			
 			// Rebuild the action chain UI
 			rebuildActionChainUI();
+			
+			Main.soundController.playSound(SoundController.buttonClick);
 		}
 		
 	}
