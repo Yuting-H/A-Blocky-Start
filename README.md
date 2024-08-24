@@ -9,7 +9,7 @@
 * Chun Ho Chan (Edward)
   * ccha232@uwo.ca
 * Yuting Hou
-  * yhou294@uwo.ca
+  * yuting.yh@gmail.com
 * Doyle Blacklock
   * dblacklo@uwo.ca
 * Simon Mccabe
