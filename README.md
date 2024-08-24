@@ -7,7 +7,7 @@
 * *Full Name*
   * *Email Address*
 * Chun Ho Chan (Edward)
-  * ccha232@uwo.ca
+  * edwardchanchunho@gmail.com
 * Yuting Hou
   * yuting.yh@gmail.com
 * Doyle Blacklock
