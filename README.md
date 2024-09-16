@@ -44,7 +44,7 @@ This game project was created as part of CompSci 2212B at Western University.
 Note:  
 * All images are hand-drawn by our team members.  
 
-## 1. Short Description
+## 1. Description
 
 This is a game project (group assignment) of CompSci 2212B at Western University.  
 
